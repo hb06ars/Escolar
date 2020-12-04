@@ -316,8 +316,8 @@ body {
 
 <script>
 	var url_atual = window.location.href;
-	if(url_atual != 'http://localhost:8080/index' && url_atual != 'http://localhost:8080/'){
-		window.location.href = "http://localhost:8080/index";
+	if(url_atual != 'https://escolar2020.herokuapp.com/index' && url_atual != 'https://escolar2020.herokuapp.com/'){
+		window.location.href = "https://escolar2020.herokuapp.com/index";
 	}
 </script>
 
