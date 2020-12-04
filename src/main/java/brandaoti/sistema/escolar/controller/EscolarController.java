@@ -43,7 +43,7 @@ public class EscolarController {
 	
 	@GetMapping(value = "/deslogar") // Link do submit do form e o method POST que botou la
 	public ModelAndView deslogar(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "/";
+		String link = "/index";
 		logado = false;
 		ModelAndView modelAndView = new ModelAndView(link); //modelAndView é usado para direcionar para determinado JSP
 		return modelAndView; //retorna para a pagina outra.jsp
