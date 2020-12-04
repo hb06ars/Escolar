@@ -1,6 +1,5 @@
 package brandaoti.sistema.escolar.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +21,9 @@ public class EscolarController {
 	
 	public static Boolean logado = false;
 	
-	@GetMapping({"/","/index"}) //Link acessado pela URL...
-		public ModelAndView index(Model model) { // model é usado para mandar 
-		ModelAndView modelAndView = new ModelAndView("index"); //modelAndView é usado para direcionar para determinado JSP
+	@GetMapping({"/","/index"}) 
+		public ModelAndView index(Model model) { 
+		ModelAndView modelAndView = new ModelAndView("index"); 
 		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		if(usu == null) {
 			Usuario u = new Usuario();
@@ -38,15 +37,15 @@ public class EscolarController {
 		}
 		
 		
-		return modelAndView; //retorna para a pagina index.jsp
+		return modelAndView; 
 	}
 	
-	@GetMapping(value = "/deslogar") // Link do submit do form e o method POST que botou la
-	public ModelAndView deslogar(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+	@GetMapping(value = "/deslogar")
+	public ModelAndView deslogar(Model model) {  
 		String link = "/index";
 		logado = false;
-		ModelAndView modelAndView = new ModelAndView(link); //modelAndView é usado para direcionar para determinado JSP
-		return modelAndView; //retorna para a pagina outra.jsp
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
 	}
 	
 	@RequestMapping(value = "/home", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
@@ -56,15 +55,15 @@ public class EscolarController {
 		if(usu != null || logado) {
 			logado = true;
 			model.addAttribute("logado", logado);
-			model.addAttribute("cli", usu); //Objeto que tô mandando pro JSP
+			model.addAttribute("cli", usu); 
 		} else {
 			logado = false;
 		}
 		if(logado) {
 			link = "pages/home";
 		}
-		ModelAndView modelAndView = new ModelAndView(link); //modelAndView é usado para direcionar para determinado JSP
-		return modelAndView; //retorna para a pagina outra.jsp
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
 	}
 	
 
