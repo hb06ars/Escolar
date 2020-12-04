@@ -311,9 +311,15 @@ body {
 
 <link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Flivro.png?alt=media&token=50641a98-ee5c-461b-9151-8ce97810b749" type="image/ico">
 <title>Sistema Escolar</title>
-    
 
 <html>
+
+<script>
+	var url_atual = window.location.href;
+	if(url_atual != 'http://localhost:8080/index' && url_atual != 'http://localhost:8080/'){
+		window.location.href = "http://localhost:8080/index";
+	}
+</script>
 
 <head>
 	<meta charset="utf-8">
@@ -352,7 +358,7 @@ body {
 	<br>
 	
     <!-- Login Form -->
-    <form action="/logar" method="post">
+    <form action="/home" method="post">
       <input type="text" id="usuarioVal" class="fadeIn second" name="usuarioVal" placeholder="Login" required>
       <input type="password" id="senhaVal" class="fadeIn third" name="senhaVal" placeholder="Senha" required>
       <input type="submit" class="fadeIn fourth" value="Log In">

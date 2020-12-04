@@ -49,17 +49,20 @@ public class EscolarController {
 		return modelAndView; //retorna para a pagina outra.jsp
 	}
 	
-	@RequestMapping(value = "/logar", method = RequestMethod.POST) // Link do submit do form e o method POST que botou la
-	public ModelAndView logar(Model model, @RequestParam(value = "usuarioVal" ) String variavelUsuario, @RequestParam(value = "senhaVal" ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "/";
+	@RequestMapping(value = "/home", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView logar(Model model, @RequestParam(value = "usuarioVal", defaultValue = "", required=false ) String variavelUsuario, @RequestParam(value = "senhaVal", defaultValue = "", required=false ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = "/index";
 		Usuario usu = usuarioDao.fazerLogin(variavelUsuario, variavelSenha);
-		if(usu != null) {
+		if(usu != null || logado) {
 			logado = true;
+			model.addAttribute("logado", logado);
+			model.addAttribute("cli", usu); //Objeto que tô mandando pro JSP
+		} else {
+			logado = false;
 		}
 		if(logado) {
-			link = "home";
+			link = "pages/home";
 		}
-		model.addAttribute("cli", usu); //Objeto que tô mandando pro JSP
 		ModelAndView modelAndView = new ModelAndView(link); //modelAndView é usado para direcionar para determinado JSP
 		return modelAndView; //retorna para a pagina outra.jsp
 	}
