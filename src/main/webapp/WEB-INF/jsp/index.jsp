@@ -315,12 +315,27 @@ body {
 <html>
 
 <script>
+<<<<<<< HEAD
 	var urlatual = window.location.href;
 	//if(urlatual != 'https://escolar2020.herokuapp.com/index' && urlatual != 'https://escolar2020.herokuapp.com/'){
 	//	window.location.href = "https://escolar2020.herokuapp.com/index";
 	//}
 	if(urlatual != 'http://localhost:8080/index' && urlatual != 'http://localhost:8080/'){
 		window.location.href = "http://localhost:8080/index";
+=======
+<<<<<<< HEAD
+	var urlatual = window.location.href;
+	//if(urlatual != 'https://escolar2020.herokuapp.com/index' && urlatual != 'https://escolar2020.herokuapp.com/'){
+	//	window.location.href = "https://escolar2020.herokuapp.com/index";
+	//}
+	if(urlatual != 'http://localhost:8080/index' && urlatual != 'http://localhost:8080/'){
+		window.location.href = "http://localhost:8080/index";
+=======
+	var url_atual = window.location.href;
+	if(url_atual != 'https://localhost:8080/index' && url_atual != 'https://localhost:8080/'){
+		window.location.href = "https://localhost:8080/index";
+>>>>>>> branch 'master' of https://github.com/hb06ars/Escolar.git
+>>>>>>> branch 'master' of https://github.com/hb06ars/Escolar.git
 	}
 	
 </script>
