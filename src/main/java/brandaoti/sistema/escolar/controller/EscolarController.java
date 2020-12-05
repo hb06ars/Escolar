@@ -40,7 +40,7 @@ public class EscolarController {
 	
 	@GetMapping(value = "/deslogar")
 	public ModelAndView deslogar(Model model) {  
-		String link = "/index";
+		String link = "/deslogar";
 		logado = false;
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
