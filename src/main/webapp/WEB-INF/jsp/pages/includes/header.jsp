@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
 
+<jsp:include page="css/cssVendas.jsp" />
+
 <script>
 function expandir(campo, quantidade){
 	var ativado = document.getElementsByClassName(campo)[0].style.display;

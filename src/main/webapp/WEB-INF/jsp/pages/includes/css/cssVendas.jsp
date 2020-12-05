@@ -41,11 +41,6 @@
   transition: 0.3s;
   border-radius: 10px; /* 5px rounded corners */
 }
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
-  transition: 0.3s;
-  border-radius: 10px; /* 5px rounded corners */
-}
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -53,8 +48,18 @@
   grid-row-gap: 5px;
   padding: 0px;
 }
-.card:hover {
--webkit-filter: brightness(57%);
+.card {
+  transition: 0.3s;
+  border-radius: 20px; /* 5px rounded corners */
 }
+.card:hover {
+  border-radius: 20px; /* 5px rounded corners */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+  transition: 0.3s;
+  -webkit-filter: brightness(120%);
+}
+
+
+
 </style>
 <!-- STYLE CARDS-->

@@ -315,10 +315,14 @@ body {
 <html>
 
 <script>
-	var url_atual = window.location.href;
-	if(url_atual != 'https://escolar2020.herokuapp.com/index' && url_atual != 'https://escolar2020.herokuapp.com/'){
-		window.location.href = "https://escolar2020.herokuapp.com/index";
+	var urlatual = window.location.href;
+	//if(urlatual != 'https://escolar2020.herokuapp.com/index' && urlatual != 'https://escolar2020.herokuapp.com/'){
+	//	window.location.href = "https://escolar2020.herokuapp.com/index";
+	//}
+	if(urlatual != 'http://localhost:8080/index' && urlatual != 'http://localhost:8080/'){
+		window.location.href = "http://localhost:8080/index";
 	}
+	
 </script>
 
 <head>
