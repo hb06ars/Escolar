@@ -63,6 +63,5 @@ public class EscolarController {
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
 	}
-	//Valido
 
 }
