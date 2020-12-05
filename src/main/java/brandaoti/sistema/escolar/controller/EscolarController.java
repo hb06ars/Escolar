@@ -35,8 +35,6 @@ public class EscolarController {
 			u.setSenha("adm");
 			usuarioDao.save(u);
 		}
-		
-		
 		return modelAndView; 
 	}
 	
