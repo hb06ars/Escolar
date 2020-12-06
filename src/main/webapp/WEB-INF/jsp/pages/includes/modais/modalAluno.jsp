@@ -4,7 +4,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 
-
+<jsp:include page="../mascaras/mascaras.jsp" />
 
 <!--  EDITAR FUNCIONARIO -->
 <script>
