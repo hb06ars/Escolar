@@ -62,6 +62,12 @@ public class Alunos {
 	
 	@Column
 	private String bairro;
+
+	@Column
+	private String cidade;
+	
+	@Column
+	private String estado;
 	
 	@Column
 	private String responsavel;
@@ -70,7 +76,7 @@ public class Alunos {
 	private String cpfResponsavel;
 	
 	@Column
-	private boolean suspensao;
+	private boolean suspensao = false;
 	
 	@OneToOne
 	private Perfil perfil;

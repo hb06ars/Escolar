@@ -4,11 +4,11 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 
-<jsp:include page="/pages/includes/modais/modalDeletar.jsp" />
+<jsp:include page="modais/modalDeletar.jsp" />
 
-<jsp:include page="/pages/includes/modais/modalAutor.jsp" />
-<jsp:include page="/pages/includes/modais/modalContato.jsp" />
-<jsp:include page="/pages/includes/modais/modalImagem.jsp" />
+<jsp:include page="modais/modalAutor.jsp" />
+<jsp:include page="modais/modalContato.jsp" />
+<jsp:include page="modais/modalImagem.jsp" />
 
 
 

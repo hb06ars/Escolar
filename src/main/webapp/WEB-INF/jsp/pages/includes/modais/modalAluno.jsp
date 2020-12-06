@@ -9,8 +9,8 @@
 <!--  EDITAR FUNCIONARIO -->
 <script>
 
-function modalEditarUsuario(id, nome, telefone , endereco, bairro, cep, observacoes, referencia, cidade, estado, tipo){
-	document.getElementById("form").action = "/Sistema/adm/atualizarUsuario";
+function modalEditarAluno(id, nome, telefone , endereco, bairro, cep, observacoes, referencia, cidade, estado, tipo){
+	document.getElementById("form").action = "/aluno/atualizarUsuario";
 	var funcCliente = '';
 	var index = 1;
 	if(tipo == 'admin'){
@@ -49,11 +49,11 @@ function modalEditarUsuario(id, nome, telefone , endereco, bairro, cep, observac
 	document.getElementById("estado").value = estado;
 	document.getElementById("estado").required = false;
 	
-	$("#modalEditarFuncionario").modal().show();
+	$("#modalEditarAluno").modal().show();
 }
 
-function modalNovoUsuario(){
-	document.getElementById("form").action = "/Sistema/adm/atualizarUsuario";
+function modalNovoAluno(){
+	document.getElementById("form").action = "/aluno/atualizarAluno";
 	document.getElementById("nome").value = '';
 	document.getElementById("nome").required = true;
 	document.getElementById("alterarSalvar").value = 'novo';
@@ -76,12 +76,12 @@ function modalNovoUsuario(){
 	document.getElementById("estado").value = 'SP';
 	document.getElementById("estado").required = false;
 	
-	$("#modalEditarFuncionario").modal().show();
+	$("#modalEditarAluno").modal().show();
 }
 
 
-function modalPesquisarUsuario(){
-	document.getElementById("form").action = "/Sistema/adm/pesquisarUsuario";
+function modalPesquisarAluno(){
+	document.getElementById("form").action = "/aluno/pesquisarAluno";
 	document.getElementById("nome").value = '';
 	document.getElementById("nome").required = false;
 	document.getElementById("permissaoFunc").required = false;
@@ -105,7 +105,7 @@ function modalPesquisarUsuario(){
 	document.getElementById("estado").required = false;
 	
 	
-	$("#modalEditarFuncionario").modal().show();
+	$("#modalEditarAluno").modal().show();
 }
 
 
@@ -113,8 +113,8 @@ function modalPesquisarUsuario(){
 </script>
 
 
-<form action="<c:url value='/adm/atualizarUsuario'/>" id="form" method="post" >
-<div class="modal fade" id="modalEditarFuncionario" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+<form action="<c:url value='/adm/atualizarAluno'/>" id="form" method="post" >
+<div class="modal fade" id="modalEditarAluno" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

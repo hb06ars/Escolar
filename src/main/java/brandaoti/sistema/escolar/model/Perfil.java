@@ -20,7 +20,19 @@ public class Perfil {
 	private String nome;
 	
 	@Column
-	private Boolean ativo;
+	private Boolean ativo = true;
+	
+	@Column
+	private Boolean professor = false;
+	
+	@Column
+	private Boolean aluno = false;
+	
+	@Column
+	private Boolean admin = false;
+	
+	@Column
+	private Boolean funcionario = false;
 
 	public Integer getId() {
 		return id;
@@ -52,6 +64,38 @@ public class Perfil {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Boolean getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Boolean professor) {
+		this.professor = professor;
+	}
+
+	public Boolean getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Boolean aluno) {
+		this.aluno = aluno;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
+	}
+
+	public Boolean getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Boolean funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	

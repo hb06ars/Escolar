@@ -22,11 +22,11 @@ function modalContato(){
         </button>
       </div>
       <div class="modal-body">
-        Rua Márcia, 324 - Jd. Emílio Carlos <br>
-        CEP: 06820-240 <br>
-        Embu das Artes - SP <br>
-        Contato: (11)94038-2521 <br>
-        Email: harleymonteiro@live.com <br><br>
+        Rua XXXXXX, 123 - Jd. XXXXX <br>
+        CEP: 00000-000 <br>
+        São Paulo - SP <br>
+        Contato: (11)00000-0000 <br>
+        Email: teste@teste.com <br><br>
         Funcionamento: <br>
         seg à sex - 08hs às 20hs <br>
         sáb - 09hs às 17hs <br>

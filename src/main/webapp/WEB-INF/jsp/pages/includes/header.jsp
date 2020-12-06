@@ -8,6 +8,12 @@
 <!DOCTYPE html>
 <html>
 
+<!--  ATUALIZAR P핯INA  -->
+<c:if test="${atualizarPagina != null }">
+	<script>window.location.href='${atualizarPagina}';</script>
+</c:if>
+<!--  FIM ATUALIZAR P핯INA  -->
+
 <jsp:include page="css/cssVendas.jsp" />
 
 <script>
@@ -54,9 +60,23 @@ function expandir(campo, quantidade){
     		
 </head>
 
+<!-- SCRIPTS -->
+<jsp:include page="javaScript.jsp" />
+<!-- SCRIPTS -->
+
+<!-- MENSAGENS -->
+<jsp:include page="mensagens.jsp" />
+<!-- MENSAGENS -->
+
+<body onload="iniciando()">
+
+<!-- MODAIS -->
+<jsp:include page="modal.jsp" />
+<!-- MODAIS -->
+
 <!--  ATUALIZAR P핯INA  -->
 <c:if test="${atualizarPagina != null }">
-	<script>window.location.href='/Sistema${atualizarPagina}';</script>
+	<script>window.location.href='/${atualizarPagina}';</script>
 </c:if>
 <!--  FIM ATUALIZAR P핯INA  -->
 
@@ -91,13 +111,23 @@ function expandir(campo, quantidade){
                     </ul>
                 </li>
                 <li>
+                    <a onclick="modalContato()" style="cursor: pointer;"> <i href="#" style="align:center" class="fas fa-phone" style="font-size:24px"></i> &nbsp Contato</a>
+                </li>
+                <li>
+                    <a onclick="modalAutor()" style="cursor: pointer;"> <i style="align:center" class="fas fa-id-card" style="font-size:24px"></i> &nbsp Autor</a>
+                </li>
+                <li>
                     <a href="/deslogar" style="cursor: pointer;"> <i style="align:center" class="fas fa-power-off" style="font-size:24px"></i> &nbsp Deslogar</a>
                 </li>
             </ul>
 			
             <ul class="list-unstyled">
                 <li>
-	                <a href="https://www.facebook.com/"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fface.png?alt=media&token=f244229d-cb1b-44ca-8bee-dcdfc96840f5" width="35" height="35"></img>&nbsp Facebook</a>
+	                <a href="https://www.facebook.com"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fface.png?alt=media&token=f244229d-cb1b-44ca-8bee-dcdfc96840f5" width="35" height="35"></img>&nbsp Facebook</a>
+                
+	                <a href="https://www.instagram.com"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Finstagram.png?alt=media&token=9ac6b88f-4a79-4ea4-a06c-b05e168834df" width="35" height="35"></img>&nbsp Instagram</a>
+	                
+	                <a href="https://wa.me/5511989376271"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fwhatsapp.png?alt=media&token=dfee5cfa-b5bc-4a86-95bb-c13d3b2f1bf8" width="35" height="35"></img>&nbsp WhatsApp</a>
                 </li>
             </ul>
        

@@ -17,7 +17,7 @@ function modalDeletar(campo, id){
 function confirmaDelete(){
 	var tabela = document.getElementById("tabelaExclusao").value; 
 	var id = document.getElementById("idExclusao").value;
-	window.location.href = "/Sistema/adm/deletando/"+tabela+"/"+id;
+	window.location.href = "/adm/deletando/"+tabela+"/"+id;
 }
 
 </script>
