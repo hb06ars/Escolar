@@ -29,7 +29,7 @@
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalPesquisarAluno()">Pesquisar</button>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoAluno()">Novo</button>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('funcionarios')"><i class="fas fa-upload"></i></button>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('alunos')"><i class="fas fa-upload"></i></button>
 	</div>
 </div>
 
