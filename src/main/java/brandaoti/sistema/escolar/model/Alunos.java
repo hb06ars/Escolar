@@ -1,5 +1,6 @@
 package brandaoti.sistema.escolar.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -43,7 +44,7 @@ public class Alunos {
 	private String cpf;
 	
 	@Column
-	private Date dataNascimento;
+	private LocalDate dataNascimento;
 	
 	@Column
 	private String serie;
@@ -153,11 +154,11 @@ public class Alunos {
 		this.cpf = cpf;
 	}
 
-	public Date getDataNascimento() {
+	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -239,6 +240,22 @@ public class Alunos {
 
 	public void setCpfResponsavel(String cpfResponsavel) {
 		this.cpfResponsavel = cpfResponsavel;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 	

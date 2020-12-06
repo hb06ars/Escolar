@@ -42,7 +42,7 @@
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Editar </th>
 		</c:if> 
-		<th>Login</th><th>Nome</th><th>Perfil</th><th>Código</th><th>Email</th>
+		<th>ID</th> <th>Nome</th> <th>Perfil</th> <th>Endereco</th> <th>Bairro</th> <th>Cep</th> <th>Cidade</th> <th>Estado</th> <th>Telefone</th> <th>Login</th> <th>Senha</th> <th>Ativo</th> <th>Email</th> <th>RA</th> <th>RG</th> <th>Cpf</th> <th>Data de Nascimento</th> <th>Série</th> <th>Turma</th> <th>Responsavel</th> <th>CPF Responsável</th> <th>Suspensao</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Excluir</th> 
 		</c:if>
@@ -54,6 +54,23 @@
 		<th><input type="text" id="filtro3"/></th>
 		<th><input type="text" id="filtro4"/></th>
 		<th><input type="text" id="filtro5"/></th>
+		<th><input type="text" id="filtro6"/></th>
+		<th><input type="text" id="filtro7"/></th>
+		<th><input type="text" id="filtro8"/></th>
+		<th><input type="text" id="filtro9"/></th>
+		<th><input type="text" id="filtro10"/></th>
+		<th><input type="text" id="filtro11"/></th>
+		<th><input type="text" id="filtro12"/></th>
+		<th><input type="text" id="filtro13"/></th>
+		<th><input type="text" id="filtro14"/></th>
+		<th><input type="text" id="filtro15"/></th>
+		<th><input type="text" id="filtro16"/></th>
+		<th><input type="text" id="filtro17"/></th>
+		<th><input type="text" id="filtro18"/></th>
+		<th><input type="text" id="filtro19"/></th>
+		<th><input type="text" id="filtro20"/></th>
+		<th><input type="text" id="filtro21"/></th>
+		<th><input type="text" id="filtro22"/></th>
 		<th></th>
 		</tr>
 		
@@ -66,13 +83,32 @@
 		
 		<c:forEach items="${alunos}" var="a">
 			<c:if test="${usuarioSessao.perfil.admin}">
-				<td><i class="fas fa-edit" onclick="modalEditarAluno(${a.id}, '${a.login}', '${a.nome}','${a.email}','${a.perfil}')"></i></td>
+				<td><i class="fas fa-edit" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}', '${a.login}', '${a.senha}', ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})"></i></td>
 			</c:if>
-			<td>${a.login}  
-			<td>${a.nome}   
+			<td>${a.id}  
+			<td>${a.nome}
 			<td>${a.perfil.nome}
-			<td>${a.ra} 
-			<td>${a.email}  
+			<td>${a.endereco}
+			<td>${a.bairro}
+			<td>${a.cep}
+			<td>${a.cidade}
+			<td>${a.estado}
+			<td>${a.telefone}
+			<td>${a.login}
+			<td>${a.senha}
+			<td>${a.ativo}
+			<td>${a.email}
+			<td>${a.ra}
+			<td>${a.rg}
+			<td>${a.cpf}
+			<td>${a.dataNascimento}
+			<td>${a.serie}
+			<td>${a.turma}
+			<td>${a.responsavel}
+			<td>${a.cpfResponsavel}
+			<td>${a.suspensao}
+			
+						  
 			<c:if test="${usuarioSessao.perfil.admin}">
 				<td><i class="fas fa-trash" onclick="modalDeletar('alunos', ${a.id})" ></i></td>
 			</c:if>

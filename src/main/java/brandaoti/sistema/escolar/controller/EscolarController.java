@@ -1,5 +1,7 @@
 package brandaoti.sistema.escolar.controller;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,20 +92,51 @@ public class EscolarController {
 			
 			//Teste
 			Alunos a = new Alunos();
-			a.setAtivo(true);
-			a.setLogin("hb06ars");
-			a.setPerfil(perfilDao.buscarCodigo("1"));
-			a.setAtivo(true);
-			a.setEmail("hb06ars@hotmail.com");
 			a.setNome("Henrique");
+			a.setPerfil(perfilDao.buscarCodigo("4"));
+			a.setEndereco("Rua da Paz");
+			a.setBairro("Jd das Rosas");
+			a.setCep("33333-444");
+			a.setCidade("São Paulo");
+			a.setEstado("SP");
+			a.setTelefone("22222-3333");
+			a.setLogin("hb06ars");
+			a.setSenha("123");
+			a.setAtivo(true);
+			a.setEmail("hb@gmail.com");
+			a.setRa("333");
+			a.setRg("123456789");
+			a.setCpf("12345678901");
+			a.setDataNascimento(LocalDate.of(1988, 5, 2));
+			a.setSerie("1");
+			a.setTurma("C");
+			a.setResponsavel("Donizeti");
+			a.setCpfResponsavel("2211142433");
+			a.setSuspensao(false);
 			alunosDao.save(a);
+			
 			a = new Alunos();
-			a.setAtivo(true);
-			a.setLogin("mah");
-			a.setPerfil(perfilDao.buscarCodigo("1"));
-			a.setAtivo(true);
-			a.setEmail("mah@hotmail.com");
 			a.setNome("Margarida");
+			a.setPerfil(perfilDao.buscarCodigo("4"));
+			a.setEndereco("Rua da Alegria");
+			a.setBairro("Jd Esperança");
+			a.setCep("99999-234");
+			a.setCidade("São Paulo");
+			a.setEstado("SP");
+			a.setTelefone("89999-3333");
+			a.setLogin("mah");
+			a.setSenha("123");
+			a.setAtivo(true);
+			a.setEmail("mah@mah.com");
+			a.setRa("222");
+			a.setRg("334445556");
+			a.setCpf("22233344455");
+			a.setDataNascimento(LocalDate.of(1986, 8, 26));
+			a.setSerie("3");
+			a.setTurma("A");
+			a.setResponsavel("Almir");
+			a.setCpfResponsavel("22233344455");
+			a.setSuspensao(false);
 			alunosDao.save(a);
 			
 			
