@@ -111,8 +111,6 @@ public class EscolarController {
 			usuarioDao.save(u);
 			
 			
-			
-			
 		}
 		return modelAndView; 
 	}

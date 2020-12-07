@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.apache.tomcat.util.http.fileupload.UploadContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,7 +49,6 @@ public class ModificacoesController {
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("alunos", alunos);
 				escolarController.registraMsg("Categoria", "Deletado com sucesso.", "erro");
-				
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -72,7 +68,7 @@ public class ModificacoesController {
    		int coluna = 0;
    		
 		switch (tabelaUsada) {  
-	       case "alunos" :
+	       case "alunos" : // CASO SEJA ALUNO ---------------------
 	   		try {
 	   			for(int i=0; i < tabelas.size(); i++) {
 	   				coluna = tabelas.get(i).getColuna();
@@ -124,11 +120,12 @@ public class ModificacoesController {
 	   				finalLinha++;
 	   			}
 	   			} catch(Exception e) {}
-	    	   
 	    	   link = escolarController.verificaLink("/pages/alunos");
 	    	   escolarController.atualizarPagina = "/alunos";
 	    	   break;
 		}
+		
+		
 		
 		model.addAttribute("atualizarPagina", escolarController.atualizarPagina); 
 		ModelAndView modelAndView = new ModelAndView(link);
@@ -151,21 +148,13 @@ public class ModificacoesController {
 	
 	@RequestMapping(value = "/alunos/salvarAluno", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView salvarAlunos(Model model, Alunos aluno, String nasc, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = escolarController.verificaLink("pages/alunos");
+		String link = escolarController.verificaLink("pages/alunos"); 
 		LocalDate data = LocalDate.parse(nasc);
 		Perfil p = new Perfil();
-		
-		/*if(permissaoFunc.toLowerCase().contains("admin")){
-			p = perfilDao.buscarAdm().get(0);
-		} else if (permissaoFunc.toLowerCase().contains("funcionario")) {
-			p = perfilDao.buscarFuncionario().get(0);
-		} else if (permissaoFunc.toLowerCase().contains("professor")) {
-			p = perfilDao.buscarProfessor().get(0);
-		} else */
+
 		if (permissaoFunc.toLowerCase().contains("aluno")) {
 			p = perfilDao.buscarAluno().get(0);
-		}
-		
+		}		
 		if(ID != null) {
 			Alunos a = alunosDao.findById(ID).get();
 			a.setAtivo(aluno.getAtivo());
@@ -195,14 +184,14 @@ public class ModificacoesController {
 			alunosDao.save(aluno);
 		}
 		
-		
 		List<Alunos> alunos = alunosDao.findAll();
 		if(escolarController.usuarioSessao != null) {
-			escolarController.registraMsg("Deletado", "Salvo com sucesso.", "info");
+			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
+		escolarController.enviaMsg(modelAndView); 
 		return modelAndView; 
 	}
 	
