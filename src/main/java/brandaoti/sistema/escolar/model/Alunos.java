@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Alunos {
 	
@@ -44,6 +46,7 @@ public class Alunos {
 	private String cpf;
 	
 	@Column
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
 	@Column
@@ -77,7 +80,7 @@ public class Alunos {
 	private String cpfResponsavel;
 	
 	@Column
-	private boolean suspensao = false;
+	private Boolean suspensao = false;
 	
 	@OneToOne
 	private Perfil perfil;
@@ -218,11 +221,12 @@ public class Alunos {
 		this.responsavel = responsavel;
 	}
 
-	public boolean isSuspensao() {
+
+	public Boolean getSuspensao() {
 		return suspensao;
 	}
 
-	public void setSuspensao(boolean suspensao) {
+	public void setSuspensao(Boolean suspensao) {
 		this.suspensao = suspensao;
 	}
 

@@ -145,6 +145,60 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	
+	@RequestMapping(value = "/alunos/salvarAluno", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView salvarAlunos(Model model, Alunos aluno, String nasc, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/alunos");
+		LocalDate data = LocalDate.parse(nasc);
+		Perfil p = new Perfil();
 		
+		if(permissaoFunc.toLowerCase().contains("admin")){
+			p = perfilDao.buscarAdm().get(0);
+		} else if (permissaoFunc.toLowerCase().contains("funcionario")) {
+			p = perfilDao.buscarFuncionario().get(0);
+		} else if (permissaoFunc.toLowerCase().contains("professor")) {
+			p = perfilDao.buscarProfessor().get(0);
+		} else if (permissaoFunc.toLowerCase().contains("aluno")) {
+			p = perfilDao.buscarAluno().get(0);
+		}
+		
+		if(ID != null) {
+			Alunos a = alunosDao.findById(ID).get();
+			a.setAtivo(aluno.getAtivo());
+			a.setDataNascimento(data);
+			a.setBairro(aluno.getBairro());
+			a.setCep(aluno.getCep());
+			a.setCidade(aluno.getCidade());
+			a.setCpf(aluno.getCpf());
+			a.setCpfResponsavel(aluno.getCpfResponsavel());
+			a.setEmail(aluno.getEmail());
+			a.setEndereco(aluno.getEndereco());
+			a.setEstado(aluno.getEstado());
+			a.setNome(aluno.getNome());
+			a.setPerfil(p);
+			a.setRa(aluno.getRa());
+			a.setResponsavel(aluno.getResponsavel());
+			a.setRg(aluno.getRg());
+			a.setSenha(aluno.getSenha());
+			a.setSuspensao(aluno.getSuspensao());
+			a.setSerie(aluno.getSerie());
+			a.setTelefone(aluno.getTelefone());
+			a.setTurma(aluno.getTurma());
+			alunosDao.saveAndFlush(a);
+		} else {
+			aluno.setPerfil(p);
+			aluno.setDataNascimento(data);
+			alunosDao.save(aluno);
+		}
+		
+		
+		List<Alunos> alunos = alunosDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("alunos", alunos); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
+	}
 
 }

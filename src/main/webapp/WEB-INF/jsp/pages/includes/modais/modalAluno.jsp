@@ -11,7 +11,7 @@
 <script>
 
 function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estado, telefone, login, senha, ativo, email, ra, rg, cpf, dataNascimento, serie, turma, responsavel, cpfResponsavel, suspensao){
-	document.getElementById("form").action = "/aluno/atualizarUsuario";
+	document.getElementById("form").action = "/alunos/salvarAluno";
 	var funcAluno = '';
 	var index = 0;
 	if(perfil == 'Admnistrador'){
@@ -64,6 +64,7 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 	document.getElementById("telefone").value = telefone;
 	document.getElementById("telefone").required = false;
 	document.getElementById("login").value = login;
+	document.getElementById("login").readOnly = true;
 	document.getElementById("login").required = true;
 	document.getElementById("senha").value = senha;
 	document.getElementById("senha").required = true;
@@ -95,7 +96,7 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 }
 
 function modalNovoAluno(){
-	document.getElementById("form").action = "/aluno/atualizarAluno";
+	document.getElementById("form").action = "/alunos/salvarAluno";
 	document.getElementById("nome").value = '';
 	document.getElementById("permissaoFunc").selectedIndex = 1;
 	document.getElementById("endereco").value = '';
@@ -111,6 +112,7 @@ function modalNovoAluno(){
 	document.getElementById("telefone").value = '';
 	document.getElementById("telefone").required = false;
 	document.getElementById("login").value = '';
+	document.getElementById("login").readOnly = false;
 	document.getElementById("login").required = true;
 	document.getElementById("senha").value = '';
 	document.getElementById("senha").required = true;
@@ -142,8 +144,7 @@ function modalNovoAluno(){
 
 
 function modalPesquisarAluno(){
-	document.getElementById("form").action = "/aluno/pesquisarAluno";
-	document.getElementById("form").action = "/aluno/atualizarAluno";
+	document.getElementById("form").action = "/alunos/pesquisarAluno";
 	document.getElementById("nome").value = '';
 	document.getElementById("permissaoFunc").selectedIndex = 1;
 	document.getElementById("endereco").value = '';
@@ -160,6 +161,7 @@ function modalPesquisarAluno(){
 	document.getElementById("telefone").required = false;
 	document.getElementById("login").value = '';
 	document.getElementById("login").required = true;
+	document.getElementById("login").readOnly = false;
 	document.getElementById("senha").value = '';
 	document.getElementById("senha").required = true;
 	document.getElementById("ativo").value = '';
@@ -194,7 +196,7 @@ function modalPesquisarAluno(){
 </script>
 
 
-<form action="<c:url value='/adm/atualizarAluno'/>" id="form" method="post" >
+<form action="<c:url value='/adm/salvarAluno'/>" id="form" method="post" >
 <div class="modal fade" id="modalEditarAluno" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -330,7 +332,7 @@ function modalPesquisarAluno(){
   			CPF:
   			</div>
   			<div class="input-group mb-3">
-  				<input type="text" name="cpf" id="cpf" class="form-control" autocomplete="off"  >
+  				<input type="text" name="cpf" id="cpf" class="form-control" onkeypress="mascaraCpf(this)" onkeyup="somenteNumeros(this);" autocomplete="off" maxlength="14" minlength="14"  >
 			</div>
 		</div>
 		<div class="input-group mb-3">
@@ -338,7 +340,7 @@ function modalPesquisarAluno(){
   			Data de Nascimento:
   			</div>
   			<div class="input-group mb-3">
-  				<input type="date" name="dataNascimento" id="dataNascimento" class="form-control" autocomplete="off"  >
+  				<input type="Date" name="nasc" id="dataNascimento" class="form-control" autocomplete="off"  >
 			</div>
 		</div>
 		<div class="input-group mb-3">
@@ -370,7 +372,7 @@ function modalPesquisarAluno(){
   			CPF do Responsável:
   			</div>
   			<div class="input-group mb-3">
-  				<input type="text" name="cpfResponsavel" id="cpfResponsavel" class="form-control" autocomplete="off"  >
+  				<input type="text" name="cpfResponsavel" id="cpfResponsavel" class="form-control" onkeypress="mascaraCpf(this)" onkeyup="somenteNumeros(this);" autocomplete="off" maxlength="14" minlength="14">
 			</div>
 		</div>
 		<div class="input-group mb-3">
