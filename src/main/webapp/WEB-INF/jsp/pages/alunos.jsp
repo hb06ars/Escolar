@@ -26,7 +26,6 @@
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h4">Alunos</h1>
 	<div>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalPesquisarAluno()">Pesquisar</button>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoAluno()">Novo</button>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('alunos')"><i class="fas fa-upload"></i></button>

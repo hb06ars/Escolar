@@ -143,53 +143,6 @@ function modalNovoAluno(){
 }
 
 
-function modalPesquisarAluno(){
-	document.getElementById("form").action = "/alunos/pesquisarAluno";
-	document.getElementById("nome").value = '';
-	document.getElementById("permissaoFunc").selectedIndex = 0;
-	document.getElementById("endereco").value = '';
-	document.getElementById("endereco").required = false;
-	document.getElementById("bairro").value = '';
-	document.getElementById("bairro").required = false;
-	document.getElementById("cep").value = '';
-	document.getElementById("cep").required = false;
-	document.getElementById("cidade").value = 'São Paulo';
-	document.getElementById("cidade").required = false;
-	document.getElementById("estado").value = 'SP';
-	document.getElementById("estado").required = false;
-	document.getElementById("telefone").value = '';
-	document.getElementById("telefone").required = false;
-	document.getElementById("login").value = '';
-	document.getElementById("login").required = true;
-	document.getElementById("login").readOnly = false;
-	document.getElementById("senha").value = '';
-	document.getElementById("senha").required = true;
-	document.getElementById("ativo").value = 1;
-	document.getElementById("ativo").required = true;
-	document.getElementById("email").value = '';
-	document.getElementById("email").required = false;
-	document.getElementById("ra").value = '';
-	document.getElementById("ra").required = true;
-	document.getElementById("rg").value = '';
-	document.getElementById("rg").required = true;
-	document.getElementById("cpf").value = '';
-	document.getElementById("cpf").required = true;
-	document.getElementById("dataNascimento").value = '';
-	document.getElementById("dataNascimento").required = true;
-	document.getElementById("serie").value = '';
-	document.getElementById("serie").required = false;
-	document.getElementById("turma").value = '';
-	document.getElementById("turma").required = false;
-	document.getElementById("responsavel").value = '';
-	document.getElementById("responsavel").required = false;
-	document.getElementById("cpfResponsavel").value = '';
-	document.getElementById("cpfResponsavel").required = false;
-	document.getElementById("suspensao").value = 0;
-	document.getElementById("suspensao").required = false;
-	
-	
-	$("#modalEditarAluno").modal().show();
-}
 
 
 
