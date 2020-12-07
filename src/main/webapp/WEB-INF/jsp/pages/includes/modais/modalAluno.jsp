@@ -116,7 +116,7 @@ function modalNovoAluno(){
 	document.getElementById("login").required = true;
 	document.getElementById("senha").value = '';
 	document.getElementById("senha").required = true;
-	document.getElementById("ativo").value = '';
+	document.getElementById("ativo").value = 1;
 	document.getElementById("ativo").required = true;
 	document.getElementById("email").value = '';
 	document.getElementById("email").required = false;
@@ -164,7 +164,7 @@ function modalPesquisarAluno(){
 	document.getElementById("login").readOnly = false;
 	document.getElementById("senha").value = '';
 	document.getElementById("senha").required = true;
-	document.getElementById("ativo").value = '';
+	document.getElementById("ativo").value = 1;
 	document.getElementById("ativo").required = true;
 	document.getElementById("email").value = '';
 	document.getElementById("email").required = false;
