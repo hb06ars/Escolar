@@ -43,7 +43,7 @@
 		</c:if> 
 		<th>ID</th> <th>Nome</th> <th>Perfil</th> <th>Série</th> <th>Turma</th>
 		<c:if test="${usuarioSessao.perfil.admin || usuarioSessao.perfil.funcionario}">
-			<th>Endereco</th> <th>Bairro</th> <th>Cep</th> <th>Cidade</th> <th>Estado</th> <th>Telefone</th> <th>Login</th> <th>Senha</th> <th>Ativo</th> <th>Email</th> <th>RA</th> <th>RG</th> <th>Cpf</th> <th>Data de Nascimento</th> <th>Responsavel</th> <th>CPF Responsável</th> <th>Suspensao</th>
+			<th>Endereco</th> <th>Bairro</th> <th>Cep</th> <th>Cidade</th> <th>Estado</th> <th>Telefone</th> <th>Ativo</th> <th>Email</th> <th>RA</th> <th>RG</th> <th>Cpf</th> <th>Data de Nascimento</th> <th>Responsavel</th> <th>CPF Responsável</th> <th>Suspensao</th>
 		</c:if>
 		
 		<c:if test="${usuarioSessao.perfil.admin || usuarioSessao.perfil.funcionario}">
@@ -74,8 +74,6 @@
 			<th><input type="text" id="filtro18"/></th>
 			<th><input type="text" id="filtro19"/></th>
 			<th><input type="text" id="filtro20"/></th>
-			<th><input type="text" id="filtro21"/></th>
-			<th><input type="text" id="filtro22"/></th>
 		</c:if>
 		
 		<th></th>
@@ -90,7 +88,7 @@
 		
 		<c:forEach items="${alunos}" var="a">
 			<c:if test="${usuarioSessao.perfil.admin || usuarioSessao.perfil.funcionario}">
-				<td><i class="fas fa-edit" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}', '${a.login}', '${a.senha}', ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})"></i></td>
+				<td><i class="fas fa-edit" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}',  ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})"></i></td>
 			</c:if>
 			<td>${a.id}  
 			<td>${a.nome}
@@ -105,8 +103,6 @@
 				<td>${a.cidade}
 				<td>${a.estado}
 				<td>${a.telefone}
-				<td>${a.login}
-				<td>${a.senha}
 				<td><c:if test="${a.ativo}">Sim</c:if> <c:if test="${!a.ativo}">Não</c:if>
 				<td>${a.email}
 				<td>${a.ra}

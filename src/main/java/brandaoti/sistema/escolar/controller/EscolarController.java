@@ -37,7 +37,6 @@ public class EscolarController {
 	public static String tituloMensagem = "";
 	public static String tipoMensagem = "";
 	
-	
 	public String verificaLink(String link) {
 		String direcao = "deslogar";
 		if(usuarioSessao != null) {
@@ -109,8 +108,6 @@ public class EscolarController {
 			u.setNome("Admin");
 			u.setSenha("adm");
 			usuarioDao.save(u);
-			
-			
 		}
 		return modelAndView; 
 	}

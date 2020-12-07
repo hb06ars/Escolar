@@ -3,7 +3,6 @@ package brandaoti.sistema.escolar.controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import brandaoti.sistema.escolar.dao.AlunosDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
@@ -59,7 +57,7 @@ public class ModificacoesController {
 	@RequestMapping(value = "/adm/upload/excel", method = {RequestMethod.POST, RequestMethod.GET}) // Pagina de Alteração de Perfil
 	public ModelAndView uploadExcel(Model model, String tabelaUsada, @ModelAttribute MultipartFile file) throws Exception, IOException { //Função e alguns valores que recebe...
 		Perfil perfildaSessao = perfilDao.findById(escolarController.usuarioSessao.getPerfil().getId()).get();
-		String link = escolarController.verificaLink("/pages/alunos"); //Session
+		String link = escolarController.verificaLink("/pages/alunos"); // Alunos ---------------------
 		ProcessaExcel processaExcel = new ProcessaExcel();
 		List<Tabela> tabelas = processaExcel.uploadAlunos(file);
     	String conteudo="";
@@ -119,13 +117,14 @@ public class ModificacoesController {
 	   				}
 	   				finalLinha++;
 	   			}
-	   			} catch(Exception e) {}
-	    	   link = escolarController.verificaLink("/pages/alunos");
-	    	   escolarController.atualizarPagina = "/alunos";
-	    	   break;
+	   		} catch(Exception e) {}
+	    	link = escolarController.verificaLink("/pages/alunos");
+	    	escolarController.atualizarPagina = "/alunos";
+	    	break;
+	    	
+	    	
+	    	
 		}
-		
-		
 		
 		model.addAttribute("atualizarPagina", escolarController.atualizarPagina); 
 		ModelAndView modelAndView = new ModelAndView(link);

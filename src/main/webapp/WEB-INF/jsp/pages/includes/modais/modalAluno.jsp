@@ -10,7 +10,7 @@
 <!--  EDITAR FUNCIONARIO -->
 <script>
 
-function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estado, telefone, login, senha, ativo, email, ra, rg, cpf, dataNascimento, serie, turma, responsavel, cpfResponsavel, suspensao){
+function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estado, telefone, ativo, email, ra, rg, cpf, dataNascimento, serie, turma, responsavel, cpfResponsavel, suspensao){
 	document.getElementById("form").action = "/alunos/salvarAluno";
 	var funcAluno = '';
 	var index = 0;
@@ -63,11 +63,6 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 	document.getElementById("estado").required = false;
 	document.getElementById("telefone").value = telefone;
 	document.getElementById("telefone").required = false;
-	document.getElementById("login").value = login;
-	document.getElementById("login").readOnly = true;
-	document.getElementById("login").required = true;
-	document.getElementById("senha").value = senha;
-	document.getElementById("senha").required = true;
 	document.getElementById("ativo").value = indexAtivo;
 	document.getElementById("ativo").required = true;
 	document.getElementById("email").value = email;
@@ -111,11 +106,6 @@ function modalNovoAluno(){
 	document.getElementById("estado").required = false;
 	document.getElementById("telefone").value = '';
 	document.getElementById("telefone").required = false;
-	document.getElementById("login").value = '';
-	document.getElementById("login").readOnly = false;
-	document.getElementById("login").required = true;
-	document.getElementById("senha").value = '';
-	document.getElementById("senha").required = true;
 	document.getElementById("ativo").value = 1;
 	document.getElementById("ativo").required = true;
 	document.getElementById("email").value = '';
@@ -238,22 +228,6 @@ function modalNovoAluno(){
   			</div>
   			<div class="input-group mb-3">
   				<input type="text" name="telefone" id="telefone" class="form-control" onkeypress="mascaraTel(this)" onkeyup="somenteNumeros(this);" placeholder="(00)00000-0000" autocomplete="off" maxlength="14" minlength="14" >
-			</div>
-		</div>
-		<div class="input-group mb-3">
-  			<div>
-  			Login:
-  			</div>
-  			<div class="input-group mb-3">
-  				<input type="text" name="login" id="login" class="form-control" autocomplete="off" readonly="readonly">
-			</div>
-		</div>
-		<div class="input-group mb-3">
-  			<div>
-  			Senha:
-  			</div>
-  			<div class="input-group mb-3">
-  				<input type="text" name="senha" id="senha" class="form-control" autocomplete="off"  >
 			</div>
 		</div>
 		<div class="input-group mb-3">
