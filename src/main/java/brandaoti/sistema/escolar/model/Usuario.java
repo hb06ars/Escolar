@@ -40,6 +40,9 @@ public class Usuario {
 	
 	@OneToOne
 	private Perfil perfil;
+	
+	@Column
+	private Boolean compareceu = false;
 
 	public Integer getId() {
 		return id;
@@ -111,6 +114,14 @@ public class Usuario {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public Boolean getCompareceu() {
+		return compareceu;
+	}
+
+	public void setCompareceu(Boolean compareceu) {
+		this.compareceu = compareceu;
 	}
 	
 	

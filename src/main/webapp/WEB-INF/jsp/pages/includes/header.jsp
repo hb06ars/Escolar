@@ -98,7 +98,7 @@ function expandir(campo, quantidade){
                     <a style="align:center" href="#menuVendas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i style="align:center" class="fas fa-clipboard" style="font-size:24px"></i>&nbsp Horário</a>
                     <ul class="collapse list-unstyled" id="menuVendas">
                         <li><a href="/home"> <i style="align:center" class="fas fa-clock" style="font-size:24px"></i>&nbsp Horário Atual</a></li>
-                        <li><a href="/ferias"> <i style="align:center" class="fas fa-edit" style="font-size:24px"></i>&nbsp Presença</a></li>
+                        <li><a href="/presenca"> <i style="align:center" class="fas fa-edit" style="font-size:24px"></i>&nbsp Presença</a></li>
                     </ul>
                 </li>
                 

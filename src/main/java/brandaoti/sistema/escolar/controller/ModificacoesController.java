@@ -76,6 +76,32 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	
+	@RequestMapping(value = "/adm/presencaConfirmada/{campo}/{id}", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
+	public ModelAndView presencaConfirmada(Model model,@PathVariable("campo") String campo, @PathVariable("id") Integer id) { //Função e alguns valores que recebe...
+		String link = escolarController.verificaLink("/deslogar");
+		if(escolarController.usuarioSessao.getPerfil().getAdmin()) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			link = "/pages/presenca";
+			Boolean compareceu = false;
+			if(campo.equals("faltou")) {
+				compareceu = false;
+			} else {
+				compareceu = true;
+			}
+			System.out.println("compareceu: " + compareceu);
+			escolarController.atualizarPagina = "/presenca";
+			Usuario objeto = usuarioDao.findById(id).get();
+			objeto.setCompareceu(compareceu);
+			usuarioDao.saveAndFlush(objeto);
+			List<Usuario> funcionarios = usuarioDao.findAll();
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("funcionarios", funcionarios);
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
+	}
+	
 	/* SALVAR EXCEL */
 	@RequestMapping(value = "/adm/upload/excel", method = {RequestMethod.POST, RequestMethod.GET}) // Pagina de Alteração de Perfil
 	public ModelAndView uploadExcel(Model model, String tabelaUsada, @ModelAttribute MultipartFile file) throws Exception, IOException { //Função e alguns valores que recebe...
@@ -223,6 +249,19 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("recados", recados); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}
+	
+	@RequestMapping(value = "/presenca", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView presenca(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/presenca");
+		List<Usuario> funcionarios = usuarioDao.professores();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("funcionarios", funcionarios); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);

@@ -121,17 +121,6 @@ function modalNovoFuncionario(){
 		</div>
 		<div class="input-group mb-3">
   			<div>
-  			Ativo:
-  			</div>
-  			<div class="input-group mb-3">
-  				<select style="height=:100%; width=:100%" class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
-						<option value="0" selected="selected">Não</option>
-						<option value="1" >Sim</option>
-				</select>
-			</div>
-		</div>
-		<div class="input-group mb-3">
-  			<div>
   			Telefone:
   			</div>
   			<div class="input-group mb-3">
