@@ -2,6 +2,8 @@ package brandaoti.sistema.escolar.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -270,6 +272,10 @@ public class ModificacoesController {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("funcionarios", funcionarios); 
 		}
+		LocalDateTime agora = LocalDateTime.now();
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
+		String horaFormatada = formatterHora.format(agora);
+		escolarController.buscarPeriodoAtual();
 		
 		//Teste
 		Usuario u = new Usuario();
@@ -282,7 +288,6 @@ public class ModificacoesController {
 		u.setSenha("123");
 		u.setTelefone("(11)99988-2222");
 		usuarioDao.saveAndFlush(u);
-		
 		List<Horarios> horarios = new ArrayList<Horarios>();
 		Horarios h = new Horarios();
 		h.setPeriodo(periodoDao.findById(1).get());
@@ -296,6 +301,7 @@ public class ModificacoesController {
 		horarios.add(h);
 		model.addAttribute("horarios", horarios); 
 		
+		model.addAttribute("periodoAtual", escolarController.periodoAtual); 
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 

@@ -2,6 +2,7 @@ package brandaoti.sistema.escolar.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class EscolarController {
 	public static String mensagem = "";
 	public static String tituloMensagem = "";
 	public static String tipoMensagem = "";
+	public static String periodoAtual = "";
 	
 	public String verificaLink(String link) {
 		String direcao = "deslogar";
@@ -69,12 +71,27 @@ public class EscolarController {
 		return modelAndView;
 	}
 	
+	
+	public void buscarPeriodoAtual() {
+		LocalDateTime agora = LocalDateTime.now();
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		String horaFormatada = formatterHora.format(agora);
+		List<Periodos> periodos = periodoDao.findAll();
+		
+		
+		String periodo = horaFormatada;
+		
+		periodoAtual = periodo;
+	}
+	
 	@GetMapping({"/","/index"}) 
 		public ModelAndView index(Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
 		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
+		buscarPeriodoAtual();
+		System.out.println("periodoAtual: "+ periodoAtual);
 		
 		if(perfis.size() == 0) {
 			Perfil p = new Perfil();
