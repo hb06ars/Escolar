@@ -138,24 +138,25 @@ public class ModificacoesController {
 		   			for(int i=0; i < tabelas.size(); i++) {
 		   				coluna = tabelas.get(i).getColuna();
 		   				conteudo = tabelas.get(i).getConteudo();
+		   				System.out.println(conteudo);
 		   				if(coluna == 0) u.setNome(conteudo);
 		   				if(coluna == 1) u.setCargo(conteudo);
 		   				try {
 		   					if(coluna == 2) u.setPerfil(perfilDao.buscarCodigo(""+conteudo));
 		   				} catch(Exception e) {}
-		   				if(coluna == 3) a.setLogin(conteudo);
-		   				if(coluna == 4) a.setSenha(conteudo);
-		   				if(coluna == 5) a.setTelefone(conteudo);
+		   				if(coluna == 3) u.setLogin(conteudo);
+		   				if(coluna == 4) u.setSenha(conteudo);
+		   				if(coluna == 5) u.setTelefone(conteudo);
 		   				if(coluna == 6) {
 		   					if(conteudo.toLowerCase().contains("sim") || conteudo.toLowerCase().contains("1")) {
-		   						a.setAtivo(true);
+		   						u.setAtivo(true);
 		   					} else {
-		   						a.setAtivo(false);
+		   						u.setAtivo(false);
 		   					}
 		   				}
-		   				if(coluna == 7) a.setEmail(conteudo);
+		   				if(coluna == 7) u.setEmail(conteudo);
 		   				
-		   				if(finalLinha >= 20) {
+		   				if(finalLinha >= 7) {
 		   					finalLinha = -1;
 		   					usuarioDao.save(u);
 		   					u = new Usuario();
