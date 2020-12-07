@@ -33,6 +33,10 @@ public class EscolarController {
 	
 	public static Usuario usuarioSessao;
 	public static String atualizarPagina = null;
+	public static String mensagem = "";
+	public static String tituloMensagem = "";
+	public static String tipoMensagem = "";
+	
 	
 	public String verificaLink(String link) {
 		String direcao = "deslogar";
@@ -43,6 +47,22 @@ public class EscolarController {
 			atualizarPagina = null;
 		}
 		return direcao;
+	}
+	
+	public void registraMsg(String titulo, String msg, String tipo) {
+		tituloMensagem = titulo;
+		mensagem = msg;
+		tipoMensagem = tipo;
+	}
+	
+	public ModelAndView enviaMsg(ModelAndView modelAndView) {
+		modelAndView.addObject("mensagem", mensagem);
+		modelAndView.addObject("tituloMensagem", tituloMensagem);
+		modelAndView.addObject("tipoMensagem", tipoMensagem);
+		mensagem = null;
+		tituloMensagem = null;
+		tipoMensagem = null;
+		return modelAndView;
 	}
 	
 	@GetMapping({"/","/index"}) 

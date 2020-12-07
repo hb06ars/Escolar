@@ -43,7 +43,6 @@ function iniciando(){
     	document.getElementById("dataHoje").innerHTML = valor;
 
     	
-    	modalVendaPesquisada();
 }    	
     	
     	

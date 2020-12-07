@@ -8,6 +8,12 @@
 <!DOCTYPE html>
 <html>
 
+<!-- MENSAGENS -->
+<jsp:include page="mensagens.jsp" />
+<!-- MENSAGENS -->
+
+<body onload="iniciando()">
+
 <!--  ATUALIZAR PÁGINA  -->
 <c:if test="${atualizarPagina != null }">
 	<script>window.location.href='${atualizarPagina}';</script>

@@ -51,6 +51,8 @@ public class ModificacoesController {
 				List<Alunos> alunos = alunosDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("alunos", alunos);
+				escolarController.registraMsg("Categoria", "Deletado com sucesso.", "erro");
+				
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -141,7 +143,8 @@ public class ModificacoesController {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
 		}
-		ModelAndView modelAndView = new ModelAndView(link); 
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 
 	}
 	
@@ -195,6 +198,7 @@ public class ModificacoesController {
 		
 		List<Alunos> alunos = alunosDao.findAll();
 		if(escolarController.usuarioSessao != null) {
+			escolarController.registraMsg("Deletado", "Salvo com sucesso.", "info");
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
 		}
