@@ -2,6 +2,7 @@ package brandaoti.sistema.escolar.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import brandaoti.sistema.escolar.dao.AlunosDao;
+import brandaoti.sistema.escolar.dao.HorarioDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
+import brandaoti.sistema.escolar.dao.PeriodoDao;
 import brandaoti.sistema.escolar.dao.RecadoDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
 import brandaoti.sistema.escolar.excel.ProcessaExcel;
 import brandaoti.sistema.escolar.excel.Tabela;
 import brandaoti.sistema.escolar.model.Alunos;
+import brandaoti.sistema.escolar.model.Horarios;
 import brandaoti.sistema.escolar.model.Perfil;
 import brandaoti.sistema.escolar.model.Recado;
 import brandaoti.sistema.escolar.model.Usuario;
@@ -35,6 +39,10 @@ public class ModificacoesController {
 	private PerfilDao perfilDao;
 	@Autowired
 	private RecadoDao recadoDao;
+	@Autowired
+	private HorarioDao horarioDao;
+	@Autowired
+	private PeriodoDao periodoDao;
 	
 	private EscolarController escolarController = new EscolarController();
 	
@@ -89,14 +97,13 @@ public class ModificacoesController {
 			} else {
 				compareceu = true;
 			}
-			System.out.println("compareceu: " + compareceu);
 			escolarController.atualizarPagina = "/presenca";
 			Usuario objeto = usuarioDao.findById(id).get();
 			objeto.setCompareceu(compareceu);
 			usuarioDao.saveAndFlush(objeto);
-			List<Usuario> funcionarios = usuarioDao.findAll();
+			List<Horarios> horarios = horarioDao.findAll();
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
-			model.addAttribute("funcionarios", funcionarios);
+			model.addAttribute("horarios", horarios);
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
@@ -263,6 +270,32 @@ public class ModificacoesController {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("funcionarios", funcionarios); 
 		}
+		
+		//Teste
+		Usuario u = new Usuario();
+		u.setAtivo(true);
+		u.setCargo("Professor");
+		u.setEmail("teste@teste.com");
+		u.setLogin("psq");
+		u.setNome("Pasquale");
+		u.setPerfil(perfilDao.buscarProfessor().get(0));
+		u.setSenha("123");
+		u.setTelefone("(11)99988-2222");
+		usuarioDao.saveAndFlush(u);
+		
+		List<Horarios> horarios = new ArrayList<Horarios>();
+		Horarios h = new Horarios();
+		h.setPeriodo(periodoDao.findById(1).get());
+		h.setSala("1");
+		h.setSerie("2");
+		h.setTurma("A");
+		h.setPeriodo(periodoDao.porNome("Manhã"));
+		h.setDisciplina("Português");
+		h.setUsuario(usuarioDao.professores().get(0));
+		horarioDao.saveAndFlush(h);
+		horarios.add(h);
+		model.addAttribute("horarios", horarios); 
+		
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 

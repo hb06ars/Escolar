@@ -1,6 +1,7 @@
 package brandaoti.sistema.escolar.controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import brandaoti.sistema.escolar.dao.AlunosDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
+import brandaoti.sistema.escolar.dao.PeriodoDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
 import brandaoti.sistema.escolar.model.Alunos;
 import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Periodos;
 import brandaoti.sistema.escolar.model.Usuario;
 
 
@@ -30,6 +33,8 @@ public class EscolarController {
 	private AlunosDao alunosDao;
 	@Autowired
 	private PerfilDao perfilDao;
+	@Autowired
+	private PeriodoDao periodoDao;
 	
 	public static Usuario usuarioSessao;
 	public static String atualizarPagina = null;
@@ -69,6 +74,8 @@ public class EscolarController {
 		ModelAndView modelAndView = new ModelAndView("index"); 
 		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
+		List<Periodos> periodos = periodoDao.findAll();
+		
 		if(perfis.size() == 0) {
 			Perfil p = new Perfil();
 			p.setAtivo(true);
@@ -109,6 +116,28 @@ public class EscolarController {
 			u.setNome("Admin");
 			u.setSenha("adm");
 			usuarioDao.save(u);
+		}
+		if(periodos.size() == 0) {
+			Periodos p = new Periodos();
+			p.setCodigo("1");
+			p.setNome("Manhã");
+			p.setInicio("08:00");
+			p.setFim("12:20");
+			periodoDao.saveAndFlush(p);
+			
+			p = new Periodos();
+			p.setCodigo("2");
+			p.setNome("Tarde");
+			p.setInicio("13:00");
+			p.setFim("18:20");
+			periodoDao.saveAndFlush(p);
+			
+			p = new Periodos();
+			p.setCodigo("3");
+			p.setNome("Noite");
+			p.setInicio("19:00");
+			p.setFim("22:45");
+			periodoDao.saveAndFlush(p);
 		}
 		return modelAndView; 
 	}
