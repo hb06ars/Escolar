@@ -73,6 +73,7 @@ public class ModificacoesController {
     	String conteudo="";
    		Integer finalLinha = 0;
    		Alunos a = new Alunos();
+   		Usuario u = new Usuario();
    		int coluna = 0;
    		
 		switch (tabelaUsada) {  
@@ -132,6 +133,40 @@ public class ModificacoesController {
 	    	escolarController.atualizarPagina = "/alunos";
 	    	break;
 	    	
+	       case "funcionarios" : // CASO SEJA ALUNO ---------------------
+		   		try {
+		   			for(int i=0; i < tabelas.size(); i++) {
+		   				coluna = tabelas.get(i).getColuna();
+		   				conteudo = tabelas.get(i).getConteudo();
+		   				if(coluna == 0) u.setNome(conteudo);
+		   				if(coluna == 1) u.setCargo(conteudo);
+		   				try {
+		   					if(coluna == 2) u.setPerfil(perfilDao.buscarCodigo(""+conteudo));
+		   				} catch(Exception e) {}
+		   				if(coluna == 3) a.setLogin(conteudo);
+		   				if(coluna == 4) a.setSenha(conteudo);
+		   				if(coluna == 5) a.setTelefone(conteudo);
+		   				if(coluna == 6) {
+		   					if(conteudo.toLowerCase().contains("sim") || conteudo.toLowerCase().contains("1")) {
+		   						a.setAtivo(true);
+		   					} else {
+		   						a.setAtivo(false);
+		   					}
+		   				}
+		   				if(coluna == 7) a.setEmail(conteudo);
+		   				
+		   				if(finalLinha >= 20) {
+		   					finalLinha = -1;
+		   					usuarioDao.save(u);
+		   					u = new Usuario();
+		   				}
+		   				finalLinha++;
+		   			}
+		   		} catch(Exception e) {}
+		    	link = escolarController.verificaLink("/pages/funcionarios");
+		    	escolarController.atualizarPagina = "/funcionarios";
+		    	break;
+	    	
 	    	
 	    	
 		}
@@ -173,7 +208,6 @@ public class ModificacoesController {
 		String link = escolarController.verificaLink("pages/alunos"); 
 		LocalDate data = LocalDate.parse(nasc);
 		Perfil p = new Perfil();
-
 		if (permissaoFunc.toLowerCase().contains("aluno")) {
 			p = perfilDao.buscarAluno().get(0);
 		}		
@@ -205,7 +239,6 @@ public class ModificacoesController {
 			aluno.setDataNascimento(data);
 			alunosDao.save(aluno);
 		}
-		
 		List<Alunos> alunos = alunosDao.findAll();
 		if(escolarController.usuarioSessao != null) {
 			escolarController.atualizarPagina = "/alunos";
@@ -243,14 +276,12 @@ public class ModificacoesController {
 			u.setTelefone(usuario.getTelefone());
 			u.setCargo(p.getNome());
 			u.setPerfil(p);
-
 			usuarioDao.saveAndFlush(u);
 		} else {
 			usuario.setPerfil(p);
 			usuario.setCargo(p.getNome());
 			usuarioDao.save(usuario);
 		}
-		
 		List<Usuario> usuarios = usuarioDao.findAll();
 		if(escolarController.usuarioSessao != null) {
 			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");

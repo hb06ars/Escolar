@@ -36,6 +36,20 @@ function modalUploadExcel(tabela){
 		+"<td>perfil</td>"
 		+"</table>";	
 	}
+
+	if(tabela == 'funcionarios'){
+		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
+		+"<td>nome</td>"
+		+"<td>cargo</td>"
+		+"<td>perfil</td>"
+		+"<td>login</td>"
+		+"<td>senha</td>"
+		+"<td>telefone</td>"
+		+"<td>ativo</td>"
+		+"<td>email</td>"
+		+"</table>";	
+	}
+	
 	document.getElementById("tabelaUsada").value = tabela;
 	$("#modalUploadExcel").modal().show();
 }
