@@ -32,6 +32,10 @@ public class Usuario {
 	private String email;
 	
 	@Column
+	//Você pode gerar o tamanho que desejar e se for obrigatório.
+	private String telefone;
+	
+	@Column
 	private String cargo;
 	
 	@OneToOne
@@ -99,6 +103,14 @@ public class Usuario {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	

@@ -20,6 +20,7 @@ import brandaoti.sistema.escolar.excel.ProcessaExcel;
 import brandaoti.sistema.escolar.excel.Tabela;
 import brandaoti.sistema.escolar.model.Alunos;
 import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Usuario;
 
 @Controller
 public class ModificacoesController {
@@ -46,7 +47,16 @@ public class ModificacoesController {
 				List<Alunos> alunos = alunosDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("alunos", alunos);
-				escolarController.registraMsg("Categoria", "Deletado com sucesso.", "erro");
+				escolarController.registraMsg("Usuário", "Deletado com sucesso.", "erro");
+			}
+			if(tabela.equals("funcionarios")) {
+				escolarController.atualizarPagina = "/funcionarios";
+				Usuario objeto = usuarioDao.findById(id).get();
+				usuarioDao.delete(objeto);
+				List<Usuario> usuarios = usuarioDao.findAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("usuarios", usuarios);
+				escolarController.registraMsg("Usuário", "Deletado com sucesso.", "erro");
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -132,12 +142,25 @@ public class ModificacoesController {
 	}
 	
 	@RequestMapping(value = "/alunos", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
-	public ModelAndView alunos(Model model, @RequestParam(value = "usuarioVal", defaultValue = "", required=false ) String variavelUsuario, @RequestParam(value = "senhaVal", defaultValue = "", required=false ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+	public ModelAndView alunos(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/alunos");
 		List<Alunos> alunos = alunosDao.findAll();
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}
+	
+	@RequestMapping(value = "/funcionarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView funcionarios(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/funcionarios");
+		List<Usuario> funcionarios = usuarioDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("funcionarios", funcionarios); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -185,9 +208,56 @@ public class ModificacoesController {
 		
 		List<Alunos> alunos = alunosDao.findAll();
 		if(escolarController.usuarioSessao != null) {
+			escolarController.atualizarPagina = "/alunos";
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		escolarController.enviaMsg(modelAndView); 
+		return modelAndView; 
+	}
+	
+	
+	
+	@RequestMapping(value = "/funcionarios/salvarFuncionario", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView salvarFuncionarios(Model model, Usuario usuario, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/funcionarios"); 
+		Perfil p = new Perfil();
+
+		if (permissaoFunc.toLowerCase().contains("admin")) {
+			p = perfilDao.buscarAdm().get(0);
+		} else if (permissaoFunc.toLowerCase().contains("professor")) {
+			p = perfilDao.buscarProfessor().get(0);
+		} else if (permissaoFunc.toLowerCase().contains("funcionario")) {
+			p = perfilDao.buscarFuncionario().get(0);
+		}
+		if(ID != null) {
+			Usuario u = usuarioDao.findById(ID).get();
+			u.setAtivo(usuario.getAtivo());
+			u.setLogin(usuario.getLogin());
+			u.setSenha(usuario.getSenha());
+			u.setEmail(usuario.getEmail());
+			u.setNome(usuario.getNome());
+			u.setTelefone(usuario.getTelefone());
+			u.setCargo(p.getNome());
+			u.setPerfil(p);
+
+			usuarioDao.saveAndFlush(u);
+		} else {
+			usuario.setPerfil(p);
+			usuario.setCargo(p.getNome());
+			usuarioDao.save(usuario);
+		}
+		
+		List<Usuario> usuarios = usuarioDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
+			escolarController.atualizarPagina = "/funcionarios";
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("usuarios", usuarios); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 
