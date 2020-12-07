@@ -108,7 +108,7 @@
 				<td>${a.telefone}
 				<td>${a.login}
 				<td>${a.senha}
-				<td>${a.ativo}
+				<td><c:if test="${a.ativo}">Sim</c:if> <c:if test="${!a.ativo}">Não</c:if>
 				<td>${a.email}
 				<td>${a.ra}
 				<td>${a.rg}
@@ -116,7 +116,7 @@
 				<td>${a.dataNascimento}
 				<td>${a.responsavel}
 				<td>${a.cpfResponsavel}
-				<td>${a.suspensao}
+				<td><c:if test="${a.suspensao}">Sim</c:if> <c:if test="${!a.suspensao}">Não</c:if>
 			</c:if>
 						  
 			<c:if test="${usuarioSessao.perfil.admin || usuarioSessao.perfil.funcionario}">

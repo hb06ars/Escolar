@@ -31,20 +31,20 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 	var suspAluno = '';
 	var indexSusp = 0;
 	if(suspensao == 'true'){
-		indexSusp = 0;
+		indexSusp = 1;
 		suspAluno = '1';
 	}else{
-		indexSusp = 1;
+		indexSusp = 0;
 		suspAluno = '0';
 	}
 
 	var ativoAluno = '';
 	var indexAtivo = 0;
-	if(suspensao == 'true'){
-		indexAtivo = 0;
+	if(ativo){
+		indexAtivo = 1;
 		ativoAluno = '1';
 	}else{
-		indexAtivo = 1;
+		indexAtivo = 0;
 		ativoAluno = '0';
 	}
 
@@ -219,8 +219,8 @@ function modalPesquisarAluno(){
   			</div>
   			<div class="input-group mb-3">
   				<select style="height=:100%; width=:100%" class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
-						<option value="1" >Sim</option>
 						<option value="0" selected="selected">Não</option>
+						<option value="1" >Sim</option>
 				</select>
 			</div>
 		</div>
