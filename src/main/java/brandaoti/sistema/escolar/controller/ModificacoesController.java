@@ -15,11 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import brandaoti.sistema.escolar.dao.AlunosDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
+import brandaoti.sistema.escolar.dao.RecadoDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
 import brandaoti.sistema.escolar.excel.ProcessaExcel;
 import brandaoti.sistema.escolar.excel.Tabela;
 import brandaoti.sistema.escolar.model.Alunos;
 import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Recado;
 import brandaoti.sistema.escolar.model.Usuario;
 
 @Controller
@@ -31,6 +33,8 @@ public class ModificacoesController {
 	private AlunosDao alunosDao;
 	@Autowired
 	private PerfilDao perfilDao;
+	@Autowired
+	private RecadoDao recadoDao;
 	
 	private EscolarController escolarController = new EscolarController();
 	
@@ -57,6 +61,15 @@ public class ModificacoesController {
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("usuarios", usuarios);
 				escolarController.registraMsg("Usuário", "Deletado com sucesso.", "erro");
+			}
+			if(tabela.equals("recados")) {
+				escolarController.atualizarPagina = "/recados";
+				Recado objeto = recadoDao.findById(id).get();
+				recadoDao.delete(objeto);
+				List<Recado> recados = recadoDao.findAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("recados", recados);
+				escolarController.registraMsg("Recado", "Deletado com sucesso.", "erro");
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -203,6 +216,20 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	@RequestMapping(value = "/recados", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView recados(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/recados");
+		List<Recado> recados = recadoDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("recados", recados); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}
+	
+	
 	
 	@RequestMapping(value = "/alunos/salvarAluno", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView salvarAlunos(Model model, Alunos aluno, String nasc, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
@@ -290,6 +317,36 @@ public class ModificacoesController {
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("usuarios", usuarios); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		escolarController.enviaMsg(modelAndView); 
+		return modelAndView; 
+	}
+	
+	
+	
+	@RequestMapping(value = "/recados/salvarRecado", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView salvarRecados(Model model, Recado recado, String dataEnvio) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/funcionarios"); 
+		Perfil p = new Perfil();
+		LocalDate data = LocalDate.parse(dataEnvio);
+		
+		Recado r = new Recado();
+		r.setAssunto(recado.getAssunto());
+		r.setConteudo(recado.getConteudo());
+		r.setData(data);
+		r.setPara(recado.getPara());
+		r.setRemetente(recado.getRemetente());
+		recadoDao.saveAndFlush(r);
+		
+		
+		List<Recado> recados = recadoDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
+			escolarController.atualizarPagina = "/recados";
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("recados", recados); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 

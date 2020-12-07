@@ -102,6 +102,7 @@ public class EscolarController {
 			Usuario u = new Usuario();
 			u.setAtivo(true);
 			u.setCargo("Admnistrador");
+			u.setTelefone("(11)98888-3233");
 			u.setEmail("admin@admin.com");
 			u.setPerfil(perfilDao.buscarAdm().get(0));
 			u.setLogin("adm");
