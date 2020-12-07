@@ -152,13 +152,14 @@ public class ModificacoesController {
 		LocalDate data = LocalDate.parse(nasc);
 		Perfil p = new Perfil();
 		
-		if(permissaoFunc.toLowerCase().contains("admin")){
+		/*if(permissaoFunc.toLowerCase().contains("admin")){
 			p = perfilDao.buscarAdm().get(0);
 		} else if (permissaoFunc.toLowerCase().contains("funcionario")) {
 			p = perfilDao.buscarFuncionario().get(0);
 		} else if (permissaoFunc.toLowerCase().contains("professor")) {
 			p = perfilDao.buscarProfessor().get(0);
-		} else if (permissaoFunc.toLowerCase().contains("aluno")) {
+		} else */
+		if (permissaoFunc.toLowerCase().contains("aluno")) {
 			p = perfilDao.buscarAluno().get(0);
 		}
 		

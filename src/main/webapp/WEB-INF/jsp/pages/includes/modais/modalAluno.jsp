@@ -15,10 +15,10 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 	var funcAluno = '';
 	var index = 0;
 	if(perfil == 'Admnistrador'){
-		index = 0;
+		index = 1;
 		funcAluno = 'admin';
 	}else if(perfil == 'Aluno'){
-		index = 1;
+		index = 0;
 		funcAluno = 'aluno';
 	}else if(perfil == 'funcionario'){
 		index = 2;
@@ -98,7 +98,7 @@ function modalEditarAluno(id, nome, perfil, endereco, bairro, cep, cidade, estad
 function modalNovoAluno(){
 	document.getElementById("form").action = "/alunos/salvarAluno";
 	document.getElementById("nome").value = '';
-	document.getElementById("permissaoFunc").selectedIndex = 1;
+	document.getElementById("permissaoFunc").selectedIndex = 0;
 	document.getElementById("endereco").value = '';
 	document.getElementById("endereco").required = false;
 	document.getElementById("bairro").value = '';
@@ -146,7 +146,7 @@ function modalNovoAluno(){
 function modalPesquisarAluno(){
 	document.getElementById("form").action = "/alunos/pesquisarAluno";
 	document.getElementById("nome").value = '';
-	document.getElementById("permissaoFunc").selectedIndex = 1;
+	document.getElementById("permissaoFunc").selectedIndex = 0;
 	document.getElementById("endereco").value = '';
 	document.getElementById("endereco").required = false;
 	document.getElementById("bairro").value = '';
@@ -232,10 +232,10 @@ function modalPesquisarAluno(){
   			</div>
   			<div class="input-group mb-3">
   				<select style="height=:100%; width=:100%" class="form-control" id="permissaoFunc" name="permissaoFunc" required aria-describedby="inputGroup-sizing-default">
-						<option value="admin" >Administrador</option>
 						<option value="aluno" selected="selected">Aluno</option>
-						<option value="funcionario" >Funcionário</option>
-						<option value="professor" >Professor</option>				  	
+						<!-- <option value="admin" >Administrador</option> -->
+						<!-- <option value="funcionario" >Funcionário</option> -->
+						<!-- <option value="professor" >Professor</option> -->  	
 				</select>
 			</div>
 		</div>
