@@ -126,6 +126,15 @@ public class ModificacoesController {
 				model.addAttribute("recados", recados);
 				escolarController.registraMsg("Recado", "Deletado com sucesso.", "erro");
 			}
+			if(tabela.equals("periodos")) {
+				escolarController.atualizarPagina = "/periodos";
+				Periodos objeto = periodoDao.findById(id).get();
+				periodoDao.delete(objeto);
+				List<Periodos> periodos = periodoDao.findAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("periodos", periodos);
+				escolarController.registraMsg("Período", "Deletado com sucesso.", "erro");
+			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
@@ -338,6 +347,19 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("recados", recados); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}
+	
+	@RequestMapping(value = "/periodos", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView periodos(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/periodos");
+		List<Periodos> periodos = periodoDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("periodos", periodos); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);

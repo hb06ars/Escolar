@@ -26,6 +26,12 @@ function mascaraCpf(cpf){
 }
 
 
+function mascaraPeriodo(num){ 
+	if(num.value.length == 2)
+		num.value = num.value + ':'; 
+}
+
+
 function somenteNumeros(num) {
         var er = /[^0-9)-(//]/;
         er.lastIndex = 0;
