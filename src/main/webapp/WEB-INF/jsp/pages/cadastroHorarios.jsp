@@ -26,7 +26,9 @@
 	<h1 class="h4">Cadastrar Horários</h1>
 	<div>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('cadHorarios')"><i class="fas fa-upload"></i></button>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('cadHorarios')"><i class="fas fa-upload"></i></button>
+		</c:if>
 	</div>
 </div>
 

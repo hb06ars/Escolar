@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -147,6 +148,7 @@ public class ModificacoesController {
 			escolarController.atualizarPagina = "/presenca";
 			Usuario objeto = usuarioDao.findById(id).get();
 			objeto.setCompareceu(compareceu);
+			objeto.setUltimoComparecimento(escolarController.hoje);
 			usuarioDao.saveAndFlush(objeto);
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);

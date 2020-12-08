@@ -45,6 +45,7 @@ public class EscolarController {
 	public static String tituloMensagem = "";
 	public static String tipoMensagem = "";
 	public static String periodoAtual = "";
+	public static String hoje = "";
 	
 	public String verificaLink(String link) {
 		String direcao = "deslogar";
@@ -144,13 +145,30 @@ public class EscolarController {
 		return nome;
 	}
 	
+	public void hoje() {
+		Calendar c = Calendar.getInstance();
+		int ano = c.get(Calendar.YEAR);
+		int m = c.get(Calendar.MONTH);
+		m++;
+		String mes = ""+m;
+		if(m < 10){
+		    mes = "0"+m;
+		}
+		int d = c.get(Calendar.DAY_OF_MONTH);
+        String dia=""+d;
+		if(d < 10){
+		    dia = "0"+d;
+		}
+		hoje = ano+"-"+mes+"-"+dia;
+	}
+	
 	@GetMapping({"/","/index"}) 
 		public ModelAndView index(Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
 		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
-		
+		hoje();
 		if(perfis.size() == 0) {
 			Perfil p = new Perfil();
 			p.setAtivo(true);
@@ -215,6 +233,14 @@ public class EscolarController {
 			periodoDao.saveAndFlush(p);
 		}
 		buscarPeriodoAtual();
+		
+		
+		List<Usuario> usuarios = usuarioDao.zeraComparecimento(hoje);
+		for(Usuario u : usuarios) {
+			u.setUltimoComparecimento(null);
+			u.setCompareceu(false);
+			usuarioDao.saveAndFlush(u);
+		}
 		
 		
 		return modelAndView; 

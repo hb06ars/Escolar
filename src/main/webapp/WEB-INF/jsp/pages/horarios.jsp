@@ -60,9 +60,6 @@
 								 >${h.usuario.nome }</td>
 								<c:set var = "encontrou" value = "1"/>
 							</c:if>
-							<c:if test="${!(h.sala eq s) && loop.index < quantidadeDeSalas.size()}">
-								<td style="background-color:#BACFD8" ></td>
-							</c:if>
 						</c:if>
 					</c:forEach>
 				</c:forEach>

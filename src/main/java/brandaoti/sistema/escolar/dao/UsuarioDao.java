@@ -1,5 +1,6 @@
 package brandaoti.sistema.escolar.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,7 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	
 	@Query(" select u from Usuario u where upper( u.login ) like upper( :login ) ")
 	List<Usuario> buscaLogin(@Param("login") String login);
+	
+	@Query(" select u from Usuario u where u.ultimoComparecimento not like :hoje ")
+	List<Usuario> zeraComparecimento(@Param("hoje") String hoje);
 }

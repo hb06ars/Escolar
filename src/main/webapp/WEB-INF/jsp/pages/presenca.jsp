@@ -36,6 +36,10 @@
 		<c:if test="${ usuarioSessao.perfil.admin}">
 			<th >Alterar </th>
 			<th >Compareceu? </th>
+		</c:if>
+		<c:if test="${ !usuarioSessao.perfil.admin}">
+			<th ></th>
+			<th >Compareceu? </th>
 		</c:if> 
 		<th>Nome</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
@@ -46,9 +50,9 @@
 		<tr>
 		<th></th>
 		<th><input type="text" id="filtro1"/></th>
+		<th><input type="text" id="filtro2"/></th>
 		
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<th><input type="text" id="filtro2"/></th>
 			<th><input type="text" id="filtro3"/></th>
 			<th><input type="text" id="filtro4"/></th>
 			<th><input type="text" id="filtro5"/></th>
@@ -65,8 +69,8 @@
 		<c:forEach items="${usuarios}" var="h">
 			<c:if test="${!usuarioSessao.perfil.admin}">
 				<td>
-					<i class="fas fa-window-close" ></i> &nbsp
-					<i class="fas fa-check" ></i>
+					<c:if test="${h.compareceu}" ><i class="fas fa-window-close" ></i> </c:if>
+					<c:if test="${!h.compareceu}" ><i class="fas fa-check" ></i> </c:if>
 				</td>
 			</c:if>
 			<c:if test="${usuarioSessao.perfil.admin}">
@@ -82,10 +86,11 @@
 			> 	<c:if test="${h.compareceu}" >Sim </c:if> <c:if test="${!h.compareceu}" >Não </c:if>
 				
 				<td>${h.nome}
-				<td>${h.telefone}
-				<td><c:if test="${h.ativo}">Sim</c:if> <c:if test="${!h.ativo}">Não</c:if>
-				<td>${h.email}
-				
+				<c:if test="${usuarioSessao.perfil.admin}">
+					<td>${h.telefone}
+					<td><c:if test="${h.ativo}">Sim</c:if> <c:if test="${!h.ativo}">Não</c:if>
+					<td>${h.email}
+				</c:if>
 			<tr>	
 		</c:forEach>
 		</tbody>

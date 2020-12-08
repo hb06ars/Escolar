@@ -1,11 +1,15 @@
 package brandaoti.sistema.escolar.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import brandaoti.sistema.escolar.controller.EscolarController;
 
 @Entity
 public class Usuario {
@@ -43,6 +47,9 @@ public class Usuario {
 	
 	@Column
 	private Boolean compareceu = false;
+	
+	@Column
+	private String ultimoComparecimento = EscolarController.hoje;
 
 	public Integer getId() {
 		return id;
@@ -123,6 +130,16 @@ public class Usuario {
 	public void setCompareceu(Boolean compareceu) {
 		this.compareceu = compareceu;
 	}
+
+	public String getUltimoComparecimento() {
+		return ultimoComparecimento;
+	}
+
+	public void setUltimoComparecimento(String ultimoComparecimento) {
+		this.ultimoComparecimento = ultimoComparecimento;
+	}
+
+	
 	
 	
 

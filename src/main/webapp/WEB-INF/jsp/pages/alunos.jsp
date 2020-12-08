@@ -25,13 +25,17 @@
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h4">Alunos</h1>
-	<c:if test="${usuarioSessao.perfil.admin}">
+	
 		<div>
+		<c:if test="${usuarioSessao.perfil.admin}">
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoAluno()">Novo</button>
+		</c:if>
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
+		<c:if test="${usuarioSessao.perfil.admin}">
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('alunos')"><i class="fas fa-upload"></i></button>
+		</c:if>	
 		</div>
-	</c:if>
+	
 </div>
 
 
@@ -43,6 +47,10 @@
 		<c:if test="${ usuarioSessao.perfil.admin}">
 			<th>Editar </th>
 		</c:if> 
+		<c:if test="${ !usuarioSessao.perfil.admin}">
+			<th></th>
+		</c:if> 
+		
 		<th>ID</th> <th>Nome</th> <th>Perfil</th> <th>Série</th> <th>Turma</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Endereco</th> <th>Bairro</th> <th>Cep</th> <th>Cidade</th> <th>Estado</th> <th>Telefone</th> <th>Ativo</th> <th>Email</th> <th>RA</th> <th>RG</th> <th>Cpf</th> <th>Data de Nascimento</th> <th>Responsavel</th> <th>CPF Responsável</th> <th>Suspensao</th>
@@ -58,9 +66,8 @@
 		<th><input type="text" id="filtro2"/></th>
 		<th><input type="text" id="filtro3"/></th>
 		<th><input type="text" id="filtro4"/></th>
-		
+		<th><input type="text" id="filtro5"/></th>
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<th><input type="text" id="filtro5"/></th>
 			<th><input type="text" id="filtro6"/></th>
 			<th><input type="text" id="filtro7"/></th>
 			<th><input type="text" id="filtro8"/></th>
@@ -91,6 +98,9 @@
 		<c:forEach items="${alunos}" var="a">
 			<c:if test="${usuarioSessao.perfil.admin}">
 				<td><i class="fas fa-edit" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}',  ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})"></i></td>
+			</c:if>
+			<c:if test="${!usuarioSessao.perfil.admin}">
+				<td></td>
 			</c:if>
 			<td>${a.id}  
 			<td>${a.nome}

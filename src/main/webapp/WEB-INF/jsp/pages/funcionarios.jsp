@@ -26,9 +26,13 @@
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h4">Funcionários</h1>
 	<div>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoFuncionario()">Novo</button>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoFuncionario()">Novo</button>
+		</c:if>
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('funcionarios')"><i class="fas fa-upload"></i></button>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('funcionarios')"><i class="fas fa-upload"></i></button>
+		</c:if>
 	</div>
 </div>
 
@@ -40,7 +44,11 @@
 		<tr>
 		<c:if test="${ usuarioSessao.perfil.admin}">
 			<th>Editar </th>
+		</c:if>
+		<c:if test="${ !usuarioSessao.perfil.admin}">
+			<th></th>
 		</c:if> 
+		
 		<th>ID</th> <th>Nome</th> <th>Cargo</th> <th>Perfil</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Login</th><th>Senha</th><th>Telefone</th> <th>Ativo</th> <th>Email</th>
@@ -78,6 +86,9 @@
 		<c:forEach items="${funcionarios}" var="f">
 			<c:if test="${usuarioSessao.perfil.admin}">
 				<td><i class="fas fa-edit" onclick="modalEditarFuncionario( ${f.id}, '${f.nome}', '${f.cargo}', '${f.perfil.nome}', '${f.login}', '${f.senha}', '${f.telefone}',  '${f.ativo}', '${f.email}' )"></i></td>
+			</c:if>
+			<c:if test="${!usuarioSessao.perfil.admin}">
+				<td></td>
 			</c:if>
 			<td>${f.id}  
 			<td>${f.nome}
