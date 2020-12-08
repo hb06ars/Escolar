@@ -552,7 +552,7 @@ public class ModificacoesController {
 		String link = escolarController.verificaLink("pages/funcionarios"); 
 		Periodos p = new Periodos();
 		p.setCodigo(periodo.getCodigo());
-		p.setFim(periodo.getCodigo());
+		p.setFim(periodo.getFim());
 		p.setInicio(periodo.getInicio());
 		p.setNome(periodo.getNome());
 		periodoDao.saveAndFlush(p);
