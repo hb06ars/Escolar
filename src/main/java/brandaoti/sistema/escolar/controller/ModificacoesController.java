@@ -545,5 +545,30 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	
+	
+	@RequestMapping(value = "/recados/salvarPeriodo", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView salvarPeriodo(Model model, Periodos periodo, String dataEnvio) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/funcionarios"); 
+		Periodos p = new Periodos();
+		p.setCodigo(periodo.getCodigo());
+		p.setFim(periodo.getCodigo());
+		p.setInicio(periodo.getInicio());
+		p.setNome(periodo.getNome());
+		periodoDao.saveAndFlush(p);
+		
+		List<Periodos> periodos = periodoDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
+			escolarController.atualizarPagina = "/periodos";
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("periodos", periodos); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		escolarController.enviaMsg(modelAndView); 
+		return modelAndView; 
+	}
+	
 
 }
