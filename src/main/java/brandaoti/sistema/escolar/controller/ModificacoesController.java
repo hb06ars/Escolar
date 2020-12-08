@@ -314,39 +314,68 @@ public class ModificacoesController {
 		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
-			//Teste ----------------------------------------------------------------
-			Usuario u = new Usuario();
-			u.setAtivo(true);
-			u.setCargo("Professor");
-			u.setEmail("teste@teste.com");
-			u.setLogin("psq");
-			u.setNome("Pasquale");
-			u.setPerfil(perfilDao.buscarProfessor().get(0));
-			u.setSenha("123");
-			u.setTelefone("(11)99988-2222");
-			usuarioDao.saveAndFlush(u);
-			Horarios h = new Horarios();
-			h.setPeriodo(periodoDao.findById(1).get());
-			h.setSala("1");
-			h.setSerie("2");
-			h.setTurma("A");
-			h.setPeriodo(periodoDao.porNome("Manhã"));
-			h.setDisciplina("Português");
-			h.setUsuario(usuarioDao.professores().get(0));
-			horarioDao.saveAndFlush(h);
 			horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
 			model.addAttribute("horarios", horarios); 
 		}
-		
-		
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 
 	}
 	
-	
+	@RequestMapping(value = "/horarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView horarios(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/horarios");
+		
+		//Teste ------------------------------------------------------------------------------
+		Usuario u = new Usuario();
+		u.setNome("Pasquale");
+		u.setPerfil(perfilDao.buscarProfessor().get(0));
+		usuarioDao.saveAndFlush(u);
+		Horarios h = new Horarios();
+		h.setHorarioDaAula("19:00");
+		h.setDisciplina("Português");
+		h.setPeriodo(periodoDao.porNome("Manhã"));
+		h.setSala(3);
+		h.setSerie("1");
+		h.setTurma("A");
+		h.setUsuario(usuarioDao.professores().get(0));
+		horarioDao.save(h);
+
+		u = new Usuario();
+		u.setNome("Juca");
+		u.setPerfil(perfilDao.buscarProfessor().get(0));
+		usuarioDao.saveAndFlush(u);
+		h = new Horarios();
+		h.setHorarioDaAula("20:00");
+		h.setDisciplina("Matemática");
+		h.setPeriodo(periodoDao.porNome("Manhã"));
+		h.setSala(1);
+		h.setSerie("2");
+		h.setTurma("C");
+		h.setUsuario(usuarioDao.professores().get(0));
+		horarioDao.save(h);
+		//Teste ------------------------------------------------------------------------------
+		Integer qtdSalas = horarioDao.qtdSalas(escolarController.periodoAtual);
+		List<Integer> quantidadeDeSalas = new ArrayList<Integer>();
+		for(int i = 1 ; i <= qtdSalas; i++) {
+			quantidadeDeSalas.add(i);
+		}
+		
+		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+			model.addAttribute("horarios", horarios); 
+			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
+			model.addAttribute("horarios", horarios); 
+			model.addAttribute("quantidadeDeSalas", quantidadeDeSalas); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}	
 	
 	@RequestMapping(value = "/alunos/salvarAluno", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView salvarAlunos(Model model, Alunos aluno, String nasc, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 

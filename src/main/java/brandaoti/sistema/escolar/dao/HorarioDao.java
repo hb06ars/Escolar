@@ -11,6 +11,9 @@ import brandaoti.sistema.escolar.model.Perfil;
 
 public interface HorarioDao extends JpaRepository<Horarios, Integer> {
 	
-	@Query(" select p from Horarios p where upper( p.periodo.nome ) like upper( :periodo ) ")
+	@Query(" select p from Horarios p where upper( p.periodo.nome ) like upper( :periodo ) order by p.periodo.inicio asc, horarioDaAula asc , sala asc ")
 	List<Horarios> buscarPeriodo(@Param("periodo") String periodo);
+	
+	@Query(" select max(p.sala) from Horarios p where upper( p.periodo.nome ) like upper( :periodo ) ")
+	Integer qtdSalas(@Param("periodo") String periodo);
 }

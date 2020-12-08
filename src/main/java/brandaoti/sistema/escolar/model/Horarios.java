@@ -18,7 +18,10 @@ public class Horarios {
 	private Periodos periodo;
 	
 	@Column
-	private String sala;
+	private Integer sala;
+	
+	@Column
+	private String horarioDaAula;
 	
 	@Column
 	private String turma;
@@ -48,11 +51,11 @@ public class Horarios {
 		this.periodo = periodo;
 	}
 
-	public String getSala() {
+	public Integer getSala() {
 		return sala;
 	}
 
-	public void setSala(String sala) {
+	public void setSala(Integer sala) {
 		this.sala = sala;
 	}
 
@@ -86,6 +89,14 @@ public class Horarios {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getHorarioDaAula() {
+		return horarioDaAula;
+	}
+
+	public void setHorarioDaAula(String horarioDaAula) {
+		this.horarioDaAula = horarioDaAula;
 	}
 
 	
