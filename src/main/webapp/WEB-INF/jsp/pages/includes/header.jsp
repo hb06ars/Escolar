@@ -108,6 +108,7 @@ function expandir(campo, quantidade){
                         <li><a href="/funcionarios"> <i style="align:center" class="fas fa-user-friends" style="font-size:24px"></i>&nbsp Funcionários</a></li>
                         <li><a href="/alunos"> <i style="align:center" class="fas fa-user-graduate" style="font-size:24px"></i>&nbsp Alunos</a></li>
                         <li><a href="/recados"> <i style="align:center" class="fas fa-bullhorn" style="font-size:24px"></i>&nbsp Recados</a></li>
+                        <li><a href="/cadHorarios"> <i style="align:center" class="fas fa-calendar-check" style="font-size:24px"></i>&nbsp Cadastro Horário</a></li>
                     </ul>
                 </li>
                 <li>

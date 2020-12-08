@@ -167,6 +167,7 @@ public class ModificacoesController {
    		Integer finalLinha = 0;
    		Alunos a = new Alunos();
    		Usuario u = new Usuario();
+   		Horarios h = new Horarios();
    		int coluna = 0;
    		
 		switch (tabelaUsada) {  
@@ -212,7 +213,7 @@ public class ModificacoesController {
 	   					}
 	   				}
 	   				try {
-	   					if(coluna == 20) a.setPerfil(perfilDao.buscarCodigo(""+conteudo));
+	   					if(coluna == 20) a.setPerfil(perfilDao.buscarNome(""+conteudo).get(0));
 	   				} catch(Exception e) {}
 	   				if(finalLinha >= 20) {
 	   					finalLinha = -1;
@@ -235,7 +236,7 @@ public class ModificacoesController {
 		   				if(coluna == 0) u.setNome(conteudo);
 		   				if(coluna == 1) u.setCargo(conteudo);
 		   				try {
-		   					if(coluna == 2) u.setPerfil(perfilDao.buscarCodigo(""+conteudo));
+		   					if(coluna == 2) u.setPerfil(perfilDao.buscarNome(""+conteudo).get(0));
 		   				} catch(Exception e) {}
 		   				if(coluna == 3) u.setLogin(conteudo);
 		   				if(coluna == 4) u.setSenha(conteudo);
@@ -259,6 +260,38 @@ public class ModificacoesController {
 		   		} catch(Exception e) {}
 		    	link = escolarController.verificaLink("/pages/funcionarios");
 		    	escolarController.atualizarPagina = "/funcionarios";
+		    	break;
+		    	
+		    	
+	       case "cadHorarios" : // CASO SEJA ALUNO ---------------------
+		   		try {
+		   			for(int i=0; i < tabelas.size(); i++) {
+		   				coluna = tabelas.get(i).getColuna();
+		   				conteudo = tabelas.get(i).getConteudo();
+		   				System.out.println("Conteudo: "+conteudo);
+		   				if(coluna == 0) h.setDiaDaSemana(conteudo);
+		   				try {
+		   					if(coluna == 1) h.setPeriodo(periodoDao.porNome(""+conteudo).get(0));
+		   				} catch(Exception e) {System.out.println("ERRO: "+e);}
+		   				if(coluna == 2) h.setHorarioDaAula(conteudo);
+		   				if(coluna == 3) h.setSala(Integer.parseInt(""+conteudo));
+		   				if(coluna == 4) h.setTurma(conteudo);
+		   				if(coluna == 5) h.setSerie(conteudo);
+		   				if(coluna == 6) h.setDisciplina(conteudo);
+		   				try {
+		   					if(coluna == 7) h.setUsuario(usuarioDao.buscaLogin(""+conteudo).get(0));
+		   				} catch(Exception e) {System.out.println("ERRO: "+e);}
+		   				
+		   				if(finalLinha >= 7) {
+		   					finalLinha = -1;
+		   					horarioDao.save(h);
+		   					h = new Horarios();
+		   				}
+		   				finalLinha++;
+		   			}
+		   		} catch(Exception e) {}
+		    	link = escolarController.verificaLink("/pages/cadastroHorarios");
+		    	escolarController.atualizarPagina = "/cadHorarios";
 		    	break;
 	    	
 	    	
@@ -309,6 +342,19 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	@RequestMapping(value = "/cadHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView cadHorarios(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/cadastroHorarios");
+		List<Horarios> horarios = horarioDao.findAll();
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("horarios", horarios); 
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}
+	
 	@RequestMapping(value = "/presenca", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView presenca(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/presenca");
@@ -332,40 +378,11 @@ public class ModificacoesController {
 	public ModelAndView horarios(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/horarios");
 		
-		//Teste ------------------------------------------------------------------------------
-		Usuario u = new Usuario();
-		u.setNome("Pasquale");
-		u.setPerfil(perfilDao.buscarProfessor().get(0));
-		usuarioDao.saveAndFlush(u);
-		Horarios h = new Horarios();
-		h.setHorarioDaAula("09:00");
-		h.setDisciplina("Português");
-		h.setPeriodo(periodoDao.porNome("Manhã"));
-		h.setSala(3);
-		h.setSerie("1");
-		h.setTurma("A");
-		h.setDiaDaSemana("Terça");
-		h.setUsuario(usuarioDao.professores().get(0));
-		horarioDao.save(h);
-
-		u = new Usuario();
-		u.setNome("Juca");
-		u.setPerfil(perfilDao.buscarProfessor().get(0));
-		usuarioDao.saveAndFlush(u);
-		h = new Horarios();
-		h.setHorarioDaAula("07:00");
-		h.setDisciplina("Matemática");
-		h.setPeriodo(periodoDao.porNome("Manhã"));
-		h.setSala(1);
-		h.setSerie("2");
-		h.setTurma("C");
-		h.setDiaDaSemana("Terça");
-		h.setUsuario(usuarioDao.professores().get(1));
-		horarioDao.save(h);
-		//Teste ------------------------------------------------------------------------------
+		
 		String diaDaSemanaAtual = escolarController.diaDaSemana();
 		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(escolarController.periodoAtual, diaDaSemanaAtual);
 		List<String> quantidadeDeSeries = horarioDao.qtdSeries(escolarController.periodoAtual, diaDaSemanaAtual);
+		List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(escolarController.periodoAtual, diaDaSemanaAtual);
 		
 		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
@@ -373,9 +390,9 @@ public class ModificacoesController {
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
 			model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual); 
-			model.addAttribute("horarios", horarios); 
 			model.addAttribute("quantidadeDeSalas", quantidadeDeSalas); 
-			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries); 
+			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
+			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);

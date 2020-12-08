@@ -23,4 +23,7 @@ public interface PerfilDao extends JpaRepository<Perfil, Integer> {
 	
 	@Query(" select p from Perfil p where upper( p.codigo ) like upper( :codigo ) and ativo = 1 ")
 	Perfil buscarCodigo(@Param("codigo") String codigo);
+	
+	@Query(" select p from Perfil p where upper( p.nome ) like upper( :nome ) and ativo = 1 ")
+	List<Perfil> buscarNome(@Param("nome") String nome);
 }

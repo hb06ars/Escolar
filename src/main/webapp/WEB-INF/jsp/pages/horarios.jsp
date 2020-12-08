@@ -46,21 +46,31 @@
 		<tbody>
 		<tr>
 		
-		
-		<c:forEach items="${horarios}" var="h">
-			
-				<td>${h.horarioDaAula}
-				<td>${h.usuario.nome}
-				<td>${h.sala}
-				<td>${h.serie}
-				<td>${h.turma}
-				<td>${h.periodo.nome}
-				<td>${h.usuario.telefone}
-				<td><c:if test="${h.usuario.ativo}">Sim</c:if> <c:if test="${!h.usuario.ativo}">Não</c:if>
-				<td>${h.usuario.email}
-				
-			<tr>	
+		<c:set var = "encontrou" value = "0"/>
+		<c:forEach items="${quantidadeDeHorarios }" var="ho">
+				<tr><th style="background-color:#8CB1C0" >${ho}</th>
+				<c:forEach items="${quantidadeDeSalas }" var="s" varStatus="loop">
+					<c:set var = "encontrou" value = "0"/>
+					<c:forEach items="${horarios}" var="h" >
+						<c:if test="${ho eq h.horarioDaAula }">
+							<c:if test="${h.sala eq s && encontrou == 0 }">
+								<td 
+									<c:if test="${h.usuario.compareceu }">style="background-color:#A8F0B0"</c:if>
+									<c:if test="${!h.usuario.compareceu }">style="background-color:#FD8F8F"</c:if>
+								 >${h.usuario.nome }</td>
+								<c:set var = "encontrou" value = "1"/>
+							</c:if>
+							<c:if test="${!(h.sala eq s) && loop.index < quantidadeDeSalas.size()}">
+								<td style="background-color:#BACFD8" ></td>
+							</c:if>
+						</c:if>
+					</c:forEach>
+				</c:forEach>
 		</c:forEach>
+				
+		
+				
+		
 		</tbody>
 	</table>
 	</div>

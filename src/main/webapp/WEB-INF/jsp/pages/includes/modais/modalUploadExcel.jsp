@@ -49,6 +49,18 @@ function modalUploadExcel(tabela){
 		+"<td>email</td>"
 		+"</table>";	
 	}
+
+	if(tabela == 'cadHorarios'){
+		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
+		+"<td>Dia</td>"
+		+"<td>Período</td>"
+		+"<td>Horário</td>"
+		+"<td>Sala</td>"
+		+"<td>Turma</td>"
+		+"<td>Série</td>"
+		+"<td>Disciplina</td>"
+		+"<td>Login</td>";
+	}
 	
 	document.getElementById("tabelaUsada").value = tabela;
 	$("#modalUploadExcel").modal().show();
