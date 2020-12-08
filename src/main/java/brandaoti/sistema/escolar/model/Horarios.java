@@ -24,6 +24,9 @@ public class Horarios {
 	private String horarioDaAula;
 	
 	@Column
+	private String diaDaSemana;
+	
+	@Column
 	private String turma;
 	
 	@Column
@@ -97,6 +100,14 @@ public class Horarios {
 
 	public void setHorarioDaAula(String horarioDaAula) {
 		this.horarioDaAula = horarioDaAula;
+	}
+
+	public String getDiaDaSemana() {
+		return diaDaSemana;
+	}
+
+	public void setDiaDaSemana(String diaDaSemana) {
+		this.diaDaSemana = diaDaSemana;
 	}
 
 	

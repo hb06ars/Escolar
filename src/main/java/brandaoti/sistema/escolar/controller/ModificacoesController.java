@@ -143,11 +143,12 @@ public class ModificacoesController {
 			} else {
 				compareceu = true;
 			}
+			String diaDaSemanaAtual = escolarController.diaDaSemana();
 			escolarController.atualizarPagina = "/presenca";
 			Usuario objeto = usuarioDao.findById(id).get();
 			objeto.setCompareceu(compareceu);
 			usuarioDao.saveAndFlush(objeto);
-			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
 		}
@@ -311,13 +312,16 @@ public class ModificacoesController {
 	@RequestMapping(value = "/presenca", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView presenca(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/presenca");
-		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+		String diaDaSemanaAtual = escolarController.diaDaSemana();
+		List<Usuario> usuarios = horarioDao.presenca(escolarController.periodoAtual, diaDaSemanaAtual);
+		for(int i = 0 ; i < usuarios.size(); i++) {
+			System.out.println("usuarios: " + usuarios.get(i).getNome());
+		}
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
-			horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
-			model.addAttribute("horarios", horarios); 
-			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
-			model.addAttribute("horarios", horarios); 
+			model.addAttribute("usuarios", usuarios); 
+			model.addAttribute("periodoAtual", escolarController.periodoAtual);
+			model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -334,12 +338,13 @@ public class ModificacoesController {
 		u.setPerfil(perfilDao.buscarProfessor().get(0));
 		usuarioDao.saveAndFlush(u);
 		Horarios h = new Horarios();
-		h.setHorarioDaAula("19:00");
+		h.setHorarioDaAula("09:00");
 		h.setDisciplina("Português");
 		h.setPeriodo(periodoDao.porNome("Manhã"));
 		h.setSala(3);
 		h.setSerie("1");
 		h.setTurma("A");
+		h.setDiaDaSemana("Terça");
 		h.setUsuario(usuarioDao.professores().get(0));
 		horarioDao.save(h);
 
@@ -348,29 +353,29 @@ public class ModificacoesController {
 		u.setPerfil(perfilDao.buscarProfessor().get(0));
 		usuarioDao.saveAndFlush(u);
 		h = new Horarios();
-		h.setHorarioDaAula("20:00");
+		h.setHorarioDaAula("07:00");
 		h.setDisciplina("Matemática");
 		h.setPeriodo(periodoDao.porNome("Manhã"));
 		h.setSala(1);
 		h.setSerie("2");
 		h.setTurma("C");
-		h.setUsuario(usuarioDao.professores().get(0));
+		h.setDiaDaSemana("Terça");
+		h.setUsuario(usuarioDao.professores().get(1));
 		horarioDao.save(h);
 		//Teste ------------------------------------------------------------------------------
-		Integer qtdSalas = horarioDao.qtdSalas(escolarController.periodoAtual);
-		List<Integer> quantidadeDeSalas = new ArrayList<Integer>();
-		for(int i = 1 ; i <= qtdSalas; i++) {
-			quantidadeDeSalas.add(i);
-		}
+		String diaDaSemanaAtual = escolarController.diaDaSemana();
+		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(escolarController.periodoAtual, diaDaSemanaAtual);
+		List<String> quantidadeDeSeries = horarioDao.qtdSeries(escolarController.periodoAtual, diaDaSemanaAtual);
 		
-		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
-			horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
+			model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual); 
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("quantidadeDeSalas", quantidadeDeSalas); 
+			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries); 
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);

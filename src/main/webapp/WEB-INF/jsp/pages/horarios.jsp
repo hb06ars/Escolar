@@ -24,7 +24,7 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Horários (${periodoAtual})</h1>
+	<h1 class="h4">Horários (${periodoAtual} - ${diaDaSemanaAtual })</h1>
 </div>
 
 
@@ -35,28 +35,13 @@
 		<tr>
 		<th rowspan="2" style="background-color:#ADC4D1; vertical-align: middle;">Horário</th>
 		<c:forEach items="${quantidadeDeSalas }" var="s">
-			<th style="background-color:#8EAAB9">Sala ${s }</th>
+			<th style="background-color:#8EAAB9">Sala ${s}</th>
 		</c:forEach>
 		<tr>
-		
-		<c:set var = "encontrou"  value = "0"/>
-		<c:forEach items="${quantidadeDeSalas }" var="s">
-			<c:set var = "encontrou"  value = "0"/>
-			<c:forEach items="${horarios }" var="h">
-				<c:if test="${h.sala == s && encontrou == 0}">
-					<th style="background-color:#B6D5E6" >${h.serie} º ${h.turma}</th>
-					<c:set var = "encontrou"  value = "${encontrou + 1 }"/>
-				</c:if>
-			</c:forEach>
-			<c:if test="${encontrou <= 0}">
-					<th style="background-color:#B6D5E6" ></th>
-			</c:if>
+		<c:forEach items="${quantidadeDeSeries }" var="se">
+			<th style="background-color:#B6D5E6" >${se}</th>
 		</c:forEach>
-		
-		
-		
-		
-		
+
 		</thead>
 		<tbody>
 		<tr>

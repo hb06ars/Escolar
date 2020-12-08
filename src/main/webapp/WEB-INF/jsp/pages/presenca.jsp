@@ -24,7 +24,7 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Presença dos Professores (${periodoAtual})</h1>
+	<h1 class="h4">Presença dos Professores (${periodoAtual} - ${diaDaSemanaAtual})</h1>
 </div>
 
 
@@ -38,7 +38,6 @@
 			<th >Compareceu? </th>
 		</c:if> 
 		<th>Nome</th>
-		<th>Disciplina</th> <th>Sala</th> <th>Série</th><th>Turma</th> <th>Período</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Telefone</th> <th>Ativo</th> <th>Email</th>
 		</c:if>
@@ -47,17 +46,12 @@
 		<tr>
 		<th></th>
 		<th><input type="text" id="filtro1"/></th>
-		<th><input type="text" id="filtro2"/></th>
-		<th><input type="text" id="filtro3"/></th>
-		<th><input type="text" id="filtro4"/></th>
 		
 		<c:if test="${usuarioSessao.perfil.admin}">
+			<th><input type="text" id="filtro2"/></th>
+			<th><input type="text" id="filtro3"/></th>
+			<th><input type="text" id="filtro4"/></th>
 			<th><input type="text" id="filtro5"/></th>
-			<th><input type="text" id="filtro6"/></th>
-			<th><input type="text" id="filtro7"/></th>
-			<th><input type="text" id="filtro8"/></th>
-			<th><input type="text" id="filtro9"/></th>
-			<th><input type="text" id="filtro10"/></th>
 		</c:if>
 		
 		<th></th>
@@ -68,7 +62,7 @@
 		<tr>
 		
 		
-		<c:forEach items="${horarios}" var="h">
+		<c:forEach items="${usuarios}" var="h">
 			<c:if test="${!usuarioSessao.perfil.admin}">
 				<td>
 					<i class="fas fa-window-close" ></i> &nbsp
@@ -77,25 +71,20 @@
 			</c:if>
 			<c:if test="${usuarioSessao.perfil.admin}">
 					<td>
-						<i class="fas fa-window-close" onClick="validarPresenca(${h.usuario.id},'faltou')"></i> &nbsp
-						<i class="fas fa-check" onClick="validarPresenca(${h.usuario.id},'compareceu')"></i>
+						<i class="fas fa-window-close" onClick="validarPresenca(${h.id},'faltou')"></i> &nbsp
+						<i class="fas fa-check" onClick="validarPresenca(${h.id},'compareceu')"></i>
 					</td>
 			</c:if>
 			
 			<td
-				<c:if test="${h.usuario.compareceu}" >style="background-color:blue;color:white" </c:if>
-				<c:if test="${!h.usuario.compareceu}" >style="background-color:red;color:white" </c:if>
-			> 	<c:if test="${h.usuario.compareceu}" >Sim </c:if> <c:if test="${!h.usuario.compareceu}" >Não </c:if>
+				<c:if test="${h.compareceu}" >style="background-color:blue;color:white" </c:if>
+				<c:if test="${!h.compareceu}" >style="background-color:red;color:white" </c:if>
+			> 	<c:if test="${h.compareceu}" >Sim </c:if> <c:if test="${!h.compareceu}" >Não </c:if>
 				
-				<td>${h.usuario.nome}
-				<td>${h.disciplina}
-				<td>${h.sala}
-				<td>${h.serie}
-				<td>${h.turma}
-				<td>${h.periodo.nome}
-				<td>${h.usuario.telefone}
-				<td><c:if test="${h.usuario.ativo}">Sim</c:if> <c:if test="${!h.usuario.ativo}">Não</c:if>
-				<td>${h.usuario.email}
+				<td>${h.nome}
+				<td>${h.telefone}
+				<td><c:if test="${h.ativo}">Sim</c:if> <c:if test="${!h.ativo}">Não</c:if>
+				<td>${h.email}
 				
 			<tr>	
 		</c:forEach>

@@ -3,7 +3,9 @@ package brandaoti.sistema.escolar.controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +116,32 @@ public class EscolarController {
 			repeticoes++;
 		}
 		System.out.println("OK: " + periodoAtual);
+	}
+	
+	
+	public String diaDaSemana() {
+		Date d = new Date();
+		Calendar c = new GregorianCalendar();
+		c.setTime(d);
+		String nome = "";
+		int dia = c.get(c.DAY_OF_WEEK);
+		switch(dia){
+		case Calendar.SUNDAY: nome = "Domingo";
+			break;
+		case Calendar.MONDAY: nome = "Segunda";
+			break;
+		case Calendar.TUESDAY: nome = "Terça";
+			break;
+		case Calendar.WEDNESDAY: nome = "Quarta";
+			break;
+		case Calendar.THURSDAY: nome = "Quinta";
+			break;
+		case Calendar.FRIDAY: nome = "Sexta";
+			break;
+		case Calendar.SATURDAY: nome = "Sábado";
+			break;
+		}
+		return nome;
 	}
 	
 	@GetMapping({"/","/index"}) 
