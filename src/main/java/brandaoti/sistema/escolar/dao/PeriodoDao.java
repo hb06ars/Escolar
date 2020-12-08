@@ -14,4 +14,7 @@ public interface PeriodoDao extends JpaRepository<Periodos, Integer> {
 	
 	@Query(" select u from Periodos u where upper( u.nome ) like upper( :nome )")
 	Periodos porNome(@Param("nome") String nome);
+	
+	@Query(" select u from Periodos u order by u.inicio asc")
+	List<Periodos> ordenado();
 }

@@ -27,6 +27,7 @@ import brandaoti.sistema.escolar.excel.Tabela;
 import brandaoti.sistema.escolar.model.Alunos;
 import brandaoti.sistema.escolar.model.Horarios;
 import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Periodos;
 import brandaoti.sistema.escolar.model.Recado;
 import brandaoti.sistema.escolar.model.Usuario;
 
@@ -47,6 +48,49 @@ public class ModificacoesController {
 	private PeriodoDao periodoDao;
 	
 	private EscolarController escolarController = new EscolarController();
+	
+	public void buscarPeriodoAtual() {
+		LocalDateTime agora = LocalDateTime.now();
+		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+		String horaFormatada = formatterHora.format(agora);
+		Integer horaAtual = Integer.parseInt(horaFormatada.substring(0, 2));
+		Integer minutoAtual = Integer.parseInt(horaFormatada.substring(3, 5));
+		List<Periodos> periodos = periodoDao.ordenado();
+		Integer inicioHoraPeriodo = 0;
+		Integer inicioMinutoPeriodo = 0;
+		Integer fimHoraPeriodo = 0;
+		Integer fimMinutoPeriodo = 0;
+		Integer repeticoes = 0;
+		Boolean encontrado = false;
+		while(repeticoes < 24) {
+			for(Periodos p : periodos) {
+				inicioHoraPeriodo = Integer.parseInt(p.getInicio().substring(0, 2));
+				inicioMinutoPeriodo = Integer.parseInt(p.getInicio().substring(3,5));
+				fimHoraPeriodo = Integer.parseInt(p.getFim().substring(0, 2));
+				fimMinutoPeriodo = Integer.parseInt(p.getFim().substring(3,5));
+				if(horaAtual >= inicioHoraPeriodo && horaAtual <= fimHoraPeriodo) {
+					if(horaAtual == fimHoraPeriodo ) {
+						if(minutoAtual <= fimMinutoPeriodo) {
+							escolarController.periodoAtual = p.getNome();
+							encontrado = true;
+						}
+					} else {
+						escolarController.periodoAtual = p.getNome();
+						encontrado = true;
+					}
+				}
+			}
+			if(!encontrado) {
+				horaAtual++;
+				minutoAtual++;
+				if(minutoAtual >=60 ) minutoAtual = 0;
+				if(horaAtual >=24 ) horaAtual = 0;
+			} else {
+				repeticoes = 24;
+			}
+			repeticoes++;
+		}
+	}
 	
 	@RequestMapping(value = "/adm/deletando/{tabela}/{id}", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
 	public ModelAndView deletando(Model model,@PathVariable("tabela") String tabela, @PathVariable("id") Integer id) { //Função e alguns valores que recebe...
@@ -103,7 +147,7 @@ public class ModificacoesController {
 			Usuario objeto = usuarioDao.findById(id).get();
 			objeto.setCompareceu(compareceu);
 			usuarioDao.saveAndFlush(objeto);
-			List<Horarios> horarios = horarioDao.findAll();
+			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
 		}
@@ -267,41 +311,36 @@ public class ModificacoesController {
 	@RequestMapping(value = "/presenca", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView presenca(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/presenca");
-		List<Usuario> funcionarios = usuarioDao.professores();
+		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
-			model.addAttribute("funcionarios", funcionarios); 
+			//Teste ----------------------------------------------------------------
+			Usuario u = new Usuario();
+			u.setAtivo(true);
+			u.setCargo("Professor");
+			u.setEmail("teste@teste.com");
+			u.setLogin("psq");
+			u.setNome("Pasquale");
+			u.setPerfil(perfilDao.buscarProfessor().get(0));
+			u.setSenha("123");
+			u.setTelefone("(11)99988-2222");
+			usuarioDao.saveAndFlush(u);
+			Horarios h = new Horarios();
+			h.setPeriodo(periodoDao.findById(1).get());
+			h.setSala("1");
+			h.setSerie("2");
+			h.setTurma("A");
+			h.setPeriodo(periodoDao.porNome("Manhã"));
+			h.setDisciplina("Português");
+			h.setUsuario(usuarioDao.professores().get(0));
+			horarioDao.saveAndFlush(h);
+			horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual);
+			model.addAttribute("horarios", horarios); 
+			model.addAttribute("periodoAtual", escolarController.periodoAtual); 
+			model.addAttribute("horarios", horarios); 
 		}
-		LocalDateTime agora = LocalDateTime.now();
-		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-		String horaFormatada = formatterHora.format(agora);
-		escolarController.buscarPeriodoAtual();
 		
-		//Teste
-		Usuario u = new Usuario();
-		u.setAtivo(true);
-		u.setCargo("Professor");
-		u.setEmail("teste@teste.com");
-		u.setLogin("psq");
-		u.setNome("Pasquale");
-		u.setPerfil(perfilDao.buscarProfessor().get(0));
-		u.setSenha("123");
-		u.setTelefone("(11)99988-2222");
-		usuarioDao.saveAndFlush(u);
-		List<Horarios> horarios = new ArrayList<Horarios>();
-		Horarios h = new Horarios();
-		h.setPeriodo(periodoDao.findById(1).get());
-		h.setSala("1");
-		h.setSerie("2");
-		h.setTurma("A");
-		h.setPeriodo(periodoDao.porNome("Manhã"));
-		h.setDisciplina("Português");
-		h.setUsuario(usuarioDao.professores().get(0));
-		horarioDao.saveAndFlush(h);
-		horarios.add(h);
-		model.addAttribute("horarios", horarios); 
 		
-		model.addAttribute("periodoAtual", escolarController.periodoAtual); 
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 

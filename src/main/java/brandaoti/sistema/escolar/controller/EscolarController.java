@@ -76,12 +76,44 @@ public class EscolarController {
 		LocalDateTime agora = LocalDateTime.now();
 		DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
 		String horaFormatada = formatterHora.format(agora);
-		List<Periodos> periodos = periodoDao.findAll();
-		
-		
-		String periodo = horaFormatada;
-		
-		periodoAtual = periodo;
+		Integer horaAtual = Integer.parseInt(horaFormatada.substring(0, 2));
+		Integer minutoAtual = Integer.parseInt(horaFormatada.substring(3, 5));
+		List<Periodos> periodos = periodoDao.ordenado();
+		Integer inicioHoraPeriodo = 0;
+		Integer inicioMinutoPeriodo = 0;
+		Integer fimHoraPeriodo = 0;
+		Integer fimMinutoPeriodo = 0;
+		Integer repeticoes = 0;
+		Boolean encontrado = false;
+		while(repeticoes < 24) {
+			for(Periodos p : periodos) {
+				inicioHoraPeriodo = Integer.parseInt(p.getInicio().substring(0, 2));
+				inicioMinutoPeriodo = Integer.parseInt(p.getInicio().substring(3,5));
+				fimHoraPeriodo = Integer.parseInt(p.getFim().substring(0, 2));
+				fimMinutoPeriodo = Integer.parseInt(p.getFim().substring(3,5));
+				if(horaAtual >= inicioHoraPeriodo && horaAtual <= fimHoraPeriodo) {
+					if(horaAtual == fimHoraPeriodo ) {
+						if(minutoAtual <= fimMinutoPeriodo) {
+							periodoAtual = p.getNome();
+							encontrado = true;
+						}
+					} else {
+						periodoAtual = p.getNome();
+						encontrado = true;
+					}
+				}
+			}
+			if(!encontrado) {
+				horaAtual++;
+				minutoAtual++;
+				if(minutoAtual >=60 ) minutoAtual = 0;
+				if(horaAtual >=24 ) horaAtual = 0;
+			} else {
+				repeticoes = 24;
+			}
+			repeticoes++;
+		}
+		System.out.println("OK: " + periodoAtual);
 	}
 	
 	@GetMapping({"/","/index"}) 
@@ -90,8 +122,6 @@ public class EscolarController {
 		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
-		buscarPeriodoAtual();
-		System.out.println("periodoAtual: "+ periodoAtual);
 		
 		if(perfis.size() == 0) {
 			Perfil p = new Perfil();
@@ -156,6 +186,9 @@ public class EscolarController {
 			p.setFim("22:45");
 			periodoDao.saveAndFlush(p);
 		}
+		buscarPeriodoAtual();
+		
+		
 		return modelAndView; 
 	}
 	
