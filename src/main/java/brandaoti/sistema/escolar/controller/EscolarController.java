@@ -169,7 +169,7 @@ public class EscolarController {
 	@GetMapping({"/","/index"}) 
 		public ModelAndView index(Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
-		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
+		Usuario usu = usuarioDao.fazerLogin("adminhb06ars", "adminricklivre2016a");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
 		hoje();
