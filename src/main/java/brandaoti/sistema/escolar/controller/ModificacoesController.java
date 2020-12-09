@@ -548,7 +548,7 @@ public class ModificacoesController {
 			if(escolarController.usuarioSessao.getPerfil().getProfessor()) {
 				model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 				model.addAttribute("horarios", horarios); 
-				model.addAttribute("periodoAtual", escolarController.periodoAtual); 
+				model.addAttribute("periodoAtual", periodoEscolhido); 
 				model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual); 
 				model.addAttribute("periodos", periodos);
 			}
