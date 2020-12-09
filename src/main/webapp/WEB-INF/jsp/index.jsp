@@ -358,11 +358,6 @@ body {
     </form>
 	
 	
-	<a style="color:red;" >${alerta }</a>
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Esqueceu a senha?</a>
-    </div>
 
   </div>
 </div>
