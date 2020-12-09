@@ -466,6 +466,7 @@ public class ModificacoesController {
 		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(escolarController.periodoAtual, diaDaSemanaAtual);
 		List<String> quantidadeDeSeries = horarioDao.qtdSeries(escolarController.periodoAtual, diaDaSemanaAtual);
 		List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(escolarController.periodoAtual, diaDaSemanaAtual);
+		List<Periodos> periodos = periodoDao.periodos();
 		
 		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
@@ -477,11 +478,68 @@ public class ModificacoesController {
 			model.addAttribute("quantidadeDeSalas", quantidadeDeSalas); 
 			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
 			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
+			model.addAttribute("periodos", periodos);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
 		return modelAndView; 
 	}	
+	
+	
+	@RequestMapping(value = "/filtrarHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
+	public ModelAndView filtrarHorarios(Model model, String semana, Integer periodo) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		String link = escolarController.verificaLink("pages/horarios");
+		switch (semana) {
+			case "seg":
+				semana = "Segunda";
+				break;
+			case "ter":
+				semana = "Terça";
+				break;
+			case "qua":
+				semana = "Quarta";
+				break;
+			case "qui":
+				semana = "Quinta";
+				break;
+			case "sex":
+				semana = "Sexta";
+				break;
+			case "sab":
+				semana = "Sábado";
+				break;
+			case "dom":
+				semana = "Domingo";
+				break;
+			default:
+				break;
+		}
+		String semanaEscolhida = semana;
+		String periodoEscolhido = periodoDao.findById(periodo).get().getNome();
+		System.out.println("Filtro: "+semana + periodo);
+		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(periodoEscolhido, semanaEscolhida);
+		List<String> quantidadeDeSeries = horarioDao.qtdSeries(periodoEscolhido, semanaEscolhida);
+		List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(periodoEscolhido, semanaEscolhida);
+		List<Horarios> horarios = horarioDao.buscarPeriodo(periodoEscolhido, semanaEscolhida);
+		List<Periodos> periodos = periodoDao.periodos();
+		
+		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("professores", usuarioDao.professores());
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			model.addAttribute("horarios", horarios); 
+			model.addAttribute("periodoAtual", periodoEscolhido); 
+			model.addAttribute("diaDaSemanaAtual", semanaEscolhida); 
+			model.addAttribute("quantidadeDeSalas", quantidadeDeSalas); 
+			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
+			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
+			model.addAttribute("periodos", periodos);
+			
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		escolarController.enviaMsg(modelAndView);
+		return modelAndView; 
+	}	
+	
 	
 	@RequestMapping(value = "/alunos/salvarAluno", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView salvarAlunos(Model model, Alunos aluno, String nasc, Integer ID, String permissaoFunc) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 

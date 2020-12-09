@@ -17,4 +17,8 @@ public interface PeriodoDao extends JpaRepository<Periodos, Integer> {
 	
 	@Query(" select u from Periodos u order by u.inicio asc")
 	List<Periodos> ordenado();
+	
+	@Query("select u from Periodos u")
+	List<Periodos> periodos();
+	
 }
