@@ -351,7 +351,7 @@ body {
 	<br>
 	
     <!-- Login Form -->
-    <form action="/home" method="post">
+    <form action="/home" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
       <input type="text" id="usuarioVal" class="fadeIn second" name="usuarioVal" placeholder="Login" required>
       <input type="password" id="senhaVal" class="fadeIn third" name="senhaVal" placeholder="Senha" required>
       <input type="submit" class="fadeIn fourth" value="Log In">

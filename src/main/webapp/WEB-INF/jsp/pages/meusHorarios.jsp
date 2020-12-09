@@ -27,7 +27,7 @@
 	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual }</h1>
 </div>
 
-<form action="<c:url value='/filtrarMeusHorarios'/>" id="form" method="post" >
+<form action="<c:url value='/filtrarMeusHorarios'/>" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 	<div class="d-flex pt-3 pb-2 mb-3">
 	  	<div>
 	  		<select class="form-control" id="periodo" name="periodo" required aria-describedby="inputGroup-sizing-default">

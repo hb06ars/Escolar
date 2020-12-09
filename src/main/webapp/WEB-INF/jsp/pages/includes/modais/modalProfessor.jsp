@@ -63,7 +63,7 @@ function substituir(){
 
 
 
-<form action="<c:url value='/professor/confirmarPresenca'/>" id="form" method="post" >
+<form action="<c:url value='/professor/confirmarPresenca'/>" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 <div class="modal fade" id="modalProfessor" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
