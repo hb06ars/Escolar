@@ -10,7 +10,7 @@
 <jsp:include page="includes/modais/modalFuncionario.jsp" />
 <!-- TABELAS COM FILTRO -->
 <jsp:include page="includes/jquery/filtro.jsp" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script> 
 <script type="text/javascript" src="includes/jquery/script.js"></script>
 <link href="script.js" rel="stylesheet" id="style">
 <!-- TABELAS COM FILTRO -->
