@@ -37,6 +37,9 @@ public class Horarios {
 	
 	@OneToOne
 	private Usuario usuario;
+	
+	@OneToOne
+	private Usuario susbstituto;
 
 	public Integer getId() {
 		return id;
@@ -108,6 +111,14 @@ public class Horarios {
 
 	public void setDiaDaSemana(String diaDaSemana) {
 		this.diaDaSemana = diaDaSemana;
+	}
+
+	public Usuario getSusbstituto() {
+		return susbstituto;
+	}
+
+	public void setSusbstituto(Usuario susbstituto) {
+		this.susbstituto = susbstituto;
 	}
 
 	

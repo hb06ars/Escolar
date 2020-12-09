@@ -8,8 +8,10 @@
 
 <!--  DELETAR PERFIL -->
 <script>
-function modalProfessor(professor, nomeProfessor){
+function modalProfessor(professor, nomeProfessor, horarioId){
 	$("#modalProfessor").modal().show();
+	document.getElementById("professorAtualConfirma").value = professor;
+	document.getElementById("horarioId").value = horarioId;
 	document.getElementById("professorAtual").value = professor;
 	document.getElementById("nomeProfessorAtual").value = nomeProfessor;
 	document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+nomeProfessor+"?";
@@ -37,6 +39,10 @@ function substituir(){
 	} else{
 		todasAulas = 'todas';
 	}
+	document.getElementById("professorAtual").value = professorAtual;
+	document.getElementById("professorSubstituto").value = substituto;
+	document.getElementById("todasAulas").value = todasAulas;
+	
 	document.getElementById("substituirForm").submit();
 }
 
@@ -101,7 +107,8 @@ function substituir(){
 		
       </div>
       <div class="modal-footer">
-      	<input type="hidden" id="nomeProfessorAtual">
+      	<input type="hidden" id="professorAtualConfirma" name="professorAtualConfirma">
+      	<input type="hidden" id="nomeProfessorAtual" name="nomeProfessorAtual">
       	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         <botao type="button" id="btSubstituir" class="btn btn-secondary" onclick="substituir()" data-dismiss="modal" style="display:none">Substituir</botao>
         <input type="submit" name="submit" class="btn btn-primary" value="Confirmar presença">
@@ -113,7 +120,8 @@ function substituir(){
 
 
 <form action="<c:url value='/professor/substituir'/>" id="substituirForm" method="post" >
-	<input type="hidden" id="professorAtual">
-	<input type="hidden" id="professorSubstituto">
-	<input type="hidden" id="todasAulas">
+	<input type="hidden" id="professorAtual" name="professorAtual">
+	<input type="hidden" id="professorSubstituto" name="professorSubstituto">
+	<input type="hidden" id="todasAulas" name="todasAulas">
+	<input type="hidden" id="horarioId" name="horarioId">
 </form>

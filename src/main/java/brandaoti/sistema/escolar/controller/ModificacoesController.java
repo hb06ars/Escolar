@@ -167,6 +167,56 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	
+	@RequestMapping(value = "/professor/confirmarPresenca", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
+	public ModelAndView confirmarPresencaProfessor(Model model, Integer professorAtualConfirma) { //Função e alguns valores que recebe...
+		String link = escolarController.verificaLink("/deslogar");
+		if(escolarController.usuarioSessao.getPerfil().getAdmin()) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			link = "/pages/horarios";
+			String diaDaSemanaAtual = escolarController.diaDaSemana();
+			escolarController.atualizarPagina = "/horarios";
+			Usuario objeto = usuarioDao.findById(professorAtualConfirma).get();
+			objeto.setCompareceu(true);
+			objeto.setUltimoComparecimento(escolarController.hoje);
+			usuarioDao.saveAndFlush(objeto);
+			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("horarios", horarios);
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
+	}
+	
+	
+	@RequestMapping(value = "/professor/substituir", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
+	public ModelAndView substituirProfessor(Model model, Integer professorAtual, Integer professorSubstituto, String todasAulas, Integer horarioId) { //Função e alguns valores que recebe...
+		String link = escolarController.verificaLink("/deslogar");
+		if(escolarController.usuarioSessao.getPerfil().getAdmin()) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			link = "/pages/horarios";
+			String diaDaSemanaAtual = escolarController.diaDaSemana();
+			escolarController.atualizarPagina = "/horarios";
+			System.out.println("horarioId: "+horarioId);
+			System.out.println("professorAtual: "+professorAtual);
+			System.out.println("professorSubstituto: "+professorSubstituto);
+			System.out.println("todasAulas: "+todasAulas);
+			Horarios h = horarioDao.findById(horarioId).get();
+			Usuario s = usuarioDao.findById(professorSubstituto).get();
+			s.setCompareceu(true);
+			s.setUltimoComparecimento(escolarController.hoje);
+			h.setSusbstituto(s);
+			horarioDao.saveAndFlush(h);
+			usuarioDao.saveAndFlush(s);
+			
+			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+			model.addAttribute("horarios", horarios);
+		}
+		ModelAndView modelAndView = new ModelAndView(link); 
+		return modelAndView; 
+	}
+	
 	/* SALVAR EXCEL */
 	@RequestMapping(value = "/adm/upload/excel", method = {RequestMethod.POST, RequestMethod.GET}) // Pagina de Alteração de Perfil
 	public ModelAndView uploadExcel(Model model, String tabelaUsada, @ModelAttribute MultipartFile file) throws Exception, IOException { //Função e alguns valores que recebe...
