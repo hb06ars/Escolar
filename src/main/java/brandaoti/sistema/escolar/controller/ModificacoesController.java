@@ -201,12 +201,21 @@ public class ModificacoesController {
 			System.out.println("professorAtual: "+professorAtual);
 			System.out.println("professorSubstituto: "+professorSubstituto);
 			System.out.println("todasAulas: "+todasAulas);
-			Horarios h = horarioDao.findById(horarioId).get();
+			Horarios apenasUmaAula = horarioDao.findById(horarioId).get();
+			List<Horarios> todas = horarioDao.todasAulasProfessor(professorAtual);
 			Usuario s = usuarioDao.findById(professorSubstituto).get();
 			s.setCompareceu(true);
 			s.setUltimoComparecimento(escolarController.hoje);
-			h.setSubstituto(s);
-			horarioDao.saveAndFlush(h);
+			
+			if(todasAulas.equals("todas")) {
+				for(Horarios hor : todas) {
+					hor.setSubstituto(s);
+					horarioDao.saveAndFlush(hor);
+				}
+			} else {
+				apenasUmaAula.setSubstituto(s);
+				horarioDao.saveAndFlush(apenasUmaAula);
+			}
 			usuarioDao.saveAndFlush(s);
 			
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);

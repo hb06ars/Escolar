@@ -29,4 +29,7 @@ public interface HorarioDao extends JpaRepository<Horarios, Integer> {
 	
 	@Query(" select u from Horarios u where u.ultimaAtualizacao not like :hoje ")
 	List<Horarios> zeraComparecimento(@Param("hoje") String hoje);
+	
+	@Query(" select u from Horarios u where u.usuario.id like :professor ")
+	List<Horarios> todasAulasProfessor(@Param("professor") Integer professor);
 }
