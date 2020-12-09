@@ -162,6 +162,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			escolarController.registraMsg("Confirmado", "Presença confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
@@ -183,6 +184,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			escolarController.registraMsg("Confirmado", "Presença confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
@@ -221,6 +223,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			escolarController.registraMsg("Confirmado", "Substituição confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		return modelAndView; 
@@ -367,7 +370,7 @@ public class ModificacoesController {
 	    	
 	    	
 		}
-		
+		escolarController.registraMsg("Upload", "Upload realizado com sucesso.", "info");
 		model.addAttribute("atualizarPagina", escolarController.atualizarPagina); 
 		ModelAndView modelAndView = new ModelAndView(link);
 		return modelAndView;
@@ -603,7 +606,8 @@ public class ModificacoesController {
 			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
 			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
 			model.addAttribute("periodos", periodos);
-			
+			escolarController.atualizarPagina = "/horarios";
+			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
