@@ -51,7 +51,7 @@
 		
 		<th>ID</th> <th>Nome</th> <th>Cargo</th> <th>Perfil</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<th>Login</th><th>Senha</th><th>Telefone</th> <th>Ativo</th> <th>Email</th>
+			<th>Login</th><th>Telefone</th> <th>Ativo</th> <th>Email</th>
 		</c:if>
 		
 		<c:if test="${usuarioSessao.perfil.admin}">
@@ -97,7 +97,6 @@
 			
 			<c:if test="${usuarioSessao.perfil.admin || usuarioSessao.perfil.funcionario}">
 				<td>${f.login}
-				<td>${f.senha}
 				<td>${f.telefone}
 				<td><c:if test="${f.ativo}">Sim</c:if> <c:if test="${!f.ativo}">Não</c:if>
 				<td>${f.email}
