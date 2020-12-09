@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import brandaoti.sistema.escolar.dao.AlunosDao;
+import brandaoti.sistema.escolar.dao.HorarioDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
 import brandaoti.sistema.escolar.dao.PeriodoDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
 import brandaoti.sistema.escolar.model.Alunos;
+import brandaoti.sistema.escolar.model.Horarios;
 import brandaoti.sistema.escolar.model.Perfil;
 import brandaoti.sistema.escolar.model.Periodos;
 import brandaoti.sistema.escolar.model.Usuario;
@@ -38,6 +40,8 @@ public class EscolarController {
 	private PerfilDao perfilDao;
 	@Autowired
 	private PeriodoDao periodoDao;
+	@Autowired
+	private HorarioDao horarioDao;
 	
 	public static Usuario usuarioSessao;
 	public static String atualizarPagina = null;
@@ -240,6 +244,12 @@ public class EscolarController {
 			u.setUltimoComparecimento(null);
 			u.setCompareceu(false);
 			usuarioDao.saveAndFlush(u);
+		}
+		List<Horarios> horarios = horarioDao.zeraComparecimento(hoje);
+		for(Horarios h : horarios) {
+			h.setSusbstituto(null);
+			h.setUltimaAtualizacao(null);
+			horarioDao.saveAndFlush(h);
 		}
 		
 		

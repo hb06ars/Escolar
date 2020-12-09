@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import brandaoti.sistema.escolar.controller.EscolarController;
+
 @Entity
 public class Horarios {
 	
@@ -40,6 +42,9 @@ public class Horarios {
 	
 	@OneToOne
 	private Usuario susbstituto;
+	
+	@Column
+	private String ultimaAtualizacao = EscolarController.hoje;
 
 	public Integer getId() {
 		return id;
@@ -119,6 +124,14 @@ public class Horarios {
 
 	public void setSusbstituto(Usuario susbstituto) {
 		this.susbstituto = susbstituto;
+	}
+
+	public String getUltimaAtualizacao() {
+		return ultimaAtualizacao;
+	}
+
+	public void setUltimaAtualizacao(String ultimaAtualizacao) {
+		this.ultimaAtualizacao = ultimaAtualizacao;
 	}
 
 	

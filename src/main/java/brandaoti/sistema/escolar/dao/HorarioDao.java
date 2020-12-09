@@ -26,4 +26,7 @@ public interface HorarioDao extends JpaRepository<Horarios, Integer> {
 	
 	@Query(" select p.horarioDaAula from Horarios p where upper( p.periodo.nome ) like upper( :periodo ) and upper( p.diaDaSemana ) like upper( :diaDaSemana )  group by p.horarioDaAula order by p.horarioDaAula asc")
 	List<String> qtdHorarios(@Param("periodo") String periodo, @Param("diaDaSemana") String diaDaSemana );
+	
+	@Query(" select u from Horarios u where u.ultimaAtualizacao not like :hoje ")
+	List<Horarios> zeraComparecimento(@Param("hoje") String hoje);
 }
