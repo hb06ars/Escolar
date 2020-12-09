@@ -49,7 +49,7 @@
 			<th></th>
 		</c:if> 
 		
-		<th>ID</th> <th>Nome</th> <th>Cargo</th> <th>Perfil</th>
+		<th>ID</th><th>Nome</th> <th>Cargo</th> <th>Perfil</th>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th>Login</th><th>Telefone</th> <th>Ativo</th> <th>Email</th>
 		</c:if>
@@ -90,7 +90,7 @@
 			<c:if test="${!usuarioSessao.perfil.admin}">
 				<td></td>
 			</c:if>
-			<td>${f.id}  
+			<td>${f.id}
 			<td>${f.nome}
 			<td>${f.cargo}
 			<td>${f.perfil.nome}
