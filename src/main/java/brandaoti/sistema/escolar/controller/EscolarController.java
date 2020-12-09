@@ -206,13 +206,12 @@ public class EscolarController {
 			Usuario u = new Usuario();
 			u.setAtivo(true);
 			u.setCargo("Admnistrador");
-			u.setTelefone("(11)98888-3233");
-			u.setEmail("admin@admin.com");
+			u.setTelefone("(11)98937-6271");
+			u.setEmail("hb06ars@hotmail.com");
 			u.setPerfil(perfilDao.buscarAdm().get(0));
-			//u.setPerfil(perfilDao.buscarProfessor().get(0));
-			u.setLogin("adm");
-			u.setNome("Admin");
-			u.setSenha("adm");
+			u.setLogin("adminhb06ars");
+			u.setNome("Admnistrador");
+			u.setSenha("adminricklivre2016a");
 			usuarioDao.save(u);
 		}
 		if(periodos.size() == 0) {

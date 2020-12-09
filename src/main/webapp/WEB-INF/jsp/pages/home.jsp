@@ -37,20 +37,32 @@ function redirecionar(pagina){
 	</div>
 </div>
 
-<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('presenca')">
-	<div class="card text-white ml-3 mt-3" style="min-height: 18rem; min-width: 18rem; background-color:#6196AC;opacity: 0.8">
-	  <div class="card-header"><h5>Presença</h5></div>
-	  <div class="card-body">
-	  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://media.istockphoto.com/vectors/clipboard-checklist-flat-design-check-list-vector-clipboard-and-check-vector-id1162165362?k=6&m=1162165362&s=170667a&w=0&h=UbXDqLDCrahITvyKAxJXtH69Q-rVrjjmXerTxtQaTQI="></h5>
-	  </div>
+<c:if test="${!usuarioSessao.perfil.professor}">
+	<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('presenca')">
+		<div class="card text-white ml-3 mt-3" style="min-height: 18rem; min-width: 18rem; background-color:#6196AC;opacity: 0.8">
+		  <div class="card-header"><h5>Presença</h5></div>
+		  <div class="card-body">
+		  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTacVAJcO6vzn-9SDB7Ps7xVjYgLA4eYHgWsQ&usqp=CAU')"></h5>
+		  </div>
+		</div>
 	</div>
-</div>
+</c:if>
+<c:if test="${usuarioSessao.perfil.professor}">
+	<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('meusHorarios')">
+		<div class="card text-white ml-3 mt-3" style="min-height: 18rem; min-width: 18rem; background-color:#6196AC;opacity: 0.8">
+		  <div class="card-header"><h5>Minhas Aulas</h5></div>
+		  <div class="card-body">
+		  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTacVAJcO6vzn-9SDB7Ps7xVjYgLA4eYHgWsQ&usqp=CAU')"></h5>
+		  </div>
+		</div>
+	</div>
+</c:if>
 
 <div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('alunos')">
 	<div class="card text-white ml-3 mt-3" style="min-height: 18rem; min-width: 18rem; background-color:#6196AC;opacity: 0.8">
 	  <div class="card-header"><h5>Alunos</h5></div>
 	  <div class="card-body">
-	  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQR-228iAHIh_-Ul8J-C8hLjP5f_2WrUWVZA&usqp=CAU"></h5>
+	  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQR-228iAHIh_-Ul8J-C8hLjP5f_2WrUWVZA&usqp=CAU')"></h5>
 	  </div>
 	</div>
 </div>
@@ -59,7 +71,7 @@ function redirecionar(pagina){
 	<div class="card text-white ml-3 mt-3" style="min-height: 18rem; min-width: 18rem; background-color:#6196AC;opacity: 0.8">
 	  <div class="card-header"><h5>Recados</h5></div>
 	  <div class="card-body">
-	  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://png.pngtree.com/png-vector/20190728/ourlarge/pngtree-email-mail-message-abstract-circle-background-flat-color-icon-png-image_1621451.jpg"></h5>
+	  	<h5 class="card-title" style="width:100%; height:100%; background: no-repeat center; background-size: cover;background-image: url('https://superawesomevectors.com/wp-content/uploads/2015/01/open-letter-flat-icon.jpg')"></h5>
 	  </div>
 	</div>
 </div>
