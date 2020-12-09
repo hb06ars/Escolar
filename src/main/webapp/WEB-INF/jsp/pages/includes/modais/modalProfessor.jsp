@@ -29,14 +29,22 @@ function janelaSubstituto(valor){
 }
 
 function substituir(){
-	var professor = document.getElementById("professorAtual").value;
+	var professorAtual = document.getElementById("professorAtual").value;
+	var substituto = document.getElementById("substituto").value;
+	var todasAulas = document.getElementById("somenteSim").checked;
+	if(document.getElementById("somenteSim").checked){
+		todasAulas = 'nao';
+	} else{
+		todasAulas = 'todas';
+	}
+	document.getElementById("substituirForm").submit();
 }
 
 </script>
 
 
 
-<form action="<c:url value='/professor/atualizar'/>" id="form" method="post" >
+<form action="<c:url value='/professor/confirmarPresenca'/>" id="form" method="post" >
 <div class="modal fade" id="modalProfessor" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -67,19 +75,32 @@ function substituir(){
   			Escolha o substituto:
   			</div>
   			<div class="input-group mb-3">
-  				<select style="height=:100%; width=:100%" class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
+  				<select style="height=:100%; width=:100%" class="form-control" id="substituto" name="substituto" required aria-describedby="inputGroup-sizing-default">
 						<option value="0" selected="selected">Aula vaga</option>
 						<c:forEach items="${professores }" var="p">
 							<option value="${p.id }" >${p.nome }</option>
 						</c:forEach>
 				</select>
 			</div>
+			<div>
+  				Somente essa aula?:
+  			</div>
+			<div class="input-group mb-3">
+	  			<div>
+	  				<input type="radio" id="somenteSim" name="somente" value="sim" checked="checked">
+					<label for="sim">Somente essa aula</label>
+				</div>
+				<div>&nbsp&nbsp&nbsp</div>
+				<div>
+					<input type="radio" id="somenteNao" name="somente" value="nao" >
+					<label for="nao">Todas as outras aulas</label>
+				</div>
+			</div>
 		</div>
 		</div>
 		
       </div>
       <div class="modal-footer">
-      	<input type="hidden" id="professorAtual">
       	<input type="hidden" id="nomeProfessorAtual">
       	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         <botao type="button" id="btSubstituir" class="btn btn-secondary" onclick="substituir()" data-dismiss="modal" style="display:none">Substituir</botao>
@@ -88,4 +109,11 @@ function substituir(){
     </div>
   </div>
 </div>
+</form>
+
+
+<form action="<c:url value='/professor/substituir'/>" id="substituirForm" method="post" >
+	<input type="hidden" id="professorAtual">
+	<input type="hidden" id="professorSubstituto">
+	<input type="hidden" id="todasAulas">
 </form>
