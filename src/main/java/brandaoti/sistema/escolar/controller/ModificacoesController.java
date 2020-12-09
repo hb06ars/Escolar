@@ -402,7 +402,7 @@ public class ModificacoesController {
 	@RequestMapping(value = "/recados", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView recados(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		String link = escolarController.verificaLink("pages/recados");
-		List<Recado> recados = recadoDao.findAll();
+		List<Recado> recados = recadoDao.ordenado();
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("recados", recados); 
