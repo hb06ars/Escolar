@@ -81,8 +81,8 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<div><b>Legenda:</b>
 		<div><i class="fa fa-circle" style="color:#A8F0B0"></i> Compareceu</div>
-		<div><i class="fa fa-circle" style="color:#FD8F8F"></i> Não veio</div>
-		<div><i class="fa fa-circle" style="color:#C3C590"></i> Substituto / Aula Vaga</div>
+		<div><i class="fa fa-circle" style="color:#FD8F8F"></i> Não veio  / Aula Vaga</div>
+		<div><i class="fa fa-circle" style="color:#C3C590"></i> Substituto</div>
 	</div>
 </div>
 

@@ -82,7 +82,6 @@ function substituir(){
   			</div>
   			<div class="input-group mb-3">
   				<select style="height=:100%; width=:100%" class="form-control" id="substituto" name="substituto" required aria-describedby="inputGroup-sizing-default">
-						<option value="0" selected="selected">Aula vaga</option>
 						<c:forEach items="${professores }" var="p">
 							<option value="${p.id }" >${p.nome }</option>
 						</c:forEach>
