@@ -606,8 +606,6 @@ public class ModificacoesController {
 			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
 			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
 			model.addAttribute("periodos", periodos);
-			escolarController.atualizarPagina = "/horarios";
-			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
