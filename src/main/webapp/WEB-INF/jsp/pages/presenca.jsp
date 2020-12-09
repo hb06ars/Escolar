@@ -24,7 +24,7 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Presença dos Professores (${periodoAtual} - ${diaDaSemanaAtual})</h1>
+	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual}</h1>
 </div>
 
 
@@ -81,8 +81,8 @@
 			</c:if>
 			
 			<td
-				<c:if test="${h.compareceu}" >style="background-color:blue;color:white" </c:if>
-				<c:if test="${!h.compareceu}" >style="background-color:red;color:white" </c:if>
+				<c:if test="${h.compareceu}" >style="background-color:#9fc4d6;color:black" </c:if>
+				<c:if test="${!h.compareceu}" >style="background-color:#d17875;color:white" </c:if>
 			> 	<c:if test="${h.compareceu}" >Sim </c:if> <c:if test="${!h.compareceu}" >Não </c:if>
 				
 				<td>${h.nome}

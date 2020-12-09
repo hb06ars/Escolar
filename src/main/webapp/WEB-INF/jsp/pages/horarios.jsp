@@ -25,7 +25,7 @@
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Horários (${periodoAtual} - ${diaDaSemanaAtual })</h1>
+	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual }</h1>
 </div>
 
 
@@ -34,13 +34,13 @@
 	<table id="tabela" class="table table-striped table-bordered table-sm">
 		<thead>
 		<tr>
-		<th rowspan="2" style="background-color:#ADC4D1; vertical-align: middle;">Horário</th>
+		<th rowspan="2" style="background-color:#8EAAB9; vertical-align: middle;">Horário</th>
 		<c:forEach items="${quantidadeDeSalas }" var="s">
 			<th style="background-color:#8EAAB9">Sala ${s}</th>
 		</c:forEach>
 		<tr>
 		<c:forEach items="${quantidadeDeSeries }" var="se">
-			<th style="background-color:#B6D5E6" >${se}</th>
+			<th style="background-color:#9fc4d6" >${se}</th>
 		</c:forEach>
 
 		</thead>
@@ -56,10 +56,10 @@
 						<c:if test="${ho eq h.horarioDaAula }">
 							<c:if test="${h.sala eq s && encontrou == 0 }">
 								<td  onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id })"
-									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="background-color:#A8F0B0"</c:if>
+									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="background-color:#B6DCB6"</c:if>
 									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
 									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
-									<c:if test="${h.substituto != null}">style="background-color:#C3C590"</c:if>
+									<c:if test="${h.substituto != null}">style="background-color:#F8D49B"</c:if>
 								 >
 								 <c:if test="${h.substituto != null }"> ${h.substituto.nome } </c:if>
 								 <c:if test="${h.substituto == null }"> ${h.usuario.nome } </c:if>
@@ -80,9 +80,9 @@
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<div><b>Legenda:</b>
-		<div><i class="fa fa-circle" style="color:#A8F0B0"></i> Compareceu</div>
+		<div><i class="fa fa-circle" style="color:#B6DCB6"></i> Compareceu</div>
 		<div><i class="fa fa-circle" style="color:#FD8F8F"></i> Não veio  / Aula Vaga</div>
-		<div><i class="fa fa-circle" style="color:#C3C590"></i> Substituto</div>
+		<div><i class="fa fa-circle" style="color:#F8D49B"></i> Substituto</div>
 	</div>
 </div>
 
