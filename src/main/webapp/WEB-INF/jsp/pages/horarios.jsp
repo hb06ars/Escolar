@@ -23,10 +23,39 @@
 
 
 
-<div
-	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="d-flex border-bottom">
 	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual }</h1>
 </div>
+
+<div class="d-flex pt-3 pb-2 mb-3">
+	  		<div>
+	  			<select class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
+					<option value="Manhã" <c:if test="${periodoAtual eq 'Manhã'}">selected="selected"</c:if> >Manhã</option>
+					<option value="Intermediário" <c:if test="${periodoAtual eq 'Intermediário'}">selected="selected"</c:if> >Intermediário</option>
+					<option value="Tarde" <c:if test="${periodoAtual eq 'Tarde'}">selected="selected"</c:if> >Tarde</option>
+					<option value="Noite" <c:if test="${periodoAtual eq 'Noite'}">selected="selected"</c:if> >Noite</option>
+				</select>
+			</div>
+			<div>&nbsp&nbsp</div>
+			<div>
+	  			<select class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
+					<option value="Segunda" <c:if test="${diaDaSemanaAtual eq 'Segunda'} ">selected="selected"</c:if> >Segunda</option>
+					<option value="Terça" <c:if test="${diaDaSemanaAtual eq 'Terça'}">selected="selected"</c:if> >Terça</option>
+					<option value="Quarta" <c:if test="${diaDaSemanaAtual eq 'Quarta'}">selected="selected"</c:if> >Quarta</option>
+					<option value="Quinta" <c:if test="${diaDaSemanaAtual eq 'Quinta'}">selected="selected"</c:if> >Quinta</option>
+					<option value="Sexta" <c:if test="${diaDaSemanaAtual eq 'Sexta'}">selected="selected"</c:if> >Sexta</option>
+					<option value="Sábado" <c:if test="${diaDaSemanaAtual eq 'Sábado'}">selected="selected"</c:if> >Sábado</option>
+					<option value="Domingo" <c:if test="${diaDaSemanaAtual eq 'Domingo'}">selected="selected"</c:if> >Domingo</option>
+				</select>
+			</div>
+			<div>&nbsp&nbsp</div>
+			<div>
+	  			<input type="button" id="pesquisar" class="form-control btn btn-secondary	" value="Pesquisar" >
+			</div>
+		</div>
+	
+	
+	
 
 
 
@@ -76,7 +105,7 @@
 		
 		</tbody>
 	</table>
-	</div>
+</div>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<div><b>Legenda:</b>
