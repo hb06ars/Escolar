@@ -8,9 +8,22 @@
 
 <!--  DELETAR PERFIL -->
 <script>
-function modalProfessor(professor, nomeProfessor, horarioId){
+function modalProfessor(professor, nomeProfessor, horarioId, telefone, novaSala, novaTurma, horarioDaAula){
 	$("#modalProfessor").modal().show();
 	document.getElementById("professorAtualConfirma").value = professor;
+	
+	telefone = telefone.replace('-','');
+	telefone = telefone.replace('(','');
+	telefone = telefone.replace(')','');
+	telefone = "55"+telefone;
+	if(telefone != null && telefone != ''){
+		var div = document.getElementById("telefone");
+		var texto = "Olá tudo bem?\nO professor "+nomeProfessor+" não poderá comparecer na aula.\nFavor substituí-lo:\nSala: " + novaSala + "\nTurma: " + novaTurma + "\nHorário: "+horarioDaAula+"hs\n\nMuito obrigado!";
+		var frase = window.encodeURIComponent(texto);
+		var valor = "<a href='https://api.whatsapp.com/send?phone="+telefone+"&text="+frase+"'> <img src='https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fwhatsapp.png?alt=media&token=dfee5cfa-b5bc-4a86-95bb-c13d3b2f1bf8' width='35' height='35'></img>&nbsp Mandar mensagem </a>";
+		document.getElementById("telefone").innerHTML = valor;
+	}
+	
 	document.getElementById("horarioId").value = horarioId;
 	document.getElementById("professorAtual").value = professor;
 	document.getElementById("nomeProfessorAtual").value = nomeProfessor;
@@ -102,6 +115,13 @@ function substituir(){
 				</div>
 			</div>
 		</div>
+		<div class="input-group mb-3">
+			<div id="telefone">  
+				
+			</div>
+				
+		</div>
+		
 		</div>
 		
       </div>

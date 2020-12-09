@@ -84,7 +84,7 @@
 					<c:forEach items="${horarios}" var="h" >
 						<c:if test="${ho eq h.horarioDaAula }">
 							<c:if test="${h.sala eq s && encontrou == 0 }">
-								<td  onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id })"
+								<td  onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id }, '${h.usuario.telefone }', '${h.sala }', '${h.turma }','${h.horarioDaAula }')"
 									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="background-color:#B6DCB6"</c:if>
 									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
 									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
