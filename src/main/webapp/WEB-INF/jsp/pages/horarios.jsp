@@ -56,23 +56,36 @@
 						<c:if test="${ho eq h.horarioDaAula }">
 							<c:if test="${h.sala eq s && encontrou == 0 }">
 								<td  onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id })"
-									<c:if test="${h.usuario.compareceu }">style="background-color:#A8F0B0"</c:if>
-									<c:if test="${!h.usuario.compareceu }">style="background-color:#FD8F8F"</c:if>
-								 >${h.usuario.nome }</td>
+									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="background-color:#A8F0B0"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
+									<c:if test="${h.substituto != null}">style="background-color:#C3C590"</c:if>
+								 >
+								 <c:if test="${h.substituto != null }"> ${h.substituto.nome } </c:if>
+								 <c:if test="${h.substituto == null }"> ${h.usuario.nome } </c:if>
+								 
+								 
+								 </td>
 								<c:set var = "encontrou" value = "1"/>
 							</c:if>
 						</c:if>
 					</c:forEach>
 				</c:forEach>
 		</c:forEach>
-				
-		
-				
+						
 		
 		</tbody>
 	</table>
 	</div>
-<br>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	<div><b>Legenda:</b>
+		<div><i class="fa fa-circle" style="color:#A8F0B0"></i> Compareceu</div>
+		<div><i class="fa fa-circle" style="color:#FD8F8F"></i> Não veio</div>
+		<div><i class="fa fa-circle" style="color:#C3C590"></i> Substituto / Aula Vaga</div>
+	</div>
+</div>
+
 
 
 <!-- FOOTER -->

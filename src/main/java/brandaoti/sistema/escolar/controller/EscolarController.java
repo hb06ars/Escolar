@@ -247,7 +247,7 @@ public class EscolarController {
 		}
 		List<Horarios> horarios = horarioDao.zeraComparecimento(hoje);
 		for(Horarios h : horarios) {
-			h.setSusbstituto(null);
+			h.setSubstituto(null);
 			h.setUltimaAtualizacao(null);
 			horarioDao.saveAndFlush(h);
 		}

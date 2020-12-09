@@ -205,7 +205,7 @@ public class ModificacoesController {
 			Usuario s = usuarioDao.findById(professorSubstituto).get();
 			s.setCompareceu(true);
 			s.setUltimoComparecimento(escolarController.hoje);
-			h.setSusbstituto(s);
+			h.setSubstituto(s);
 			horarioDao.saveAndFlush(h);
 			usuarioDao.saveAndFlush(s);
 			

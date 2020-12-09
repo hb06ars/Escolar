@@ -41,7 +41,7 @@ public class Horarios {
 	private Usuario usuario;
 	
 	@OneToOne
-	private Usuario susbstituto;
+	private Usuario substituto;
 	
 	@Column
 	private String ultimaAtualizacao = EscolarController.hoje;
@@ -118,12 +118,12 @@ public class Horarios {
 		this.diaDaSemana = diaDaSemana;
 	}
 
-	public Usuario getSusbstituto() {
-		return susbstituto;
+	public Usuario getSubstituto() {
+		return substituto;
 	}
 
-	public void setSusbstituto(Usuario susbstituto) {
-		this.susbstituto = susbstituto;
+	public void setSubstituto(Usuario substituto) {
+		this.substituto = substituto;
 	}
 
 	public String getUltimaAtualizacao() {
