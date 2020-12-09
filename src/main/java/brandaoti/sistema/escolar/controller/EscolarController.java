@@ -209,6 +209,7 @@ public class EscolarController {
 			u.setTelefone("(11)98888-3233");
 			u.setEmail("admin@admin.com");
 			u.setPerfil(perfilDao.buscarAdm().get(0));
+			//u.setPerfil(perfilDao.buscarProfessor().get(0));
 			u.setLogin("adm");
 			u.setNome("Admin");
 			u.setSenha("adm");

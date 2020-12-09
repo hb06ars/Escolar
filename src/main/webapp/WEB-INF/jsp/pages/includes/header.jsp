@@ -99,7 +99,9 @@ function expandir(campo, quantidade){
                     <ul class="collapse list-unstyled" id="menuVendas">
                         <li><a href="/horarios"> <i style="align:center" class="fas fa-clock" style="font-size:24px"></i>&nbsp Horário Atual</a></li>
                         <li><a href="/presenca"> <i style="align:center" class="fas fa-edit" style="font-size:24px"></i>&nbsp Presença</a></li>
-                        <li><a href="/meusHorarios"> <i style="align:center" class="fas fa-user-alt" style="font-size:24px"></i>&nbsp Meus Horários</a></li>
+                        <c:if test="${usuarioSessao.perfil.professor}">
+							<li><a href="/meusHorarios"> <i style="align:center" class="fas fa-user-alt" style="font-size:24px"></i>&nbsp Meus Horários</a></li>
+                        </c:if>
                     </ul>
                 </li>
                 
