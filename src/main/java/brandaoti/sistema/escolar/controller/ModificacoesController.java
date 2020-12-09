@@ -410,6 +410,7 @@ public class ModificacoesController {
 		
 		List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
+			model.addAttribute("professores", usuarioDao.professores());
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("periodoAtual", escolarController.periodoAtual); 

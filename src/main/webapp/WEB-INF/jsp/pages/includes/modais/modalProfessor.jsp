@@ -8,21 +8,28 @@
 
 <!--  DELETAR PERFIL -->
 <script>
-function modalProfessor(professor){
+function modalProfessor(professor, nomeProfessor){
 	$("#modalProfessor").modal().show();
 	document.getElementById("professorAtual").value = professor;
+	document.getElementById("nomeProfessorAtual").value = nomeProfessor;
+	document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+nomeProfessor+"?";
 }
 
 function janelaSubstituto(valor){
+	var professorAtual = document.getElementById("nomeProfessorAtual").value;
 	if(valor == 'sim'){
 		document.getElementById("telaSubstituto").style.display = "block";
+		document.getElementById("btSubstituir").style.display = "block";
+		document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+professorAtual+"?";
 	} else{
+		document.getElementById("btSubstituir").style.display = "none";
 		document.getElementById("telaSubstituto").style.display = "none";
+		document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+professorAtual+"?";
 	}	
 }
 
 function substituir(){
-	alert('ok');
+	var professor = document.getElementById("professorAtual").value;
 }
 
 </script>
@@ -41,7 +48,7 @@ function substituir(){
       </div>
       <div class="modal-body input-group mb-3">
 		<div class="input-group mb-3">
-  			<div>
+  			<div id="pergunta">
   			Deseja Substituir o professor?
   			</div>
   			<div class="input-group mb-3">
@@ -62,7 +69,9 @@ function substituir(){
   			<div class="input-group mb-3">
   				<select style="height=:100%; width=:100%" class="form-control" id="ativo" name="ativo" required aria-describedby="inputGroup-sizing-default">
 						<option value="0" selected="selected">Aula vaga</option>
-						<option value="1" >Sim</option>
+						<c:forEach items="${professores }" var="p">
+							<option value="${p.id }" >${p.nome }</option>
+						</c:forEach>
 				</select>
 			</div>
 		</div>
@@ -71,9 +80,10 @@ function substituir(){
       </div>
       <div class="modal-footer">
       	<input type="hidden" id="professorAtual">
+      	<input type="hidden" id="nomeProfessorAtual">
       	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-secondary" onClick="substituir()">Substituir</button>
-        <input type="submit" name="submit" class="btn btn-primary" value="Confirmar">
+        <botao type="button" id="btSubstituir" class="btn btn-secondary" onclick="substituir()" data-dismiss="modal" style="display:none">Substituir</botao>
+        <input type="submit" name="submit" class="btn btn-primary" value="Confirmar presença">
       </div>
     </div>
   </div>
