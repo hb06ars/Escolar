@@ -32,7 +32,7 @@
 	  	<div>
 	  		<select class="form-control" id="periodo" name="periodo" required aria-describedby="inputGroup-sizing-default">
 	  			<c:forEach items="${periodos}" var="p">
-	  				<option value="${p.id }" <c:if test="${p.nome eq 'periodoAtual'}">selected="selected"</c:if> >${p.nome }</option>
+	  				<option value="${p.id }" <c:if test="${p.nome eq periodoAtual}">selected="selected"</c:if> >${p.nome }</option>
 	  			</c:forEach>
 			</select>
 		</div>

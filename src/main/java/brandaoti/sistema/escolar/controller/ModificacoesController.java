@@ -494,7 +494,7 @@ public class ModificacoesController {
 		String link = escolarController.verificaLink("pages/meusHorarios");
 		String diaDaSemanaAtual = escolarController.diaDaSemana();
 		List<Periodos> periodos = periodoDao.periodos();
-		List<Horarios> horarios = horarioDao.todasAulasProfessor(escolarController.usuarioSessao.getId());
+		List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(escolarController.usuarioSessao.getId(), escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
 			if(escolarController.usuarioSessao.getPerfil().getProfessor()) {
 				model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
