@@ -9,26 +9,26 @@
                 </a>
             </div>
             <div class="col-auto">
-                <a href="/ferias" class="">
+                <a href="/horarios" class="">
                     <i class="material-icons">today</i>
                     <p>Horário Atual</p>
                 </a>
             </div>
             <div class="col-auto">
-                <a href="/vendas" class="">
+                <a href="/recados" class="">
                     <i class="material-icons">sms</i>
                     <p>Recados</p>
                 </a>
             </div>
             <div class="col-auto">
-                <a href="/tableau/telaTableau" class="">
+                <a href="/alunos" class="">
                     <i class="material-icons">people</i>
                     <p>Alunos</p>
                 </a>
             </div>
             <c:if test="${usuarioSessao.perfil.admin}">
             	<div class="col-auto">
-                <a href="/tableau/comparativoFaturamento" class="">
+                <a href="/presenca" class="">
                     <i class="material-icons">timer</i>
                     <p>Presença</p>
                 </a>
@@ -36,7 +36,7 @@
             </c:if>
             <c:if test="${usuarioSessao.perfil.professor}">
             	<div class="col-auto">
-                	<a href="/tableau/comparativoFaturamento" class="">
+                	<a href="/meusHorarios" class="">
                     	<i class="material-icons">timer</i>
                     	<p>Meus Horários</p>
                 	</a>

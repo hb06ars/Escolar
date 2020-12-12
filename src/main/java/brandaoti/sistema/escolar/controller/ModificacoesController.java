@@ -491,12 +491,13 @@ public class ModificacoesController {
 	
 	@RequestMapping(value = "/meusHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView meusHorarios(Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = escolarController.verificaLink("pages/meusHorarios");
+		String link = escolarController.verificaLink("");
 		String diaDaSemanaAtual = escolarController.diaDaSemana();
 		List<Periodos> periodos = periodoDao.periodos();
 		List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(escolarController.usuarioSessao.getId(), escolarController.periodoAtual, diaDaSemanaAtual);
 		if(escolarController.usuarioSessao != null) {
 			if(escolarController.usuarioSessao.getPerfil().getProfessor()) {
+				link = escolarController.verificaLink("pages/meusHorarios");
 				model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 				model.addAttribute("horarios", horarios); 
 				model.addAttribute("periodoAtual", escolarController.periodoAtual); 
@@ -512,7 +513,7 @@ public class ModificacoesController {
 	
 	@RequestMapping(value = "/filtrarMeusHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView filtrarMeusHorarios(Model model, String semana, Integer periodo) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = escolarController.verificaLink("pages/meusHorarios");
+		String link = escolarController.verificaLink("");
 		switch (semana) {
 		case "seg":
 			semana = "Segunda";
@@ -546,6 +547,7 @@ public class ModificacoesController {
 		List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(escolarController.usuarioSessao.getId(), periodoEscolhido, semanaEscolhida);
 		if(escolarController.usuarioSessao != null) {
 			if(escolarController.usuarioSessao.getPerfil().getProfessor()) {
+				link = escolarController.verificaLink("pages/meusHorarios");
 				model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 				model.addAttribute("horarios", horarios); 
 				model.addAttribute("periodoAtual", periodoEscolhido); 
