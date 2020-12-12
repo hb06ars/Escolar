@@ -165,14 +165,14 @@ function expandir(campo, quantidade, pasta){
 					</a>
                     
                     <ul class="collapse" id="menuVendas">
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/horarios"><span class="material-icons icon text-default-secondary">task_alt</span> Horário Atual </a>
                         </li>
-                        <li class="list-unstyled components">
+                        <li class="list-unstyled components mb-3">
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/presenca"><span class="material-icons icon text-default-secondary">today</span> Presença </a>
                         </li>
                         <c:if test="${usuarioSessao.perfil.professor}">
-	                        <li class="list-unstyled components">
+	                        <li class="list-unstyled components mb-3">
 	                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/meusHorarios"><span class="material-icons icon text-default-secondary">alarm</span> Meus Horarios </a>
 	                        </li>
                         </c:if>
@@ -190,19 +190,19 @@ function expandir(campo, quantidade, pasta){
 					</a>
                     
                     <ul class="collapse" id="menuMonitoramento">
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/funcionarios"><span class="material-icons icon text-default-secondary">engineering</span> Funcionários </a>
                         </li>
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/alunos"><span class="material-icons icon text-default-secondary">people</span> Alunos </a>
                         </li>
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/recados"><span class="material-icons icon text-default-secondary">notifications</span> Recados </a>
                         </li>
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/periodos"><span class="material-icons icon text-default-secondary">timer</span> Períodos </a>
                         </li>
-                        <li class="list-unstyled components" >
+                        <li class="list-unstyled components mb-3" >
                         	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/cadHorarios"><span class="material-icons icon text-default-secondary">edit</span> Cadastrar Horário </a>
                         </li>
                     </ul>

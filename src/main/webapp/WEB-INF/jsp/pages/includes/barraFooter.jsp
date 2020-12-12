@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <div class="footer">
         <div class="row no-gutters justify-content-center">
             <div class="col-auto">
