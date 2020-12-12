@@ -21,36 +21,40 @@
 
 
 
+<div class="card mb-4" >
+
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Cadastrar Horários</h1>
+	<h1 class="h4">&nbsp Cadastrar Horário</h1>
 	<div>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('cadHorarios')"><i class="fas fa-upload"></i></button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('cadHorarios')"><span class="material-icons icon">publish</span></button>
 		</c:if>
+		&nbsp
 	</div>
 </div>
 
 
 
-<div style="overflow: auto; width: 100%">
-	<table id="tabela" class="table table-striped table-bordered table-sm">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
+
+	<table id="tabela" class="table table-striped table-bordered table-sm" >
 		<thead>
 		<tr>
 		
 		<th>Dia</th> <th>Período</th> <th>Horário</th> <th>Sala</th> <th>Turma</th> <th>Série</th> <th>Disciplina</th> <th>Professor</th>
 		
 		<tr>
-		<th><input type="text" id="filtro1"/></th>
-		<th><input type="text" id="filtro2"/></th>
-		<th><input type="text" id="filtro3"/></th>
-		<th><input type="text" id="filtro4"/></th>
-		<th><input type="text" id="filtro5"/></th>
-		<th><input type="text" id="filtro6"/></th>
-		<th><input type="text" id="filtro7"/></th>
+		<th><input style="min-width:80px;max-width:80px" type="text" id="filtro1"/></th>
+		<th><input style="min-width:80px;max-width:80px" type="text" id="filtro2"/></th>
+		<th><input style="min-width:60px;max-width:60px" type="text" id="filtro3"/></th>
+		<th><input style="min-width:60px;max-width:60px"type="text" id="filtro4"/></th>
+		<th><input style="min-width:60px;max-width:60px"type="text" id="filtro5"/></th>
+		<th><input style="min-width:60px;max-width:60px"type="text" id="filtro6"/></th>
+		<th><input style="min-width:160px;max-width:160px"type="text" id="filtro7"/></th>
 		<th><input type="text" id="filtro8"/></th>
-		<th></th>
 		</tr>
 		
 		</thead>
@@ -72,8 +76,13 @@
 		</tbody>
 	</table>
 	</div>
+</div>
 <br>
+</div>
 
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
 
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />

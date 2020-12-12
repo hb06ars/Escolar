@@ -21,26 +21,27 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
-
+<div class="card mb-4">
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Funcionários</h1>
+	<h1 class="h4">&nbsp&nbsp Funcionários</h1>
 	<div>
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoFuncionario()">Novo</button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoFuncionario()"><span class="material-icons icon">person_add</span></button>
 		</c:if>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
 		<c:if test="${usuarioSessao.perfil.admin}">
-			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('funcionarios')"><i class="fas fa-upload"></i></button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('funcionarios')"><span class="material-icons icon">publish</span></button>
 		</c:if>
+		&nbsp&nbsp
 	</div>
 </div>
 
 
-
-<div style="overflow: auto; width: 100%">
-	<table id="tabela" class="table table-striped table-bordered table-sm">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
+	<table id="tabela" class="table-responsive table-striped table-sm">
 		<thead>
 		<tr>
 		<c:if test="${ usuarioSessao.perfil.admin}">
@@ -60,8 +61,8 @@
 		</c:if>
 		
 		<tr>
-		<th><i class="fas fa-search"></i></th>
-		<th><input type="text" id="filtro1"/></th>
+		<th><span class="material-icons icon">edit</span></th>
+		<th><input style="min-width:40px;max-width:40px" type="text" id="filtro1"/></th>
 		<th><input type="text" id="filtro2"/></th>
 		<th><input type="text" id="filtro3"/></th>
 		<th><input type="text" id="filtro4"/></th>
@@ -69,9 +70,9 @@
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<th><input type="text" id="filtro5"/></th>
 			<th><input type="text" id="filtro6"/></th>
-			<th><input type="text" id="filtro7"/></th>
+			<th><input style="min-width:40px;max-width:40px" type="text" id="filtro7"/></th>
 			<th><input type="text" id="filtro8"/></th>
-			<th><input type="text" id="filtro9"/></th>
+			<th><input style="min-width:40px;max-width:40px" type="text" id="filtro9"/></th>
 		</c:if>
 		
 		<th></th>
@@ -86,7 +87,7 @@
 		
 		<c:forEach items="${funcionarios}" var="f">
 			<c:if test="${usuarioSessao.perfil.admin}">
-				<td><i class="fas fa-edit" onclick="modalEditarFuncionario( ${f.id}, '${f.nome}', '${f.cargo}', '${f.perfil.nome}', '${f.login}', '${f.senha}', '${f.telefone}',  '${f.ativo}', '${f.email}' )"></i></td>
+				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalEditarFuncionario( ${f.id}, '${f.nome}', '${f.cargo}', '${f.perfil.nome}', '${f.login}', '${f.senha}', '${f.telefone}',  '${f.ativo}', '${f.email}' )">edit</span></td>
 			</c:if>
 			<c:if test="${!usuarioSessao.perfil.admin}">
 				<td></td>
@@ -104,16 +105,22 @@
 			</c:if>
 						  
 			<c:if test="${usuarioSessao.perfil.admin}">
-				<td><i class="fas fa-trash" onclick="modalDeletar('funcionarios', ${f.id})" ></i></td>
+				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalDeletar('funcionarios', ${f.id})" >delete</span></td>
 			</c:if>
 			<tr>	
 		</c:forEach>
 		</tbody>
 	</table>
 	</div>
+</div>
+
 <br>
 
+</div>
 
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />
 <!-- FOOTER -->

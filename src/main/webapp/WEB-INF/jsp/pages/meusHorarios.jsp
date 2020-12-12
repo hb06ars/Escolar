@@ -21,15 +21,25 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
+	
+	
+	
+<div class="card mb-4" >
 
-
-<div class="d-flex border-bottom">
-	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual }</h1>
+<div
+	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	<h1 class="h4">&nbsp ${periodoAtual} - ${diaDaSemanaAtual }</h1>
+	<div>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
+		&nbsp
+	</div>
 </div>
+
 
 <form action="<c:url value='/filtrarMeusHorarios'/>" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 	<div class="d-flex pt-3 pb-2 mb-3">
-	  	<div>
+		<div>&nbsp&nbsp</div>
+	  	<div> 
 	  		<select class="form-control" id="periodo" name="periodo" required aria-describedby="inputGroup-sizing-default">
 	  			<c:forEach items="${periodos}" var="p">
 	  				<option value="${p.id }" <c:if test="${p.nome eq periodoAtual}">selected="selected"</c:if> >${p.nome }</option>
@@ -54,12 +64,11 @@
 		</div>
 	</div>
 </form>
-	
-	
 
 
 
-<div style="overflow: auto; width: 100%">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
 	<table id="tabela" class="table table-striped table-bordered table-sm">
 		<thead>
 		<tr>
@@ -87,9 +96,13 @@
 		</tbody>
 	</table>
 </div>
+</div>
+</div>
 
 
-
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />
 <!-- FOOTER -->

@@ -21,15 +21,17 @@
 <!-- UPLOAD EXCEL -->
 
 
+<div class="card mb-4" >
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual}</h1>
+	<h1 class="h4">&nbsp ${periodoAtual} - ${diaDaSemanaAtual}</h1>
 </div>
 
 
 
-<div style="overflow: auto; width: 100%">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
 	<table id="tabela" class="table table-striped table-bordered table-sm">
 		<thead>
 		<tr>
@@ -58,25 +60,22 @@
 			<th><input type="text" id="filtro5"/></th>
 		</c:if>
 		
-		<th></th>
 		</tr>
 		
 		</thead>
 		<tbody>
 		<tr>
-		
-		
 		<c:forEach items="${usuarios}" var="h">
 			<c:if test="${!usuarioSessao.perfil.admin}">
 				<td>
-					<c:if test="${h.compareceu}" ><i class="fas fa-window-close" ></i> </c:if>
-					<c:if test="${!h.compareceu}" ><i class="fas fa-check" ></i> </c:if>
+					<c:if test="${h.compareceu}" ><span class="material-icons icon">unpublished</span> &nbsp</c:if>
+					<c:if test="${!h.compareceu}" ><span class="material-icons icon">check_circle</span> &nbsp </c:if>
 				</td>
 			</c:if>
 			<c:if test="${usuarioSessao.perfil.admin}">
 					<td>
-						<i class="fas fa-window-close" onClick="validarPresenca(${h.id},'faltou')"></i> &nbsp
-						<i class="fas fa-check" onClick="validarPresenca(${h.id},'compareceu')"></i>
+						<c:if test="${h.compareceu}" ><span class="material-icons icon" onClick="validarPresenca(${h.id},'faltou')">unpublished</span> &nbsp </c:if>
+						<c:if test="${!h.compareceu}" ><span class="material-icons icon" onClick="validarPresenca(${h.id},'compareceu')">check_circle</span> &nbsp </c:if>
 					</td>
 			</c:if>
 			
@@ -97,7 +96,8 @@
 	</table>
 	</div>
 <br>
-
+</div>
+</div>
 
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />

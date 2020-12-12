@@ -23,16 +23,25 @@
 
 
 
-<div class="d-flex border-bottom">
-	<h1 class="h4">${periodoAtual} - ${diaDaSemanaAtual }</h1>
+<div class="card mb-4" >
+
+<div
+	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	<h1 class="h4">&nbsp ${periodoAtual} - ${diaDaSemanaAtual }</h1>
+	<div>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
+		&nbsp
+	</div>
 </div>
 
-<form action="<c:url value='/filtrarHorarios'/>" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8" >
+
+<form action="<c:url value='/filtrarHorarios'/>" id="form" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
 	<div class="d-flex pt-3 pb-2 mb-3">
-	  	<div>
+		<div>&nbsp&nbsp</div>
+	  	<div> 
 	  		<select class="form-control" id="periodo" name="periodo" required aria-describedby="inputGroup-sizing-default">
 	  			<c:forEach items="${periodos}" var="p">
-	  				<option value="${p.id }" <c:if test="${p.nome eq 'periodoAtual'}">selected="selected"</c:if> >${p.nome }</option>
+	  				<option value="${p.id }" <c:if test="${p.nome eq periodoAtual}">selected="selected"</c:if> >${p.nome }</option>
 	  			</c:forEach>
 			</select>
 		</div>
@@ -54,12 +63,11 @@
 		</div>
 	</div>
 </form>
-	
-	
 
 
 
-<div style="overflow: auto; width: 100%">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
 	<table id="tabela" class="table table-striped table-bordered table-sm">
 		<thead>
 		<tr>
@@ -88,10 +96,10 @@
 									<c:if test="${usuarioSessao.perfil.admin}">
 										onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id }, '${h.usuario.telefone }', '${h.sala }', '${h.turma }','${h.horarioDaAula }')"
 									</c:if>
-									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="background-color:#B6DCB6"</c:if>
-									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
-									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="background-color:#FD8F8F"</c:if>
-									<c:if test="${h.substituto != null}">style="background-color:#F8D49B"</c:if>
+									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#B6DCB6"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#FD8F8F"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#FD8F8F"</c:if>
+									<c:if test="${h.substituto != null}">style="cursor:default;background-color:#F8D49B"</c:if>
 								 >
 								 <c:if test="${h.substituto != null }"> ${h.substituto.nome } </c:if>
 								 <c:if test="${h.substituto == null }"> ${h.usuario.nome } </c:if>
@@ -103,19 +111,21 @@
 					</c:forEach>
 				</c:forEach>
 		</c:forEach>
-						
 		
 		</tbody>
 	</table>
 </div>
-
+</div>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<div><b>Legenda:</b>
-		<div><i class="fa fa-circle" style="color:#B6DCB6"></i> Compareceu</div>
-		<div><i class="fa fa-circle" style="color:#FD8F8F"></i> Não veio  / Aula Vaga</div>
-		<div><i class="fa fa-circle" style="color:#F8D49B"></i> Substituto</div>
+	<div>&nbsp&nbsp<b>Legenda:</b>
+		<div>&nbsp&nbsp<span class="material-icons icon" style="color:#B6DCB6">stop_circle</span> Compareceu</div>
+		<div>&nbsp&nbsp<span class="material-icons icon" style="color:#FD8F8F">stop_circle</span> Não veio  / Aula Vaga</div>
+		<div>&nbsp&nbsp<span class="material-icons icon" style="color:#F8D49B">stop_circle</span> Substituto</div>
 	</div>
 </div>
+</div>
+
+
 
 
 

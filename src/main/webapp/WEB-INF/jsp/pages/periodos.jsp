@@ -20,20 +20,26 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
-
+<div class="card mb-4">
 
 <div
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	<h1 class="h4">Períodos</h1>
+	<h1 class="h4">&nbsp&nbsp Períodos</h1>
 	<div>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoPeriodo()">Novo</button>
-		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><i class="fas fa-download"></i></button>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoPeriodo()"><span class="material-icons icon">add_circle</span></button>
+		</c:if>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
+		&nbsp&nbsp
 	</div>
 </div>
 
 
 
-<div style="overflow: auto; width: 100%">
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
+
+
 	<table id="tabela" class="table table-striped table-bordered table-sm">
 		<thead>
 		<tr>
@@ -64,15 +70,20 @@
 			<td>${p.fim}
 					  
 			<c:if test="${usuarioSessao.perfil.admin}">
-				<td><i class="fas fa-trash" onclick="modalDeletar('periodos', ${p.id})" ></i></td>
+				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalDeletar('periodos', ${p.id})" >delete</span></td>
 			</c:if>
 			<tr>	
 		</c:forEach>
 		</tbody>
 	</table>
 	</div>
+	</div>
 <br>
+</div>
 
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
 
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />

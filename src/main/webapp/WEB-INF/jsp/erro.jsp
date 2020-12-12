@@ -1,375 +1,128 @@
-<style>
-/* BASIC */
+<!doctype html>
+<html lang="en" class="h-100">
 
-html {
-  background-color: #FEFEFE;
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>SISTEMA ESCOLAR</title>
 
-body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-}
+    <!-- manifest meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-a {
-  color: #92badd;
-  display:inline-block;
-  text-decoration: none;
-  font-weight: 400;
-}
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="img/favicon180.png" sizes="180x180">
+    <link rel="icon" href="img/favicon32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="img/favicon16.png" sizes="16x16" type="image/png">
 
-h2 {
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  display:inline-block;
-  margin: 40px 8px 10px 8px; 
-  color: #cccccc;
-}
+    <!-- Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
+    <!-- swiper CSS -->
+    <link href="vendor/swiper/css/swiper.min.css" rel="stylesheet">
 
-/* STRUCTURE */
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" id="style">
+</head>
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column; 
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  padding: 20px;
-}
-
-#formContent {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #fff;
-  padding: 30px;
-  width: 100%;
-  max-width: 450px;
-  position: relative;
-  padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  text-align: center;
-}
-
-#formFooter {
-  background-color: #f6f6f6;
-  border-top: 1px solid #dce8f1;
-  padding: 25px;
-  text-align: center;
-  -webkit-border-radius: 0 0 10px 10px;
-  border-radius: 0 0 10px 10px;
-}
+<body class="body-scroll d-flex flex-column h-100 menu-overlay">
+    <!-- screen loader -->
+    <div class="container-fluid h-100 loader-display">
+        <div class="row h-100">
+            <div class="align-self-center col">
+                <div class="logo-loading">
+                    <div class="icon icon-100 mb-4 rounded-circle">
+                        <img src="img/favicon144.png" alt="" class="w-100">
+                    </div>
+                    <h4 class="text-default">Sistema Escolar</h4>
+                    <p class="text-secondary">Controle de Horários</p>
+                    <div class="loader-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <!-- Begin page content -->
+    <main class="flex-shrink-0 main">
+        <!-- Fixed navbar -->
+        <header class="header">
+            <div class="row">
+                <div class="col-auto px-0">
+                    <button class="btn btn-40 btn-link back-btn" type="button">
+                        <span class="material-icons">keyboard_arrow_left</span>
+                    </button>
+                </div>
+                <div class="text-left col align-self-center">
+                    <a class="navbar-brand" href="#">
+                        <h5 class="mb-0">Erro</h5>
+                    </a>
+                </div>
+                <div class="ml-auto col-auto">
+                    <a href="profile.html" class="avatar avatar-30 shadow-sm rounded-circle ml-2">
+                        <figure class="m-0 background">
+                            <img src="img/user1.png" alt="">
+                        </figure>
+                    </a>
+                </div>
+            </div>
+        </header>
 
-/* TABS */
+        <!-- page content start -->
+       <div class="main-container h-100">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 col-md-6 col-lg-4 align-self-center text-center my-3 mx-auto">
+                        <div class="icon icon-120 bg-danger-light text-danger rounded-circle mb-3">
+                            <i class="material-icons display-4">error_outline</i>
+                        </div>
+                        <h2 class="display-2">404</h2>
+                        <h5 class="text-secondary mb-4 text-uppercase">Página não encontrada </h5>
+                        <p class="text-secondary">A página que você está procurando não está disponível. Verifique o URL ou tente em algum outro momento.</p>
+                        <br>
+                        <a onclick="goBack()" class="btn btn-default rounded">Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-h2.inactive {
-  color: #cccccc;
-}
+  
+    <!-- Required jquery and libraries -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-h2.active {
-  color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
-}
+    <!-- cookie js -->
+    <script src="js/jquery.cookie.js"></script>
 
+    <!-- Swiper slider  js-->
+    <script src="vendor/swiper/js/swiper.min.js"></script>
 
-
-/* FORM TYPOGRAPHY*/
-
-input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #6A90AB;
-  border: none;
-  color: white;
-  padding: 15px 80px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
-}
-
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #2A3E4C;
-}
-
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
-}
-
-input[type=password] {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 85%;
-  border: 2px solid #A9C4D7;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-
-input[type=password]:focus {
-  background-color: #A9C4D7;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=password]:placeholder {
-  color: #cccccc;
-}
+    <!-- Customized jquery file  -->
+    <script src="js/main.js"></script>
+    <script src="js/color-scheme-demo.js"></script>
 
 
-input[type=text] {
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 5px;
-  width: 85%;
-  border: 2px solid #A9C4D7;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-}
-
-input[type=text]:focus {
-  background-color: #A9C4D7;
-  border-bottom: 2px solid #5fbae9;
-}
-
-input[type=text]:placeholder {
-  color: #cccccc;
-}
-
-
-
-/* ANIMATIONS */
-
-/* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-/* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.fadeIn {
-  opacity:0;
-  -webkit-animation:fadeIn ease-in 1;
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
-
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
-}
-
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
-/* Simple CSS3 Fade-in Animation */
-.underlineHover:after {
-  display: block;
-  left: 0;
-  bottom: -10px;
-  width: 0;
-  height: 2px;
-  background-color: #6A90AB;
-  content: "";
-  transition: width 0.2s;
-}
-
-.underlineHover:hover {
-  color: #0d0d0d;
-}
-
-.underlineHover:hover:after{
-  width: 100%;
-}
-
-
-
-/* OTHERS */
-
-*:focus {
-    outline: none;
-} 
-
-#icon {
-  width:60%;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-	background-image: url("https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Ffundo.jpg?alt=media&token=e3e625e5-6148-45d1-b3ef-197c4303f06c");
-	background-color: #FEFEFE;
-}
-
-</style>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
-
-
-<link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Flivro.png?alt=media&token=50641a98-ee5c-461b-9151-8ce97810b749" type="image/ico">
-<title>Sistema Escolar</title>
+    <!-- page level custom script -->
+    <script src="js/app.js"></script>
     
-
-<html>
+</body>
 
 <script>
 function goBack() {
   window.history.back();
 }
 </script>
-
-<head>
-	<meta charset="utf-8">
-    <meta http-equiv="cleartype" content="on">
-    <meta name="MobileOptimized" content="320">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="mobile-web-app-capable" content="yes">
-	
-	
-	<meta http-equiv="cache-control" content="max-age=0" />
-	<meta http-equiv="cache-control" content="no-cache" />
-	<meta http-equiv="expires" content="0" />
-	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-	<meta http-equiv="pragma" content="no-cache" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
-    
-    <!-- Icon -->
-    <br>
-    <div class="fadeIn first">
-      <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Flivro.png?alt=media&token=50641a98-ee5c-461b-9151-8ce97810b749" width="100" height="100" />
-    </div>
-	
-	<div>
-		<h2 style="cursor:default;color:#1D3C52;font-size:30px;font-family: 'Open Sans';">PÁGINA NÃO ENCONTRADA! </h2>
-    </div>
-    <br><br>
-    <!-- Login Form -->
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" style="cursor:pointer" onclick="goBack()">Voltar</a>
-    </div>
-
-  </div>
-</div>
-
-
-</body>
 
 </html>

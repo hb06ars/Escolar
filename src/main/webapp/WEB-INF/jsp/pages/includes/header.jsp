@@ -5,22 +5,12 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 
-<!DOCTYPE html>
-<html>
-
-<!-- MENSAGENS -->
-<jsp:include page="mensagens.jsp" />
-<!-- MENSAGENS -->
-
-<body onload="iniciando()">
-
+<!doctype html>
+<html lang="en" class="h-100">
 <!--  ATUALIZAR PÁGINA  -->
 <c:if test="${atualizarPagina != null }">
 	<script>window.location.href='${atualizarPagina}';</script>
 </c:if>
-<!--  FIM ATUALIZAR PÁGINA  -->
-
-<jsp:include page="css/cssVendas.jsp" />
 
 <script>
 function expandir(campo, quantidade){
@@ -42,109 +32,269 @@ function expandir(campo, quantidade){
 			x[i].style.display = "none";
 		}
 	}
-	
-	
 }
 </script>
 
 <head>
-	<meta charset="utf-8">
-    <meta http-equiv="cleartype" content="on">
-    <meta name="MobileOptimized" content="320">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="mobile-web-app-capable" content="yes">
-	<link rel="shortcut icon" href="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Flivro.png?alt=media&token=50641a98-ee5c-461b-9151-8ce97810b749" type="image/ico">
-    <title>Sistema Escolar</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <style>@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"; body { font-family: 'Poppins', sans-serif; background: #fafafa; }  p { font-family: 'Poppins', sans-serif; font-size: 1.1em; font-weight: 300; line-height: 1.7em; color: #999; }  a, a:hover, a:focus { color: inherit; text-decoration: none; transition: all 0.3s; }  .navbar { padding: 15px 10px; background: #fff; border: none; border-radius: 0; margin-bottom: 40px; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); }  .navbar-btn { box-shadow: none; outline: none !important; border: none; }  .line { width: 100%; height: 1px; border-bottom: 1px dashed #ddd; margin: 40px 0; }  /* --------------------------------------------------- SIDEBAR STYLE ----------------------------------------------------- */  .wrapper { display: flex; width: 100%; align-items: stretch; }  #sidebar { min-width: 250px; max-width: 250px; background: #6A90AB; color: #fff; transition: all 0.3s; margin-left: -250px;}  #sidebar.active { margin-left: 0px; }  #sidebar .sidebar-header { padding: 20px; background: #7FA4BF; }  #sidebar ul.components { padding: 20px 0; border-bottom: 1px solid #47748b; }  #sidebar ul p { color: #fff; padding: 10px; }  #sidebar ul li a { padding: 10px; font-size: 1.1em; display: block; }  #sidebar ul li a:hover { color: #6A90AB; background: #fff; }  #sidebar ul li.active>a, a[aria-expanded="true"] { color: #fff; background: #7FA4BF; }  a[data-toggle="collapse"] { position: relative; }  .dropdown-toggle::after { display: block; position: absolute; top: 50%; right: 20px; transform: translateY(-50%); }  ul ul a { font-size: 0.9em !important; padding-left: 30px !important; background: #7FA4BF; }  ul.CTAs { padding: 20px; }  ul.CTAs a { text-align: center; font-size: 0.9em !important; display: block; border-radius: 5px; margin-bottom: 5px; }  a.download { background: #fff; color: #6A90AB; }  a.article, a.article:hover { background: #7FA4BF !important; color: #fff !important; }  /* --------------------------------------------------- CONTENT STYLE ----------------------------------------------------- */  #content { width: 100%; padding: 20px; min-height: 100vh; transition: all 0.3s; }  /* --------------------------------------------------- MEDIAQUERIES ----------------------------------------------------- */  @media (max-width: 768px) { #sidebar {     margin-left: -250px; } #sidebar.active {     margin-left: 0; } #sidebarCollapse span {     display: none; } }</style>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    
-    		
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="generator" content="">
+    <title>SISTEMA ESCOLAR</title>
 
+    <!-- manifest meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/img/favicon180.png" sizes="180x180">
+    <link rel="icon" href="/img/favicon32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/img/favicon16.png" sizes="16x16" type="image/png">
+    <link rel="shortcut icon" href="/img/logoicon.png" type="image/ico">
+    
+
+    <!-- Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- swiper CSS -->
+    <link href="/vendor/swiper/css/swiper.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet" id="style">
+</head>
 <!-- SCRIPTS -->
 <jsp:include page="javaScript.jsp" />
 <!-- SCRIPTS -->
 
-<!-- MENSAGENS -->
-<jsp:include page="mensagens.jsp" />
-<!-- MENSAGENS -->
 
-<body onload="iniciando()">
+<script>
+function redirecionar(site){
+	window.location.href=site;
+}
 
-<!-- MODAIS -->
-<jsp:include page="modal.jsp" />
-<!-- MODAIS -->
+function expandir(campo, quantidade, pasta){
+	var pastaAberta = pasta + 'Aberta';
+	var pastaFechada = pasta + 'Fechada';
+	var ativado = document.getElementsByClassName(campo)[0].style.display;
+	if( ativado == 'none' ){
+		document.getElementById(pastaFechada).style.display="none";
+		document.getElementById(pastaAberta).style.display="block";
+		var i = 0;
+		var x = document.getElementsByClassName(campo);
+		for(i; i < quantidade; i++){
+			x[i].style.display = "block";
+		}
+	} else{
+		document.getElementById(pastaFechada).style.display="block";
+		document.getElementById(pastaAberta).style.display="none";
+		var i = 0;
+		var x = document.getElementsByClassName(campo);
+		for(i; i < quantidade; i++){
+			x[i].style.display = "none";
+		}
+	}
+}
 
-<!--  ATUALIZAR PÁGINA  -->
-<c:if test="${atualizarPagina != null }">
-	<script>window.location.href='/${atualizarPagina}';</script>
-</c:if>
-<!--  FIM ATUALIZAR PÁGINA  -->
+</script>
 
-    <div class="wrapper" style="overflow: auto; background-size:cover; background-image: url('https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Ffundo.jpg?alt=media&token=e3e625e5-6148-45d1-b3ef-197c4303f06c'); background-repeat:repeat; ">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <a href="/home"> <i style="cursor: pointer;" ><img width="40" height="40" src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Flivro.png?alt=media&token=50641a98-ee5c-461b-9151-8ce97810b749"></img> &nbsp Sistema Escolar</i></a>
+
+<body onload="iniciando()" class="body-scroll d-flex flex-column h-100 menu-overlay" data-page="homepage">
+    <!-- screen loader -->
+    <div class="container-fluid h-100 loader-display">
+        <div class="row h-100">
+            <div class="align-self-center col">
+                <div class="logo-loading">
+                    <div class="icon icon-100 mb-4 rounded-circle">
+                        <img src="/img/favicon144.png" alt="" class="w-100">
+                    </div>
+                    <h4 class="text-default">SISTEMA ESCOLAR</h4>
+                    <p class="text-secondary">Controle de Horários</p>
+                    <div class="loader-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <ul class="list-unstyled components">
-                <li>
-                	
-                    <a style="align:center" href="#menuVendas" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i style="align:center" class="fas fa-clipboard" style="font-size:24px"></i>&nbsp Horário</a>
-                    <ul class="collapse list-unstyled" id="menuVendas">
-                        <li><a href="/horarios"> <i style="align:center" class="fas fa-clock" style="font-size:24px"></i>&nbsp Horário Atual</a></li>
-                        <li><a href="/presenca"> <i style="align:center" class="fas fa-edit" style="font-size:24px"></i>&nbsp Presença</a></li>
+
+
+    <!-- menu main -->
+    <div class="main-menu">
+        <div class="row mb-4 no-gutters">
+            <div class="col-auto"><button class="btn btn-link btn-40 btn-close text-white"><span class="material-icons">chevron_left</span></button></div>
+            <div class="col-auto">
+                <div class="avatar avatar-40 rounded-circle position-relative">
+                    <figure class="background">
+                        <img src="/img/logoicon" alt="">
+                    </figure>
+                </div>
+            </div>
+            <div class="col pl-3 text-left align-self-center">
+                <h6 class="mb-1">SISTEMA ESCOLAR</h6>
+                <p class="small text-default-secondary">Controle de Horários</p>
+            </div>
+        </div>
+        <div class="menu-container">
+            
+            <ul class="nav nav-pills flex-column ">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">
+                        <div>
+                            <span class="material-icons icon">account_balance</span>
+                            Home
+                        </div>
+                        <span class="arrow material-icons">chevron_right</span>
+                    </a>
+                </li>
+                
+                
+                
+                
+                <li class="nav-item">
+                    <a href="#menuVendas" data-toggle="collapse" class="nav-link">
+						<div>
+                            <span class="material-icons icon">supervisor_account</span>
+                           <i class="fas fa-clipboard"></i>&nbsp Horário
+                        </div>
+                        <span class="arrow material-icons">chevron_right</span>
+					</a>
+                    
+                    <ul class="collapse" id="menuVendas">
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/horarios"><span class="material-icons icon text-default-secondary">task_alt</span> Horário Atual </a>
+                        </li>
+                        <li class="list-unstyled components">
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/presenca"><span class="material-icons icon text-default-secondary">today</span> Presença </a>
+                        </li>
                         <c:if test="${usuarioSessao.perfil.professor}">
-							<li><a href="/meusHorarios"> <i style="align:center" class="fas fa-user-alt" style="font-size:24px"></i>&nbsp Meus Horários</a></li>
+	                        <li class="list-unstyled components">
+	                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/meusHorarios"><span class="material-icons icon text-default-secondary">alarm</span> Meus Horarios </a>
+	                        </li>
                         </c:if>
                     </ul>
                 </li>
+                 
                 
-                <li>
-                	<a style="align:center" href="#menuCadastro" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> <i style="align:center" class="fas fa-cog" style="font-size:24px"></i>&nbsp Registro</a>
-                    <ul class="collapse list-unstyled" id="menuCadastro">
-                        <li><a href="/funcionarios"> <i style="align:center" class="fas fa-user-friends" style="font-size:24px"></i>&nbsp Funcionários</a></li>
-                        <li><a href="/alunos"> <i style="align:center" class="fas fa-user-graduate" style="font-size:24px"></i>&nbsp Alunos</a></li>
-                        <li><a href="/recados"> <i style="align:center" class="fas fa-bullhorn" style="font-size:24px"></i>&nbsp Recados</a></li>
-                        <li><a href="/periodos"> <i style="align:center" class="fas fa-stopwatch" style="font-size:24px"></i>&nbsp Períodos</a></li>
-                        <li><a href="/cadHorarios"> <i style="align:center" class="fas fa-calendar-check" style="font-size:24px"></i>&nbsp Cadastro Horário</a></li>
+                <li class="nav-item">
+                    <a href="#menuMonitoramento" data-toggle="collapse" class="nav-link">
+						<div>
+                            <span class="material-icons icon">build</span>
+                           	&nbsp Registro
+                        </div>
+                        <span class="arrow material-icons">chevron_right</span>
+					</a>
+                    
+                    <ul class="collapse" id="menuMonitoramento">
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/funcionarios"><span class="material-icons icon text-default-secondary">engineering</span> Funcionários </a>
+                        </li>
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/alunos"><span class="material-icons icon text-default-secondary">people</span> Alunos </a>
+                        </li>
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/recados"><span class="material-icons icon text-default-secondary">notifications</span> Recados </a>
+                        </li>
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/periodos"><span class="material-icons icon text-default-secondary">timer</span> Períodos </a>
+                        </li>
+                        <li class="list-unstyled components" >
+                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/cadHorarios"><span class="material-icons icon text-default-secondary">edit</span> Cadastrar Horário </a>
+                        </li>
                     </ul>
                 </li>
-                <li>
-                    <a onclick="modalContato()" style="cursor: pointer;"> <i href="#" style="align:center" class="fas fa-phone" style="font-size:24px"></i> &nbsp Contato</a>
-                </li>
-                <li>
-                    <a onclick="modalAutor()" style="cursor: pointer;"> <i style="align:center" class="fas fa-id-card" style="font-size:24px"></i> &nbsp Autor</a>
-                </li>
-                <li>
-                    <a href="/deslogar" style="cursor: pointer;"> <i style="align:center" class="fas fa-power-off" style="font-size:24px"></i> &nbsp Deslogar</a>
-                </li>
-            </ul>
-			
-            <ul class="list-unstyled">
-                <li>
-	                <a href="https://www.facebook.com"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fface.png?alt=media&token=f244229d-cb1b-44ca-8bee-dcdfc96840f5" width="35" height="35"></img>&nbsp Facebook</a>
                 
-	                <a href="https://www.instagram.com"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Finstagram.png?alt=media&token=9ac6b88f-4a79-4ea4-a06c-b05e168834df" width="35" height="35"></img>&nbsp Instagram</a>
-	                
-	                <a href="https://wa.me/5511989376271"> <img src="https://firebasestorage.googleapis.com/v0/b/sistema-202a2.appspot.com/o/Imagens%2Fwhatsapp.png?alt=media&token=dfee5cfa-b5bc-4a86-95bb-c13d3b2f1bf8" width="35" height="35"></img>&nbsp WhatsApp</a>
+               	<li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" onclick="modalContato()">
+                        <div>
+                            <span class="material-icons icon">location_on</span>
+                            Nossa Escola
+                        </div>
+                    </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;" onclick="modalAutor()">
+                        <div>
+                            <span class="material-icons icon">build_circle</span>
+                            Suporte
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com">
+                        <div>
+                            <span class="material-icons icon">facebook</span>
+                            Facebook
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.instagram.com">
+                        <div>
+                            <span class="material-icons icon">camera_alt</span>
+                            Instagram
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://wa.me/5511989376271">
+                        <div>
+                            <span class="material-icons icon">phone_in_talk</span>
+                            WhatsApp
+                        </div>
+                    </a>
+                </li>
+               	
+                
+               
+               
             </ul>
-       
-        </nav>
+            <div class="text-center">
+                <a href="/deslogar" class="btn btn-outline-danger text-white rounded my-3 mx-auto">Deslogar</a>
+            </div>
+        </div>
+    </div>
+    <div class="backdrop"></div>
+    
 
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Menu</span>
+    <!-- Begin page content -->
+    <main class="flex-shrink-0 main has-footer">
+        <!-- Fixed navbar -->
+        <header class="header">
+            <div class="row">
+                <div class="col-auto px-0">
+                    <button class="menu-btn btn btn-40 btn-link" type="button">
+                        <span class="material-icons">menu</span>
                     </button>
                 </div>
-            </nav>
-            
+                <div class="text-left col align-self-center">
+                    <a class="navbar-brand" href="#">
+                        <h5 class="mb-0">Sistema Escolar</h5>
+                    </a>
+                </div>
+                <div class="ml-auto col-auto pl-0">
+                    <button type="button" class="btn btn-link btn-40 colorsettings">
+                        <span class="material-icons">color_lens</span>
+                    </button>
+                    <a href="notification.html" class=" btn btn-40 btn-link" >
+                        <span class="material-icons">notifications_none</span>
+                        <span class="counter"></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+<!-- MENSAGENS -->
+<jsp:include page="mensagens.jsp" />
+<!-- MENSAGENS -->
+<!-- MODAIS -->
+<jsp:include page="modal.jsp" />
+<!-- MODAIS -->
+        

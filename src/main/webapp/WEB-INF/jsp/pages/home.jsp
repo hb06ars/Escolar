@@ -19,7 +19,7 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
 
 <script>
 function redirecionar(pagina){
@@ -79,6 +79,9 @@ function redirecionar(pagina){
 </div>
 <br>
 
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
 
 <!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />
