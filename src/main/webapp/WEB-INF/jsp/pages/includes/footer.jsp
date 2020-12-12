@@ -1,5 +1,5 @@
 <!-- footer-->
-    <div id="dataHoje" class="text-default-secondary" align="center"></div>
+    <div id="dataHoje" class="text-light" align="center"></div>
     
 
 
