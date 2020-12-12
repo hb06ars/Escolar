@@ -50,14 +50,17 @@ public class EscolarController {
 	public static String tipoMensagem = "";
 	public static String periodoAtual = "";
 	public static String hoje = "";
+	public static String itemMenuSelecionado = "home";
 	
 	public String verificaLink(String link) {
 		String direcao = "deslogar";
 		if(usuarioSessao != null) {
 			direcao = link;
+			itemMenuSelecionado = link;
 		} else {
 			direcao = "deslogar";
 			atualizarPagina = null;
+			itemMenuSelecionado = "home";
 		}
 		return direcao;
 	}
@@ -271,6 +274,7 @@ public class EscolarController {
 			usuarioSessao = usu;
 		if(usu != null || usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", usuarioSessao); 
+			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
 		}
 		String link = verificaLink("pages/home");
 		ModelAndView modelAndView = new ModelAndView(link); 

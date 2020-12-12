@@ -100,6 +100,9 @@
 </div>
 
 <!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
+<!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />
 <!-- FOOTER -->
 

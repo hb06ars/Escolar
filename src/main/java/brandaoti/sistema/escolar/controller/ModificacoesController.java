@@ -106,6 +106,7 @@ public class ModificacoesController {
 				List<Alunos> alunos = alunosDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("alunos", alunos);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 				escolarController.registraMsg("Usuário", "Deletado com sucesso.", "erro");
 			}
 			if(tabela.equals("funcionarios")) {
@@ -115,6 +116,7 @@ public class ModificacoesController {
 				List<Usuario> usuarios = usuarioDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("usuarios", usuarios);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 				escolarController.registraMsg("Usuário", "Deletado com sucesso.", "erro");
 			}
 			if(tabela.equals("recados")) {
@@ -124,6 +126,7 @@ public class ModificacoesController {
 				List<Recado> recados = recadoDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("recados", recados);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 				escolarController.registraMsg("Recado", "Deletado com sucesso.", "erro");
 			}
 			if(tabela.equals("periodos")) {
@@ -133,6 +136,7 @@ public class ModificacoesController {
 				List<Periodos> periodos = periodoDao.findAll();
 				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 				model.addAttribute("periodos", periodos);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 				escolarController.registraMsg("Período", "Deletado com sucesso.", "erro");
 			}
 		}
@@ -162,6 +166,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 			escolarController.registraMsg("Confirmado", "Presença confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -184,6 +189,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 			escolarController.registraMsg("Confirmado", "Presença confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -223,6 +229,7 @@ public class ModificacoesController {
 			List<Horarios> horarios = horarioDao.buscarPeriodo(escolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("horarios", horarios);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 			escolarController.registraMsg("Confirmado", "Substituição confirmada com sucesso.", "info");
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
@@ -372,6 +379,7 @@ public class ModificacoesController {
 		}
 		escolarController.registraMsg("Upload", "Upload realizado com sucesso.", "info");
 		model.addAttribute("atualizarPagina", escolarController.atualizarPagina); 
+		model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		ModelAndView modelAndView = new ModelAndView(link);
 		return modelAndView;
 	}
@@ -383,6 +391,7 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -396,6 +405,7 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("funcionarios", funcionarios); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -409,6 +419,7 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("recados", recados); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -422,6 +433,7 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("periodos", periodos); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -435,6 +447,7 @@ public class ModificacoesController {
 		if(escolarController.usuarioSessao != null) {
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("horarios", horarios); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -454,6 +467,7 @@ public class ModificacoesController {
 			model.addAttribute("usuarios", usuarios); 
 			model.addAttribute("periodoAtual", escolarController.periodoAtual);
 			model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -482,6 +496,7 @@ public class ModificacoesController {
 			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
 			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
 			model.addAttribute("periodos", periodos);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -503,6 +518,7 @@ public class ModificacoesController {
 				model.addAttribute("periodoAtual", escolarController.periodoAtual); 
 				model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual); 
 				model.addAttribute("periodos", periodos);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
@@ -553,6 +569,7 @@ public class ModificacoesController {
 				model.addAttribute("periodoAtual", periodoEscolhido); 
 				model.addAttribute("diaDaSemanaAtual", diaDaSemanaAtual); 
 				model.addAttribute("periodos", periodos);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
@@ -608,6 +625,7 @@ public class ModificacoesController {
 			model.addAttribute("quantidadeDeSeries", quantidadeDeSeries);
 			model.addAttribute("quantidadeDeHorarios", quantidadeDeHorarios);
 			model.addAttribute("periodos", periodos);
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
 		escolarController.enviaMsg(modelAndView);
@@ -658,6 +676,7 @@ public class ModificacoesController {
 			escolarController.registraMsg("Criação", "Salvo com sucesso.", "info");
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("alunos", alunos); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 
@@ -701,6 +720,7 @@ public class ModificacoesController {
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("usuarios", usuarios); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 
@@ -731,6 +751,7 @@ public class ModificacoesController {
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("recados", recados); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 
@@ -756,6 +777,7 @@ public class ModificacoesController {
 			model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
 			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
 			model.addAttribute("periodos", periodos); 
+			model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
 		}
 		ModelAndView modelAndView = new ModelAndView(link); 
 		escolarController.enviaMsg(modelAndView); 

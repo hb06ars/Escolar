@@ -145,18 +145,15 @@ function expandir(campo, quantidade, pasta){
         <div class="menu-container">
             
             <ul class="nav nav-pills flex-column ">
+                
                 <li class="nav-item">
-                    <a class="nav-link active" href="/home">
+                    <a class="nav-link ative" href="/home">
                         <div>
                             <span class="material-icons icon">account_balance</span>
                             Home
                         </div>
-                        <span class="arrow material-icons">chevron_right</span>
                     </a>
                 </li>
-                
-                
-                
                 
                 <li class="nav-item">
                     <a href="#menuVendas" data-toggle="collapse" class="nav-link">
@@ -283,8 +280,8 @@ function expandir(campo, quantidade, pasta){
                     <button type="button" class="btn btn-link btn-40 colorsettings">
                         <span class="material-icons">color_lens</span>
                     </button>
-                    <a href="notification.html" class=" btn btn-40 btn-link" >
-                        <span class="material-icons">notifications_none</span>
+                    <a href="/deslogar" class=" btn btn-40 btn-link" >
+                        <span class="material-icons">power_settings_new</span>
                         <span class="counter"></span>
                     </a>
                 </div>
