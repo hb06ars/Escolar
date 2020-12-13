@@ -815,7 +815,6 @@ public class ModificacoesController {
 			}
 		}
 		ModelAndView modelAndView = new ModelAndView(link);
-		System.out.println("okfff: "+tabelaUsadaDeletar);
 		return modelAndView; 
 	}
 	
