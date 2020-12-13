@@ -16,6 +16,7 @@
 <jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
 <!-- DOWNLOAD EXCEL -->
 <!-- UPLOAD EXCEL -->
+<jsp:include page="includes/modais/modalDeletarTudo.jsp" />
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
@@ -30,6 +31,7 @@
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('cadHorarios')"><span class="material-icons icon">publish</span></button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="limparTudo('HORÁRIOS')"><span class="material-icons icon">delete</span></button>
 		</c:if>
 		&nbsp
 	</div>

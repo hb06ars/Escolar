@@ -18,6 +18,7 @@
 <jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
 <!-- DOWNLOAD EXCEL -->
 <!-- UPLOAD EXCEL -->
+<jsp:include page="includes/modais/modalDeletarTudo.jsp" />
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
@@ -27,6 +28,9 @@
 	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 	<h1 class="h4">&nbsp&nbsp Funcionários</h1>
 	<div>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="limparTudo('FUNCIONÁRIOS')"><span class="material-icons icon">delete</span></button>
+		</c:if>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoFuncionario()"><span class="material-icons icon">person_add</span></button>
 		</c:if>

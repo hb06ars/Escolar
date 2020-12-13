@@ -784,5 +784,40 @@ public class ModificacoesController {
 		return modelAndView; 
 	}
 	
+	
+	@RequestMapping(value = "/adm/limparTudo", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
+	public ModelAndView limparTudo(Model model, String tabelaUsadaDeletar) { //Função e alguns valores que recebe...
+		String link = escolarController.verificaLink("/deslogar");
+		String tabela = tabelaUsadaDeletar;
+		if(escolarController.usuarioSessao.getPerfil().getAdmin()) {
+			model.addAttribute("usuarioSessao", escolarController.usuarioSessao);
+			link = "/pages/home";
+			if(tabela.equals("alunos")) {
+				escolarController.atualizarPagina = "/home";
+				alunosDao.deleteAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
+				escolarController.registraMsg("Registros", "Deletado com sucesso.", "erro");
+			}
+			if(tabela.equals("funcionarios")) {
+				escolarController.atualizarPagina = "/home";
+				usuarioDao.deleteAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("itemMenuSelecionado", "home");
+				escolarController.registraMsg("Registros", "Deletado com sucesso.", "erro");
+			}
+			if(tabela.equals("horarios")) {
+				escolarController.atualizarPagina = "/home";
+				horarioDao.deleteAll();
+				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+				model.addAttribute("itemMenuSelecionado", escolarController.itemMenuSelecionado);
+				escolarController.registraMsg("Horários", "Deletado com sucesso.", "erro");
+			}
+		}
+		ModelAndView modelAndView = new ModelAndView(link);
+		System.out.println("okfff: "+tabelaUsadaDeletar);
+		return modelAndView; 
+	}
+	
 
 }

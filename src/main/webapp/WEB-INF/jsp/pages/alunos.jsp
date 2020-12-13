@@ -18,6 +18,7 @@
 <!-- DOWNLOAD EXCEL -->
 <!-- UPLOAD EXCEL -->
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
+<jsp:include page="includes/modais/modalDeletarTudo.jsp" />
 <!-- UPLOAD EXCEL -->
 
 <div class="card mb-4">
@@ -32,6 +33,7 @@
 		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
 		<c:if test="${usuarioSessao.perfil.admin}">
 			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('alunos')"><span class="material-icons icon">publish</span></button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="limparTudo('ALUNOS')"><span class="material-icons icon">delete</span></button>
 		</c:if>
 		&nbsp&nbsp
 	</div>
