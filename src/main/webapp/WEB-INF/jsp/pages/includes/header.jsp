@@ -133,21 +133,22 @@ function expandir(campo, quantidade, pasta){
             <div class="col-auto">
                 <div class="avatar avatar-40 rounded-circle position-relative">
                     <figure class="background">
-                        <img src="/img/logoicon" alt="">
+                        <img src="/img/logoicon.png" alt="">
                     </figure>
                 </div>
             </div>
             <div class="col pl-3 text-left align-self-center">
                 <h6 class="mb-1">SISTEMA ESCOLAR</h6>
-                <p class="small text-default-secondary">Controle de Horários</p>
+                <p class="small">Controle de Horários</p>
             </div>
         </div>
+        
         <div class="menu-container">
             
             <ul class="nav nav-pills flex-column ">
                 
                 <li class="nav-item">
-                    <a class="nav-link ative" href="/home">
+                    <a class="nav-link" href="/home">
                         <div>
                             <span class="material-icons icon">account_balance</span>
                             Home
