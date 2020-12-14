@@ -257,6 +257,14 @@ function expandir(campo, quantidade, pasta){
                         </div>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/excel/exemplo_de_planilhas.rar">
+                        <div>
+                            <span class="material-icons icon">insert_drive_file</span>
+                            Planilhas de Exemplo
+                        </div>
+                    </a>
+                </li>
                	
                 
                
