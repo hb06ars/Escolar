@@ -801,10 +801,19 @@ public class ModificacoesController {
 			}
 			if(tabela.equals("funcionarios")) {
 				escolarController.atualizarPagina = "/home";
-				usuarioDao.deleteAll();
-				model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
-				model.addAttribute("itemMenuSelecionado", "home");
-				escolarController.registraMsg("Registros", "Deletado com sucesso.", "erro");
+				List<Horarios> listaDeHorarios = horarioDao.findAll();
+				if(listaDeHorarios != null)
+					if(listaDeHorarios.size() > 0) {
+						usuarioDao.deleteAll();
+						model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+						model.addAttribute("itemMenuSelecionado", "home");
+						escolarController.registraMsg("Registros", "Deletado com sucesso.", "erro");
+					} else {
+						model.addAttribute("atualizarPagina", escolarController.atualizarPagina);
+						model.addAttribute("itemMenuSelecionado", "home");
+						escolarController.registraMsg("Registros", "Favor deletar todos os horários antes de deletar todos os funcionários.", "erro");
+					}
+				
 			}
 			if(tabela.equals("horarios")) {
 				escolarController.atualizarPagina = "/home";
