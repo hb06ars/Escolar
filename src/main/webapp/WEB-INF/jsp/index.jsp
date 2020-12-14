@@ -58,7 +58,16 @@
 <form action="/home" method="post">
     <!-- Begin page content -->
     <main class="flex-shrink-0 main has-footer">
-        <!-- Fixed navbar -->        
+        <!-- Fixed navbar -->       
+        	<header class="header">
+            <div class="row">
+                <div class="ml-auto col-auto align-self-center">
+                    <a href="/pdf/manual.pdf" class="text-white">
+                        Documentação
+                    </a>
+                </div>
+            </div>
+        </header> 
 
 	        <div class="container h-100 text-white">
 	            <div class="row h-100">
@@ -74,7 +83,6 @@
 	                                <input type="password" name="senhaVal" class="form-control text-white ">
 	                                <label class="form-control-label text-white">Senha</label>
 	                            </div>  
-	                            <p class="text-right"><a href="forgot_password.html" class="text-white">Esqueceu sua senha?</a></p>
 	                        </div>
 	                    </div>
 	                </div>

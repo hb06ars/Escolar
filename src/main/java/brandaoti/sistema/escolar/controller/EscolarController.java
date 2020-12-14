@@ -267,6 +267,7 @@ public class EscolarController {
 		return modelAndView; 
 	}
 	
+	
 	@RequestMapping(value = "/home", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView logar(Model model, @RequestParam(value = "usuarioVal", defaultValue = "", required=false ) String variavelUsuario, @RequestParam(value = "senhaVal", defaultValue = "", required=false ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
 		Usuario usu = usuarioDao.fazerLogin(variavelUsuario, variavelSenha);

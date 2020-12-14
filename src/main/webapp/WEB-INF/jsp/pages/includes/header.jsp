@@ -249,6 +249,14 @@ function expandir(campo, quantidade, pasta){
                         </div>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/pdf/manual.pdf">
+                        <div>
+                            <span class="material-icons icon">menu_book</span>
+                            Documentação
+                        </div>
+                    </a>
+                </li>
                	
                 
                
