@@ -96,10 +96,10 @@
 									<c:if test="${usuarioSessao.perfil.admin}">
 										onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id }, '${h.usuario.telefone }', '${h.sala }', '${h.turma }','${h.horarioDaAula }')"
 									</c:if>
-									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#B6DCB6"</c:if>
-									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#FD8F8F"</c:if>
-									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:default;background-color:#FD8F8F"</c:if>
-									<c:if test="${h.substituto != null}">style="cursor:default;background-color:#F8D49B"</c:if>
+									<c:if test="${h.usuario.compareceu && h.substituto == null}">style="cursor:pointer;background-color:#B6DCB6"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:pointer;background-color:#FD8F8F"</c:if>
+									<c:if test="${!h.usuario.compareceu && h.substituto == null}">style="cursor:pointer;background-color:#FD8F8F"</c:if>
+									<c:if test="${h.substituto != null}">style="cursor:pointer;background-color:#F8D49B"</c:if>
 								 >
 								 <c:if test="${h.substituto != null }"> ${h.substituto.nome } </c:if>
 								 <c:if test="${h.substituto == null }"> ${h.usuario.nome } </c:if>

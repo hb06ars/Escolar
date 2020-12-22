@@ -74,8 +74,8 @@
 			</c:if>
 			<c:if test="${usuarioSessao.perfil.admin}">
 					<td>
-						<c:if test="${h.compareceu}" ><span class="material-icons icon" onClick="validarPresenca(${h.id},'faltou')">unpublished</span> &nbsp </c:if>
-						<c:if test="${!h.compareceu}" ><span class="material-icons icon" onClick="validarPresenca(${h.id},'compareceu')">check_circle</span> &nbsp </c:if>
+						<c:if test="${h.compareceu}" ><span class="material-icons icon" style="cursor:pointer" onClick="validarPresenca(${h.id},'faltou')">unpublished</span> &nbsp </c:if>
+						<c:if test="${!h.compareceu}" ><span class="material-icons icon" style="cursor:pointer" onClick="validarPresenca(${h.id},'compareceu')">check_circle</span> &nbsp </c:if>
 					</td>
 			</c:if>
 			

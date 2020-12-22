@@ -106,12 +106,12 @@ function substituir(){
 			<div class="input-group mb-3">
 	  			<div>
 	  				<input type="radio" id="somenteSim" name="somente" value="sim" checked="checked">
-					<label for="sim">Somente essa aula</label>
+					<label>Somente essa aula</label>
 				</div>
 				<div>&nbsp&nbsp&nbsp</div>
 				<div>
 					<input type="radio" id="somenteNao" name="somente" value="nao" >
-					<label for="nao">Todas as outras aulas</label>
+					<label >Todas as outras aulas</label>
 				</div>
 			</div>
 		</div>
