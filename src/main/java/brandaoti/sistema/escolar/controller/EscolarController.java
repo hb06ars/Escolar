@@ -274,10 +274,10 @@ public class EscolarController {
 		if(usu != null)
 			usuarioSessao = usu;
 		if(usu != null || usuarioSessao != null) {
-			model.addAttribute("usuarioSessao", usuarioSessao); 
-			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
+			model.addAttribute("usuarioSessao", usuarioSessao);
 		}
 		String link = verificaLink("pages/home");
+		model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
 		ModelAndView modelAndView = new ModelAndView(link);
 		return modelAndView; 
 	}
