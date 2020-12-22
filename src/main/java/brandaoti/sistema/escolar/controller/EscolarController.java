@@ -255,7 +255,7 @@ public class EscolarController {
 			horarioDao.saveAndFlush(h);
 		}
 		
-		
+		model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
 		return modelAndView; 
 	}
 	
@@ -278,7 +278,7 @@ public class EscolarController {
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
 		}
 		String link = verificaLink("pages/home");
-		ModelAndView modelAndView = new ModelAndView(link); 
+		ModelAndView modelAndView = new ModelAndView(link);
 		return modelAndView; 
 	}
 	
