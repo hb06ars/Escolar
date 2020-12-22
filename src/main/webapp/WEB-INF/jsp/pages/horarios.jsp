@@ -21,7 +21,14 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
-
+<script>
+function passarMouse(linha){
+	linha.style.color = "white";
+}
+function foraMouse(linha){
+	linha.style.color = "";
+}
+</script>
 
 <div class="card mb-4" >
 
@@ -92,7 +99,7 @@
 					<c:forEach items="${horarios}" var="h" >
 						<c:if test="${ho eq h.horarioDaAula }">
 							<c:if test="${h.sala eq s && encontrou == 0 }">
-								<td  
+								<td  onmouseover="passarMouse(this)" onmouseout="foraMouse(this)"
 									<c:if test="${usuarioSessao.perfil.admin}">
 										onclick="modalProfessor(${h.usuario.id}, '${h.usuario.nome}', ${h.id }, '${h.usuario.telefone }', '${h.sala }', '${h.turma }','${h.horarioDaAula }')"
 									</c:if>

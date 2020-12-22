@@ -33,10 +33,12 @@ function modalProfessor(professor, nomeProfessor, horarioId, telefone, novaSala,
 function janelaSubstituto(valor){
 	var professorAtual = document.getElementById("nomeProfessorAtual").value;
 	if(valor == 'sim'){
+		document.getElementById("confirmarPresencaBt").style.display = "none";
 		document.getElementById("telaSubstituto").style.display = "block";
 		document.getElementById("btSubstituir").style.display = "block";
 		document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+professorAtual+"?";
 	} else{
+		document.getElementById("confirmarPresencaBt").style.display = "block";
 		document.getElementById("btSubstituir").style.display = "none";
 		document.getElementById("telaSubstituto").style.display = "none";
 		document.getElementById("pergunta").innerHTML = "Deseja substituir o Professor(a) "+professorAtual+"?";
@@ -114,14 +116,13 @@ function substituir(){
 					<label >Todas as outras aulas</label>
 				</div>
 			</div>
-		</div>
+		
 		<div class="input-group mb-3">
 			<div id="telefone">  
-				
-			</div>
-				
+			</div>		
 		</div>
 		
+		</div>
 		</div>
 		
       </div>
@@ -130,7 +131,7 @@ function substituir(){
       	<input type="hidden" id="nomeProfessorAtual" name="nomeProfessorAtual">
       	<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
         <botao type="button" id="btSubstituir" class="btn btn-secondary" onclick="substituir()" data-dismiss="modal" style="display:none">Substituir</botao>
-        <input type="submit" name="submit" class="btn btn-primary" value="Confirmar presença">
+        <input type="submit" name="submit" id="confirmarPresencaBt" class="btn btn-primary" value="Confirmar presença">
       </div>
     </div>
   </div>
