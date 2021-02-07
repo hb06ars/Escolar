@@ -1,314 +1,228 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
-
 <!doctype html>
-<html lang="en" class="h-100">
-<!--  ATUALIZAR PÁGINA  -->
-<c:if test="${atualizarPagina != null }">
-	<script>window.location.href='${atualizarPagina}';</script>
-</c:if>
+<html class="fixed">
+	<head>
 
-<script>
-function expandir(campo, quantidade){
-	var ativado = document.getElementsByClassName(campo)[0].style.display;
-	if( ativado == 'none' ){
-		document.getElementById("pastaFechada").style.display="none";
-		document.getElementById("pastaAberta").style.display="block";
-		var i = 0;
-		var x = document.getElementsByClassName(campo);
-		for(i; i < quantidade; i++){
-			x[i].style.display = "block";
-		}
-	} else{
-		document.getElementById("pastaFechada").style.display="block";
-		document.getElementById("pastaAberta").style.display="none";
-		var i = 0;
-		var x = document.getElementsByClassName(campo);
-		for(i; i < quantidade; i++){
-			x[i].style.display = "none";
-		}
-	}
-}
-</script>
+		<!-- Basic -->
+		<meta charset="UTF-8">
+		<title>Academia</title>
+		<meta name="keywords" content="HTML5 Admin Template" />
+		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="assets/images/logo.png" type="image/ico">
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css" />
+		<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="/assets/vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+		<!-- Specific Page Vendor CSS -->
+		<link rel="stylesheet" href="/assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+		<link rel="stylesheet" href="/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.css" />
+		<link rel="stylesheet" href="/assets/vendor/morris/morris.css" />
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/theme.css" />
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/skins/default.css" />
+		<!-- Theme Custom CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/theme-custom.css">
+		<!-- Loading -->
+		<link rel="stylesheet" href="/assets/vendor/loading/loading.css" />
+		<!-- Head Libs -->
+		<script src="/assets/vendor/modernizr/modernizr.js"></script>
+		
+		<!-- Tables -->
+		<link rel="stylesheet" href="/assets/vendor/select2/select2.css" />
+		<link rel="stylesheet" href="/assets/vendor/jquery-datatables-bs3/assets/css/datatables.css" />
+		
+		
+		
+		
+	</head>
+	<body>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		<!-- screen loader -->
+	    <div class="load_container-fluid h-100 loader-display">
+	        <div class="load_row h-100">
+	            <div class="align-self-center load_col">
+	                <div class="logo-loading">
+	                    <div class="icon icon-100 load_mb-4">
+	                        <img src="/assets/images/logo.png" alt="" class="load_w-100">
+	                    </div>
+	                    <h4 class="text-default"></h4>
+	                    <div class="loader-ellipsis">
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
-    <title>SISTEMA ESCOLAR</title>
-
-    <!-- manifest meta -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="/manifest.json" />
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/favicon180.png" sizes="180x180">
-    <link rel="icon" href="/img/favicon32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/img/favicon16.png" sizes="16x16" type="image/png">
-    <link rel="shortcut icon" href="/img/logoicon.png" type="image/ico">
-    
-
-    <!-- Material icons-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <!-- swiper CSS -->
-    <link href="/vendor/swiper/css/swiper.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet" id="style">
-</head>
-<!-- SCRIPTS -->
-<jsp:include page="javaScript.jsp" />
-<!-- SCRIPTS -->
-
-
-<script>
-function redirecionar(site){
-	window.location.href=site;
-}
-
-function expandir(campo, quantidade, pasta){
-	var pastaAberta = pasta + 'Aberta';
-	var pastaFechada = pasta + 'Fechada';
-	var ativado = document.getElementsByClassName(campo)[0].style.display;
-	if( ativado == 'none' ){
-		document.getElementById(pastaFechada).style.display="none";
-		document.getElementById(pastaAberta).style.display="block";
-		var i = 0;
-		var x = document.getElementsByClassName(campo);
-		for(i; i < quantidade; i++){
-			x[i].style.display = "block";
-		}
-	} else{
-		document.getElementById(pastaFechada).style.display="block";
-		document.getElementById(pastaAberta).style.display="none";
-		var i = 0;
-		var x = document.getElementsByClassName(campo);
-		for(i; i < quantidade; i++){
-			x[i].style.display = "none";
-		}
-	}
-}
-
-</script>
-
-
-<body onload="iniciando()" class="body-scroll d-flex flex-column h-100 menu-overlay" data-page="homepage">
-    <!-- screen loader -->
-    <div class="container-fluid h-100 loader-display">
-        <div class="row h-100">
-            <div class="align-self-center col">
-                <div class="logo-loading">
-                    <div class="icon icon-100 mb-4 rounded-circle">
-                        <img src="/img/logoicon.png" alt="" class="w-100">
-                    </div>
-                    <h4 class="text-default">SISTEMA ESCOLAR</h4>
-                    <p class="text-secondary">Controle de Horários</p>
-                    <div class="loader-ellipsis">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- menu main -->
-    <div class="main-menu">
-        <div class="row mb-4 no-gutters">
-            <div class="col-auto"><button class="btn btn-link btn-40 btn-close text-white"><span class="material-icons">chevron_left</span></button></div>
-            <div class="col-auto">
-                <div class="avatar avatar-40 rounded-circle position-relative">
-                    <figure class="background">
-                        <img src="/img/logoicon.png" alt="">
-                    </figure>
-                </div>
-            </div>
-            <div class="col pl-3 text-left align-self-center">
-                <h6 class="mb-1">SISTEMA ESCOLAR</h6>
-                <p class="small">Controle de Horários</p>
-            </div>
-        </div>
-        
-        <div class="menu-container">
-            
-            <ul class="nav nav-pills flex-column ">
-                
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">
-                        <div>
-                            <span class="material-icons icon">account_balance</span>
-                            Home
-                        </div>
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="#menuVendas" data-toggle="collapse" class="nav-link">
-						<div>
-                            <span class="material-icons icon">supervisor_account</span>
-                           <i class="fas fa-clipboard"></i>&nbsp Horário
-                        </div>
-                        <span class="arrow material-icons">chevron_right</span>
+		<section class="body">
+			<!-- start: header -->
+			<header class="header">
+				<div class="logo-container">
+					<a href="/home" class="logo">
+						<img src="/assets/images/logo.png" height="35" alt="Porto Admin" />
 					</a>
-                    
-                    <ul class="collapse" id="menuVendas">
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/horarios"><span class="material-icons icon text-default-secondary">task_alt</span> Horário Atual </a>
-                        </li>
-                        <li class="list-unstyled components mb-3">
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/presenca"><span class="material-icons icon text-default-secondary">today</span> Presença </a>
-                        </li>
-                        <c:if test="${usuarioSessao.perfil.professor}">
-	                        <li class="list-unstyled components mb-3">
-	                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/meusHorarios"><span class="material-icons icon text-default-secondary">alarm</span> Meus Horarios </a>
-	                        </li>
-                        </c:if>
-                    </ul>
-                </li>
-                 
-                
-                <li class="nav-item">
-                    <a href="#menuMonitoramento" data-toggle="collapse" class="nav-link">
-						<div>
-                            <span class="material-icons icon">build</span>
-                           	&nbsp Registro
-                        </div>
-                        <span class="arrow material-icons">chevron_right</span>
-					</a>
-                    
-                    <ul class="collapse" id="menuMonitoramento">
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/funcionarios"><span class="material-icons icon text-default-secondary">engineering</span> Funcionários </a>
-                        </li>
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/alunos"><span class="material-icons icon text-default-secondary">people</span> Alunos </a>
-                        </li>
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/recados"><span class="material-icons icon text-default-secondary">notifications</span> Recados </a>
-                        </li>
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/periodos"><span class="material-icons icon text-default-secondary">timer</span> Períodos </a>
-                        </li>
-                        <li class="list-unstyled components mb-3" >
-                        	<a class="text-default-secondary" style="text-decoration:none;color:inherit;" href="/cadHorarios"><span class="material-icons icon text-default-secondary">edit</span> Cadastrar Horário </a>
-                        </li>
-                    </ul>
-                </li>
-                
-               	<li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer;" onclick="modalContato()">
-                        <div>
-                            <span class="material-icons icon">location_on</span>
-                            Nossa Escola
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="cursor: pointer;" onclick="modalAutor()">
-                        <div>
-                            <span class="material-icons icon">build_circle</span>
-                            Suporte
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.facebook.com">
-                        <div>
-                            <span class="material-icons icon">facebook</span>
-                            Facebook
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.instagram.com">
-                        <div>
-                            <span class="material-icons icon">camera_alt</span>
-                            Instagram
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://wa.me/5511989376271">
-                        <div>
-                            <span class="material-icons icon">phone_in_talk</span>
-                            WhatsApp
-                        </div>
-                    </a>
-                </li>
-                 <li class="nav-item">
-                    <a class="nav-link" href="/pdf/manual.pdf">
-                        <div>
-                            <span class="material-icons icon">menu_book</span>
-                            Documentação
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/excel/exemplo_de_planilhas.rar">
-                        <div>
-                            <span class="material-icons icon">insert_drive_file</span>
-                            Planilhas de Exemplo
-                        </div>
-                    </a>
-                </li>
-               	
-                
-               
-               
-            </ul>
-            <div class="text-center">
-                <a href="/deslogar" class="btn btn-outline-danger text-white rounded my-3 mx-auto">Deslogar</a>
-            </div>
-        </div>
-    </div>
-    <div class="backdrop"></div>
-    
+					<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+						<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+					</div>
+				</div>
+			</header>
+			<!-- end: header -->
 
-    <!-- Begin page content -->
-    <main class="flex-shrink-0 main has-footer">
-        <!-- Fixed navbar -->
-        <header class="header">
-            <div class="row">
-                <div class="col-auto px-0">
-                    <button class="menu-btn btn btn-40 btn-link" type="button">
-                        <span class="material-icons">menu</span>
-                    </button>
-                </div>
-                <div class="text-left col align-self-center">
-                    <a class="navbar-brand" href="#">
-                        <h5 class="mb-0">Sistema Escolar</h5>
-                    </a>
-                </div>
-                <div class="ml-auto col-auto pl-0">
-                    <button type="button" class="btn btn-link btn-40 colorsettings">
-                        <span class="material-icons">color_lens</span>
-                    </button>
-                    <a href="/deslogar" class=" btn btn-40 btn-link" >
-                        <span class="material-icons">power_settings_new</span>
-                        <span class="counter"></span>
-                    </a>
-                </div>
-            </div>
-        </header>
-        
-<!-- MENSAGENS -->
-<jsp:include page="mensagens.jsp" />
-<!-- MENSAGENS -->
-<!-- MODAIS -->
-<jsp:include page="modal.jsp" />
-<!-- MODAIS -->
-        
+			<div class="inner-wrapper">
+				<!-- start: sidebar -->
+				<aside id="sidebar-left" class="sidebar-left">
+				
+					<div class="sidebar-header">
+						<div class="sidebar-title">
+							Navegação
+						</div>
+						<div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+							<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+						</div>
+					</div>
+				
+					<div class="nano">
+						<div class="nano-content">
+							<nav id="menu" class="nav-main" role="navigation">
+								<ul class="nav nav-main">
+									<li class="nav-active">
+										<c:if test="${!usuario.perfil.admin }">
+										<a href="/home">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Home</span>
+										</a>
+										</c:if>
+										<c:if test="${usuario.perfil.admin }">
+										<a href="/home">
+											<i class="fa fa-home" aria-hidden="true"></i>
+											<span>Home</span>
+										</a>
+										</c:if>
+									</li>
+									<li>
+										<a href="/treino">
+											<i class="fa fa-edit" aria-hidden="true"></i>
+											<span>Meu Treino</span>
+										</a>
+									</li>
+									<c:if test="${usuario.perfil.admin }">
+										<li>
+											<a href="/financeiro">
+												<i class="fa fa-money" aria-hidden="true"></i>
+												<span>Financeiro</span>
+											</a>
+										</li>
+									</c:if>
+									<li class="nav-parent">
+										<a>
+											<i class="fa fa-align-left" aria-hidden="true"></i>
+											<span>Admnistração</span>
+										</a>
+										<ul class="nav nav-children">
+											<li>
+												<a href="/alunos">Alunos</a>
+											</li>
+											<li>
+												<a href="/funcionarios">Funcionários</a>
+											</li>
+											<li>
+												<a href="/aulas">Aulas</a>
+											</li>
+											<li>
+												<a href="/pendencias">Pendências</a>
+											</li>
+											<li>
+												<a href="/aniversariantes">Aniversariantes</a>
+											</li>
+											<li class="nav-parent">
+												<a>Presença</a>
+												<ul class="nav nav-children">
+													<li>
+														<a href="/presencaAlunos">Alunos</a>
+													</li>
+													<li>
+														<a href="/presencaFuncionarios">Funcionários</a>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li>
+										<a href="/deslogar" >
+											<i class="fa fa-power-off" aria-hidden="true"></i>
+											<span>Sair</span>
+										</a>
+									</li>
+								</ul>
+							</nav>
+				
+							<hr class="separator" />
+				
+							<div class="sidebar-widget widget-tasks">
+								<div class="widget-header">
+									<h6>Plano</h6>
+									<div class="widget-toggle">+</div>
+								</div>
+								<div class="widget-content">
+									<ul class="list-unstyled m-none">
+										<li><a href="#">Inicial</a></li>
+									</ul>
+								</div>
+							</div>
+				
+							<hr class="separator" />
+				
+							<div class="sidebar-widget widget-stats">
+								<div class="widget-header">
+									<h6>Alunos Presentes Ontem</h6>
+									<div class="widget-toggle">+</div>
+								</div>
+								<div class="widget-content">
+									<ul>
+										<li>
+											<span class="stats-title">Total</span>
+											<span class="stats-complete">85%</span>
+											<div class="progress">
+												<div class="progress-bar progress-bar-primary progress-without-number" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
+													<span class="sr-only">85% Complete</span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+				
+					</div>
+				
+				</aside>
+				<!-- end: sidebar -->
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>${paginaAtual }</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="index.html">
+										<i class="${iconePaginaAtual }"></i>
+									</a>
+								</li>
+								<li><span>${paginaAtual }</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+						</div>
+					</header>

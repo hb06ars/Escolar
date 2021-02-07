@@ -1,125 +1,139 @@
 <!doctype html>
-<html lang="en" class="h-100">
+<html class="fixed">
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="generator" content="">
-    <title>SISTEMA ESCOLAR</title>
+		<!-- Basic -->
+		<meta charset="UTF-8">
+		<title>Academia</title>
+		<meta name="keywords" content="HTML5 Admin Template" />
+		<meta name="description" content="Porto Admin - Responsive HTML5 Template">
+		<meta name="author" content="okler.net">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="shortcut icon" href="assets/images/logo.png" type="image/ico">
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <!-- manifest meta -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/img/favicon180.png" sizes="180x180">
-    <link rel="icon" href="/img/favicon32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/img/favicon16.png" sizes="16x16" type="image/png">
-    <link rel="shortcut icon" href="/img/logoicon.png" type="image/ico">
+		<!-- Vendor CSS -->
+		<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.css" />
 
-    <!-- Material icons-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css" />
+		<link rel="stylesheet" href="/assets/vendor/magnific-popup/magnific-popup.css" />
+		<link rel="stylesheet" href="/assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
 
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/theme.css" />
 
-    <!-- swiper CSS -->
-    <link href="/vendor/swiper/css/swiper.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="/css/style.css" rel="stylesheet" id="style">
-</head>
-
-<body class="body-scroll d-flex flex-column h-100 menu-overlay">
-    <!-- screen loader -->
-    <div class="container-fluid h-100 loader-display">
-        <div class="row h-100">
-            <div class="align-self-center col">
-                <div class="logo-loading">
-                    <div class="icon icon-100 mb-4 rounded-circle">
-                        <img src="/img/favicon144.png" alt="" class="w-100">
-                    </div>
-                    <h4 class="text-default">SISTEMA ESCOLAR</h4>
-                    <p class="text-secondary">Controle de Horários</p>
-                    <div class="loader-ellipsis">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-<form action="/home" method="post">
-    <!-- Begin page content -->
-    <main class="flex-shrink-0 main has-footer">
-        <!-- Fixed navbar -->       
-        	<header class="header">
-            <div class="row">
-                <div class="ml-auto col-auto align-self-center">
-                    <a href="/pdf/manual.pdf" class="text-white">
-                        Documentação
-                    </a>
-                </div>
-            </div>
-        </header> 
-
-	        <div class="container h-100 text-white">
-	            <div class="row h-100">
-	                <div class="col-12 align-self-center mb-4">
-	                    <div class="row justify-content-center">
-	                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-4">
-	                            <h2 class="font-weight-normal mb-5">Login<br>Sistema Escolar</h2>
-	                            <div class="form-group float-label active">
-	                                <input type="text" name="usuarioVal" class="form-control text-white" value="Usuário">
-	                                <label class="form-control-label text-white">Nome de usuário</label>
-	                            </div>
-	                            <div class="form-group float-label position-relative">
-	                                <input type="password" name="senhaVal" class="form-control text-white ">
-	                                <label class="form-control-label text-white">Senha</label>
-	                            </div>  
-	                        </div>
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="/assets/stylesheets/skins/default.css" />
+		
+		<!-- Loading -->
+		<link rel="stylesheet" href="/assets/vendor/loading/loading.css" />
+		
+		
+		<!-- Head Libs -->
+		<script src="/assets/vendor/modernizr/modernizr.js"></script>
+	</head>
+	<body>
+	
+	    <!-- screen loader -->
+	    <div class="load_container-fluid h-100 loader-display">
+	        <div class="load_row h-100">
+	            <div class="align-self-center load_col">
+	                <div class="logo-loading">
+	                    <div class="icon icon-100 load_mb-4">
+	                        <img src="assets/images/logo.png" alt="" class="load_w-100">
+	                    </div>
+	                    <h4 class="text-default"></h4>
+	                    <div class="loader-ellipsis">
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
+	                        <div></div>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-
-    </main>
-
-    <!-- footer-->
-    <div class="footer no-bg-shadow py-3">
-        <div class="row justify-content-center">
-            <div class="col">
-                <input type="submit" class="btn btn-default rounded btn-block" value="Login" />
-            </div>
-        </div>
-    </div>
-</form>
-
-    <!-- Required jquery and libraries -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- cookie js -->
-    <script src="/js/jquery.cookie.js"></script>
-
-    <!-- Swiper slider  js-->
-    <script src="/vendor/swiper/js/swiper.min.js"></script>
-
-    <!-- Customized jquery file  -->
-    <script src="/js/main.js"></script>
-    <script src="/js/color-scheme-demo.js"></script>
-
-
-    <!-- page level custom script -->
-    <script src="/js/app.js"></script>
+	    </div>
     
-</body>
+		<!-- start: page -->
+		<section class="body-sign">
+			<div class="center-sign">
+				<a class="logo pull-left">
+					<img src="/assets/images/logo.png" height="54px" alt="Porto Admin" />
+				</a>
+				<div class="panel panel-sign">
+					<div class="panel-title-sign mt-xl text-right">
+						<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i> Login</h2>
+					</div>
+					<div class="panel-body">
+						<form action="/home" method="post" accept-charset="utf-8">
+							<div class="form-group mb-lg">
+								<label>Usuário</label>
+								<div class="input-group input-group-icon">
+									<input name="usuarioVal" type="text" class="form-control input-lg" required="required" />
+									<span class="input-group-addon">
+										<span class="icon icon-lg">
+											<i class="fa fa-user"></i>
+										</span>
+									</span>
+								</div>
+							</div>
 
+							<div class="form-group mb-lg">
+								<div class="clearfix">
+									<label class="pull-left">Senha</label>
+								</div>
+								<div class="input-group input-group-icon">
+									<input name="senhaVal" type="password" class="form-control input-lg" required="required" />
+									<span class="input-group-addon">
+										<span class="icon icon-lg">
+											<i class="fa fa-lock"></i>
+										</span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-12 text-right">
+									<button type="submit" class="btn btn-primary hidden-xs">Entrar</button>
+									<button type="submit" class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Entrar</button>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+				<p class="text-center text-muted mt-md mb-md">&copy; Copyright 2021. All Rights Reserved.</p>
+			</div>
+		</section>
+		<!-- end: page -->
+
+		<!-- Vendor -->
+		<script src="/assets/vendor/jquery/jquery.js"></script>
+		<script src="/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="/assets/vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="/assets/vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+		
+		<!-- Theme Base, Components and Settings -->
+		<script src="/assets/javascripts/theme.js"></script>
+		
+		<!-- Theme Custom -->
+		<script src="/assets/javascripts/theme.custom.js"></script>
+		
+		<!-- Theme Initialization Files -->
+		<script src="/assets/javascripts/theme.init.js"></script>
+		
+		<!-- Tela loading -->
+		<script src="/assets/vendor/loading/main.js"></script>
+
+	</body>
 </html>

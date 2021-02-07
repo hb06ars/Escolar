@@ -11,57 +11,76 @@
 <!--  EDITAR PERFIL -->
 <script>
 function modalUploadExcel(tabela){
-	if(tabela == 'alunos'){
+	if(tabela == 'funcionarios' || tabela == 'clientes'){
 		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
-		+"<td>login</td>"
-		+"<td>senha</td>"
-		+"<td>ativo</td>"
-		+"<td>nome</td>"
-		+"<td>email</td>"
-		+"<td>ra</td>"
-		+"<td>rg</td>"
-		+"<td>cpf</td>"
-		+"<td>dataNascimento</td>"
-		+"<td>serie</td>"
-		+"<td>turma</td>"
-		+"<td>telefone</td>"
-		+"<td>endereco</td>"
-		+"<td>cep</td>"
-		+"<td>bairro</td>"
-		+"<td>cidade</td>"
-		+"<td>estado</td>"
-		+"<td>responsavel</td>"
-		+"<td>cpfResponsavel</td>"
-		+"<td>suspensao</td>"
-		+"<td>perfil</td>"
+		+"<td>Login</td>"
+		+"<td>Nome</td>"
+		+"<td>Perfil</td>"
+		+"<td>Código</td>"
+		+"<td>Email</td>"
+		+"</tr>"
+		+"<tr>"
+		+"<td>jhsb123</td>"
+		+"<td>José</td>"
+		+"<td>admin</td>"
+		+"<td>555</td>"
+		+"<td>jose@email.com</td>"
 		+"</table>";	
 	}
-
-	if(tabela == 'funcionarios'){
+	if(tabela == 'perfis'){
 		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
-		+"<td>nome</td>"
-		+"<td>cargo</td>"
-		+"<td>perfil</td>"
-		+"<td>login</td>"
-		+"<td>senha</td>"
-		+"<td>telefone</td>"
-		+"<td>ativo</td>"
-		+"<td>email</td>"
-		+"</table>";	
+		+"<td>Código</td>"
+		+"<td>Descrição</td>"
+		+"<td>Permissão</td>"
+		+"</tr>"
+		+"<tr>"
+		+"<td>123</td>"
+		+"<td>Admin</td>"
+		+"<td>admin</td>"
+		+"</table>";
 	}
-
-	if(tabela == 'cadHorarios'){
+	if(tabela == 'produtos'){
 		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
-		+"<td>Dia</td>"
-		+"<td>Período</td>"
-		+"<td>Horário</td>"
-		+"<td>Sala</td>"
-		+"<td>Turma</td>"
-		+"<td>Série</td>"
-		+"<td>Disciplina</td>"
-		+"<td>Login</td>";
+		+"<td>Codigo</td>"
+		+"<td>Ean</td>"
+		+"<td>Descricao</td>"
+		+"<td>Preco</td>"
+		+"<td>Categoria</td>"
+		+"<td>PrecoPromocional</td>"
+		+"<td>Estoque</td>"
+		+"<td>Fornecedor</td>"
+		+"<td>Marca</td>"
+		+"<td>Peso</td>"
+		+"<td>TipoPeso</td>"
+		+"<td>Unidades</td>"
+		+"<td>ImgPath</td>"
+		+"</tr>"
+		+"<tr>"
+		+"<td>123</td>"
+		+"<td>789515155156</td>"
+		+"<td>Achocolatado XYZ</td>"
+		+"<td>10.25</td>"
+		+"<td>Salgados</td>"
+		+"<td>1.25</td>"
+		+"<td>10</td>"
+		+"<td>Empresa XYZ</td>"
+		+"<td>XYZ</td>"
+		+"<td>100</td>"
+		+"<td>g</td>"
+		+"<td>1</td>"
+		+"<td>http:\\asasdasdasd.png</td>"
+		+"</table>";
 	}
-	
+	if(tabela == 'categorias'){
+		document.getElementById("modelo").innerHTML = "<table class='table table-striped table-bordered table-sm'>"+"<tr>"
+		+"<td>Código</td>"
+		+"<td>Descrição</td>"
+		+"</tr>"
+		+"<tr>"
+		+"<td>123</td>"
+		+"<td>Salgados</td>"
+		+"</table>";
+	}
 	document.getElementById("tabelaUsada").value = tabela;
 	$("#modalUploadExcel").modal().show();
 }

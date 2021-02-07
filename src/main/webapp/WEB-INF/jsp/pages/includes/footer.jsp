@@ -1,114 +1,69 @@
 <!-- footer-->
-    <div id="dataHoje" class="text-light" align="center"></div>
-    
 
-
-    <!-- color settings style switcher -->
-    <div class="color-picker">
-        <div class="row">
-            <div class="col text-left">
-                <div class="selectoption" style="display:none">
-                    <input type="checkbox" id="darklayout" name="darkmode">
-                    <label for="darklayout">Dark</label>
-                </div>
-                <div class="selectoption mb-0">
-                    <input type="checkbox" id="rtllayout" name="layoutrtl">
-                    <label for="rtllayout">RTL</label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-link text-secondary btn-round colorsettings2"><span class="material-icons">close</span></button>
-            </div>
-        </div>
-
-        <hr class="mt-2">
-        <div class="colorselect">
-            <input type="radio" id="templatecolor1" name="sidebarcolorselect">
-            <label for="templatecolor1" class="bg-dark-blue" data-title="dark-blue"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor2" name="sidebarcolorselect">
-            <label for="templatecolor2" class="bg-dark-purple" data-title="dark-purple"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor4" name="sidebarcolorselect">
-            <label for="templatecolor4" class="bg-dark-gray" data-title="dark-gray"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor6" name="sidebarcolorselect">
-            <label for="templatecolor6" class="bg-dark-brown" data-title="dark-brown"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor3" name="sidebarcolorselect">
-            <label for="templatecolor3" class="bg-maroon" data-title="maroon"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor5" name="sidebarcolorselect">
-            <label for="templatecolor5" class="bg-dark-pink" data-title="dark-pink"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor8" name="sidebarcolorselect">
-            <label for="templatecolor8" class="bg-red" data-title="red"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor13" name="sidebarcolorselect">
-            <label for="templatecolor13" class="bg-amber" data-title="amber"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor7" name="sidebarcolorselect">
-            <label for="templatecolor7" class="bg-dark-green" data-title="dark-green"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor11" name="sidebarcolorselect">
-            <label for="templatecolor11" class="bg-teal" data-title="teal"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor12" name="sidebarcolorselect">
-            <label for="templatecolor12" class="bg-skyblue" data-title="skyblue"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor10" name="sidebarcolorselect">
-            <label for="templatecolor10" class="bg-blue" data-title="blue"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor9" name="sidebarcolorselect">
-            <label for="templatecolor9" class="bg-purple" data-title="purple"></label>
-        </div>
-        <div class="colorselect">
-            <input type="radio" id="templatecolor14" name="sidebarcolorselect">
-            <label for="templatecolor14" class="bg-gray" data-title="gray"></label>
-        </div>
-    </div>
-
-
-
-
-    <!-- Required jquery and libraries -->
-    <script src="/js/jquery-3.3.1.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- cookie js -->
-    <script src="/js/jquery.cookie.js"></script>
-
-    <!-- Swiper slider  js-->
-    <script src="/vendor/swiper/js/swiper.min.js"></script>
-
-    <!-- Customized jquery file  -->
-    <script src="/js/main.js"></script>
-    <script src="/js/color-scheme-demo.js"></script>
-
-    <!-- PWA app service registration and works -->
-    <script src="/js/pwa-services.js"></script>
-
-    <!-- page level custom script -->
-    <script src="/js/app.js"></script>
-</body>
-
-
-
-
-
-
-
+   			<aside id="sidebar-right" class="sidebar-right">
+				<div class="nano">
+					<div class="nano-content">
+						<div class="sidebar-right-wrapper">
+			
+							<div class="sidebar-widget widget-calendar">
+								<h6>Calendário</h6>
+								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</aside>
+		</section>
+		
+		<!-- Vendor -->
+		<script src="/assets/vendor/jquery/jquery.js"></script>
+		<script src="/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+		<script src="/assets/vendor/bootstrap/js/bootstrap.js"></script>
+		<script src="/assets/vendor/nanoscroller/nanoscroller.js"></script>
+		<script src="/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+		<script src="/assets/vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="/assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+		
+		<script src="assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
+		<script src="assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
+		<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
+		<!-- Validação -->
+		<script src="assets/vendor/jquery-validation/jquery.validate.js"></script>
+		
+		<script src="/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+		<script src="/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+		<script src="/assets/vendor/jquery-appear/jquery.appear.js"></script>
+		<script src="/assets/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+		<script src="/assets/vendor/jquery-easypiechart/jquery.easypiechart.js"></script>
+		<script src="/assets/vendor/flot/jquery.flot.js"></script>
+		<script src="/assets/vendor/flot-tooltip/jquery.flot.tooltip.js"></script>
+		<script src="/assets/vendor/flot/jquery.flot.pie.js"></script>
+		<script src="/assets/vendor/flot/jquery.flot.categories.js"></script>
+		<script src="/assets/vendor/flot/jquery.flot.resize.js"></script>
+		<script src="/assets/vendor/jquery-sparkline/jquery.sparkline.js"></script>
+		<script src="/assets/vendor/raphael/raphael.js"></script>
+		<script src="/assets/vendor/morris/morris.js"></script>
+		<script src="/assets/vendor/gauge/gauge.js"></script>
+		<script src="/assets/vendor/snap-svg/snap.svg.js"></script>
+		<script src="/assets/vendor/liquid-meter/liquid.meter.js"></script>
+		<!-- Theme Base, Components and Settings -->
+		<script src="/assets/javascripts/theme.js"></script>
+		<!-- Theme Custom -->
+		<script src="/assets/javascripts/theme.custom.js"></script>
+		<!-- Theme Initialization Files -->
+		<script src="/assets/javascripts/theme.init.js"></script>
+		<!-- Examples -->
+		<script src="/assets/javascripts/dashboard/examples.dashboard.js"></script>
+		<!-- Tela loading -->
+		<script src="/assets/vendor/loading/main.js"></script>
+		
+		<!-- Tables -->
+		<script src="/assets/javascripts/tables/examples.datatables.default.js"></script>
+		<script src="/assets/javascripts/tables/examples.datatables.row.with.details.js"></script>
+		<script src="/assets/javascripts/tables/examples.datatables.tabletools.js"></script>
+		
+		<!-- Validations -->
+		<script src="/assets/javascripts/forms/examples.validation.js"></script>
+		
+	</body>
 </html>

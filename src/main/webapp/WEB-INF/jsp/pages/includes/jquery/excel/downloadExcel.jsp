@@ -5,10 +5,11 @@ var tableToExcel = (function() {
     , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
     , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
   return function(table, name) {
-	document.getElementById(table).deleteRow(1); //Não preciso remover pois nao tem filtro que atrapalhe.
+	//document.getElementById(table).deleteRow(1); Não preciso remover pois nao tem filtro que atrapalhe.
+	document.getElementById("btExcel").style.display = "none";
 	if (!table.nodeType) table = document.getElementById(table)
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
-    window.location.href = uri + base64(format(template, ctx));
+    window.location.href = uri + base64(format(template, ctx))
   }
 })()
 </script>

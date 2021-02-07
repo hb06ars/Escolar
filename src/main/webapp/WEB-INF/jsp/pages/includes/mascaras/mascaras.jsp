@@ -16,21 +16,6 @@ function mascaraTel(mascaraTel){
 		mascaraTel.value = mascaraTel.value + '-'; 
 }
 
-function mascaraCpf(cpf){ 
-	if(cpf.value.length == 3)
-		cpf.value = cpf.value + '.'; 
-    if(cpf.value.length == 7)
-    	cpf.value = cpf.value + '.'; 
-	if(cpf.value.length == 11)
-		cpf.value = cpf.value + '-'; 
-}
-
-
-function mascaraPeriodo(num){ 
-	if(num.value.length == 2)
-		num.value = num.value + ':'; 
-}
-
 
 function somenteNumeros(num) {
         var er = /[^0-9)-(//]/;
