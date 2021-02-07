@@ -276,7 +276,7 @@ public class SistemaController {
 			        int ano = cal.get(Calendar.YEAR);
 			        int mes = cal.get(Calendar.MONTH);
 			        mes++;
-			        String strDia = dia+"";
+			        String strDia = contrato_vencimento+"";
 			        String strMes = mes+"";
 			        String strAno = ano+"";
 			        if(dia < 10) strDia = "0"+strDia;
@@ -290,7 +290,7 @@ public class SistemaController {
 						p.setPago(false);
 						p.setValor(contrato_valorDaParcela);
 						//Vencimento
-						p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+contrato_vencimento));
+						p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
 						cal.add(Calendar.MONTH, 1);
 						mes = cal.get(Calendar.MONTH);
 						ano = cal.get(Calendar.YEAR);
@@ -299,7 +299,7 @@ public class SistemaController {
 						strDia = dia+"";
 				        strMes = mes+"";
 				        strAno = ano+"";
-				        if(dia < 10) strDia = "0"+strDia;
+				        if(contrato_vencimento < 10) strDia = "0"+contrato_vencimento;
 				        if(mes < 10) strMes = "0"+strMes;
 				        if(ano < 10) strAno = "0"+strAno;
 				        
