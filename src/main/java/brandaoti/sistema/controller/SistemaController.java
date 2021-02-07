@@ -1,7 +1,13 @@
 package brandaoti.sistema.controller;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import brandaoti.sistema.dao.ContratoDao;
+import brandaoti.sistema.dao.ParcelaDao;
 import brandaoti.sistema.dao.PerfilDao;
 import brandaoti.sistema.dao.PlanoDao;
 import brandaoti.sistema.dao.TreinoDao;
 import brandaoti.sistema.dao.UsuarioDao;
 import brandaoti.sistema.model.Contrato;
+import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
 import brandaoti.sistema.model.Plano;
 import brandaoti.sistema.model.Treino;
@@ -36,6 +45,10 @@ public class SistemaController {
 		private TreinoDao treinoDao;
 		@Autowired
 		private PlanoDao planoDao;
+		@Autowired
+		private ContratoDao contratoDao;
+		@Autowired
+		private ParcelaDao parcelaDao;
 		
 		public static Usuario usuarioSessao;
 		public static String atualizarPagina = null;
@@ -222,7 +235,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/alunos", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView alunos(Usuario aluno, String contrato_nome) throws SQLException {
+		public ModelAndView alunos(Usuario aluno, String contrato_obs, Integer contrato_vencimento, String contrato_inicio, String contrato_fim, Double contrato_totalContrato, Double contrato_sinal, Double contrato_desconto, Double contrato_total, Integer contrato_parcelas, Double contrato_valorDaParcela) throws SQLException, ParseException {
 			paginaAtual = "Alunos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/alunos");
@@ -243,7 +256,62 @@ public class SistemaController {
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
 					
-					System.out.println("Contrato: " + contrato_nome);
+					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+					Date inicioContrato = formato.parse(contrato_inicio);
+					Date fimContrato = formato.parse(contrato_fim);
+					Contrato c = new Contrato();
+					c.setAtivo(true);
+					c.setCliente(usuarioSessao);
+					c.setFim(fimContrato);
+					c.setInicio(inicioContrato);
+					c.setNome(usuarioSessao.getMatricula());
+					c.setObservacoes(contrato_obs);
+					contratoDao.save(c);
+					
+					Date hoje = new Date();
+				    Calendar cal = Calendar.getInstance();
+			        cal.setTime(hoje);
+			        cal.add(Calendar.MONTH, 1);
+			        int dia = cal.get(Calendar.DAY_OF_MONTH);
+			        int ano = cal.get(Calendar.YEAR);
+			        int mes = cal.get(Calendar.MONTH);
+			        mes++;
+			        String strDia = dia+"";
+			        String strMes = mes+"";
+			        String strAno = ano+"";
+			        if(dia < 10) strDia = "0"+strDia;
+			        if(mes < 10) strMes = "0"+strMes;
+			        if(ano < 10) strAno = "0"+strAno;
+			        
+					for(int i = 0 ; i < contrato_parcelas; i++) {
+						Parcela p = new Parcela();
+						p.setContrato(c);
+						p.setIndice((i+1)+"");
+						p.setPago(false);
+						p.setValor(contrato_valorDaParcela);
+						//Vencimento
+						p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+contrato_vencimento));
+						cal.add(Calendar.MONTH, 1);
+						mes = cal.get(Calendar.MONTH);
+						ano = cal.get(Calendar.YEAR);
+						dia = cal.get(Calendar.DAY_OF_MONTH);
+						mes++;
+						strDia = dia+"";
+				        strMes = mes+"";
+				        strAno = ano+"";
+				        if(dia < 10) strDia = "0"+strDia;
+				        if(mes < 10) strMes = "0"+strMes;
+				        if(ano < 10) strAno = "0"+strAno;
+				        
+						parcelaDao.save(p);
+						// contrato_vencimento
+						
+						
+						
+					}
+					
+					
+					
 				}
 			}
 			return modelAndView; //retorna a variavel

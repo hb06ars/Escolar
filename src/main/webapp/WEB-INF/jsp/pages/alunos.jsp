@@ -166,12 +166,20 @@ function calcular(){
 						</div>
 					</div>
 					
-					<div class="col-md-6 form-group">
+					<div class="col-md-3 form-group">
 						<div class="input-group">
 							<span class="input-group-addon">
 								Parcelas
 							</span>
 							<input type="number" name="contrato_parcelas" id="contrato_parcelas" onkeyup="calcular()" placeholder="1" min="1" value="1" class="form-control" />
+						</div>
+					</div>
+					<div class="col-md-3 form-group">
+						<div class="input-group">
+							<span class="input-group-addon">
+								Vencimento
+							</span>
+							<input type="number" name="contrato_vencimento" id="contrato_vencimento" placeholder="1" min="1" max="31" value="1" class="form-control" />
 						</div>
 					</div>
 					<div class="col-md-6 form-group">
