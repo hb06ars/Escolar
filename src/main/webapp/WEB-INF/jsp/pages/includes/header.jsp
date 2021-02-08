@@ -242,7 +242,7 @@
 					<c:if test="${erro != null}">
 						<div class="alert alert-danger">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-							<strong>Erro!</strong><br>Ocorreu um erro ao salvar o usuário. <br> Favor comunicar a equipe de desenvolvimento.<br>
+							<strong>Erro!</strong><br>${erro }
 						</div>
 					</c:if>
 					<!--  FIM ERRO  -->

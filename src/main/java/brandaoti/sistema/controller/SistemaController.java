@@ -163,6 +163,7 @@ public class SistemaController {
 		
 		@RequestMapping(value = "/deletando", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
 		public ModelAndView deletando(String tabela,Integer id) { //Função e alguns valores que recebe...
+			paginaAtual = "Alunos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
@@ -173,7 +174,6 @@ public class SistemaController {
 			if(logado) {
 				//Caso esteja logado.
 				if(tabela.equals("usuario")) {
-					atualizarPagina = "/alunos";
 					paginaAtual = "Alunos";
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
@@ -271,8 +271,7 @@ public class SistemaController {
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
 			
 			List<Plano> planos = planoDao.findAll();
-			modelAndView.addObject("planos", planos);
-			
+			modelAndView.addObject("planos", planos);			
 			modelAndView.addObject("usuario", usuarioSessao);
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
@@ -371,6 +370,8 @@ public class SistemaController {
 					a.setEstado(aluno.getEstado());
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
+				} else if(aluno.getMatricula() != null && (acao.equals("salvar")) && repetido) {
+					modelAndView.addObject("erro", "Já existe este CPF / Matrícula.");
 				}
 				List<Usuario> usuarios = usuarioDao.buscarAlunos();
 				modelAndView.addObject("usuarios", usuarios);
