@@ -36,7 +36,24 @@ public class Contrato {
 	
 	@Column
 	private String situacao = "Regular";
-
+	
+	@Column
+	private Double valor = 0.0;
+	@Column
+	private Integer vencimento = 1;
+	@Column
+	private Double valorBruto = 0.0;
+	@Column
+	private Double sinal = 0.0;
+	@Column
+	private Double desconto = 0.0;
+	@Column
+	private Integer parcelas = 1;
+	@Column
+	private Double valorDaParcela = 0.0;
+	
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +117,63 @@ public class Contrato {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	public Integer getVencimento() {
+		return vencimento;
+	}
+
+	public void setVencimento(Integer vencimento) {
+		this.vencimento = vencimento;
+	}
+
+	public Double getValorBruto() {
+		return valorBruto;
+	}
+
+	public void setValorBruto(Double valorBruto) {
+		this.valorBruto = valorBruto;
+	}
+
+	public Double getSinal() {
+		return sinal;
+	}
+
+	public void setSinal(Double sinal) {
+		this.sinal = sinal;
+	}
+
+	public Double getDesconto() {
+		return desconto;
+	}
+
+	public void setDesconto(Double desconto) {
+		this.desconto = desconto;
+	}
+
+	public Integer getParcelas() {
+		return parcelas;
+	}
+
+	public void setParcelas(Integer parcelas) {
+		this.parcelas = parcelas;
+	}
+
+	public Double getValorDaParcela() {
+		return valorDaParcela;
+	}
+
+	public void setValorDaParcela(Double valorDaParcela) {
+		this.valorDaParcela = valorDaParcela;
+	}
+	
 	
 	
 	

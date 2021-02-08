@@ -21,6 +21,51 @@ function calcular(){
 	document.getElementById("contrato_valorDaParcela").value = (valorFinal / parcelas).toFixed([2]);
 	document.getElementById("contrato_total").value = valorFinal.toFixed([2]);
 }
+
+
+
+function editar(id){
+	document.getElementById("atualizar").style.display = "block";
+	document.getElementById("salvar").style.display = "none";
+
+	<c:forEach items="${usuarios }" var="u" varStatus="s">
+		if(${u.id} == id){
+			document.getElementById("matricula").value = '${u.matricula}';
+			document.getElementById("nome").value = '${u.nome}';
+			document.getElementById("cpf").value = '${u.cpf}';
+			document.getElementById("dataNascimento").value = '${u.dataNascimento}';
+			document.getElementById("telefone").value = '${u.telefone}';
+			document.getElementById("celular").value = '${u.celular}';
+			document.getElementById("email").value = '${u.email}';
+			document.getElementById("endereco").value = '${u.endereco}';
+			document.getElementById("bairro").value = '${u.bairro}';
+			document.getElementById("cidade").value = '${u.cidade}';
+			document.getElementById("estado").value = '${u.estado}';
+			document.getElementById("cep").value = '${u.cep}';
+			document.getElementById("pathImagem").value = '${u.pathImagem}';
+			<c:forEach items="${u.contrato }" var="c">
+				<c:if test="${c.ativo == true}">
+					document.getElementById("contrato_obs").value = '${c.observacoes}';
+					document.getElementById("contrato_inicio").value = '${c.inicio}';
+					document.getElementById("contrato_fim").value = '${c.fim}';
+					document.getElementById("contrato_totalContrato").value = '${c.valorBruto}';
+					document.getElementById("contrato_obs").value = '${c.observacoes}';
+					document.getElementById("contrato_total").value = '${c.valor}';
+					document.getElementById("contrato_sinal").value = '${c.sinal}';
+					document.getElementById("contrato_desconto").value = '${c.desconto}';
+					document.getElementById("contrato_valorDaParcela").value = '${c.valorDaParcela}';
+					document.getElementById("contrato_vencimento").value = '${c.vencimento}';
+					document.getElementById("contrato_parcelas").value = '${c.parcelas}';
+				</c:if>
+			</c:forEach>
+			
+		}
+	</c:forEach>
+
+		
+}
+
+
 </script>
 
 <c:if test="${erro != null}">
@@ -42,26 +87,26 @@ function calcular(){
 						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
 						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
 					</div>
-					<h2 class="panel-title">Cadastrar novo aluno</h2>
+					<h2 class="panel-title" id="">Cadastrar novo aluno</h2>
 				</div>
 			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-2 form-group">
-						<input type="number" placeholder="Matrícula" name="matricula" class="form-control" required>
+						<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" required>
 					</div>
 					<div class="col-md-5 form-group">
-						<input type="text" placeholder="Nome" name="nome" class="form-control" required>
+						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="CPF" name="cpf" maxlength="14" minlength="14" class="form-control" required>
+						<input type="text" placeholder="CPF" name="cpf" id="cpf" maxlength="14" minlength="14" class="form-control" required>
 					</div>
 					<div class="col-md-3 form-group">
 						<div class="input-group">
 							<span class="input-group-addon">
 								<i class="fa fa-birthday-cake"></i>
 							</span>
-							<input type="date" name="dataNascimento" class="form-control" />
+							<input type="date" name="dataNascimento" id="dataNascimento" class="form-control" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -69,7 +114,7 @@ function calcular(){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="number" name="telefone" name="telefone" class="form-control" placeholder="Telefone" />
+							<input type="number" name="telefone" id="telefone" class="form-control" placeholder="Telefone" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -77,7 +122,7 @@ function calcular(){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="number" name="celular" name="celular" class="form-control" placeholder="Celular" />
+							<input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -85,26 +130,26 @@ function calcular(){
 							<span class="input-group-addon">
 								<i class="fa fa-envelope"></i>
 							</span>
-							<input type="email" name="email" class="form-control" placeholder="eg.: email@email.com" />
+							<input type="email" name="email" id="email" class="form-control" placeholder="eg.: email@email.com" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
-						<input type="text" placeholder="Endereço" name="endereco" class="form-control">
+						<input type="text" placeholder="Endereço" id="endereco" name="endereco" class="form-control">
 					</div>
 					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Bairro" name="bairro" class="form-control">
+						<input type="text" placeholder="Bairro" id="bairro" name="bairro" class="form-control">
 					</div>
 					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Cidade" name="cidade" class="form-control">
+						<input type="text" placeholder="Cidade" id="cidade" name="cidade" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="Estado" maxlength="2" minlength="2" name="estado" class="form-control">
+						<input type="text" placeholder="Estado" id="estado" maxlength="2" minlength="2" name="estado" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="CEP" maxlength="9" minlength="9" name="cep" class="form-control">
+						<input type="text" placeholder="CEP" id="cep" maxlength="9" minlength="9" name="cep" class="form-control">
 					</div>
 					<div class="col-md-10 form-group">
-						<input type="text" placeholder="Link da Foto" name="pathImagem" class="form-control">
+						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">
 					</div>
 					
 					
@@ -117,7 +162,7 @@ function calcular(){
 						</select>
 					</div>
 					<div class="col-md-8 form-group">
-						<input type="text" placeholder="Observações no Contrato" name="contrato_obs" class="form-control">
+						<input type="text" placeholder="Observações no Contrato"  id="contrato_obs" name="contrato_obs" class="form-control">
 					</div>
 					
 					<div class="col-md-4 form-group">
@@ -125,7 +170,7 @@ function calcular(){
 							<span class="input-group-addon">
 								Início Contrato
 							</span>
-							<input type="date" name="contrato_inicio" class="form-control" />
+							<input type="date" name="contrato_inicio"   id="contrato_inicio" class="form-control" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -133,7 +178,7 @@ function calcular(){
 							<span class="input-group-addon">
 								Fim Contrato
 							</span>
-							<input type="date" name="contrato_fim" class="form-control" />
+							<input type="date" name="contrato_fim" id="contrato_fim" class="form-control" />
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -194,8 +239,11 @@ function calcular(){
 							<input type="text" name="contrato_valorDaParcela" id="contrato_valorDaParcela" onkeyup="calcular()" value="0" class="form-control" />
 						</div>
 					</div>
-					<div class="col-md-2 form-group">
+					<div class="col-md-2 form-group" id="salvar">
 						<input type="submit" class="btn btn-primary" value="Salvar">
+					</div>
+					<div class="col-md-1 form-group" id="atualizar" style="display:none">
+						<input type="submit" class="btn btn-primary" value="Atualizar">
 					</div>
 				</div>
 			</div>

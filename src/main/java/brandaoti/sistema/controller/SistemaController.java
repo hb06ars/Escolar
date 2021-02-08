@@ -285,6 +285,14 @@ public class SistemaController {
 						c.setInicio(inicioContrato);
 						c.setNome(usuarioSessao.getMatricula());
 						c.setObservacoes(contrato_obs);
+						c.setValor(contrato_total);
+						c.setValorBruto(contrato_totalContrato);
+						c.setSinal(contrato_sinal);
+						c.setDesconto(contrato_desconto);
+						c.setValor(contrato_total);
+						c.setParcelas(contrato_parcelas);
+						c.setValorDaParcela(contrato_valorDaParcela);
+						c.setVencimento(contrato_vencimento);
 						contratoDao.save(c);
 						
 						Date hoje = new Date();
