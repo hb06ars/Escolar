@@ -163,7 +163,6 @@ public class SistemaController {
 		
 		@RequestMapping(value = "/deletando", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
 		public ModelAndView deletando(String tabela,Integer id) { //Função e alguns valores que recebe...
-			paginaAtual = "aluno";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
@@ -174,6 +173,8 @@ public class SistemaController {
 			if(logado) {
 				//Caso esteja logado.
 				if(tabela.equals("usuario")) {
+					atualizarPagina = "/alunos";
+					paginaAtual = "Alunos";
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarAlunos();
