@@ -22,4 +22,7 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	@Query(" select u from Usuario u where 1=1 and u.perfil.aluno = TRUE ")
 	List<Usuario> buscarAlunos();
 	
+	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) ")
+	Usuario buscarMatricula(@Param("matricula") String matricula);
+	
 }

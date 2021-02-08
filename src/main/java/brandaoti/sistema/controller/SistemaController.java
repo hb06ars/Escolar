@@ -278,6 +278,7 @@ public class SistemaController {
 			if(logado) {
 				if(aluno.getMatricula() != null && acao.equals("salvar")) {
 					try {
+						atualizarPagina = "/alunos";
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
@@ -320,7 +321,6 @@ public class SistemaController {
 							p.setPago(false);
 							p.setValor(contrato_valorDaParcela);
 							//Vencimento
-							p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
 							cal.add(Calendar.MONTH, 1);
 							mes = cal.get(Calendar.MONTH);
 							ano = cal.get(Calendar.YEAR);
@@ -332,6 +332,8 @@ public class SistemaController {
 					        if(contrato_vencimento < 10) strDia = "0"+contrato_vencimento;
 					        if(mes < 10) strMes = "0"+strMes;
 					        if(ano < 10) strAno = "0"+strAno;
+					        p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
+							
 					    	parcelaDao.save(p);
 						
 					    	List<Contrato> contratos = new ArrayList<>();
@@ -343,6 +345,7 @@ public class SistemaController {
 							a.setContrato(contratos);
 							usuarioDao.save(a);
 						}
+						modelAndView.addObject("atualizarPagina", atualizarPagina);
 					} catch(Exception e) {
 						modelAndView.addObject("erro", e);
 					}

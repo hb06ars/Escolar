@@ -27,6 +27,7 @@ function acao(valor){
 }
 
 function editar(id){
+	document.getElementById("acao").value = 'atualizar';
 	document.getElementById("atualizar").style.display = "block";
 	document.getElementById("salvar").style.display = "none";
 	var inicio = 'x';
@@ -57,8 +58,8 @@ function editar(id){
 					document.getElementById("contrato_valorDaParcela").value = '${c.valorDaParcela}';
 					document.getElementById("contrato_vencimento").value = '${c.vencimento}';
 					document.getElementById("contrato_parcelas").value = '${c.parcelas}';
-					inicio = '${c.inicio}'.replace(' 00:00:00.0','')
-					fim = '${c.fim}'.replace(' 00:00:00.0','')
+					inicio = '${c.inicio}'.replace('00:00:00','').replace('.0','').replace(' ','')
+					fim = '${c.fim}'.replace('00:00:00','').replace('.0','').replace(' ','')
 					document.getElementById("contrato_inicio").value = inicio;
 					document.getElementById("contrato_fim").value = fim;
 				</c:if>
@@ -73,13 +74,7 @@ function editar(id){
 
 </script>
 
-<c:if test="${erro != null}">
-	<div class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<strong>Erro!</strong><br>Ocorreu um erro ao salvar o usuário. <br> Enviar o seguinte código de erro ao desenvolvedor:<br>
-		${erro }
-	</div>
-</c:if>
+
 
 <!-- start: page -->
 <div class="row">
@@ -245,10 +240,10 @@ function editar(id){
 						</div>
 					</div>
 					<div class="col-md-2 form-group" id="salvar">
-						<input type="submit" class="btn btn-primary" onclick="acao(salvar)" value="Salvar">
+						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Salvar">
 					</div>
 					<div class="col-md-1 form-group" id="atualizar" style="display:none">
-						<input type="submit" class="btn btn-primary" onclick="acao(atualizar)" value="Atualizar">
+						<input type="submit" class="btn btn-primary" onclick="acao('atualizar')" value="Atualizar">
 					</div>
 					<input type="hidden" id="acao" name="acao" value="salvar">
 				</div>

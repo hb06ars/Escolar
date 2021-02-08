@@ -232,4 +232,20 @@
 					<jsp:include page="modal.jsp" />
 					
 					
+					<!--  ATUALIZAR PÁGINA  -->
+					<c:if test="${atualizarPagina != null }">
+						<script>window.location.href='${atualizarPagina}';</script>
+					</c:if>
+					<!--  FIM ATUALIZAR PÁGINA  -->
+					
+					<!--  ERRO  -->
+					<c:if test="${erro != null}">
+						<div class="alert alert-danger">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<strong>Erro!</strong><br>Ocorreu um erro ao salvar o usuário. <br> Favor comunicar a equipe de desenvolvimento.<br>
+							${erro }
+						</div>
+					</c:if>
+					<!--  FIM ERRO  -->
+					
 					
