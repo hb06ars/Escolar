@@ -275,8 +275,14 @@ public class SistemaController {
 			modelAndView.addObject("usuario", usuarioSessao);
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			
+			
 			if(logado) {
-				if(aluno.getMatricula() != null && (acao.equals("salvar") || acao.equals("atualizar"))) {
+				Boolean repetido = false;
+				if(usuarioDao.buscarAlunosRepetidos(aluno.getMatricula(), aluno.getCpf()).size() > 0) {
+					repetido = true;
+				}
+				if(aluno.getMatricula() != null && (acao.equals("salvar")) && !repetido) {
 					try {
 						atualizarPagina = "/alunos";
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
@@ -287,10 +293,9 @@ public class SistemaController {
 							c = contratoDao.buscarCliente(aluno.getMatricula()).get(0);
 						}
 						c.setAtivo(true);
-						c.setCliente(usuarioSessao);
 						c.setFim(fimContrato);
 						c.setInicio(inicioContrato);
-						c.setNome(usuarioSessao.getMatricula());
+						c.setNome(aluno.getMatricula());
 						c.setObservacoes(contrato_obs);
 						c.setValor(contrato_total);
 						c.setValorBruto(contrato_totalContrato);
@@ -352,6 +357,19 @@ public class SistemaController {
 					} catch(Exception e) {
 						modelAndView.addObject("erro", e);
 					}
+				} else if (aluno.getMatricula() != null && (acao.equals("atualizar")) && repetido){
+					Usuario a = usuarioDao.buscarMatricula(aluno.getMatricula());
+					a.setNome(aluno.getNome());
+					a.setDataNascimento(aluno.getDataNascimento());
+					a.setTelefone(aluno.getTelefone());
+					a.setCelular(aluno.getCelular());
+					a.setEndereco(aluno.getEndereco());
+					a.setCep(aluno.getCep());
+					a.setBairro(aluno.getBairro());
+					a.setCidade(aluno.getCidade());
+					a.setEstado(aluno.getEstado());
+					a.setPerfil(perfilDao.buscarAluno().get(0));
+					usuarioDao.save(a);
 				}
 				List<Usuario> usuarios = usuarioDao.buscarAlunos();
 				modelAndView.addObject("usuarios", usuarios);

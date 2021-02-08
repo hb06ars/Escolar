@@ -87,7 +87,7 @@ function editar(id){
 						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
 						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
 					</div>
-					<h2 class="panel-title" id="">Cadastrar novo aluno</h2>
+					<h2 class="panel-title" id="">Cadastrar novo aluno </h2>
 				</div>
 			</div>
 			<div class="panel-body">
