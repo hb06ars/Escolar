@@ -176,7 +176,7 @@ public class SistemaController {
 				if(tabela.equals("usuario")) {
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
-					List<Usuario> usuarios = usuarioDao.findAll();
+					List<Usuario> usuarios = usuarioDao.buscarAlunos();
 					modelAndView.addObject("usuarios", usuarios);
 				}
 			}
@@ -259,7 +259,8 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/alunos", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView alunos(Usuario aluno, String contrato_obs, Integer contrato_vencimento, String contrato_inicio, String contrato_fim, Double contrato_totalContrato, Double contrato_sinal, Double contrato_desconto, Double contrato_total, Integer contrato_parcelas, Double contrato_valorDaParcela) throws SQLException, ParseException {
+		public ModelAndView alunos(Usuario aluno, String acao, String contrato_obs, Integer contrato_vencimento, String contrato_inicio, String contrato_fim, Double contrato_totalContrato, Double contrato_sinal, Double contrato_desconto, Double contrato_total, Integer contrato_parcelas, Double contrato_valorDaParcela) throws SQLException, ParseException {
+			System.out.println("acao: "+acao);
 			paginaAtual = "Alunos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/alunos");
@@ -273,7 +274,7 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				if(aluno.getMatricula() != null) {
+				if(aluno.getMatricula() != null && acao.equals("salvar")) {
 					try {
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);

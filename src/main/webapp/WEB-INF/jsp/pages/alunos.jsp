@@ -22,7 +22,9 @@ function calcular(){
 	document.getElementById("contrato_total").value = valorFinal.toFixed([2]);
 }
 
-
+function acao(valor){
+	document.getElementById("acao").value = valor;
+}
 
 function editar(id){
 	document.getElementById("atualizar").style.display = "block";
@@ -243,11 +245,12 @@ function editar(id){
 						</div>
 					</div>
 					<div class="col-md-2 form-group" id="salvar">
-						<input type="submit" class="btn btn-primary" value="Salvar">
+						<input type="submit" class="btn btn-primary" onclick="acao(salvar)" value="Salvar">
 					</div>
 					<div class="col-md-1 form-group" id="atualizar" style="display:none">
-						<input type="submit" class="btn btn-primary" value="Atualizar">
+						<input type="submit" class="btn btn-primary" onclick="acao(atualizar)" value="Atualizar">
 					</div>
+					<input type="hidden" id="acao" name="acao" value="salvar">
 				</div>
 			</div>
 		</div>
