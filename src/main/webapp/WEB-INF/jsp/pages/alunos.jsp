@@ -27,7 +27,8 @@ function calcular(){
 function editar(id){
 	document.getElementById("atualizar").style.display = "block";
 	document.getElementById("salvar").style.display = "none";
-
+	var inicio = 'x';
+	var fim = 'x';
 	<c:forEach items="${usuarios }" var="u" varStatus="s">
 		if(${u.id} == id){
 			document.getElementById("matricula").value = '${u.matricula}';
@@ -43,11 +44,9 @@ function editar(id){
 			document.getElementById("estado").value = '${u.estado}';
 			document.getElementById("cep").value = '${u.cep}';
 			document.getElementById("pathImagem").value = '${u.pathImagem}';
+			document.getElementById("plano").value = '${u.plano.id}';
 			<c:forEach items="${u.contrato }" var="c">
 				<c:if test="${c.ativo == true}">
-					document.getElementById("contrato_obs").value = '${c.observacoes}';
-					document.getElementById("contrato_inicio").value = '${c.inicio}';
-					document.getElementById("contrato_fim").value = '${c.fim}';
 					document.getElementById("contrato_totalContrato").value = '${c.valorBruto}';
 					document.getElementById("contrato_obs").value = '${c.observacoes}';
 					document.getElementById("contrato_total").value = '${c.valor}';
@@ -56,6 +55,10 @@ function editar(id){
 					document.getElementById("contrato_valorDaParcela").value = '${c.valorDaParcela}';
 					document.getElementById("contrato_vencimento").value = '${c.vencimento}';
 					document.getElementById("contrato_parcelas").value = '${c.parcelas}';
+					inicio = '${c.inicio}'.replace(' 00:00:00.0','')
+					fim = '${c.fim}'.replace(' 00:00:00.0','')
+					document.getElementById("contrato_inicio").value = inicio;
+					document.getElementById("contrato_fim").value = fim;
 				</c:if>
 			</c:forEach>
 			
