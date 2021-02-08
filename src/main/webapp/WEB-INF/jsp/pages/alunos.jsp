@@ -294,8 +294,10 @@ function editar(id){
 													<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
 												</td>
 												<td>${u.matricula }</td>
+												<c:set var = "index" value = "0"/>
 												<c:forEach items="${u.contrato }" var="c">
 													<c:if test="${c.ativo }">
+														<c:set var = "index" value = "1"/>
 														<c:if test="${c.situacao == 'Regular'}">
 															<td style="color:green">${c.situacao }</td>
 														</c:if>
@@ -307,6 +309,12 @@ function editar(id){
 														</td>
 													</c:if>
 												</c:forEach>
+												<c:if test="${index < 1}">
+													<td style="color:blue">Renovar</td>
+												</c:if>
+												<c:if test="${index < 1}">
+													<td style="color:blue">Renovar</td>
+												</c:if>
 												<td>${u.nome }</td>
 												<td>${u.telefone }</td>
 												<td>${u.celular }</td>

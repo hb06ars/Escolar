@@ -1,6 +1,7 @@
 package brandaoti.sistema.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -82,6 +83,9 @@ public class Usuario {
 	
 	@Column
 	private String pathImagem = "/assets/images/imagemUsuario.png";
+	
+	@Column
+	private Date dataDeCadastro = new Date();
 
 	public Integer getId() {
 		return id;
@@ -249,6 +253,14 @@ public class Usuario {
 
 	public void setPathImagem(String pathImagem) {
 		this.pathImagem = pathImagem;
+	}
+
+	public Date getDataDeCadastro() {
+		return dataDeCadastro;
+	}
+
+	public void setDataDeCadastro(Date dataDeCadastro) {
+		this.dataDeCadastro = dataDeCadastro;
 	}
 	
 	

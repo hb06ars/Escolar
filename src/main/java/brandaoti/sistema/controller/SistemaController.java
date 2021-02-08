@@ -370,6 +370,69 @@ public class SistemaController {
 					a.setEstado(aluno.getEstado());
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
+					
+					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0) {
+						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+						Date inicioContrato = formato.parse(contrato_inicio);
+						Date fimContrato = formato.parse(contrato_fim);
+						Contrato c = new Contrato();
+						c.setAtivo(true);
+						c.setFim(fimContrato);
+						c.setInicio(inicioContrato);
+						c.setNome(aluno.getMatricula());
+						c.setObservacoes(contrato_obs);
+						c.setValor(contrato_total);
+						c.setValorBruto(contrato_totalContrato);
+						c.setSinal(contrato_sinal);
+						c.setDesconto(contrato_desconto);
+						c.setValor(contrato_total);
+						c.setParcelas(contrato_parcelas);
+						c.setValorDaParcela(contrato_valorDaParcela);
+						c.setVencimento(contrato_vencimento);
+						c.setCliente(a);
+						contratoDao.save(c);
+						
+						Date hoje = new Date();
+					    Calendar cal = Calendar.getInstance();
+				        cal.setTime(hoje);
+				        cal.add(Calendar.MONTH, 1);
+				        int dia = cal.get(Calendar.DAY_OF_MONTH);
+				        int ano = cal.get(Calendar.YEAR);
+				        int mes = cal.get(Calendar.MONTH);
+				        mes++;
+				        String strDia = contrato_vencimento+"";
+				        String strMes = mes+"";
+				        String strAno = ano+"";
+				        if(dia < 10) strDia = "0"+strDia;
+				        if(mes < 10) strMes = "0"+strMes;
+				        if(ano < 10) strAno = "0"+strAno;
+				        
+						for(int i = 0 ; i < contrato_parcelas; i++) {
+							Parcela p = new Parcela();
+							p.setContrato(c);
+							p.setIndice((i+1)+"");
+							p.setPago(false);
+							p.setValor(contrato_valorDaParcela);
+							//Vencimento
+							cal.add(Calendar.MONTH, 1);
+							mes = cal.get(Calendar.MONTH);
+							ano = cal.get(Calendar.YEAR);
+							dia = cal.get(Calendar.DAY_OF_MONTH);
+							mes++;
+							strDia = dia+"";
+					        strMes = mes+"";
+					        strAno = ano+"";
+					        if(contrato_vencimento < 10) strDia = "0"+contrato_vencimento;
+					        if(mes < 10) strMes = "0"+strMes;
+					        if(ano < 10) strAno = "0"+strAno;
+					        p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
+					    	parcelaDao.save(p);
+					    	List<Contrato> contratos = new ArrayList<>();
+							contratos.add(c);
+							a.setContrato(contratos);
+							usuarioDao.save(a);
+						}
+					}
 				} else if(aluno.getMatricula() != null && (acao.equals("salvar")) && repetido) {
 					modelAndView.addObject("erro", "Já existe este CPF / Matrícula.");
 				}
