@@ -178,6 +178,8 @@ public class SistemaController {
 					usuarioDao.delete(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarAlunos();
 					modelAndView.addObject("usuarios", usuarios);
+					List<Plano> planos = planoDao.findAll();
+					modelAndView.addObject("planos", planos);
 				}
 			}
 			return modelAndView; 
