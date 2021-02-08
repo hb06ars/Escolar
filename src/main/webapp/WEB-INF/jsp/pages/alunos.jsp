@@ -17,15 +17,19 @@ function calcular(){
 	var sinal = document.getElementById("contrato_sinal").value.replace(',','.');
 	var desconto = document.getElementById("contrato_desconto").value.replace(',','.');
 	var parcelas = document.getElementById("contrato_parcelas").value.replace(',','.');
-
 	var valorFinal = totalContrato - sinal - desconto;
-
 	document.getElementById("contrato_valorDaParcela").value = (valorFinal / parcelas).toFixed([2]);
-
 	document.getElementById("contrato_total").value = valorFinal.toFixed([2]);
 }
 </script>
 
+<c:if test="${erro != null}">
+	<div class="alert alert-danger">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<strong>Erro!</strong><br>Ocorreu um erro ao salvar o usuário. <br> Enviar o seguinte código de erro ao desenvolvedor:<br>
+		${erro }
+	</div>
+</c:if>
 
 <!-- start: page -->
 <div class="row">
@@ -190,10 +194,6 @@ function calcular(){
 							<input type="text" name="contrato_valorDaParcela" id="contrato_valorDaParcela" onkeyup="calcular()" value="0" class="form-control" />
 						</div>
 					</div>
-					
-					
-					
-					
 					<div class="col-md-2 form-group">
 						<input type="submit" class="btn btn-primary" value="Salvar">
 					</div>
@@ -222,6 +222,7 @@ function calcular(){
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
+											<th>Editar</th>
 											<th>Matrícula</th>
 											<th>Situação</th>
 											<th>Contrato</th>
@@ -237,34 +238,37 @@ function calcular(){
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="gradeX">
-											<td>12345</td>
-											<td style="color:green">Regular</td>
-											<td>28/01/2020</td>
-											<td>Henrique Brandão</td>
-											<td class="center">(11)99999-8888</td>
-											<td class="center">(11)89999-8888</td>
-											<td>teste@teste.com</td>
-											<td>Rua da Alegria</td>
-											<td>Bairro da Felicidade</td>
-											<td>São Paulo</td>
-											<td>SP</td>
-											<td>222.333.444-88</td>
-										</tr>
-										<tr class="gradeX">
-											<td>32345</td>
-											<td style="color:red">Pendente</td>
-											<td>28/01/2020</td>
-											<td>Juca da SIlva</td>
-											<td class="center">(11)39999-8888</td>
-											<td class="center">(11)49999-8888</td>
-											<td>email@teste.com</td>
-											<td>Av da Paz</td>
-											<td>Bairro da Amizade</td>
-											<td>São Paulo</td>
-											<td>SP</td>
-											<td>322.333.444-88</td>
-										</tr>
+										<c:forEach items="${usuarios }" var="u">
+											<tr class="gradeX">
+												<td>
+													<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
+													<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
+												</td>
+												<td>${u.matricula }</td>
+												<c:forEach items="${u.contrato }" var="c">
+													<c:if test="${c.ativo }">
+														<c:if test="${c.situacao == 'Regular'}">
+															<td style="color:green">${c.situacao }</td>
+														</c:if>
+														<c:if test="${c.situacao == 'Pendente'}">
+															<td style="color:red">${c.situacao }</td>
+														</c:if>
+														<td>
+															<fmt:formatDate pattern="dd/MM/yyyy" value="${c.fim }" />
+														</td>
+													</c:if>
+												</c:forEach>
+												<td>${u.nome }</td>
+												<td>${u.telefone }</td>
+												<td>${u.celular }</td>
+												<td>${u.email }</td>
+												<td>${u.endereco }</td>
+												<td>${u.bairro }</td>
+												<td>${u.cidade }</td>
+												<td>${u.estado }</td>
+												<td>${u.cpf }</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

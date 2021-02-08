@@ -33,6 +33,9 @@ public class Contrato {
 	
 	@OneToOne
 	private Usuario cliente;
+	
+	@Column
+	private String situacao = "Regular";
 
 	public Integer getId() {
 		return id;
@@ -88,6 +91,14 @@ public class Contrato {
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
+	}
+
+	public String getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 	
 	

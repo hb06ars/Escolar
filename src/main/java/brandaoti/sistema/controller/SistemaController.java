@@ -11,7 +11,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -159,9 +161,35 @@ public class SistemaController {
 		}
 		
 		
+		@RequestMapping(value = "/deletando", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
+		public ModelAndView deletando(String tabela,Integer id) { //Função e alguns valores que recebe...
+			paginaAtual = "aluno";
+			iconePaginaAtual = "fa fa-money"; //Titulo do menuzinho.
+			String link = verificaLink("pages/alunos");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				//Caso esteja logado.
+				if(tabela.equals("usuario")) {
+					Usuario objeto = usuarioDao.findById(id).get();
+					usuarioDao.delete(objeto);
+					List<Usuario> usuarios = usuarioDao.findAll();
+					modelAndView.addObject("usuarios", usuarios);
+				}
+			}
+			
+			
+			
+			 
+			return modelAndView; 
+		}
+		
+		
 		@RequestMapping(value = "/home", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
 		public ModelAndView home(@RequestParam(value = "usuarioVal", defaultValue = "") String usuarioVal, @RequestParam(value = "senhaVal", defaultValue = "") String senhaVal) throws SQLException {
-			System.out.println("ok");
 			String link = verificaLink("home");
 			itemMenu = link;
 			if(usuarioSessao == null) {
@@ -250,69 +278,70 @@ public class SistemaController {
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
 				if(aluno.getMatricula() != null) {
-					Usuario a = new Usuario();
-					a = aluno;
-					a.setSenha(aluno.getCpf());
-					a.setPerfil(perfilDao.buscarAluno().get(0));
-					usuarioDao.save(a);
-					
-					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
-					Date inicioContrato = formato.parse(contrato_inicio);
-					Date fimContrato = formato.parse(contrato_fim);
-					Contrato c = new Contrato();
-					c.setAtivo(true);
-					c.setCliente(usuarioSessao);
-					c.setFim(fimContrato);
-					c.setInicio(inicioContrato);
-					c.setNome(usuarioSessao.getMatricula());
-					c.setObservacoes(contrato_obs);
-					contratoDao.save(c);
-					
-					Date hoje = new Date();
-				    Calendar cal = Calendar.getInstance();
-			        cal.setTime(hoje);
-			        cal.add(Calendar.MONTH, 1);
-			        int dia = cal.get(Calendar.DAY_OF_MONTH);
-			        int ano = cal.get(Calendar.YEAR);
-			        int mes = cal.get(Calendar.MONTH);
-			        mes++;
-			        String strDia = contrato_vencimento+"";
-			        String strMes = mes+"";
-			        String strAno = ano+"";
-			        if(dia < 10) strDia = "0"+strDia;
-			        if(mes < 10) strMes = "0"+strMes;
-			        if(ano < 10) strAno = "0"+strAno;
-			        
-					for(int i = 0 ; i < contrato_parcelas; i++) {
-						Parcela p = new Parcela();
-						p.setContrato(c);
-						p.setIndice((i+1)+"");
-						p.setPago(false);
-						p.setValor(contrato_valorDaParcela);
-						//Vencimento
-						p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
-						cal.add(Calendar.MONTH, 1);
-						mes = cal.get(Calendar.MONTH);
-						ano = cal.get(Calendar.YEAR);
-						dia = cal.get(Calendar.DAY_OF_MONTH);
-						mes++;
-						strDia = dia+"";
-				        strMes = mes+"";
-				        strAno = ano+"";
-				        if(contrato_vencimento < 10) strDia = "0"+contrato_vencimento;
+					try {
+						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+						Date inicioContrato = formato.parse(contrato_inicio);
+						Date fimContrato = formato.parse(contrato_fim);
+						Contrato c = new Contrato();
+						c.setAtivo(true);
+						c.setCliente(usuarioSessao);
+						c.setFim(fimContrato);
+						c.setInicio(inicioContrato);
+						c.setNome(usuarioSessao.getMatricula());
+						c.setObservacoes(contrato_obs);
+						contratoDao.save(c);
+						
+						Date hoje = new Date();
+					    Calendar cal = Calendar.getInstance();
+				        cal.setTime(hoje);
+				        cal.add(Calendar.MONTH, 1);
+				        int dia = cal.get(Calendar.DAY_OF_MONTH);
+				        int ano = cal.get(Calendar.YEAR);
+				        int mes = cal.get(Calendar.MONTH);
+				        mes++;
+				        String strDia = contrato_vencimento+"";
+				        String strMes = mes+"";
+				        String strAno = ano+"";
+				        if(dia < 10) strDia = "0"+strDia;
 				        if(mes < 10) strMes = "0"+strMes;
 				        if(ano < 10) strAno = "0"+strAno;
 				        
-						parcelaDao.save(p);
-						// contrato_vencimento
+						for(int i = 0 ; i < contrato_parcelas; i++) {
+							Parcela p = new Parcela();
+							p.setContrato(c);
+							p.setIndice((i+1)+"");
+							p.setPago(false);
+							p.setValor(contrato_valorDaParcela);
+							//Vencimento
+							p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
+							cal.add(Calendar.MONTH, 1);
+							mes = cal.get(Calendar.MONTH);
+							ano = cal.get(Calendar.YEAR);
+							dia = cal.get(Calendar.DAY_OF_MONTH);
+							mes++;
+							strDia = dia+"";
+					        strMes = mes+"";
+					        strAno = ano+"";
+					        if(contrato_vencimento < 10) strDia = "0"+contrato_vencimento;
+					        if(mes < 10) strMes = "0"+strMes;
+					        if(ano < 10) strAno = "0"+strAno;
+					    	parcelaDao.save(p);
 						
-						
-						
+					    	List<Contrato> contratos = new ArrayList<>();
+							contratos.add(c);
+							Usuario a = new Usuario();
+							a = aluno;
+							a.setSenha(aluno.getCpf());
+							a.setPerfil(perfilDao.buscarAluno().get(0));
+							a.setContrato(contratos);
+							usuarioDao.save(a);
+						}
+					} catch(Exception e) {
+						modelAndView.addObject("erro", e);
 					}
-					
-					
-					
 				}
+				List<Usuario> usuarios = usuarioDao.buscarAlunos();
+				modelAndView.addObject("usuarios", usuarios);
 			}
 			return modelAndView; //retorna a variavel
 		}
