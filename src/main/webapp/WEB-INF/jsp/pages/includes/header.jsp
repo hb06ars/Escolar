@@ -243,7 +243,6 @@
 						<div class="alert alert-danger">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 							<strong>Erro!</strong><br>Ocorreu um erro ao salvar o usuário. <br> Favor comunicar a equipe de desenvolvimento.<br>
-							${erro }
 						</div>
 					</c:if>
 					<!--  FIM ERRO  -->

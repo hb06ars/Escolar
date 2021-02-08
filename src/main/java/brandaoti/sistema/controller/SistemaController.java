@@ -276,13 +276,16 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				if(aluno.getMatricula() != null && acao.equals("salvar")) {
+				if(aluno.getMatricula() != null && (acao.equals("salvar") || acao.equals("atualizar"))) {
 					try {
 						atualizarPagina = "/alunos";
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
 						Contrato c = new Contrato();
+						if(acao.equals("atualizar")) {
+							c = contratoDao.buscarCliente(aluno.getMatricula()).get(0);
+						}
 						c.setAtivo(true);
 						c.setCliente(usuarioSessao);
 						c.setFim(fimContrato);
