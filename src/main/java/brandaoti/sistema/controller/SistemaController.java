@@ -164,7 +164,7 @@ public class SistemaController {
 		@RequestMapping(value = "/deletando", method = {RequestMethod.GET, RequestMethod.POST}) // Pagina de Alteração de Perfil
 		public ModelAndView deletando(String tabela,Integer id) { //Função e alguns valores que recebe...
 			paginaAtual = "aluno";
-			iconePaginaAtual = "fa fa-money"; //Titulo do menuzinho.
+			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
