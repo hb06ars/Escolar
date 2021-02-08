@@ -180,10 +180,6 @@ public class SistemaController {
 					modelAndView.addObject("usuarios", usuarios);
 				}
 			}
-			
-			
-			
-			 
 			return modelAndView; 
 		}
 		
