@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -60,6 +61,21 @@ public class SistemaController {
 		public static String iconePaginaAtual = "fa fa-home";
 		
 		
+		public String gerarMatricula() {
+			Random gerador = new Random();
+	    	Calendar data = Calendar.getInstance();
+	    	int ano = data.get(Calendar.YEAR);
+	    	int mes = data.get(Calendar.MONTH);
+	    	mes++;
+	    	int m = mes;
+	    	int dia = data.get(Calendar.DAY_OF_MONTH);
+	        int hora = data.get(Calendar.HOUR_OF_DAY); 
+	        int min = data.get(Calendar.MINUTE);
+	        int seg = data.get(Calendar.SECOND);
+	        int numero = gerador.nextInt(100);
+	        String matricula = ""+ano+m+dia+hora+min+seg+numero;
+	        return matricula;
+		}
 		
 		@RequestMapping(value = {"/","/login"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET) // Pagina de Vendas
 		public ModelAndView login(@RequestParam(value = "nome", required = false, defaultValue = "Henrique Brandão") String nome) throws SQLException { //Funcao e alguns valores que recebe...
@@ -278,6 +294,10 @@ public class SistemaController {
 			
 			
 			if(logado) {
+				//Gerando matrícula aleatória
+				String matriculaPadrao = gerarMatricula();
+				modelAndView.addObject("matriculaPadrao", matriculaPadrao);
+				
 				Boolean repetido = false;
 				if(usuarioDao.buscarAlunosRepetidos(aluno.getMatricula(), aluno.getCpf()).size() > 0) {
 					repetido = true;

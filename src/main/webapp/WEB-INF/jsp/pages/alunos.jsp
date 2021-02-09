@@ -37,7 +37,7 @@ function cancelar(){
 	document.getElementById("contrato_vencimento").disabled = false;
 	document.getElementById("contrato_valorDaParcela").disabled = false;
 
-	document.getElementById("matricula").value = '';
+	document.getElementById("matricula").value = ${matriculaPadrao };
 	document.getElementById("nome").value = '';
 	document.getElementById("cpf").value = '';
 	document.getElementById("dataNascimento").value = '';
@@ -135,10 +135,10 @@ function editar(id){
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-2 form-group">
-						<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" required>
+					<div class="col-md-3 form-group">
+						<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${matriculaPadrao }"required>
 					</div>
-					<div class="col-md-5 form-group">
+					<div class="col-md-4 form-group">
 						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
 					</div>
 					<div class="col-md-2 form-group">
