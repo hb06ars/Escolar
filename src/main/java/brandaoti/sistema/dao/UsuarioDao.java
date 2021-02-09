@@ -22,10 +22,16 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	@Query(" select u from Usuario u where 1=1 and u.perfil.aluno = TRUE ")
 	List<Usuario> buscarAlunos();
 	
+	@Query(" select u from Usuario u where 1=1 and u.perfil.funcionario = TRUE ")
+	List<Usuario> buscarFuncionarios();
+	
 	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) ")
 	Usuario buscarMatricula(@Param("matricula") String matricula);
 	
-	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) ")
+	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.aluno = TRUE ")
 	List<Usuario> buscarAlunosRepetidos(@Param("matricula") String matricula, @Param("cpf") String cpf);
+	
+	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.funcionario = TRUE ")
+	List<Usuario> buscarFuncionariosRepetidos(@Param("matricula") String matricula, @Param("cpf") String cpf);
 	
 }

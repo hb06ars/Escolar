@@ -98,6 +98,13 @@ public class SistemaController {
 				perfil.setNome("aluno");
 				perfil.setAluno(true);
 				perfilDao.save(perfil);
+				
+				perfil = new Perfil();
+				perfil.setAtivo(true);
+				perfil.setCodigo("3");
+				perfil.setNome("funcionario");
+				perfil.setFuncionario(true);
+				perfilDao.save(perfil);
 			}
 			if(pl.size() == 0 || pl == null) {
 				Plano plano = new Plano();
@@ -190,6 +197,7 @@ public class SistemaController {
 			if(logado) {
 				//Caso esteja logado.
 				if(tabela.equals("usuario")) {
+					link = verificaLink("pages/alunos");
 					paginaAtual = "Alunos";
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
@@ -197,6 +205,14 @@ public class SistemaController {
 					modelAndView.addObject("usuarios", usuarios);
 					List<Plano> planos = planoDao.findAll();
 					modelAndView.addObject("planos", planos);
+				}
+				if(tabela.equals("funcionario")) {
+					link = verificaLink("pages/funcionarios");
+					paginaAtual = "Funcionários";
+					Usuario objeto = usuarioDao.findById(id).get();
+					usuarioDao.delete(objeto);
+					List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
+					modelAndView.addObject("usuarios", usuarios);
 				}
 			}
 			return modelAndView; 
@@ -467,7 +483,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/funcionarios", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView funcionarios() throws SQLException {
+		public ModelAndView funcionarios(Usuario funcionario, String acao) throws SQLException {
 			paginaAtual = "Funcionários";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/funcionarios");
@@ -477,7 +493,48 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//Caso esteja logado.
+				//Gerando matrícula aleatória
+				String matriculaPadrao = gerarMatricula();
+				modelAndView.addObject("matriculaPadrao", matriculaPadrao);
+				
+				Boolean repetido = false;
+				if(usuarioDao.buscarFuncionariosRepetidos(funcionario.getMatricula(), funcionario.getCpf()).size() > 0) {
+					repetido = true;
+				}
+				if(funcionario.getMatricula() != null && (acao.equals("salvar")) && !repetido) {
+					try {
+						atualizarPagina = "/funcionarios";
+						Usuario a = new Usuario();
+						a = funcionario;
+						a.setSenha(funcionario.getCpf());
+						a.setPerfil(perfilDao.buscarFuncionario().get(0));
+						usuarioDao.save(a);
+						modelAndView.addObject("atualizarPagina", atualizarPagina);
+					} catch(Exception e) {
+						modelAndView.addObject("erro", e);
+						System.out.println("Erro: "+e);
+					}
+				} else if (funcionario.getMatricula() != null && (acao.equals("atualizar")) && repetido){
+					Usuario a = usuarioDao.buscarMatricula(funcionario.getMatricula());
+					a.setNome(funcionario.getNome());
+					a.setDataNascimento(funcionario.getDataNascimento());
+					a.setTelefone(funcionario.getTelefone());
+					a.setCelular(funcionario.getCelular());
+					a.setEndereco(funcionario.getEndereco());
+					a.setEmail(funcionario.getEmail());
+					a.setPathImagem(funcionario.getPathImagem());
+					a.setCep(funcionario.getCep());
+					a.setBairro(funcionario.getBairro());
+					a.setCidade(funcionario.getCidade());
+					a.setEstado(funcionario.getEstado());
+					a.setPlano(funcionario.getPlano());
+					a.setPerfil(perfilDao.buscarFuncionario().get(0));
+					usuarioDao.save(a);
+				} else if(funcionario.getMatricula() != null && (acao.equals("salvar")) && repetido) {
+					modelAndView.addObject("erro", "Já existe este CPF / Matrícula.");
+				}
+				List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
+				modelAndView.addObject("usuarios", usuarios);
 				
 			}
 			return modelAndView; //retorna a variavel
