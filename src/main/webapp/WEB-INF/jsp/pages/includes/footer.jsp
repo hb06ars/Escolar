@@ -29,7 +29,7 @@
 		<script src="assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 		<!-- Validação -->
 		<script src="assets/vendor/jquery-validation/jquery.validate.js"></script>
-		
+		<script src="/assets/vendor/jquery-maskedinput/jquery.maskedinput.js"></script>
 		<script src="/assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
 		<script src="/assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
 		<script src="/assets/vendor/jquery-appear/jquery.appear.js"></script>
@@ -64,6 +64,9 @@
 		
 		<!-- Validations -->
 		<script src="/assets/javascripts/forms/examples.validation.js"></script>
+		
+		<!-- Mascaras -->
+		<script src="/assets/javascripts/forms/examples.advanced.form.js"></script>
 		
 	</body>
 </html>

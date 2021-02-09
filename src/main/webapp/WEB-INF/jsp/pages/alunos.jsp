@@ -99,7 +99,7 @@ function editar(id){
 						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="CPF" name="cpf" id="cpf" maxlength="14" minlength="14" class="form-control" required>
+						<input name="cpf" id="cpf" maxlength="14" minlength="14" data-plugin-masked-input data-input-mask="999.999.999-99" placeholder="CPF" class="form-control" required>
 					</div>
 					<div class="col-md-3 form-group">
 						<div class="input-group">
@@ -114,7 +114,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="number" name="telefone" id="telefone" class="form-control" placeholder="Telefone" />
+							<input id="telefone" name="telefone" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Telefone" class="form-control">
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -122,7 +122,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="number" name="celular" id="celular" class="form-control" placeholder="Celular" />
+							<input id="celular" name="celular" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Celular" class="form-control">
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -143,10 +143,10 @@ function editar(id){
 						<input type="text" placeholder="Cidade" id="cidade" name="cidade" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="Estado" id="estado" maxlength="2" minlength="2" name="estado" class="form-control">
+						<input type="text" placeholder="Estado" id="estado" data-plugin-masked-input data-input-mask="aa" maxlength="2" minlength="2" name="estado" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="CEP" id="cep" maxlength="9" minlength="9" name="cep" class="form-control">
+						<input name="cep" id="cep" maxlength="9" minlength="9" data-plugin-masked-input data-input-mask="99999-999" placeholder="CEP" class="form-control">
 					</div>
 					<div class="col-md-10 form-group">
 						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">

@@ -364,10 +364,13 @@ public class SistemaController {
 					a.setTelefone(aluno.getTelefone());
 					a.setCelular(aluno.getCelular());
 					a.setEndereco(aluno.getEndereco());
+					a.setEmail(aluno.getEmail());
+					a.setPathImagem(aluno.getPathImagem());
 					a.setCep(aluno.getCep());
 					a.setBairro(aluno.getBairro());
 					a.setCidade(aluno.getCidade());
 					a.setEstado(aluno.getEstado());
+					a.setPlano(aluno.getPlano());
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
 					
