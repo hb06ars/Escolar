@@ -90,6 +90,8 @@ public class SistemaController {
 				perfil.setCodigo("1");
 				perfil.setNome("adm");
 				perfil.setAdmin(true);
+				perfil.setFuncionario(true);
+				perfil.setAluno(true);
 				perfilDao.save(perfil);
 				
 				perfil = new Perfil();
@@ -104,6 +106,7 @@ public class SistemaController {
 				perfil.setCodigo("3");
 				perfil.setNome("funcionario");
 				perfil.setFuncionario(true);
+				perfil.setAluno(true);
 				perfilDao.save(perfil);
 			}
 			if(pl.size() == 0 || pl == null) {
@@ -191,12 +194,11 @@ public class SistemaController {
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
-			modelAndView.addObject("usuario", usuarioSessao);
-			modelAndView.addObject("paginaAtual", paginaAtual); 
-			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			
 			if(logado) {
 				//Caso esteja logado.
 				if(tabela.equals("usuario")) {
+					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/alunos");
 					paginaAtual = "Alunos";
 					Usuario objeto = usuarioDao.findById(id).get();
@@ -205,16 +207,22 @@ public class SistemaController {
 					modelAndView.addObject("usuarios", usuarios);
 					List<Plano> planos = planoDao.findAll();
 					modelAndView.addObject("planos", planos);
+					atualizarPagina = "/alunos";
 				}
 				if(tabela.equals("funcionario")) {
+					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
 					modelAndView.addObject("usuarios", usuarios);
+					atualizarPagina = "/funcionarios";
 				}
 			}
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			return modelAndView; 
 		}
 		
@@ -410,7 +418,7 @@ public class SistemaController {
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
 					
-					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0) {
+					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0 && (acao.equals("salvar")) ) {
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
