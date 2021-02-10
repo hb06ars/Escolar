@@ -271,6 +271,7 @@ public class SistemaController {
 		/* SALVAR EXCEL */
 		@RequestMapping(value = "/upload/excel", method = {RequestMethod.POST, RequestMethod.GET}) // Pagina de Alteração de Perfil
 		public ModelAndView uploadExcel(Model model, String tabelaUsada, @ModelAttribute MultipartFile file) throws Exception, IOException { //Função e alguns valores que recebe...
+			System.out.println("file: "+file);
 			paginaAtual = "Financeiro";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/home");

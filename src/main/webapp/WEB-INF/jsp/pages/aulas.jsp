@@ -14,9 +14,8 @@
 <jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
 <!-- DOWNLOAD EXCEL -->
 
-
+<form action="<c:url value='/upload/excel'/>" id="form" accept=".xlsx" method="post" enctype='multipart/form-data' accept-charset="utf-8" >
 <div class="row">
-<form action="/alunos" method="post" accept-charset="utf-8">
 	<div class="col-md-12">
 		<div data-collapsed="0" class="panel">
 			<div class="panel-heading">
@@ -37,7 +36,7 @@
 						Clique <a href="/modelos/aulas.xlsx">aqui</a> para baixar o modelo de exemplo de como importar.
 					</div>
 					<div class="col-md-10 form-group"	>
-						<input type="file" name="file">
+						<input type="file" id="file" name="file">
 					</div>
 					<div class="col-md-2 form-group">
 						<input type="hidden" name="tabelaUsada" value="aulas">
@@ -47,9 +46,8 @@
 			</div>
 		</div>
 	</div>
-</form>
 </div>
-
+</form>
 
 
 <!-- start: page -->
