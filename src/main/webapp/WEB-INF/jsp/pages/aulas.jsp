@@ -12,6 +12,80 @@
 
 
 
+
+<div class="row">
+<form action="/alunos" method="post" accept-charset="utf-8">
+	<div class="col-md-12">
+		<div data-collapsed="0" class="panel">
+			<div class="panel-heading">
+				<div class="panel-title">
+					<div class="panel-actions">
+						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+					</div>
+					<h2 class="panel-title" id="">Cadastrar Aula</h2>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2 form-group">
+						Início:
+						<input type="time" class="form-control" >
+					</div>
+					<div class="col-md-2 form-group">
+						Fim:
+						<input type="time" class="form-control" >
+					</div>
+					<div class="col-md-2 form-group">
+						Semana:
+						<select id="semana" name="semana" class="form-control">
+							<option value="Segunda">Segunda</option>
+							<option value="Terça">Terça</option>
+							<option value="Quarta">Quarta</option>
+							<option value="Quinta">Quinta</option>
+							<option value="Sexta">Sexta</option>
+							<option value="Sábado">Sábado</option>
+							<option value="Domingo">Domingo</option>
+						</select>
+					</div>
+					<div class="col-md-3 form-group">
+						Aula:
+						<select id="plano" name="plano.id" class="form-control">
+							<option value="">Selecione a Aula</option>
+							<c:forEach items="${planos }" var="p">
+								<option value="${p.id }">Plano ${p.nome } (${p.descricao})</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="col-md-3 form-group">
+						Professor:
+						<select id="plano" name="plano.id" class="form-control">
+							<option value="">Selecione o Professor</option>
+							<c:forEach items="${planos }" var="p">
+								<option value="${p.id }">Plano ${p.nome } (${p.descricao})</option>
+							</c:forEach>
+						</select>
+					</div>
+					
+					<div class="col-md-2 form-group" id="salvar">
+						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Criar">
+					</div>
+					<div class="col-md-2 form-group" id="atualizar" style="display:none">
+						<input type="submit" class="btn btn-primary" onclick="acao('atualizar')" value="Atualizar">
+					</div>
+					<div class="col-md-2 form-group" id="cancelar" style="display:none">
+						<input type="button" class="btn btn-danger" onclick="cancelar()" value="Voltar">
+					</div>
+					<input type="hidden" id="acao" name="acao" value="salvar">
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+
+
+
 <!-- start: page -->
 <section class="panel">
 							<header class="panel-heading">
