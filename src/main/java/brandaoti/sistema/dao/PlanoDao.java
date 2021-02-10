@@ -15,4 +15,9 @@ public interface PlanoDao extends JpaRepository<Plano, Integer> {
 	@Query(" select p from Plano p where upper( p.codigo ) like upper( :codigo )")
 	List<Plano> buscarCodigo(@Param("codigo") String codigo);
 	
+	@Query(" select p from Plano p where ativo = TRUE")
+	List<Plano> buscarTudo();
+	
+	
+	
 }

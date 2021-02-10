@@ -14,6 +14,9 @@ public class Treino {
 	private Integer id; //Esse número é o ID automático gerado.
 	
 	@Column
+	private Boolean ativo = true;
+	
+	@Column
 	private Integer tipoOrdem; // Treino A, B, C... (0,1,2,3)
 	
 	@Column
@@ -99,6 +102,14 @@ public class Treino {
 
 	public void setUltimoDiaExecutado(Integer ultimoDiaExecutado) {
 		this.ultimoDiaExecutado = ultimoDiaExecutado;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	

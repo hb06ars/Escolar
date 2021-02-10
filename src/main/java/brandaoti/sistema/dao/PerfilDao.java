@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
 
 public interface PerfilDao extends JpaRepository<Perfil, Integer> {
@@ -30,4 +31,7 @@ public interface PerfilDao extends JpaRepository<Perfil, Integer> {
 	
 	@Query(" select p from Perfil p where upper( p.nome ) like upper( :nome ) and ativo = 1 ")
 	List<Perfil> buscarNome(@Param("nome") String nome);
+	
+	@Query(" select p from Perfil p where p.ativo = TRUE")
+	List<Perfil> buscarTudo();
 }

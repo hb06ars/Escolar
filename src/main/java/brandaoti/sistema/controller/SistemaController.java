@@ -219,7 +219,7 @@ public class SistemaController {
 					Usuario objeto = usuarioDao.findById(id).get();
 					objeto.setAtivo(false);
 					usuarioDao.save(objeto);
-					List<Usuario> usuarios = usuarioDao.buscarAlunos();
+					List<Usuario> usuarios = usuarioDao.buscarTudo();
 					modelAndView.addObject("usuarios", usuarios);
 					List<Plano> planos = planoDao.findAll();
 					modelAndView.addObject("planos", planos);

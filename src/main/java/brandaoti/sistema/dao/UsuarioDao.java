@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import brandaoti.sistema.model.Plano;
 import brandaoti.sistema.model.Treino;
 import brandaoti.sistema.model.Usuario;
 
@@ -34,4 +35,6 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.funcionario = TRUE ")
 	List<Usuario> buscarFuncionariosRepetidos(@Param("matricula") String matricula, @Param("cpf") String cpf);
 	
+	@Query(" select p from Usuario p where ativo = TRUE")
+	List<Usuario> buscarTudo();
 }
