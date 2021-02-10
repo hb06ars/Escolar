@@ -308,10 +308,13 @@ public class SistemaController {
 				   				}
 				   				finalLinha++;
 				   			}
-				   		} catch(Exception e) {}
+				   		} catch(Exception e) {
+				   			System.out.println("Erro: "+ e);
+				   		}
 					}
 				
 			}
+			System.out.println("Validado");
 			return modelAndView; //retorna a variavel
 			
 		}

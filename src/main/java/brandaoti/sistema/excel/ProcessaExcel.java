@@ -54,6 +54,7 @@ public class ProcessaExcel {
 							tabela.setConteudo(cell.getStringCellValue());
 							tabela.setColuna(coluna);
 							tabelas.add(tabela);
+							System.out.println("Coluna: "+tabela.getConteudo());
 						}
 						else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
 							Tabela tabela = new Tabela();
