@@ -80,9 +80,9 @@ public class SistemaController {
 		@RequestMapping(value = {"/","/login"}, produces = "text/plain;charset=UTF-8", method = RequestMethod.GET) // Pagina de Vendas
 		public ModelAndView login(@RequestParam(value = "nome", required = false, defaultValue = "Henrique Brandão") String nome) throws SQLException { //Funcao e alguns valores que recebe...
 			//Caso não haja registros
-			List<Usuario> u = usuarioDao.findAll();
-			List<Perfil> p = perfilDao.findAll();
-			List<Plano> pl = planoDao.findAll();
+			List<Usuario> u = usuarioDao.buscarTudo();
+			List<Perfil> p = perfilDao.buscarTudo();
+			List<Plano> pl = planoDao.buscarTudo();
 			usuarioSessao = null;
 			if(p.size() == 0 || p == null) {
 				Perfil perfil = new Perfil();
@@ -221,7 +221,7 @@ public class SistemaController {
 					usuarioDao.save(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarTudo();
 					modelAndView.addObject("usuarios", usuarios);
-					List<Plano> planos = planoDao.findAll();
+					List<Plano> planos = planoDao.buscarTudo();
 					modelAndView.addObject("planos", planos);
 					atualizarPagina = "/alunos";
 				}
@@ -341,7 +341,7 @@ public class SistemaController {
 			itemMenu = link;
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
 			
-			List<Plano> planos = planoDao.findAll();
+			List<Plano> planos = planoDao.buscarTudo();
 			modelAndView.addObject("planos", planos);			
 			modelAndView.addObject("usuario", usuarioSessao);
 			modelAndView.addObject("paginaAtual", paginaAtual); 
