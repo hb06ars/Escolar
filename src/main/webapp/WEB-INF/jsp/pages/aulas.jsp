@@ -70,11 +70,17 @@
 					<div class="col-md-2 form-group" id="salvar">
 						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Criar">
 					</div>
-					<div class="col-md-2 form-group" id="atualizar" style="display:none">
-						<input type="submit" class="btn btn-primary" onclick="acao('atualizar')" value="Atualizar">
+					<div class="col-md-8 form-group" id="salvar">
 					</div>
-					<div class="col-md-2 form-group" id="cancelar" style="display:none">
-						<input type="button" class="btn btn-danger" onclick="cancelar()" value="Voltar">
+					<div class="col-md-2 form-group" id="cancelar">
+						<input type="button" class="btn btn-danger" onclick="acao('limparTudo')" value="Limpar tudo">
+					</div>
+					
+					<div class="col-md-2 form-group" id="salvar">
+						<input type="submit" class="btn btn-secondary" onclick="acao('salvar')" value="Importar">
+					</div>
+					<div class="col-md-10 form-group" id="atualizar">
+						<input type="file" onclick="acao('importar')" value="Importar">
 					</div>
 					<input type="hidden" id="acao" name="acao" value="salvar">
 				</div>
