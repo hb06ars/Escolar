@@ -13,8 +13,11 @@ public interface PerfilDao extends JpaRepository<Perfil, Integer> {
 	@Query(" select p from Perfil p where admin = 1 ")
 	List<Perfil> buscarAdm();
 	
-	@Query(" select p from Perfil p where aluno = 1")
+	@Query(" select p from Perfil p where aluno = 1 ")
 	List<Perfil> buscarAluno();
+	
+	@Query(" select p from Perfil p where aluno = 1 and funcionario = 0")
+	List<Perfil> buscarSomenteAluno();
 	
 	@Query(" select p from Perfil p where funcionario = 1 ")
 	List<Perfil> buscarFuncionario();

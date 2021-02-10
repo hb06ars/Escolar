@@ -204,6 +204,10 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/alunos");
 					paginaAtual = "Alunos";
+					List<Contrato> contratosCli = contratoDao.buscarId(""+id);
+					for(Contrato co : contratosCli) {
+						contratoDao.delete(co);
+					}
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarAlunos();
@@ -216,6 +220,10 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
+					List<Contrato> contratosCli = contratoDao.buscarId(""+id);
+					for(Contrato co : contratosCli) {
+						contratoDao.delete(co);
+					}
 					Usuario objeto = usuarioDao.findById(id).get();
 					usuarioDao.delete(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
@@ -394,7 +402,7 @@ public class SistemaController {
 							Usuario a = new Usuario();
 							a = aluno;
 							a.setSenha(aluno.getCpf());
-							a.setPerfil(perfilDao.buscarAluno().get(0));
+							a.setPerfil(perfilDao.buscarSomenteAluno().get(0));
 							a.setContrato(contratos);
 							usuarioDao.save(a);
 						}
@@ -415,7 +423,6 @@ public class SistemaController {
 					a.setCidade(aluno.getCidade());
 					a.setEstado(aluno.getEstado());
 					a.setPlano(aluno.getPlano());
-					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
 					
 					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0) {
