@@ -98,6 +98,8 @@ public class SistemaController {
 				perfil.setAtivo(true);
 				perfil.setCodigo("2");
 				perfil.setNome("aluno");
+				perfil.setAdmin(false);
+				perfil.setFuncionario(false);
 				perfil.setAluno(true);
 				perfilDao.save(perfil);
 				
@@ -105,6 +107,7 @@ public class SistemaController {
 				perfil.setAtivo(true);
 				perfil.setCodigo("3");
 				perfil.setNome("funcionario");
+				perfil.setAdmin(false);
 				perfil.setFuncionario(true);
 				perfil.setAluno(true);
 				perfilDao.save(perfil);
