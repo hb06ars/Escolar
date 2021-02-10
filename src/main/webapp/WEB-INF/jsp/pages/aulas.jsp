@@ -40,6 +40,7 @@
 						<input type="file" name="file">
 					</div>
 					<div class="col-md-2 form-group">
+						<input type="hidden" name="tabelaUsada" value="aulas">
 						<input type="submit" class="btn btn-secondary" value="Enviar">
 					</div>
 				</div>

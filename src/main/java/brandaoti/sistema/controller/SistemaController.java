@@ -1,10 +1,12 @@
 package brandaoti.sistema.controller;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,19 +16,25 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import brandaoti.sistema.dao.AulaDao;
 import brandaoti.sistema.dao.ContratoDao;
 import brandaoti.sistema.dao.ParcelaDao;
 import brandaoti.sistema.dao.PerfilDao;
 import brandaoti.sistema.dao.PlanoDao;
 import brandaoti.sistema.dao.TreinoDao;
 import brandaoti.sistema.dao.UsuarioDao;
+import brandaoti.sistema.excel.ProcessaExcel;
+import brandaoti.sistema.excel.Tabela;
+import brandaoti.sistema.model.Aula;
 import brandaoti.sistema.model.Contrato;
 import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
@@ -52,6 +60,8 @@ public class SistemaController {
 		private ContratoDao contratoDao;
 		@Autowired
 		private ParcelaDao parcelaDao;
+		@Autowired
+		private AulaDao aulaDao;
 		
 		public static Usuario usuarioSessao;
 		public static String atualizarPagina = null;
@@ -254,6 +264,55 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			return modelAndView; 
+		}
+		
+		
+		
+		/* SALVAR EXCEL */
+		@RequestMapping(value = "/upload/excel", method = {RequestMethod.POST, RequestMethod.GET}) // Pagina de Alteração de Perfil
+		public ModelAndView uploadExcel(Model model, String tabelaUsada, @ModelAttribute MultipartFile file) throws Exception, IOException { //Função e alguns valores que recebe...
+			paginaAtual = "Financeiro";
+			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+			String link = verificaLink("pages/home");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				//Caso esteja logado.
+				ProcessaExcel processaExcel = new ProcessaExcel();
+				List<Tabela> tabelas = processaExcel.uploadAlunos(file);
+		    	String conteudo="";
+		   		Integer finalLinha = 0;
+		   		Aula a = new Aula();
+		   		int coluna = 0;
+				switch (tabelaUsada) {  
+				 case "aulas" : // CASO SEJA AULAS ---------------------
+					 	link = verificaLink("pages/aulas");
+				   		try {
+				   			for(int i=0; i < tabelas.size(); i++) {
+				   				coluna = tabelas.get(i).getColuna();
+				   				conteudo = tabelas.get(i).getConteudo();
+				   				if(coluna == 0) a.setInicio(LocalTime.parse(conteudo));
+				   				if(coluna == 1) a.setFim(LocalTime.parse(conteudo));
+				   				if(coluna == 2) a.setDiaSemana(conteudo);
+				   				if(coluna == 3) a.setNomeAula(conteudo);
+				   				if(coluna == 4) a.setProfessor(usuarioDao.buscarMatricula(conteudo));
+				   				
+				   				if(finalLinha >= 4) {
+				   					finalLinha = -1;
+				   					aulaDao.save(a);
+				   					a = new Aula();
+				   				}
+				   				finalLinha++;
+				   			}
+				   		} catch(Exception e) {}
+					}
+				
+			}
+			return modelAndView; //retorna a variavel
+			
 		}
 		
 		
