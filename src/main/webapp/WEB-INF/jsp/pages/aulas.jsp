@@ -10,7 +10,9 @@
 <!-- TAGS -->
 <!-- INICIO BODY -->
 
-
+<!-- DOWNLOAD EXCEL -->
+<jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
+<!-- DOWNLOAD EXCEL -->
 
 
 <div class="row">
@@ -34,13 +36,12 @@
 						O sistema irá limpar todas as aulas e se basear no Excel que você enviar.<br>
 						Clique <a href="/modelos/aulas.xlsx">aqui</a> para baixar o modelo de exemplo de como importar.
 					</div>
-					<div class="col-md-12 form-group" id="atualizar">
-						<input type="file" onclick="acao('importar')" value="Importar">
+					<div class="col-md-10 form-group"	>
+						<input type="file" name="file">
 					</div>
-					<div class="col-md-2 form-group" id="salvar">
-						<input type="submit" class="btn btn-secondary" onclick="acao('salvar')" value="Importar">
+					<div class="col-md-2 form-group">
+						<input type="submit" class="btn btn-secondary" value="Enviar">
 					</div>
-					<input type="hidden" id="acao" name="acao" value="salvar">
 				</div>
 			</div>
 		</div>
@@ -118,8 +119,10 @@
 									</tbody>
 								</table>
 							</div>
+							<div class="panel-footer">
+								<button type="button" class="btn btn-primary" onclick="tableToExcel('datatable-default', 'Documento')">Download</button>
+							</div>
 						</section>
-
 
 
 
