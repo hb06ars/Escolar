@@ -20,19 +20,19 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	@Query(" select t from Treino t where 1=1 and t.matricula like '(:usuario.matricula)' ")
 	List<Treino> treinosUsario(@Param("usuario") Usuario usuario);
 	
-	@Query(" select u from Usuario u where 1=1 and u.perfil.aluno = TRUE ")
+	@Query(" select u from Usuario u where 1=1 and u.perfil.aluno = TRUE and u.ativo = TRUE")
 	List<Usuario> buscarAlunos();
 	
-	@Query(" select u from Usuario u where 1=1 and u.perfil.funcionario = TRUE ")
+	@Query(" select u from Usuario u where 1=1 and u.perfil.funcionario = TRUE and u.ativo = TRUE")
 	List<Usuario> buscarFuncionarios();
 	
 	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) ")
 	Usuario buscarMatricula(@Param("matricula") String matricula);
 	
-	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.aluno = TRUE ")
+	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.aluno = TRUE and u.ativo = TRUE")
 	List<Usuario> buscarAlunosRepetidos(@Param("matricula") String matricula, @Param("cpf") String cpf);
 	
-	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.funcionario = TRUE ")
+	@Query(" select u from Usuario u where upper( u.matricula ) like upper( :matricula ) or upper( u.cpf ) like upper( :cpf ) and u.perfil.funcionario = TRUE and u.ativo = TRUE")
 	List<Usuario> buscarFuncionariosRepetidos(@Param("matricula") String matricula, @Param("cpf") String cpf);
 	
 	@Query(" select p from Usuario p where ativo = TRUE")

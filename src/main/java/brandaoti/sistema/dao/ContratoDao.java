@@ -20,6 +20,9 @@ public interface ContratoDao extends JpaRepository<Contrato, Integer> {
 	@Query(" select p from Contrato p where upper( p.cliente.matricula ) like ( :matricula ) and p.ativo = TRUE")
 	List<Contrato> buscarCliente(@Param("matricula") String matricula);
 	
+	@Query(" select p from Contrato p where upper( p.cliente.id ) like ( :id )")
+	List<Contrato> buscarIdCliente(@Param("id") String codigo);
+	
 	@Query(" select p from Contrato p where ativo = TRUE")
 	List<Contrato> buscarTudo();
 	

@@ -210,7 +210,7 @@ public class SistemaController {
 							p.setAtivo(false);
 							parcelaDao.save(p);
 						}
-						List<Contrato> contratosCli = contratoDao.buscarId(""+id);
+						List<Contrato> contratosCli = contratoDao.buscarIdCliente(""+id);
 						for(Contrato co : contratosCli) {
 							co.setAtivo(false);
 							contratoDao.save(co);
@@ -229,8 +229,10 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
-					List<Contrato> contratosFunc = contratoDao.buscarId(""+id);
+					
 					try {
+						List<Contrato> contratosFunc = contratoDao.buscarIdCliente(""+id);
+						System.out.println("erros: "+contratosFunc.size());
 						List<Parcela> parcelas = parcelaDao.buscarCliente(""+id);
 						for(Parcela p : parcelas) {
 							p.setAtivo(false);
