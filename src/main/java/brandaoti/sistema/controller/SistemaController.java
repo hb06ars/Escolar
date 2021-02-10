@@ -229,14 +229,13 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
-					List<Contrato> contratosCli = contratoDao.buscarId(""+id);
+					List<Contrato> contratosFunc = contratoDao.buscarId(""+id);
 					try {
 						List<Parcela> parcelas = parcelaDao.buscarCliente(""+id);
 						for(Parcela p : parcelas) {
 							p.setAtivo(false);
 							parcelaDao.save(p);
 						}
-						List<Contrato> contratosFunc = contratoDao.buscarId(""+id);
 						for(Contrato co : contratosFunc) {
 							co.setAtivo(false);
 							contratoDao.save(co);
