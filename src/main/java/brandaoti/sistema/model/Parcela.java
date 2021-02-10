@@ -23,6 +23,9 @@ public class Parcela {
 	private String indice;
 	
 	@Column
+	private Boolean ativo = true;
+	
+	@Column
 	private Boolean pago = true;
 	
 	@Column
@@ -81,6 +84,14 @@ public class Parcela {
 
 	public void setContrato(Contrato contrato) {
 		this.contrato = contrato;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	
 	

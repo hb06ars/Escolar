@@ -204,12 +204,21 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					link = verificaLink("pages/alunos");
 					paginaAtual = "Alunos";
-					List<Contrato> contratosCli = contratoDao.buscarId(""+id);
-					for(Contrato co : contratosCli) {
-						contratoDao.delete(co);
-					}
+					try {
+						List<Parcela> parcelas = parcelaDao.buscarCliente(""+id);
+						for(Parcela p : parcelas) {
+							p.setAtivo(false);
+							parcelaDao.save(p);
+						}
+						List<Contrato> contratosCli = contratoDao.buscarId(""+id);
+						for(Contrato co : contratosCli) {
+							co.setAtivo(false);
+							contratoDao.save(co);
+						}
+					}catch(Exception e) {}
 					Usuario objeto = usuarioDao.findById(id).get();
-					usuarioDao.delete(objeto);
+					objeto.setAtivo(false);
+					usuarioDao.save(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarAlunos();
 					modelAndView.addObject("usuarios", usuarios);
 					List<Plano> planos = planoDao.findAll();
@@ -221,11 +230,21 @@ public class SistemaController {
 					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
 					List<Contrato> contratosCli = contratoDao.buscarId(""+id);
-					for(Contrato co : contratosCli) {
-						contratoDao.delete(co);
-					}
+					try {
+						List<Parcela> parcelas = parcelaDao.buscarCliente(""+id);
+						for(Parcela p : parcelas) {
+							p.setAtivo(false);
+							parcelaDao.save(p);
+						}
+						List<Contrato> contratosFunc = contratoDao.buscarId(""+id);
+						for(Contrato co : contratosFunc) {
+							co.setAtivo(false);
+							contratoDao.save(co);
+						}
+					}catch(Exception e) {}
 					Usuario objeto = usuarioDao.findById(id).get();
-					usuarioDao.delete(objeto);
+					objeto.setAtivo(false);
+					usuarioDao.save(objeto);
 					List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
 					modelAndView.addObject("usuarios", usuarios);
 					atualizarPagina = "/funcionarios";
@@ -341,6 +360,17 @@ public class SistemaController {
 				if(aluno.getMatricula() != null && (acao.equals("salvar")) && !repetido) {
 					try {
 						atualizarPagina = "/alunos";
+				    	List<Contrato> contratos = new ArrayList<>();
+				    	try{
+				    		contratos = contratoDao.buscarCliente(""+aluno.getMatricula());
+				    	} catch(Exception e) {}
+				    	
+						Usuario a = new Usuario();
+						a = aluno;
+						a.setSenha(aluno.getCpf());
+						a.setPerfil(perfilDao.buscarSomenteAluno().get(0));
+						usuarioDao.save(a);
+						
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
@@ -358,7 +388,12 @@ public class SistemaController {
 						c.setParcelas(contrato_parcelas);
 						c.setValorDaParcela(contrato_valorDaParcela);
 						c.setVencimento(contrato_vencimento);
+						c.setCliente(a);
 						contratoDao.save(c);
+						contratos.add(c);
+						
+						a.setContrato(contratos);
+						usuarioDao.save(a);
 						
 						Date hoje = new Date();
 					    Calendar cal = Calendar.getInstance();
@@ -394,18 +429,10 @@ public class SistemaController {
 					        if(mes < 10) strMes = "0"+strMes;
 					        if(ano < 10) strAno = "0"+strAno;
 					        p.setVencimento(LocalDate.parse(strAno+"-"+strMes+"-"+strDia));
-							
 					    	parcelaDao.save(p);
-						
-					    	List<Contrato> contratos = new ArrayList<>();
-							contratos.add(c);
-							Usuario a = new Usuario();
-							a = aluno;
-							a.setSenha(aluno.getCpf());
-							a.setPerfil(perfilDao.buscarSomenteAluno().get(0));
-							a.setContrato(contratos);
-							usuarioDao.save(a);
 						}
+
+						
 					} catch(Exception e) {
 						modelAndView.addObject("erro", e);
 					}
