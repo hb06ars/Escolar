@@ -36,6 +36,7 @@ function cancelar(){
 	document.getElementById("contrato_parcelas").disabled = false;
 	document.getElementById("contrato_vencimento").disabled = false;
 	document.getElementById("contrato_valorDaParcela").disabled = false;
+	document.getElementById("contrato_obs").disabled = false;
 
 	document.getElementById("matricula").value = ${matriculaPadrao };
 	document.getElementById("nome").value = '';
@@ -105,6 +106,7 @@ function editar(id){
 					document.getElementById("contrato_parcelas").disabled = true;
 					document.getElementById("contrato_vencimento").disabled = true;
 					document.getElementById("contrato_valorDaParcela").disabled = true;
+					document.getElementById("contrato_obs").disabled = true;
 				</c:if>
 			</c:forEach>
 			<c:if test="${u.contrato.size() < 1 }">
@@ -117,9 +119,11 @@ function editar(id){
 				document.getElementById("contrato_parcelas").disabled = false;
 				document.getElementById("contrato_vencimento").disabled = false;
 				document.getElementById("contrato_valorDaParcela").disabled = false;
+				document.getElementById("contrato_obs").disabled = false;
 	
 				document.getElementById("contrato_inicio").value = '';
 				document.getElementById("contrato_fim").value = '';
+				document.getElementById("contrato_obs").value = '';
 				document.getElementById("contrato_totalContrato").value = '0';
 				document.getElementById("contrato_sinal").value = '0';
 				document.getElementById("contrato_desconto").value = '0';
@@ -152,7 +156,7 @@ function editar(id){
 						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
 						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
 					</div>
-					<h2 class="panel-title" id="">Cadastrar novo aluno </h2>
+					<h2 class="panel-title" id="">Cadastrar novo aluno</h2>
 				</div>
 			</div>
 			<div class="panel-body">

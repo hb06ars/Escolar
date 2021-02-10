@@ -202,7 +202,6 @@ public class SistemaController {
 				//Caso esteja logado.
 				if(tabela.equals("usuario")) {
 					modelAndView = new ModelAndView(link);
-					link = verificaLink("pages/alunos");
 					paginaAtual = "Alunos";
 					try {
 						List<Parcela> parcelas = parcelaDao.buscarCliente(""+id);
@@ -227,7 +226,6 @@ public class SistemaController {
 				}
 				if(tabela.equals("funcionario")) {
 					modelAndView = new ModelAndView(link);
-					link = verificaLink("pages/funcionarios");
 					paginaAtual = "Funcionários";
 					
 					try {
@@ -251,6 +249,7 @@ public class SistemaController {
 					atualizarPagina = "/funcionarios";
 				}
 			}
+			modelAndView.addObject("atualizarPagina", atualizarPagina);
 			modelAndView.addObject("usuario", usuarioSessao);
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
@@ -337,7 +336,6 @@ public class SistemaController {
 			System.out.println("acao: "+acao);
 			paginaAtual = "Alunos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
-			atualizarPagina = "/alunos";
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
