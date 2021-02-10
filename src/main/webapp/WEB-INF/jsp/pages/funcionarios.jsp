@@ -197,6 +197,7 @@ function editar(id){
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
+											<th>Editar</th>
 											<th>Matrícula</th>
 											<th>Nome</th>
 											<th>Telefone</th>

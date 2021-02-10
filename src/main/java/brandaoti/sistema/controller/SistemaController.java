@@ -306,6 +306,7 @@ public class SistemaController {
 			System.out.println("acao: "+acao);
 			paginaAtual = "Alunos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+			atualizarPagina = "/alunos";
 			String link = verificaLink("pages/alunos");
 			itemMenu = link;
 			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
@@ -333,9 +334,6 @@ public class SistemaController {
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
 						Contrato c = new Contrato();
-						if(acao.equals("atualizar")) {
-							c = contratoDao.buscarCliente(aluno.getMatricula()).get(0);
-						}
 						c.setAtivo(true);
 						c.setFim(fimContrato);
 						c.setInicio(inicioContrato);
@@ -397,7 +395,6 @@ public class SistemaController {
 							a.setContrato(contratos);
 							usuarioDao.save(a);
 						}
-						modelAndView.addObject("atualizarPagina", atualizarPagina);
 					} catch(Exception e) {
 						modelAndView.addObject("erro", e);
 					}
@@ -418,7 +415,7 @@ public class SistemaController {
 					a.setPerfil(perfilDao.buscarAluno().get(0));
 					usuarioDao.save(a);
 					
-					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0 && (acao.equals("salvar")) ) {
+					if(contratoDao.buscarCliente(aluno.getMatricula()).size() <= 0) {
 						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
 						Date inicioContrato = formato.parse(contrato_inicio);
 						Date fimContrato = formato.parse(contrato_fim);
@@ -483,6 +480,7 @@ public class SistemaController {
 				} else if(aluno.getMatricula() != null && (acao.equals("salvar")) && repetido) {
 					modelAndView.addObject("erro", "Já existe este CPF / Matrícula.");
 				}
+				modelAndView.addObject("atualizarPagina", atualizarPagina);
 				List<Usuario> usuarios = usuarioDao.buscarAlunos();
 				modelAndView.addObject("usuarios", usuarios);
 			}

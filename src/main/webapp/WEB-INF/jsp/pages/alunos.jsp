@@ -62,16 +62,6 @@ function editar(id){
 	document.getElementById("atualizar").style.display = "block";
 	document.getElementById("salvar").style.display = "none";
 	document.getElementById("cancelar").style.display = "block";
-
-	document.getElementById("contrato_inicio").disabled = true;
-	document.getElementById("contrato_fim").disabled = true;
-	document.getElementById("contrato_totalContrato").disabled = true;
-	document.getElementById("contrato_sinal").disabled = true;
-	document.getElementById("contrato_desconto").disabled = true;
-	document.getElementById("contrato_total").disabled = true;
-	document.getElementById("contrato_parcelas").disabled = true;
-	document.getElementById("contrato_vencimento").disabled = true;
-	document.getElementById("contrato_valorDaParcela").disabled = true;
 	
 	var inicio = 'x';
 	var fim = 'x';
@@ -105,8 +95,40 @@ function editar(id){
 					fim = '${c.fim}'.replace('00:00:00','').replace('.0','').replace(' ','')
 					document.getElementById("contrato_inicio").value = inicio;
 					document.getElementById("contrato_fim").value = fim;
+
+					document.getElementById("contrato_inicio").disabled = true;
+					document.getElementById("contrato_fim").disabled = true;
+					document.getElementById("contrato_totalContrato").disabled = true;
+					document.getElementById("contrato_sinal").disabled = true;
+					document.getElementById("contrato_desconto").disabled = true;
+					document.getElementById("contrato_total").disabled = true;
+					document.getElementById("contrato_parcelas").disabled = true;
+					document.getElementById("contrato_vencimento").disabled = true;
+					document.getElementById("contrato_valorDaParcela").disabled = true;
 				</c:if>
 			</c:forEach>
+			<c:if test="${u.contrato.size() < 1 }">
+				document.getElementById("contrato_inicio").disabled = false;
+				document.getElementById("contrato_fim").disabled = false;
+				document.getElementById("contrato_totalContrato").disabled = false;
+				document.getElementById("contrato_sinal").disabled = false;
+				document.getElementById("contrato_desconto").disabled = false;
+				document.getElementById("contrato_total").disabled = false;
+				document.getElementById("contrato_parcelas").disabled = false;
+				document.getElementById("contrato_vencimento").disabled = false;
+				document.getElementById("contrato_valorDaParcela").disabled = false;
+	
+				document.getElementById("contrato_inicio").value = '';
+				document.getElementById("contrato_fim").value = '';
+				document.getElementById("contrato_totalContrato").value = '0';
+				document.getElementById("contrato_sinal").value = '0';
+				document.getElementById("contrato_desconto").value = '0';
+				document.getElementById("contrato_total").value = '0';
+				document.getElementById("contrato_parcelas").value = '1';
+				document.getElementById("contrato_vencimento").value = '1';
+				document.getElementById("contrato_valorDaParcela").value = '0';
+			</c:if>
+			
 			
 		}
 	</c:forEach>
