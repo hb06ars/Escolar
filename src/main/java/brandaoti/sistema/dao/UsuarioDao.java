@@ -45,4 +45,6 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	List<Usuario> novosDoMes();
 	
 	
+	
+	
 }

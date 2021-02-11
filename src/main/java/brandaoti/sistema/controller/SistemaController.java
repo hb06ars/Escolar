@@ -39,6 +39,7 @@ import brandaoti.sistema.excel.Tabela;
 import brandaoti.sistema.model.Aula;
 import brandaoti.sistema.model.Contrato;
 import brandaoti.sistema.model.Horario;
+import brandaoti.sistema.model.Objeto;
 import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
 import brandaoti.sistema.model.Plano;
@@ -451,11 +452,38 @@ public class SistemaController {
 				Integer alunosAniversariantes = usuarioDao.buscarAniversariantes().size();
 				Integer novosDoMes = usuarioDao.novosDoMes().size();
 				
+				List<Objeto> meses = new ArrayList<Objeto>();
+				String mesStr = "";
+				String valStr = "";
+				for(int i = 1; i <= 12; i++) {
+					switch(i) {
+					  case 1: mesStr ="Jan"; break;
+					  case 2: mesStr ="Fev"; break;
+					  case 3: mesStr ="Mar"; break;
+					  case 4: mesStr ="Abr"; break;
+					  case 5: mesStr ="Mai"; break;
+					  case 6: mesStr ="Jun"; break;
+					  case 7: mesStr ="Jul"; break;
+					  case 8: mesStr ="Ago"; break;
+					  case 9: mesStr ="Set"; break;
+					  case 10: mesStr ="Out"; break;
+					  case 11: mesStr ="Nov"; break;
+					  case 12: mesStr ="Dez"; break;
+					  default:
+					}
+					Objeto m = new Objeto();
+					m.setNome1(mesStr);
+					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = valStr.replace(".0", "");
+					m.setValor1(valStr);
+					meses.add(m);
+				}
 				modelAndView.addObject("presentesOntem", presentesOntem);
 				modelAndView.addObject("todosAlunos", todosAlunos);
 				modelAndView.addObject("alunosPendentes", alunosPendentes);
 				modelAndView.addObject("alunosAniversariantes", alunosAniversariantes);
 				modelAndView.addObject("novosDoMes", novosDoMes);
+				modelAndView.addObject("meses", meses);
 				
 			}
 			return modelAndView; //retorna a variavel

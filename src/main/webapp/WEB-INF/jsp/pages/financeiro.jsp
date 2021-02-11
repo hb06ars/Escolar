@@ -10,7 +10,11 @@
 <!-- TAGS -->
 <!-- INICIO BODY -->
 
-
+<script>
+function redirecionar(link){
+	window.location.href=link;
+}
+</script>
 
 <!-- start: page -->
 <div class="row">
@@ -30,6 +34,10 @@
 									</select>
 								</strong>
 							</h2>
+							
+							<c:forEach items="${meses }" var="m">
+								${m.nome1 } - ${m.valor1 }<br>
+							</c:forEach>
 
 							<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
 								<!-- Flot: Sales Porto Admin -->
@@ -38,18 +46,9 @@
 
 									var flotDashSales1Data = [{
 									    data: [
-									        ["Jan", 140],
-									        ["Fev", 240],
-									        ["Mar", 190],
-									        ["Abr", 140],
-									        ["Mai", 180],
-									        ["Jun", 320],
-									        ["Jul", 270],
-									        ["Ago", 200],
-									        ["Set", 100],
-									        ["Out", 320],
-									        ["Nov", 100],
-									        ["Dez", 130]
+									    	<c:forEach items="${meses }" var="m">
+									    	["${m.nome1 }", ${m.valor1 }],
+									    	</c:forEach>
 									    ],
 									    color: "#0088cc"
 									}];
@@ -139,7 +138,7 @@
 									<i class="fa fa-life-ring"></i>
 								</div>
 							</div>
-							<div class="widget-summary-col">
+							<div class="widget-summary-col" onclick="redirecionar('/alunos')" style="cursor:pointer">
 								<div class="summary">
 									<h4 class="title">Total de Clientes</h4>
 									<div class="info">
@@ -160,7 +159,7 @@
 									<i class="fa fa-usd"></i>
 								</div>
 							</div>
-							<div class="widget-summary-col">
+							<div class="widget-summary-col" onclick="redirecionar('/pendencias')" style="cursor:pointer">
 								<div class="summary">
 									<h4 class="title">Pendentes</h4>
 									<div class="info">
@@ -181,7 +180,7 @@
 									<i class="fa fa-shopping-cart"></i>
 								</div>
 							</div>
-							<div class="widget-summary-col">
+							<div class="widget-summary-col" onclick="redirecionar('/alunos')" style="cursor:pointer">
 								<div class="summary">
 									<h4 class="title">Novos alunos do mês</h4>
 									<div class="info">
@@ -202,7 +201,7 @@
 									<i class="fa fa-user"></i>
 								</div>
 							</div>
-							<div class="widget-summary-col">
+							<div class="widget-summary-col" onclick="redirecionar('/aniversariantes')" style="cursor:pointer">
 								<div class="summary">
 									<h4 class="title">Aniversariantes</h4>
 									<div class="info">

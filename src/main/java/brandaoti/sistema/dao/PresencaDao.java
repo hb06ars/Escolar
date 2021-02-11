@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import brandaoti.sistema.model.Plano;
 import brandaoti.sistema.model.Presenca;
 import brandaoti.sistema.model.Treino;
+import brandaoti.sistema.model.Usuario;
 
 
 public interface PresencaDao extends JpaRepository<Plano, Integer> {
@@ -29,6 +30,7 @@ public interface PresencaDao extends JpaRepository<Plano, Integer> {
 	@Query(" select p from Presenca p where DAY(presenca)=(DAY(NOW())-1) and usuario.perfil.funcionario = TRUE order by presenca asc")
 	List<Presenca> presentesOntem();
 	
-	
+	@Query(" select p from Presenca p where extract(month from presenca) = :mes ")
+	List<Presenca> presentesMes(@Param("mes") Integer mes);
 	
 }
