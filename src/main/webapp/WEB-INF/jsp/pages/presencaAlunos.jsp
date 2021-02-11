@@ -57,10 +57,10 @@
 												<c:set var="cont" value="0"/>
 												<c:forEach items="${presenca }" var="p" varStatus="loop">
 													<c:if test="${p.usuario.id == u.id}">
-														<c:set var="dia" value="${fn:substring(p.presenca, 8, 10)}  " />
+														<c:set var="dia" value="${fn:substring(p.presenca, 8, 10)}" />
 														<c:if test="${dia == d  }">
 															<c:set var="cont" value="1"/>
-															<td><span class="dot" style="background-color: green;"></span> ${dia} : ${d}</td>
+															<td><span class="dot" onclick="modalHorario('${p.presenca}')" style="background-color: green;"></span></td>
 														</c:if>
 													</c:if>
 												</c:forEach>

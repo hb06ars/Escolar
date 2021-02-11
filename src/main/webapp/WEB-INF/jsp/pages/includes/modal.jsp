@@ -6,6 +6,7 @@
 
 <jsp:include page="modais/modalDeletar.jsp" />
 <jsp:include page="modais/modalImagem.jsp" />
+<jsp:include page="modais/modalHorario.jsp" />
 
 
 
