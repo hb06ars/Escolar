@@ -117,10 +117,10 @@
 						<h2 class="panel-title mt-md">Presentes ontem</h2>
 						<div class="liquid-meter-wrapper liquid-meter-sm mt-lg">
 							<div class="liquid-meter">
-								<meter min="0" max="100" value="35" id="meterSales"></meter>
+								<meter min="0" max="100" value="${(presentesOntem  * 100) / todosAlunos }" id="meterSales"></meter>
 							</div>
 							<div class="liquid-meter-selector" id="meterSalesSel">
-								<a href="#" data-val="35" class="active">Total</a>
+								<a href="#" data-val="35" class="active">Total ${presentesOntem } ALUNO(S) de ${todosAlunos }.</a>
 							</div>
 						</div>
 					</div>
@@ -143,12 +143,8 @@
 								<div class="summary">
 									<h4 class="title">Total de Clientes</h4>
 									<div class="info">
-										<strong class="amount">${totalClientes }</strong>
-										<span class="text-primary">(5400 alunos)</span>
+										<strong class="amount">${todosAlunos } alunos</strong>
 									</div>
-								</div>
-								<div class="summary-footer">
-									<a class="text-muted text-uppercase">(VER TUDO)</a>
 								</div>
 							</div>
 						</div>
@@ -168,11 +164,8 @@
 								<div class="summary">
 									<h4 class="title">Pendentes</h4>
 									<div class="info">
-										<strong class="amount">290</strong>
+										<strong class="amount">${alunosPendentes } alunos</strong>
 									</div>
-								</div>
-								<div class="summary-footer">
-									<a class="text-muted text-uppercase">(ver tudo)</a>
 								</div>
 							</div>
 						</div>
@@ -192,11 +185,8 @@
 								<div class="summary">
 									<h4 class="title">Novos alunos do mês</h4>
 									<div class="info">
-										<strong class="amount">38</strong>
+										<strong class="amount">${novosDoMes } alunos</strong>
 									</div>
-								</div>
-								<div class="summary-footer">
-									<a class="text-muted text-uppercase">(ver tudo)</a>
 								</div>
 							</div>
 						</div>
@@ -216,11 +206,8 @@
 								<div class="summary">
 									<h4 class="title">Aniversariantes</h4>
 									<div class="info">
-										<strong class="amount">37</strong>
+										<strong class="amount">${alunosAniversariantes }</strong>
 									</div>
-								</div>
-								<div class="summary-footer">
-									<a class="text-muted text-uppercase">(ver tudo)</a>
 								</div>
 							</div>
 						</div>

@@ -40,4 +40,9 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	
 	@Query(" select p from Usuario p where extract(month from data_nascimento) = extract(month from sysdate) and extract(day from data_nascimento) = extract(day from sysdate) and ativo = TRUE ")
 	List<Usuario> buscarAniversariantes();
+	
+	@Query(" select p from Usuario p where extract(month from dataDeCadastro) = extract(month from sysdate) and ativo = TRUE ")
+	List<Usuario> novosDoMes();
+	
+	
 }

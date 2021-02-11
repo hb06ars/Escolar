@@ -445,7 +445,17 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//Caso esteja logado.
+				Integer presentesOntem = presencaDao.presentesOntem().size();
+				Integer todosAlunos = usuarioDao.buscarAlunos().size();
+				Integer alunosPendentes = parcelaDao.buscarPendencias().size();
+				Integer alunosAniversariantes = usuarioDao.buscarAniversariantes().size();
+				Integer novosDoMes = usuarioDao.novosDoMes().size();
+				
+				modelAndView.addObject("presentesOntem", presentesOntem);
+				modelAndView.addObject("todosAlunos", todosAlunos);
+				modelAndView.addObject("alunosPendentes", alunosPendentes);
+				modelAndView.addObject("alunosAniversariantes", alunosAniversariantes);
+				modelAndView.addObject("novosDoMes", novosDoMes);
 				
 			}
 			return modelAndView; //retorna a variavel
