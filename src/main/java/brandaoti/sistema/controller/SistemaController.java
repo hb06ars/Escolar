@@ -452,7 +452,10 @@ public class SistemaController {
 				Integer alunosAniversariantes = usuarioDao.buscarAniversariantes().size();
 				Integer novosDoMes = usuarioDao.novosDoMes().size();
 				
-				List<Objeto> meses = new ArrayList<Objeto>();
+				List<Objeto> mesesTodos = new ArrayList<Objeto>();
+				List<Objeto> mesesManha= new ArrayList<Objeto>();
+				List<Objeto> mesesTarde = new ArrayList<Objeto>();
+				List<Objeto> mesesNoite = new ArrayList<Objeto>();
 				String mesStr = "";
 				String valStr = "";
 				for(int i = 1; i <= 12; i++) {
@@ -471,19 +474,43 @@ public class SistemaController {
 					  case 12: mesStr ="Dez"; break;
 					  default:
 					}
-					Objeto m = new Objeto();
-					m.setNome1(mesStr);
+					Objeto mTodos = new Objeto();
+					mTodos.setNome1(mesStr);
 					valStr = ""+presencaDao.presentesMes(i).size();
 					valStr = valStr.replace(".0", "");
-					m.setValor1(valStr);
-					meses.add(m);
+					mTodos.setValor1(valStr);
+					mesesTodos.add(mTodos);
+					
+					Objeto mManha = new Objeto();
+					mManha.setNome1(mesStr);
+					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = valStr.replace(".0", "");
+					mManha.setValor1(valStr);
+					mesesManha.add(mManha);
+					
+					Objeto mTarde = new Objeto();
+					mTarde.setNome1(mesStr);
+					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = valStr.replace(".0", "");
+					mTarde.setValor1(valStr);
+					mesesTarde.add(mTarde);
+					
+					Objeto mNoite = new Objeto();
+					mNoite.setNome1(mesStr);
+					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = valStr.replace(".0", "");
+					mNoite.setValor1(valStr);
+					mesesNoite.add(mNoite);
 				}
 				modelAndView.addObject("presentesOntem", presentesOntem);
 				modelAndView.addObject("todosAlunos", todosAlunos);
 				modelAndView.addObject("alunosPendentes", alunosPendentes);
 				modelAndView.addObject("alunosAniversariantes", alunosAniversariantes);
 				modelAndView.addObject("novosDoMes", novosDoMes);
-				modelAndView.addObject("meses", meses);
+				modelAndView.addObject("mesesTodos", mesesTodos);
+				modelAndView.addObject("mesesManha", mesesManha);
+				modelAndView.addObject("mesesTarde", mesesTarde);
+				modelAndView.addObject("mesesNoite", mesesNoite);
 				
 			}
 			return modelAndView; //retorna a variavel

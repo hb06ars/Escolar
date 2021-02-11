@@ -34,11 +34,6 @@ function redirecionar(link){
 									</select>
 								</strong>
 							</h2>
-							
-							<c:forEach items="${meses }" var="m">
-								${m.nome1 } - ${m.valor1 }<br>
-							</c:forEach>
-
 							<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
 								<!-- Flot: Sales Porto Admin -->
 								<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active"></div>
