@@ -767,7 +767,8 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//Caso esteja logado.
+				List<Parcela> pendencias = parcelaDao.buscarPendencias();
+				modelAndView.addObject("pendencias", pendencias);
 				
 			}
 			return modelAndView; //retorna a variavel

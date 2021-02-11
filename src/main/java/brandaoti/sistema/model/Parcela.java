@@ -32,7 +32,7 @@ public class Parcela {
 	private Double valor;
 
 	@Column
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate vencimento;
 	
 	@OneToOne

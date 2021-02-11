@@ -26,12 +26,13 @@
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
+											<th>Retirar</th>
 											<th>Matrícula</th>
 											<th>Situação</th>
-											<th>Contrato</th>
-											<th>Pendência mais antiga</th>
-											<th>Parcelas Pendentes</th>
-											<th>Total da dívida</th>
+											<th>Ativo</th>
+											<th>Fim do Contrato</th>
+											<th>Vencimento da Parcela</th>
+											<th>Valor da dívida</th>
 											<th>Nome</th>
 											<th>Telefone</th>
 											<th>Celular</th>
@@ -44,23 +45,32 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="gradeX">
-											<td>12345</td>
-											<td style="color:red">Inativo</td>
-											<td>28/01/2020</td>
-											<td>28/12/2019</td>
-											<td>3</td>
-											<td><fmt:formatNumber value="2345.67" type="currency"/></td>
-											<td>Henrique Brandão</td>
-											<td class="center">(11)99999-8888</td>
-											<td class="center">(11)89999-8888</td>
-											<td>teste@teste.com</td>
-											<td>Rua da Alegria</td>
-											<td>Bairro da Felicidade</td>
-											<td>São Paulo</td>
-											<td>SP</td>
-											<td>222.333.444-88</td>
-										</tr>
+										<c:forEach items="${pendencias }" var="p">
+											<tr class="gradeX">
+												<td><i class="fa fa-trash"></i></td>
+												<td>${p.contrato.cliente.matricula }</td>
+												<td style="color:red"> Pendente </td>
+												<c:if test="${p.contrato.cliente.ativo == false}">
+													<td style="color:red"> Inativo </td>
+												</c:if>
+												<c:if test="${p.contrato.cliente.ativo == true}">
+													<td style="color:blue"> Ativo </td>
+												</c:if>
+												<td><fmt:formatDate pattern="dd/MM/yyyy" value="${p.contrato.fim}" /></td>
+												<c:set var="valor" value="${fn:substring(p.vencimento, 8, 10)}/${fn:substring(p.vencimento, 5, 7)}/${fn:substring(p.vencimento, 0, 4)}" />
+												<td>${valor}</td>
+												<td><fmt:formatNumber type="currency" value="${p.valor}" /></td>
+												<td>${p.contrato.cliente.nome}</td>
+												<td class="center">${p.contrato.cliente.telefone}</td>
+												<td class="center">${p.contrato.cliente.celular}</td>
+												<td>${p.contrato.cliente.email}</td>
+												<td>${p.contrato.cliente.endereco}</td>
+												<td>${p.contrato.cliente.bairro}</td>
+												<td>${p.contrato.cliente.cidade}</td>
+												<td>${p.contrato.cliente.estado}</td>
+												<td>${p.contrato.cliente.cpf}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
