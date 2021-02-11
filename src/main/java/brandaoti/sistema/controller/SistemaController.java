@@ -296,6 +296,8 @@ public class SistemaController {
 					 	paginaAtual = "Aulas";
 						iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 					 	try {
+					 		aulaDao.deleteAll();
+					 		
 					 		String inicio="";
 			   				String fim="";
 				   			for(int i=0; i < tabelas.size(); i++) {

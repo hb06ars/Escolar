@@ -30,7 +30,6 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12 form-group">
-						Antes de cadastrar os horários será necessário cadastrar todos os professores primeiro.<br>
 						Para importar as aulas crie um arquivo no excel no formato (xlsx).<br>
 						O sistema irá limpar todas as aulas e se basear no Excel que você enviar.<br>
 						Clique <a href="/modelos/aulas.xlsx">aqui</a> para baixar o modelo de exemplo de como importar.
