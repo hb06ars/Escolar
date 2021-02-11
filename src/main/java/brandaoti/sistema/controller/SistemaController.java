@@ -830,6 +830,7 @@ public class SistemaController {
 				GregorianCalendar calendar = new GregorianCalendar();
 				int ano = calendar.get(GregorianCalendar.YEAR);
 				int mes = calendar.get(GregorianCalendar.MONTH);
+				int limiteDias = calendar.getActualMaximum (Calendar.DAY_OF_MONTH);  
 				String mesStr ="Janeiro";
 				mes++;
 				
@@ -849,6 +850,17 @@ public class SistemaController {
 				  default:
 				}
 				
+				List<String> dias = new ArrayList<String>();
+				String d = "";
+				for(int i = 1; i <= limiteDias; i++) {
+					if(i < 10) {
+						d = "0"+i;
+					} else {
+						d = ""+i;
+					}
+					dias.add(d);
+				}
+				
 				//Caso esteja logado.
 				List<Usuario> usuarios = usuarioDao.buscarAlunos();
 				List<Presenca> presenca = presencaDao.buscarMesAlunos();
@@ -856,6 +868,7 @@ public class SistemaController {
 				modelAndView.addObject("presenca", presenca);
 				modelAndView.addObject("ano", ano);
 				modelAndView.addObject("mes", mesStr);
+				modelAndView.addObject("dias", dias);
 			}
 			return modelAndView; //retorna a variavel
 		}
@@ -875,6 +888,7 @@ public class SistemaController {
 				GregorianCalendar calendar = new GregorianCalendar();
 				int ano = calendar.get(GregorianCalendar.YEAR);
 				int mes = calendar.get(GregorianCalendar.MONTH);
+				int limiteDias = calendar.getActualMaximum (Calendar.DAY_OF_MONTH);  
 				String mesStr ="Janeiro";
 				mes++;
 				
@@ -893,12 +907,25 @@ public class SistemaController {
 				  case 12: mesStr ="Dezembro"; break;
 				  default:
 				}
+				
+				List<String> dias = new ArrayList<String>();
+				String d = "";
+				for(int i = 1; i <= limiteDias; i++) {
+					if(i < 10) {
+						d = "0"+i;
+					} else {
+						d = ""+i;
+					}
+					dias.add(d);
+				}
+				
 				List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
 				List<Presenca> presenca = presencaDao.buscarMesFuncionarios();
 				modelAndView.addObject("usuarios", usuarios);
 				modelAndView.addObject("presenca", presenca);
 				modelAndView.addObject("ano", ano);
 				modelAndView.addObject("mes", mesStr);
+				modelAndView.addObject("dias", dias);
 				
 			}
 			return modelAndView; //retorna a variavel
