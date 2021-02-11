@@ -47,7 +47,7 @@
 									<tbody>
 										<c:forEach items="${pendencias }" var="p">
 											<tr class="gradeX">
-												<td><i class="fa fa-trash"></i></td>
+												<td><i class="fa fa-trash" onclick="modalDeletar('parcela', ${p.id}) "></i></td>
 												<td>${p.contrato.cliente.matricula }</td>
 												<td style="color:red"> Pendente </td>
 												<c:if test="${p.contrato.cliente.ativo == false}">

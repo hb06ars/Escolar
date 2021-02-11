@@ -38,7 +38,7 @@ function confirmaDelete(){
 	      	 <input type="hidden" name="tabela" id="tabelaExclusao">
 	      	 <input type="hidden" name="id" id="idExclusao">
 	        <button type="button" class="btn btn-danger" id="deletar" onclick="confirmaDelete()" data-dismiss="modal">Sim</button>
-	        <button type="button" class="btn btn-primary" id="deletar" data-dismiss="modal">Não</button>
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">Não</button>
 	      </div>
 	    </div>
 	  </div>

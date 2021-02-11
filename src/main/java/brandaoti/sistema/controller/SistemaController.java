@@ -259,6 +259,23 @@ public class SistemaController {
 					modelAndView.addObject("usuarios", usuarios);
 					atualizarPagina = "/funcionarios";
 				}
+				if(tabela.equals("parcela")) {
+					modelAndView = new ModelAndView(link);
+					paginaAtual = "Pendências";
+					Parcela objeto = parcelaDao.findById(id).get();
+					Contrato c = contratoDao.findById(objeto.getContrato().getId()).get();
+					objeto.setAtivo(false);
+					parcelaDao.save(objeto);
+					
+					Integer parcelasDoContrato = parcelaDao.buscarPorContrato(c.getId()).size();
+					if(parcelasDoContrato <= 0) {
+						c.setAtivo(false);
+						contratoDao.save(c);
+					}
+					List<Parcela> pendencias = parcelaDao.buscarPendencias();
+					modelAndView.addObject("pendencias", pendencias);
+					atualizarPagina = "/pendencias";
+				}
 			}
 			modelAndView.addObject("atualizarPagina", atualizarPagina);
 			modelAndView.addObject("usuario", usuarioSessao);
