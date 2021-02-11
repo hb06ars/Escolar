@@ -37,4 +37,7 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	
 	@Query(" select p from Usuario p where ativo = TRUE")
 	List<Usuario> buscarTudo();
+	
+	@Query(" select p from Usuario p where extract(month from data_nascimento) = extract(month from sysdate) and extract(day from data_nascimento) = extract(day from sysdate) and ativo = TRUE ")
+	List<Usuario> buscarAniversariantes();
 }

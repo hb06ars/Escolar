@@ -804,7 +804,8 @@ public class SistemaController {
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
 				//Caso esteja logado.
-				
+				List<Usuario> usuarios = usuarioDao.buscarAniversariantes();
+				modelAndView.addObject("usuarios", usuarios);
 			}
 			return modelAndView; //retorna a variavel
 		}
