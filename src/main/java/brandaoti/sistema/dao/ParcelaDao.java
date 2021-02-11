@@ -18,16 +18,16 @@ public interface ParcelaDao extends JpaRepository<Parcela, Integer> {
 	@Query(" select p from Parcela p where upper( p.contrato.cliente.id ) like ( :id )")
 	List<Parcela> buscarCliente(@Param("id") String id);
 	
-	@Query(" select p from Parcela p where upper( p.contrato.id ) like ( :id )")
+	@Query(" select p from Parcela p where upper( p.contrato.id ) like ( :id ) order by p.vencimento asc")
 	List<Parcela> buscarParcelas(@Param("id") Integer id);
 	
-	@Query(" select p from Parcela p where p.ativo = TRUE")
+	@Query(" select p from Parcela p where p.ativo = TRUE order by p.vencimento asc")
 	List<Parcela> buscarTudo();
 	
-	@Query(" select p from Parcela p where p.vencimento < now() and p.ativo = TRUE")
+	@Query(" select p from Parcela p where p.vencimento < now() and p.ativo = TRUE order by p.vencimento asc ")
 	List<Parcela> buscarPendencias();
 	
-	@Query(" select p from Parcela p where upper( p.contrato.id ) like ( :id )")
+	@Query(" select p from Parcela p where upper( p.contrato.id ) like ( :id ) and p.ativo = TRUE")
 	List<Parcela> buscarPorContrato(@Param("id") Integer id);
 	
 	
