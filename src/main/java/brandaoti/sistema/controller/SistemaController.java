@@ -36,6 +36,7 @@ import brandaoti.sistema.excel.ProcessaExcel;
 import brandaoti.sistema.excel.Tabela;
 import brandaoti.sistema.model.Aula;
 import brandaoti.sistema.model.Contrato;
+import brandaoti.sistema.model.Horario;
 import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
 import brandaoti.sistema.model.Plano;
@@ -283,7 +284,7 @@ public class SistemaController {
 			if(logado) {
 				//Caso esteja logado.
 				ProcessaExcel processaExcel = new ProcessaExcel();
-				List<Tabela> tabelas = processaExcel.uploadAlunos(file);
+				List<Tabela> tabelas = processaExcel.uploadExcel(file);
 		    	String conteudo="";
 		   		Integer finalLinha = 0;
 		   		Aula a = new Aula();
@@ -291,26 +292,88 @@ public class SistemaController {
 				switch (tabelaUsada) {  
 				 case "aulas" : // CASO SEJA AULAS ---------------------
 					 	link = verificaLink("pages/aulas");
-				   		try {
+					 	modelAndView = new ModelAndView(link);
+					 	paginaAtual = "Aulas";
+						iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+					 	try {
+					 		String inicio="";
+			   				String fim="";
 				   			for(int i=0; i < tabelas.size(); i++) {
 				   				coluna = tabelas.get(i).getColuna();
 				   				conteudo = tabelas.get(i).getConteudo();
-				   				if(coluna == 0) a.setInicio(LocalTime.parse(conteudo));
-				   				if(coluna == 1) a.setFim(LocalTime.parse(conteudo));
-				   				if(coluna == 2) a.setDiaSemana(conteudo);
-				   				if(coluna == 3) a.setNomeAula(conteudo);
-				   				if(coluna == 4) a.setProfessor(usuarioDao.buscarMatricula(conteudo));
 				   				
-				   				if(finalLinha >= 4) {
-				   					finalLinha = -1;
-				   					aulaDao.save(a);
+				   				if(coluna == 0) inicio = conteudo;
+				   				if(coluna == 1) fim = conteudo;
+				   				
+				   				if(coluna == 2) {
 				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Segunda");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 3) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Terça");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 4) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Quarta");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 5) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Quinta");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 6) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Sexta");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 7) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Sábado");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				if(coluna == 8) {
+				   					a = new Aula();
+				   					a.setInicio(inicio);
+				   					a.setFim(fim);
+				   					a.setDiaSemana("Domingo");
+				   					a.setNomeAula(conteudo);
+				   					aulaDao.save(a);
+				   				}
+				   				
+				   				
+				   				
+				   				if(finalLinha >= 8) {
+				   					finalLinha = -1;
 				   				}
 				   				finalLinha++;
 				   			}
 				   		} catch(Exception e) {
 				   			System.out.println("Erro: "+ e);
 				   		}
+					 	List<Aula> aulas = aulaDao.buscarTudo();
+					 	modelAndView.addObject("aulas", aulas);
 					}
 				
 			}
@@ -658,6 +721,24 @@ public class SistemaController {
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
 				//Caso esteja logado.
+				List<Aula> aulas = aulaDao.buscarTudo();
+			 	modelAndView.addObject("aulas", aulas);
+			 	List<Aula> h = aulaDao.buscarhorarios();
+			 	List<Horario> horarios = new ArrayList<Horario>();
+			 	String ultimoHorarioInicio = "";
+			 	String ultimoHorarioFim = "";
+			 	for(Aula a : h) {
+			 		if(!((ultimoHorarioInicio.equals(a.getInicio())) && (ultimoHorarioFim.equals(a.getFim())))) {
+			 			ultimoHorarioInicio = a.getInicio();
+			 			ultimoHorarioFim = a.getFim();
+			 			Horario hr = new Horario();
+			 			hr.setInicio(a.getInicio());
+			 			hr.setFim(a.getFim());
+			 			System.out.println("Hora: " + hr.getInicio() + " - " + hr.getFim());
+			 			horarios.add(hr);
+			 		}
+			 	}
+			 	modelAndView.addObject("horarios", horarios);
 				
 			}
 			return modelAndView; //retorna a variavel

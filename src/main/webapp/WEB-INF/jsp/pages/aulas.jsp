@@ -75,46 +75,31 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr class="gradeX">
-											<td>07:00 / 09:00</td>
-											<td>Boxe (José)</td>
-											<td>Balé (Ana)</td>
-											<td>Jiu-Jitsu (Maria)</td>
-											<td>Pilates (Jorge)</td>
-											<td>Sertanejo (Carla)</td>
-											<td>Boxe (Juca)</td>
-											<td>Fechado</td>
-										</tr>
-										<tr class="gradeX">
-											<td>09:00 / 10:00</td>
-											<td>Balé (Ana)</td>
-											<td>Sertanejo (Carla)</td>
-											<td>Jiu-Jitsu (Maria)</td>
-											<td>Pilates (Jorge)</td>
-											<td>Boxe (José)</td>
-											<td>Kung-Fu (Arnaldo)</td>
-											<td>Fechado</td>
-										</tr>
-										<tr class="gradeX">
-											<td>10:00 / 11:00</td>
-											<td>Boxe (José)</td>
-											<td>Balé (Ana)</td>
-											<td>Jiu-Jitsu (Maria)</td>
-											<td>Pilates (Jorge)</td>
-											<td>Sertanejo (Carla)</td>
-											<td>Boxe (Juca)</td>
-											<td>Fechado</td>
-										</tr>
-										<tr class="gradeX">
-											<td>11:00 / 12:00</td>
-											<td>Balé (Ana)</td>
-											<td>Sertanejo (Carla)</td>
-											<td>Jiu-Jitsu (Maria)</td>
-											<td>Pilates (Jorge)</td>
-											<td>Boxe (José)</td>
-											<td>Kung-Fu (Arnaldo)</td>
-											<td>Fechado</td>
-										</tr>
+										<c:set var="cont" value="0"/>
+										<c:forEach items="${horarios }" var="h">
+											<tr class="gradeX">
+											<td>${h.inicio } / ${h.fim }</td>
+											<c:forEach items="${aulas }" var="a" varStatus="loop">
+												<c:if test="${a.inicio == h.inicio && a.fim == h.fim }">
+													<c:if test="${a.diaSemana == 'Segunda' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="segundaOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Terça' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="tercaOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Quarta' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="quartaOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Quinta' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="quintaOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Sexta' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="sextaOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Sábado' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="sabadoOk" value="1"/> </c:if>
+													<c:if test="${a.diaSemana == 'Domingo' }" ><td>${a.nomeAula} (${a.professor})</td> <c:set var="domingoOk" value="1"/> </c:if>
+													<c:set var="cont" value="${cont = cont + 1 }"/>
+												</c:if>
+												<c:if test="${cont > 6 }">
+													<c:if test="${tercaOk < 1 }">
+														<td></td>
+													</c:if>
+												</c:if>
+											</c:forEach>
+											
+											</tr>
+										</c:forEach>
+									
 									</tbody>
 								</table>
 							</div>

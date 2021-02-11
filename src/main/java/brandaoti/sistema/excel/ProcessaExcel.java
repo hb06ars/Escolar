@@ -24,7 +24,7 @@ public class ProcessaExcel {
 	
 	private SistemaController sis = new SistemaController();
 	
-	public List<Tabela> uploadAlunos(@ModelAttribute MultipartFile file) throws Exception {
+	public List<Tabela> uploadExcel(@ModelAttribute MultipartFile file) throws Exception {
 		List<Tabela> tabelas = new ArrayList<Tabela>();
 		int linha = 1;
 		int coluna = 0;

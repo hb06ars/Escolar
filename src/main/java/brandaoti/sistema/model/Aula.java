@@ -26,10 +26,10 @@ public class Aula {
 	private Boolean ativo = true;
 	
 	@Column
-	private LocalTime inicio;
+	private String inicio;
 	
 	@Column
-	private LocalTime fim;
+	private String fim;
 	
 	@Column
 	private String diaSemana;
@@ -72,19 +72,19 @@ public class Aula {
 		this.ativo = ativo;
 	}
 
-	public LocalTime getInicio() {
+	public String getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(LocalTime inicio) {
+	public void setInicio(String inicio) {
 		this.inicio = inicio;
 	}
 
-	public LocalTime getFim() {
+	public String getFim() {
 		return fim;
 	}
 
-	public void setFim(LocalTime fim) {
+	public void setFim(String fim) {
 		this.fim = fim;
 	}
 

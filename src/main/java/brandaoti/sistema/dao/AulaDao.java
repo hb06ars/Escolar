@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import brandaoti.sistema.model.Aula;
+import brandaoti.sistema.model.Horario;
 import brandaoti.sistema.model.Plano;
 import brandaoti.sistema.model.Treino;
 
@@ -18,6 +19,9 @@ public interface AulaDao extends JpaRepository<Aula, Integer> {
 	
 	@Query(" select p from Aula p where ativo = TRUE")
 	List<Aula> buscarTudo();
+	
+	@Query(" select a from Aula a where ativo = TRUE order by a.inicio, a.fim asc ")
+	List<Aula> buscarhorarios();
 	
 	
 	
