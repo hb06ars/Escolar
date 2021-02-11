@@ -483,21 +483,21 @@ public class SistemaController {
 					
 					Objeto mManha = new Objeto();
 					mManha.setNome1(mesStr);
-					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = ""+presencaDao.presentesMesManha(i).size();
 					valStr = valStr.replace(".0", "");
 					mManha.setValor1(valStr);
 					mesesManha.add(mManha);
 					
 					Objeto mTarde = new Objeto();
 					mTarde.setNome1(mesStr);
-					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = ""+presencaDao.presentesMesTarde(i).size();
 					valStr = valStr.replace(".0", "");
 					mTarde.setValor1(valStr);
 					mesesTarde.add(mTarde);
 					
 					Objeto mNoite = new Objeto();
 					mNoite.setNome1(mesStr);
-					valStr = ""+presencaDao.presentesMes(i).size();
+					valStr = ""+presencaDao.presentesMesNoite(i).size();
 					valStr = valStr.replace(".0", "");
 					mNoite.setValor1(valStr);
 					mesesNoite.add(mNoite);

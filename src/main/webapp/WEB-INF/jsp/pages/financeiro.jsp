@@ -15,7 +15,7 @@ function redirecionar(link){
 	window.location.href=link;
 }
 </script>
-
+									    	
 <!-- start: page -->
 <div class="row">
 	<div class="col-md-6 col-lg-12 col-xl-6">
@@ -28,81 +28,56 @@ function redirecionar(link){
 								Alunos Presentes:
 								<strong>
 									<select class="form-control" id="salesSelector">
-										<option value="Porto Admin" selected>Manhã</option>
-										<option value="Porto Drupal" >Tarde</option>
-										<option value="Porto Wordpress" >Noite</option>
+										<option value="Manha" >Manhã</option>
+										<option value="Tarde" >Tarde</option>
+										<option value="Noite" >Noite</option>
 									</select>
 								</strong>
 							</h2>
 							<div id="salesSelectorItems" class="chart-data-selector-items mt-sm">
 								<!-- Flot: Sales Porto Admin -->
-								<div class="chart chart-sm" data-sales-rel="Porto Admin" id="flotDashSales1" class="chart-active"></div>
+								<div class="chart chart-sm" data-sales-rel="Manha" id="flotDashSales1" class="chart-active"></div>
 								<script>
-
 									var flotDashSales1Data = [{
 									    data: [
-									    	<c:forEach items="${meses }" var="m">
+									    	<c:forEach items="${mesesManha }" var="m">
 									    	["${m.nome1 }", ${m.valor1 }],
 									    	</c:forEach>
 									    ],
 									    color: "#0088cc"
 									}];
-
-									// See: static/assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
 								</script>
 
 								<!-- Flot: Sales Porto Drupal -->
-								<div class="chart chart-sm" data-sales-rel="Porto Drupal" id="flotDashSales2" class="chart-hidden"></div>
+								<div class="chart chart-sm" data-sales-rel="Tarde" id="flotDashSales2" class="chart-hidden"></div>
 								<script>
-
 									var flotDashSales2Data = [{
 									    data: [
-									        ["Jan", 240],
-									        ["Fev", 240],
-									        ["Mar", 290],
-									        ["Abr", 540],
-									        ["Mai", 480],
-									        ["Jun", 220],
-									        ["Jul", 170],
-									        ["Ago", 190],
-									        ["Set", 100],
-									        ["Out", 320],
-									        ["Nov", 100],
-									        ["Dez", 130]
+									    	<c:forEach items="${mesesTarde }" var="m">
+									    	["${m.nome1 }", ${m.valor1 }],
+									    	</c:forEach>
 									    ],
-									    color: "#2baab1"
+									    color: "#0088cc"
 									}];
-
-									// See: static/assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
 								</script>
-
+								
 								<!-- Flot: Sales Porto Wordpress -->
-								<div class="chart chart-sm" data-sales-rel="Porto Wordpress" id="flotDashSales3" class="chart-hidden"></div>
+								<div class="chart chart-sm" data-sales-rel="Noite" id="flotDashSales3" class="chart-hidden"></div>
 								<script>
-
 									var flotDashSales3Data = [{
 									    data: [
-									        ["Jan", 840],
-									        ["Fev", 740],
-									        ["Mar", 690],
-									        ["Abr", 940],
-									        ["Mai", 1180],
-									        ["Jun", 820],
-									        ["Jul", 570],
-									        ["Ago", 780],
-									        ["Set", 100],
-									        ["Out", 320],
-									        ["Nov", 100],
-									        ["Dez", 130]
+									    	<c:forEach items="${mesesNoite }" var="m">
+									    	["${m.nome1 }", ${m.valor1 }],
+									    	</c:forEach>
 									    ],
-									    color: "#734ba9"
+									    color: "#0088cc"
 									}];
-
-									// See: static/assets/javascripts/dashboard/examples.dashboard.js for more settings.
-
 								</script>
+								
+								
+								
+								
+								
 							</div>
 
 						</div>
