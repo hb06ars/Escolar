@@ -20,6 +20,7 @@
 }
 </style>
 
+
 <!-- start: page -->
 <section class="panel">
 							<header class="panel-heading">
@@ -71,10 +72,12 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:forEach items="${usuarios }" var="u">
+										
 										<tr class="gradeX">
-											<td>12345</td>
-											<td>Henrique Brandão</td>
-											<td>Fev/2020</td>
+											<td>${u.matricula}</td>
+											<td>${u.nome}</td>
+											<td>${mes}/${ano}</td>
 											<td><span class="dot" style="background-color: red;"></span></td>
 											<td><span class="dot" style="background-color: green;"></span></td>
 											<td><span class="dot" style="background-color: #bbb;"></span></td>
@@ -107,6 +110,8 @@
 											<td><span class="dot" style="background-color: #bbb;"></span></td>
 											<td><span class="dot" style="background-color: #bbb;"></span></td>
 										</tr>
+										
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

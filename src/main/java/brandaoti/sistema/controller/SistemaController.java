@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
@@ -30,6 +31,7 @@ import brandaoti.sistema.dao.ContratoDao;
 import brandaoti.sistema.dao.ParcelaDao;
 import brandaoti.sistema.dao.PerfilDao;
 import brandaoti.sistema.dao.PlanoDao;
+import brandaoti.sistema.dao.PresencaDao;
 import brandaoti.sistema.dao.TreinoDao;
 import brandaoti.sistema.dao.UsuarioDao;
 import brandaoti.sistema.excel.ProcessaExcel;
@@ -40,6 +42,7 @@ import brandaoti.sistema.model.Horario;
 import brandaoti.sistema.model.Parcela;
 import brandaoti.sistema.model.Perfil;
 import brandaoti.sistema.model.Plano;
+import brandaoti.sistema.model.Presenca;
 import brandaoti.sistema.model.Treino;
 import brandaoti.sistema.model.Usuario;
 
@@ -63,6 +66,8 @@ public class SistemaController {
 		private ParcelaDao parcelaDao;
 		@Autowired
 		private AulaDao aulaDao;
+		@Autowired
+		private PresencaDao presencaDao;
 		
 		public static Usuario usuarioSessao;
 		public static String atualizarPagina = null;
@@ -822,8 +827,35 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//Caso esteja logado.
+				GregorianCalendar calendar = new GregorianCalendar();
+				int ano = calendar.get(GregorianCalendar.YEAR);
+				int mes = calendar.get(GregorianCalendar.MONTH);
+				String mesStr ="Janeiro";
+				mes++;
 				
+				switch(mes) {
+				  case 1: mesStr ="Janeiro"; break;
+				  case 2: mesStr ="Fevereiro"; break;
+				  case 3: mesStr ="Março"; break;
+				  case 4: mesStr ="Abril"; break;
+				  case 5: mesStr ="Maio"; break;
+				  case 6: mesStr ="Junho"; break;
+				  case 7: mesStr ="Julho"; break;
+				  case 8: mesStr ="Agosto"; break;
+				  case 9: mesStr ="Setembro"; break;
+				  case 10: mesStr ="Outubro"; break;
+				  case 11: mesStr ="Novembro"; break;
+				  case 12: mesStr ="Dezembro"; break;
+				  default:
+				}
+				
+				//Caso esteja logado.
+				List<Usuario> usuarios = usuarioDao.buscarAlunos();
+				List<Presenca> presenca = presencaDao.buscarMesAlunos();
+				modelAndView.addObject("usuarios", usuarios);
+				modelAndView.addObject("presenca", presenca);
+				modelAndView.addObject("ano", ano);
+				modelAndView.addObject("mes", mesStr);
 			}
 			return modelAndView; //retorna a variavel
 		}
@@ -840,7 +872,33 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//Caso esteja logado.
+				GregorianCalendar calendar = new GregorianCalendar();
+				int ano = calendar.get(GregorianCalendar.YEAR);
+				int mes = calendar.get(GregorianCalendar.MONTH);
+				String mesStr ="Janeiro";
+				mes++;
+				
+				switch(mes) {
+				  case 1: mesStr ="Janeiro"; break;
+				  case 2: mesStr ="Fevereiro"; break;
+				  case 3: mesStr ="Março"; break;
+				  case 4: mesStr ="Abril"; break;
+				  case 5: mesStr ="Maio"; break;
+				  case 6: mesStr ="Junho"; break;
+				  case 7: mesStr ="Julho"; break;
+				  case 8: mesStr ="Agosto"; break;
+				  case 9: mesStr ="Setembro"; break;
+				  case 10: mesStr ="Outubro"; break;
+				  case 11: mesStr ="Novembro"; break;
+				  case 12: mesStr ="Dezembro"; break;
+				  default:
+				}
+				List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
+				List<Presenca> presenca = presencaDao.buscarMesFuncionarios();
+				modelAndView.addObject("usuarios", usuarios);
+				modelAndView.addObject("presenca", presenca);
+				modelAndView.addObject("ano", ano);
+				modelAndView.addObject("mes", mesStr);
 				
 			}
 			return modelAndView; //retorna a variavel
