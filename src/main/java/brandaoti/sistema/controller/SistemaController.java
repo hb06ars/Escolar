@@ -297,13 +297,11 @@ public class SistemaController {
 						iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 					 	try {
 					 		aulaDao.deleteAll();
-					 		
 					 		String inicio="";
 			   				String fim="";
 				   			for(int i=0; i < tabelas.size(); i++) {
 				   				coluna = tabelas.get(i).getColuna();
 				   				conteudo = tabelas.get(i).getConteudo();
-				   				
 				   				if(coluna == 0) inicio = conteudo;
 				   				if(coluna == 1) fim = conteudo;
 				   				
@@ -364,8 +362,6 @@ public class SistemaController {
 				   					aulaDao.save(a);
 				   				}
 				   				
-				   				
-				   				
 				   				if(finalLinha >= 8) {
 				   					finalLinha = -1;
 				   				}
@@ -376,8 +372,22 @@ public class SistemaController {
 				   		}
 					 	List<Aula> aulas = aulaDao.buscarTudo();
 					 	modelAndView.addObject("aulas", aulas);
+					 	List<Aula> h = aulaDao.buscarhorarios();
+					 	List<Horario> horarios = new ArrayList<Horario>();
+					 	String ultimoHorarioInicio = "";
+					 	String ultimoHorarioFim = "";
+					 	for(Aula aul : h) {
+					 		if(!((ultimoHorarioInicio.equals(aul.getInicio())) && (ultimoHorarioFim.equals(aul.getFim())))) {
+					 			ultimoHorarioInicio = aul.getInicio();
+					 			ultimoHorarioFim = aul.getFim();
+					 			Horario hr = new Horario();
+					 			hr.setInicio(aul.getInicio());
+					 			hr.setFim(aul.getFim());
+					 			horarios.add(hr);
+					 		}
+					 	}
+					 	modelAndView.addObject("horarios", horarios);
 					}
-				
 			}
 			System.out.println("Validado");
 			return modelAndView; //retorna a variavel
@@ -736,7 +746,6 @@ public class SistemaController {
 			 			Horario hr = new Horario();
 			 			hr.setInicio(a.getInicio());
 			 			hr.setFim(a.getFim());
-			 			System.out.println("Hora: " + hr.getInicio() + " - " + hr.getFim());
 			 			horarios.add(hr);
 			 		}
 			 	}
