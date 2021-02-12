@@ -1116,6 +1116,22 @@ public class SistemaController {
 		}
 		
 		
+		@RequestMapping(value = "/cadastrarTreinos", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
+		public ModelAndView cadastrarTreinos() throws SQLException {
+			paginaAtual = "Cadastrar Treinos";
+			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+			String link = verificaLink("pages/cadastrarTreinos");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				//... Logado
+			}
+			return modelAndView; //retorna a variavel
+		}
+		
 }
 	
 	
