@@ -116,48 +116,57 @@
 											<span>Meu Treino</span>
 										</a>
 									</li>
-									<c:if test="${usuario.perfil.admin }">
+									<c:if test="${usuario.perfil.professor == true}">
+										<li>
+											<a href="/cadastrarTreinos">
+												<i class="fa fa-edit" aria-hidden="true"></i>
+												<span>Cadastrar Treinos</span>
+											</a>
+										</li>
+									</c:if>
+									<c:if test="${usuario.perfil.admin == true }">
 										<li>
 											<a href="/financeiro">
 												<i class="fa fa-money" aria-hidden="true"></i>
 												<span>Financeiro</span>
 											</a>
 										</li>
+									
+										<li class="nav-parent">
+											<a>
+												<i class="fa fa-align-left" aria-hidden="true"></i>
+												<span>Admnistração</span>
+											</a>
+											<ul class="nav nav-children">
+												<li>
+													<a href="/alunos">Alunos</a>
+												</li>
+												<li>
+													<a href="/funcionarios">Funcionários</a>
+												</li>
+												<li>
+													<a href="/aulas">Aulas</a>
+												</li>
+												<li>
+													<a href="/pendencias">Pendências</a>
+												</li>
+												<li>
+													<a href="/aniversariantes">Aniversariantes</a>
+												</li>
+												<li class="nav-parent">
+													<a>Presença</a>
+													<ul class="nav nav-children">
+														<li>
+															<a href="/presencaAlunos">Alunos</a>
+														</li>
+														<li>
+															<a href="/presencaFuncionarios">Funcionários</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
 									</c:if>
-									<li class="nav-parent">
-										<a>
-											<i class="fa fa-align-left" aria-hidden="true"></i>
-											<span>Admnistração</span>
-										</a>
-										<ul class="nav nav-children">
-											<li>
-												<a href="/alunos">Alunos</a>
-											</li>
-											<li>
-												<a href="/funcionarios">Funcionários</a>
-											</li>
-											<li>
-												<a href="/aulas">Aulas</a>
-											</li>
-											<li>
-												<a href="/pendencias">Pendências</a>
-											</li>
-											<li>
-												<a href="/aniversariantes">Aniversariantes</a>
-											</li>
-											<li class="nav-parent">
-												<a>Presença</a>
-												<ul class="nav nav-children">
-													<li>
-														<a href="/presencaAlunos">Alunos</a>
-													</li>
-													<li>
-														<a href="/presencaFuncionarios">Funcionários</a>
-													</li>
-												</ul>
-											</li>
-										</ul>
-									</li>
 									<li>
 										<a href="/deslogar" >
 											<i class="fa fa-power-off" aria-hidden="true"></i>

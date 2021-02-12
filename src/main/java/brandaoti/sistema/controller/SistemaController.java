@@ -101,7 +101,7 @@ public class SistemaController {
 			List<Perfil> p = perfilDao.buscarTudo();
 			List<Plano> pl = planoDao.buscarTudo();
 			usuarioSessao = null;
-			if(p.size() == 0 || p == null) {
+			if(p == null || p.size() == 0) {
 				Perfil perfil = new Perfil();
 				perfil.setAtivo(true);
 				perfil.setCodigo("1");
@@ -128,8 +128,18 @@ public class SistemaController {
 				perfil.setFuncionario(true);
 				perfil.setAluno(true);
 				perfilDao.save(perfil);
+				
+				perfil = new Perfil();
+				perfil.setAtivo(true);
+				perfil.setCodigo("4");
+				perfil.setNome("professor");
+				perfil.setAdmin(false);
+				perfil.setFuncionario(true);
+				perfil.setProfessor(true);
+				perfil.setAluno(true);
+				perfilDao.save(perfil);
 			}
-			if(pl.size() == 0 || pl == null) {
+			if(pl == null || pl.size() == 0) {
 				Plano plano = new Plano();
 				plano.setCodigo("1");
 				plano.setNome("A");
@@ -147,62 +157,29 @@ public class SistemaController {
 			
 			
 			
-			if(u.size() == 0 || u == null) {
+			if(u == null || u.size() == 0) {
 				Usuario usu = new Usuario();
 				usu.setAtivo(true);
 				usu.setMatricula("1234");
 				usu.setSenha("adm");
 				usu.setNome("Admnistrador");
-				usuarioDao.save(usu);
-				usuarioSessao = usu;
-				
-				
-				// -- Excluir
-				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
-				Treino t = new Treino();
-				t.setTipoOrdem(0);
-				t.setRepeticoes(10);
-				t.setSeries(3);
-				t.setOrdemDoDia(0);
-				t.setDescanso("1min");
-				t.setDescricao("Supino Reto");
-				t.setMatricula(usuarioSessao.getMatricula());
-				treinoDao.save(t);
-				
-				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
-				t = new Treino();
-				t.setTipoOrdem(0);
-				t.setRepeticoes(10);
-				t.setSeries(3);
-				t.setOrdemDoDia(1);
-				t.setDescanso("1min");
-				t.setDescricao("Remada Baixa");
-				t.setMatricula(usuarioSessao.getMatricula());
-				treinoDao.save(t);
-				
-				
-				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
-				t = new Treino();
-				t.setTipoOrdem(0);
-				t.setRepeticoes(10);
-				t.setSeries(3);
-				t.setOrdemDoDia(2);
-				t.setDescanso("1min");
-				t.setDescricao("Pull Down");
-				t.setMatricula(usuarioSessao.getMatricula());
-				treinoDao.save(t);
-				
-				// -- Excluir
-				
-				
-				
-				
-				
-				
-				
-				
 				usu.setPerfil(perfilDao.buscarAdm().get(0));
 				usuarioDao.save(usu);
+				usuarioSessao = usu;
+
+				
+				// -- Excluir ---------------------------
+				
+				
+				// -- Excluir
+				
+				
+				
+				
+				
+				
+				
+				
 			}
 			logado = false;
 			String link = "index";
