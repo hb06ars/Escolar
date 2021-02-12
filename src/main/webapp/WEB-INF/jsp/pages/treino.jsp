@@ -63,7 +63,7 @@ function voltar(){
 								<div class="panel-body">
 									<ul class="list-group">
 										<c:forEach items="${treinos}" var="t" varStatus="loop">
-											<c:if test="${t.ordemDoDia == t.ultimoTreinoExecutado }">
+											<c:if test="${t.tipoOrdem == t.ultimoTreinoExecutado }">
 												<li class="list-group-item" id="todoListItem${loop.index+1 }" onclick="confirmar('todoListItem${loop.index+1 }')" style="background-color:#F78181; color:#610B0B;">
 													<label class="todo-label" for="todoListItem${loop.index+1 }"><span>${t.descricao } ( ${t.series }X${t.repeticoes } &nbsp&nbsp<i class="fa fa-refresh"></i>&nbsp&nbsp ${t.descanso } )</span></label>
 												</li>

@@ -286,7 +286,15 @@ function adicionar(){
 												<td>${t.aluno.matricula }</td>
 												<td>${t.aluno.nome }</td>
 												<td>${t.descricao }</td>
-												<td>${t.tipoOrdem }</td>
+												<td>
+													<c:if test="${t.tipoOrdem == 0}">A</c:if>
+													<c:if test="${t.tipoOrdem == 1}">B</c:if>
+													<c:if test="${t.tipoOrdem == 2}">C</c:if>
+													<c:if test="${t.tipoOrdem == 3}">D</c:if>
+													<c:if test="${t.tipoOrdem == 4}">E</c:if>
+													<c:if test="${t.tipoOrdem == 5}">F</c:if>
+													<c:if test="${t.tipoOrdem == 6}">G</c:if>
+												</td>
 												<td>${t.series }</td>
 												<td>${t.repeticoes }</td>
 												<td>${t.descanso }</td>
