@@ -1157,57 +1157,58 @@ public class SistemaController {
 				//... Salvando dados.
 				if(salvar != null) {
 					if(salvar > 0) {
-						System.out.println("SALVAR!");
-						System.out.println("vlrTreinoA: "+vlrTreinoA);
-						System.out.println("vlrTreinoB: "+vlrTreinoB);
-						System.out.println("vlrTreinoC: "+vlrTreinoC);
-						System.out.println("vlrTreinoD: "+vlrTreinoD);
-						System.out.println("vlrTreinoE: "+vlrTreinoE);
-						System.out.println("vlrTreinoF: "+vlrTreinoF);
-						System.out.println("vlrTreinoG: "+vlrTreinoG);
 						String valor="";
-						
-						valor = vlrTreinoA;
-					    valor = valor.replace("<br>","#");
-					    String[] splitado = valor.split("#");
-					    String descanso="";
-					    String descricao="";
-					    String series="";
-					    String repeticoes="";
-				        for (int i = 1; i < splitado.length; i++) {
-				            String s = "#"+splitado[i].replace("[","#").replace("]","#");
-				            String[] splitadoB = s.split("#");
-				            Integer cont = 0;
-				            for (int j = 0; j < splitadoB.length; j++) {
-				                if(cont == 1) {
-				                	descricao = splitadoB[j];
-				                }
-				                if(cont == 2) {
-				                	repeticoes = splitadoB[j];
-				                	String vl = repeticoes;
-				                	vl = vl.replace("X","#");
-				            	    String[] splitadoV = vl.split("#");
-				                    for (int iv = 1; iv < splitadoV.length; iv++) {
-				                    	series = splitadoV[0];
-				                    	repeticoes = splitadoV[1];
-				                    }
-				                }
-				                if(cont == 3) {
-				                	descanso = splitadoB[j].replace(" - ", "");
-				                }
-				                cont++;
-				                if(cont > 3) cont = 0;
-				            }
-				            
-				            System.out.println("Descrição: "+descricao+" @ "+"Séries e Repetições: "+series+"X"+repeticoes+" @ "+"Descanso: "+descanso);
-				            
-				            
-				            
-				        }
-						
-						
-						
-						
+						for(int tr = 0 ; tr < 7; tr++) {
+							if(tr == 0) valor = vlrTreinoA;
+							if(tr == 1) valor = vlrTreinoB;
+							if(tr == 2) valor = vlrTreinoC;
+							if(tr == 3) valor = vlrTreinoD;
+							if(tr == 4) valor = vlrTreinoE;
+							if(tr == 5) valor = vlrTreinoF;
+							if(tr == 6) valor = vlrTreinoG;
+							
+							valor = valor.replace("<br>","#");
+						    String[] splitado = valor.split("#");
+						    String descanso="";
+						    String descricao="";
+						    String series="";
+						    String repeticoes="";
+					        for (int i = 1; i < splitado.length; i++) {
+					            String s = "#"+splitado[i].replace("[","#").replace("]","#");
+					            String[] splitadoB = s.split("#");
+					            Integer cont = 0;
+					            for (int j = 0; j < splitadoB.length; j++) {
+					                if(cont == 1) {
+					                	descricao = splitadoB[j];
+					                }
+					                if(cont == 2) {
+					                	repeticoes = splitadoB[j];
+					                	String vl = repeticoes;
+					                	vl = vl.replace("X","#");
+					            	    String[] splitadoV = vl.split("#");
+					                    for (int iv = 1; iv < splitadoV.length; iv++) {
+					                    	series = splitadoV[0];
+					                    	repeticoes = splitadoV[1];
+					                    }
+					                }
+					                if(cont == 3) {
+					                	descanso = splitadoB[j].replace(" - ", "");
+					                }
+					                cont++;
+					                if(cont > 3) cont = 0;
+					            }
+					            Treino t = new Treino();
+					            t.setAtivo(true);
+					            t.setTipoOrdem(tr); //Treino A,B,C,D...
+					            t.setOrdemDoDia(i);
+					            t.setDescricao(descricao);
+					            t.setSeries(Integer.parseInt(series));
+					            t.setRepeticoes(Integer.parseInt(repeticoes));
+					            t.setDescanso(descanso);
+					            t.setAluno(usuarioDao.buscarMatricula(matricula));
+					            treinoDao.save(t);   
+					        }
+						}
 						
 						
 					}
