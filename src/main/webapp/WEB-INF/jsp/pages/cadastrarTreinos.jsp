@@ -30,6 +30,11 @@ function habilitar(){
 	document.getElementById("pesqForm").submit();
 }
 
+function salvar(){
+	document.getElementById("salvar").value="1";
+	document.getElementById("pesqForm").submit();
+}
+
 function desfaz(){
 	document.getElementById("btDesfazer").style.display="none";
 	if(treinoDesfazer == 'treinoA'){ treinoA = desfazer; document.getElementById("treino0").innerHTML = treinoA; document.getElementById("vlrTreinoA").value = treinoA; }
@@ -186,12 +191,12 @@ function adicionar(){
 					</div>
 					
 					<div class="col-md-2 form-group">
-						Descanso:
+						Descanso: 
 						<input type="text" placeholder="00s" maxlength="3" name="descanso" id="descanso" value="30s" class="form-control" required>
 					</div>
 					
 
-					<c:if test="${usuario != null }">
+					<c:if test="${matricula != null }">
 						<div class="col-md-2 form-group">
 							<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:block" >Adicionar</a>
 						</div>
@@ -199,7 +204,7 @@ function adicionar(){
 							<a class="btn btn-info" onclick="desfaz()" id="btDesfazer" style="display:none" >Desfazer</a>
 						</div>
 						<div class="col-md-2 form-group">
-							<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:block" >Finalizar</a>
+							<a class="btn btn-danger" onclick="salvar()" id="btFim" style="display:block" >Finalizar</a>
 						</div>
 						<div class="col-md-12 form-group">
 						</div>
@@ -236,7 +241,7 @@ function adicionar(){
 					<input type="hidden" id="vlrTreinoG" name="vlrTreinoG">
 					
 					
-					<input type="hidden" id="acao" name="acao" value="salvar">
+					<input type="hidden" id="salvar" name="salvar" value="0">
 				</div>
 			</div>
 		</div>

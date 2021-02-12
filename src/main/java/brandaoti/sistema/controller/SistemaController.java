@@ -1144,7 +1144,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/cadastrarTreinos", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView cadastrarTreinos(String matricula) throws SQLException {
+		public ModelAndView cadastrarTreinos(Integer salvar,String matricula, String vlrTreinoA,String vlrTreinoB,String vlrTreinoC,String vlrTreinoD,String vlrTreinoE,String vlrTreinoF,String vlrTreinoG) throws SQLException {
 			paginaAtual = "Cadastrar Treinos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/cadastrarTreinos");
@@ -1154,12 +1154,72 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				//... Logado
+				//... Salvando dados.
+				if(salvar != null) {
+					if(salvar > 0) {
+						System.out.println("SALVAR!");
+						System.out.println("vlrTreinoA: "+vlrTreinoA);
+						System.out.println("vlrTreinoB: "+vlrTreinoB);
+						System.out.println("vlrTreinoC: "+vlrTreinoC);
+						System.out.println("vlrTreinoD: "+vlrTreinoD);
+						System.out.println("vlrTreinoE: "+vlrTreinoE);
+						System.out.println("vlrTreinoF: "+vlrTreinoF);
+						System.out.println("vlrTreinoG: "+vlrTreinoG);
+						String valor="";
+						
+						valor = vlrTreinoA;
+					    valor = valor.replace("<br>","#");
+					    String[] splitado = valor.split("#");
+					    String descanso="";
+					    String descricao="";
+					    String series="";
+					    String repeticoes="";
+				        for (int i = 1; i < splitado.length; i++) {
+				            String s = "#"+splitado[i].replace("[","#").replace("]","#");
+				            String[] splitadoB = s.split("#");
+				            Integer cont = 0;
+				            for (int j = 0; j < splitadoB.length; j++) {
+				                if(cont == 1) {
+				                	descricao = splitadoB[j];
+				                }
+				                if(cont == 2) {
+				                	repeticoes = splitadoB[j];
+				                	String vl = repeticoes;
+				                	vl = vl.replace("X","#");
+				            	    String[] splitadoV = vl.split("#");
+				                    for (int iv = 1; iv < splitadoV.length; iv++) {
+				                    	series = splitadoV[0];
+				                    	repeticoes = splitadoV[1];
+				                    }
+				                }
+				                if(cont == 3) {
+				                	descanso = splitadoB[j].replace(" - ", "");
+				                }
+				                cont++;
+				                if(cont > 3) cont = 0;
+				            }
+				            
+				            System.out.println("Descrição: "+descricao+" @ "+"Séries e Repetições: "+series+"X"+repeticoes+" @ "+"Descanso: "+descanso);
+				            
+				            
+				            
+				        }
+						
+						
+						
+						
+						
+						
+					}
+				}
+
+				// Carregando a tela...
 				if(matricula != null && !matricula.equals("")) {
 					Usuario u = new Usuario();
 					try {
 						u = usuarioDao.buscarMatricula(matricula);
 						modelAndView.addObject("usuario", u);
+						modelAndView.addObject("matricula", matricula);
 					} catch(Exception e) {}
 					try {
 						List<Treino> treinos = treinoDao.buscarMatricula(u.getMatricula());
