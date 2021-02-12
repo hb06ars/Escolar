@@ -187,7 +187,7 @@ public class SistemaController {
 				t.setRepeticoes(10);
 				t.setDescanso("30s");
 				t.setultimoTreinoExecutado(0);
-				t.setMatricula(usuarioDao.buscarProfessores().get(0).getMatricula());
+				t.setAluno(usuarioDao.buscarProfessores().get(0));
 				treinoDao.save(t);
 				// -- Excluir
 				
@@ -300,6 +300,20 @@ public class SistemaController {
 					List<Parcela> pendencias = parcelaDao.buscarPendencias();
 					modelAndView.addObject("pendencias", pendencias);
 					atualizarPagina = "/pendencias";
+				}
+				if(tabela.equals("treino")) {
+					modelAndView = new ModelAndView(link);
+					paginaAtual = "Cadastrar Treinos";
+					Treino objeto = treinoDao.findById(id).get();
+					Usuario us = objeto.getAluno();
+					objeto.setAtivo(false);
+					treinoDao.save(objeto);
+					try {
+						List<Treino> treinos = treinoDao.buscarMatricula(us.getMatricula());
+						modelAndView.addObject("treinos", treinos);
+					} catch(Exception e) {}
+					modelAndView.addObject("usuario", us);
+					atualizarPagina = "/cadastrarTreinos";
 				}
 			}
 			modelAndView.addObject("atualizarPagina", atualizarPagina);
@@ -468,8 +482,6 @@ public class SistemaController {
 				if(usuarioSessao.getPerfil().getAdmin()) {
 					Integer presentesOntem = presencaDao.presentesOntem().size();
 					Integer todosAlunos = usuarioDao.buscarAlunos().size();
-					
-					
 					List<Parcela> alunosPendentesLista = parcelaDao.buscarPendencias();
 					Integer alunosPendentes = 0;
 					Usuario a = new Usuario();
@@ -479,10 +491,8 @@ public class SistemaController {
 							alunosPendentes++;
 						}
 					}
-					
 					Integer alunosAniversariantes = usuarioDao.buscarAniversariantes().size();
 					Integer novosDoMes = usuarioDao.novosDoMes().size();
-					
 					List<Objeto> mesesTodos = new ArrayList<Objeto>();
 					List<Objeto> mesesManha= new ArrayList<Objeto>();
 					List<Objeto> mesesTarde = new ArrayList<Objeto>();
@@ -543,8 +553,8 @@ public class SistemaController {
 					modelAndView.addObject("mesesTarde", mesesTarde);
 					modelAndView.addObject("mesesNoite", mesesNoite);
 				}
-				if(usuarioSessao.getPerfil().getAdmin()) {
-					List<Treino> treinos = treinoDao.buscarTudo();
+				if(!usuarioSessao.getPerfil().getAdmin()) {
+					List<Treino> treinos = treinoDao.buscarMatricula(usuarioSessao.getMatricula());
 					modelAndView.addObject("treinos", treinos);
 				}
 				
@@ -1134,7 +1144,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/cadastrarTreinos", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView cadastrarTreinos() throws SQLException {
+		public ModelAndView cadastrarTreinos(String matricula) throws SQLException {
 			paginaAtual = "Cadastrar Treinos";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/cadastrarTreinos");
@@ -1145,8 +1155,17 @@ public class SistemaController {
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
 				//... Logado
-				List<Treino> treinos = treinoDao.buscarTudo();
-				modelAndView.addObject("treinos", treinos);
+				if(matricula != null && !matricula.equals("")) {
+					Usuario u = new Usuario();
+					try {
+						u = usuarioDao.buscarMatricula(matricula);
+						modelAndView.addObject("usuario", u);
+					} catch(Exception e) {}
+					try {
+						List<Treino> treinos = treinoDao.buscarMatricula(u.getMatricula());
+						modelAndView.addObject("treinos", treinos);
+					} catch(Exception e) {}
+				}
 			}
 			return modelAndView; //retorna a variavel
 		}

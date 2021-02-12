@@ -25,8 +25,7 @@ var treinoA = 'Treino A:',
 	treinoG = 'Treino G:';
 
 function habilitar(){
-	document.getElementById("btAdd").style.display = "block";
-	document.getElementById("btFim").style.display = "block";
+	document.getElementById("pesqForm").submit();
 }
 
 function adicionar(){
@@ -115,7 +114,7 @@ function adicionar(){
 
 <!-- start: page -->
 <div class="row">
-<form action="/cadastrarTreinos" method="post" accept-charset="utf-8">
+<form action="/cadastrarTreinos" id="pesqForm" method="post" accept-charset="utf-8">
 	<div class="col-md-12">
 		<div data-collapsed="0" class="panel">
 			<div class="panel-heading">
@@ -173,16 +172,16 @@ function adicionar(){
 					</div>
 					
 
-
-					<div class="col-md-2 form-group">
-						<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:none" >Adicionar</a>
-					</div>
-					<div class="col-md-2 form-group">
-						<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:none" >Finalizar</a>
-					</div>
-					
-					<div class="col-md-12 form-group">
-					</div>
+					<c:if test="${usuario != null }">
+						<div class="col-md-2 form-group">
+							<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:none" >Adicionar</a>
+						</div>
+						<div class="col-md-2 form-group">
+							<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:none" >Finalizar</a>
+						</div>
+						<div class="col-md-12 form-group">
+						</div>
+					</c:if>
 					
 					<div class="col-md-4 form-group" id="treino0" style="display:none">
 						Treino A
@@ -253,43 +252,18 @@ function adicionar(){
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${usuarios }" var="u">
+										<c:forEach items="${treinos }" var="t">
 											<tr class="gradeX">
 												<td>
-													<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
-													<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
+													<i class="fa fa-trash" onclick="modalDeletar('treino', ${t.id}) "></i> &nbsp
 												</td>
-												<td>${u.matricula }</td>
-												<c:set var = "index" value = "0"/>
-												<c:forEach items="${u.contrato }" var="c">
-													<c:if test="${c.ativo }">
-														<c:set var = "index" value = "1"/>
-														<c:if test="${c.situacao == 'Regular'}">
-															<td style="color:green">${c.situacao }</td>
-														</c:if>
-														<c:if test="${c.situacao == 'Pendente'}">
-															<td style="color:red">${c.situacao }</td>
-														</c:if>
-														<td>
-															<fmt:formatDate pattern="dd/MM/yyyy" value="${c.fim }" />
-														</td>
-													</c:if>
-												</c:forEach>
-												<c:if test="${index < 1}">
-													<td style="color:blue">Renovar</td>
-												</c:if>
-												<c:if test="${index < 1}">
-													<td style="color:blue">Renovar</td>
-												</c:if>
-												<td>${u.nome }</td>
-												<td>${u.telefone }</td>
-												<td>${u.celular }</td>
-												<td>${u.email }</td>
-												<td>${u.endereco }</td>
-												<td>${u.bairro }</td>
-												<td>${u.cidade }</td>
-												<td>${u.estado }</td>
-												<td>${u.cpf }</td>
+												<td>${t.aluno.matricula }</td>
+												<td>${t.aluno.nome }</td>
+												<td>${t.descricao }</td>
+												<td>${t.tipoOrdem }</td>
+												<td>${t.series }</td>
+												<td>${t.repeticoes }</td>
+												<td>${t.descanso }</td>
 											</tr>
 										</c:forEach>
 									</tbody>

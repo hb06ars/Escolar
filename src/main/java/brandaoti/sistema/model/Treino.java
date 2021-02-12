@@ -38,8 +38,8 @@ public class Treino {
 	@Column
 	private Integer ultimoTreinoExecutado = 0;
 	
-	@Column
-	private String matricula;
+	@OneToOne
+	private Usuario aluno;
 	
 
 	public Integer getId() {
@@ -108,12 +108,12 @@ public class Treino {
 		this.ativo = ativo;
 	}
 
-	public String getMatricula() {
-		return matricula;
+	public Integer getUltimoTreinoExecutado() {
+		return ultimoTreinoExecutado;
 	}
 
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
+	public void setUltimoTreinoExecutado(Integer ultimoTreinoExecutado) {
+		this.ultimoTreinoExecutado = ultimoTreinoExecutado;
 	}
 
 	public Integer getSeries() {
@@ -122,6 +122,14 @@ public class Treino {
 
 	public void setSeries(Integer series) {
 		this.series = series;
+	}
+
+	public Usuario getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Usuario aluno) {
+		this.aluno = aluno;
 	}
 
 	
