@@ -18,4 +18,7 @@ public interface TreinoDao extends JpaRepository<Treino, Integer> {
 	@Query(" select p from Treino p where p.ativo = TRUE")
 	List<Treino> buscarTudo();
 	
+	@Query(" select max(p.ordemDoDia) from Treino p where upper( p.matricula ) like upper( :matricula )")
+	Integer maiorTreino(@Param("matricula") String codigo);
+	
 }

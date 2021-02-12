@@ -19,6 +19,17 @@ function confirmar(id){
 		document.getElementById(id).style.backgroundColor = '#F78181';
 	}
 }
+
+function pular(){
+	document.getElementById("proximo").value="1";
+	document.getElementById("anterior").value="0";
+	document.getElementById("formTreino").submit();
+}
+function anterior(){
+	document.getElementById("proximo").value="0";
+	document.getElementById("anterior").value="1";
+	document.getElementById("formTreino").submit();
+}
 </script>
 
 
@@ -52,7 +63,7 @@ function confirmar(id){
 								<div class="panel-body">
 									<ul class="list-group">
 										<c:forEach items="${treinos}" var="t" varStatus="loop">
-											<c:if test="${t.ordemDoDia == 0 }">
+											<c:if test="${t.ordemDoDia == t.ultimoTreinoExecutado }">
 												<li class="list-group-item" id="todoListItem${loop.index+1 }" onclick="confirmar('todoListItem${loop.index+1 }')" style="background-color:#F78181; color:#610B0B;">
 													<label class="todo-label" for="todoListItem${loop.index+1 }"><span>${t.descricao } ( ${t.series }X${t.repeticoes } &nbsp&nbsp<i class="fa fa-refresh"></i>&nbsp&nbsp ${t.descanso } )</span></label>
 												</li>
@@ -60,16 +71,20 @@ function confirmar(id){
 										</c:forEach>
 									</ul>
 									<hr class="solid mt-sm mb-lg">
-									<form method="get" class="form-horizontal form-bordered">
-										<div class="form-group">
-											<div class="col-sm-12">
-												<div class="input-group mb-md">
-													<div class="input-group-btn">
-														<button type="button" class="btn btn-primary" tabindex="-1">Finalizar tudo</button>
+									<form action="/treino" id="formTreino" method="post" accept-charset="utf-8">
+											<div class="form-group">
+												<div class="col-sm-12">
+													<div class="input-group mb-md">
+														<div class="input-group-btn">
+															<input type="hidden" name="proximo" id="proximo" value="0"/>
+															<input type="hidden" name="anterior" id="anterior" value="0"/>
+															<button class="btn btn-primary" onclick="pular()" tabindex="-1">Próximo</button>
+															<a style="cursor:default" class="btn" tabindex="-1">&nbsp</a>
+															<button class="btn btn-primary" onclick="anterior()" tabindex="-1">Anterior</button>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
 									</form>
 								</div>
 							</div>

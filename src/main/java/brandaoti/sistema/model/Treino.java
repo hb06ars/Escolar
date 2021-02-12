@@ -36,7 +36,7 @@ public class Treino {
 	private String descanso;
 	
 	@Column
-	private Integer ultimoDiaExecutado = 0;
+	private Integer ultimoTreinoExecutado = 0;
 	
 	@Column
 	private String matricula;
@@ -92,12 +92,12 @@ public class Treino {
 		this.descanso = descanso;
 	}
 
-	public Integer getUltimoDiaExecutado() {
-		return ultimoDiaExecutado;
+	public Integer getultimoTreinoExecutado() {
+		return ultimoTreinoExecutado;
 	}
 
-	public void setUltimoDiaExecutado(Integer ultimoDiaExecutado) {
-		this.ultimoDiaExecutado = ultimoDiaExecutado;
+	public void setultimoTreinoExecutado(Integer ultimoTreinoExecutado) {
+		this.ultimoTreinoExecutado = ultimoTreinoExecutado;
 	}
 
 	public Boolean getAtivo() {

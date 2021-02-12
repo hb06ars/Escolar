@@ -638,7 +638,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/treino", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView treino() throws SQLException {
+		public ModelAndView treino(Integer proximo, Integer anterior) throws SQLException {
 			paginaAtual = "Treino";
 			iconePaginaAtual = "fa fa-edit"; //Titulo do menuzinho.
 			String link = verificaLink("pages/treino");
@@ -648,6 +648,31 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
+				System.out.println("proximo: "+proximo);
+				if(proximo != null && proximo > 0) {
+					Integer maiorTreino = 0;
+					try { maiorTreino =  treinoDao.maiorTreino(usuarioSessao.getMatricula()); } catch(Exception e) {}
+					List<Treino> t = treinoDao.buscarMatricula(usuarioSessao.getMatricula());
+					for(Treino tr : t) {
+						if(tr.getultimoTreinoExecutado() >= maiorTreino) {
+							tr.setultimoTreinoExecutado(0);
+						} else {
+							tr.setultimoTreinoExecutado(tr.getultimoTreinoExecutado()+1);
+						}
+						treinoDao.save(tr);
+					}
+				}
+				if(anterior != null && anterior > 0) {
+					List<Treino> t = treinoDao.buscarMatricula(usuarioSessao.getMatricula());
+					for(Treino tr : t) {
+						if(tr.getultimoTreinoExecutado() <= 0) {
+							tr.setultimoTreinoExecutado(0);
+						} else {
+							tr.setultimoTreinoExecutado(tr.getultimoTreinoExecutado()-1);
+						}
+						treinoDao.save(tr);
+					}
+				}
 				System.out.println("usuarioSessao.getMatricula(): "+usuarioSessao.getMatricula());
 				List<Treino> treinos = treinoDao.buscarMatricula(usuarioSessao.getMatricula());
 				modelAndView.addObject("treinos", treinos);
