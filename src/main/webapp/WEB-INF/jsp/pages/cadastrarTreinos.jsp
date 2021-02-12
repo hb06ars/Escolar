@@ -227,7 +227,6 @@ function adicionar(){
 						Treino G
 					</div>
 					
-					
 					<input type="hidden" id="vlrTreinoA" name="vlrTreinoA">
 					<input type="hidden" id="vlrTreinoB" name="vlrTreinoB">
 					<input type="hidden" id="vlrTreinoC" name="vlrTreinoC">
