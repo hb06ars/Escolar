@@ -25,7 +25,7 @@ function pular(){
 	document.getElementById("anterior").value="0";
 	document.getElementById("formTreino").submit();
 }
-function anterior(){
+function voltar(){
 	document.getElementById("proximo").value="0";
 	document.getElementById("anterior").value="1";
 	document.getElementById("formTreino").submit();
@@ -77,10 +77,10 @@ function anterior(){
 													<div class="input-group mb-md">
 														<div class="input-group-btn">
 															<input type="hidden" name="proximo" id="proximo" value="0"/>
+															<button class="btn btn-primary" onclick="voltar()" tabindex="-1">Anterior</button>
+															<a style="cursor:default" class="btn" tabindex="-1">&nbsp</a>
 															<input type="hidden" name="anterior" id="anterior" value="0"/>
 															<button class="btn btn-primary" onclick="pular()" tabindex="-1">Próximo</button>
-															<a style="cursor:default" class="btn" tabindex="-1">&nbsp</a>
-															<button class="btn btn-primary" onclick="anterior()" tabindex="-1">Anterior</button>
 														</div>
 													</div>
 												</div>

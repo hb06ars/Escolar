@@ -171,12 +171,24 @@ public class SistemaController {
 				
 				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
 				t = new Treino();
-				t.setTipoOrdem(1);
+				t.setTipoOrdem(0);
 				t.setRepeticoes(10);
 				t.setSeries(3);
 				t.setOrdemDoDia(1);
 				t.setDescanso("1min");
 				t.setDescricao("Remada Baixa");
+				t.setMatricula(usuarioSessao.getMatricula());
+				treinoDao.save(t);
+				
+				
+				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
+				t = new Treino();
+				t.setTipoOrdem(0);
+				t.setRepeticoes(10);
+				t.setSeries(3);
+				t.setOrdemDoDia(2);
+				t.setDescanso("1min");
+				t.setDescricao("Pull Down");
 				t.setMatricula(usuarioSessao.getMatricula());
 				treinoDao.save(t);
 				
@@ -648,7 +660,7 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				System.out.println("proximo: "+proximo);
+				System.out.println("proximo: "+proximo+" / anterior: "+anterior);
 				if(proximo != null && proximo > 0) {
 					Integer maiorTreino = 0;
 					try { maiorTreino =  treinoDao.maiorTreino(usuarioSessao.getMatricula()); } catch(Exception e) {}
