@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Treino {
@@ -26,16 +27,19 @@ public class Treino {
 	private String descricao;
 	
 	@Column
+	private Integer series;
+	
+	@Column
 	private Integer repeticoes;
 	
 	@Column
 	private String descanso;
 	
 	@Column
-	private String matricula;
+	private Integer ultimoDiaExecutado = 0;
 	
 	@Column
-	private Integer ultimoDiaExecutado = 0;
+	private String matricula;
 	
 
 	public Integer getId() {
@@ -88,14 +92,6 @@ public class Treino {
 		this.descanso = descanso;
 	}
 
-	public String getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
-	}
-
 	public Integer getUltimoDiaExecutado() {
 		return ultimoDiaExecutado;
 	}
@@ -112,8 +108,22 @@ public class Treino {
 		this.ativo = ativo;
 	}
 
-	
-	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public Integer getSeries() {
+		return series;
+	}
+
+	public void setSeries(Integer series) {
+		this.series = series;
+	}
+
 	
 	
 	

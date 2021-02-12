@@ -150,24 +150,36 @@ public class SistemaController {
 			if(u.size() == 0 || u == null) {
 				Usuario usu = new Usuario();
 				usu.setAtivo(true);
-				usu.setMatricula("adm");
+				usu.setMatricula("1234");
 				usu.setSenha("adm");
 				usu.setNome("Admnistrador");
+				usuarioDao.save(usu);
+				usuarioSessao = usu;
 				
 				
 				// -- Excluir
 				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
-				List<Treino> treinos = new ArrayList<Treino>();
 				Treino t = new Treino();
-				t.setMatricula(usu.getMatricula());
 				t.setTipoOrdem(0);
-				t.setRepeticoes(3);
+				t.setRepeticoes(10);
+				t.setSeries(3);
 				t.setOrdemDoDia(0);
 				t.setDescanso("1min");
 				t.setDescricao("Supino Reto");
+				t.setMatricula(usuarioSessao.getMatricula());
 				treinoDao.save(t);
-				treinos.add(t);
-				usu.setTreino(treinos);
+				
+				usu.setPathImagem("https://www.freeiconspng.com/thumbs/computer-user-icon/computer-user-icon-28.png");
+				t = new Treino();
+				t.setTipoOrdem(1);
+				t.setRepeticoes(10);
+				t.setSeries(3);
+				t.setOrdemDoDia(0);
+				t.setDescanso("1min");
+				t.setDescricao("Remada Baixa");
+				t.setMatricula(usuarioSessao.getMatricula());
+				treinoDao.save(t);
+				
 				// -- Excluir
 				
 				
@@ -635,9 +647,8 @@ public class SistemaController {
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
-				List<Treino> treinos = usuarioDao.treinosUsario(usuarioSessao);
-				System.out.println("getMatricula: "+usuarioSessao.getMatricula());
-				System.out.println("treinos: "+treinos.size());
+				System.out.println("usuarioSessao.getMatricula(): "+usuarioSessao.getMatricula());
+				List<Treino> treinos = treinoDao.buscarMatricula(usuarioSessao.getMatricula());
 				modelAndView.addObject("treinos", treinos);
 			}
 			return modelAndView; //retorna a variavel

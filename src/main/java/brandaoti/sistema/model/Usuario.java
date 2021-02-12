@@ -73,9 +73,6 @@ public class Usuario {
 	private Plano plano;
 	
 	@OneToMany
-	private List<Treino> treino;
-	
-	@OneToMany
 	private List<Contrato> contrato;
 	
 	@OneToOne
@@ -221,14 +218,6 @@ public class Usuario {
 
 	public void setPlano(Plano plano) {
 		this.plano = plano;
-	}
-
-	public List<Treino> getTreino() {
-		return treino;
-	}
-
-	public void setTreino(List<Treino> treino) {
-		this.treino = treino;
 	}
 
 	public List<Contrato> getContrato() {
