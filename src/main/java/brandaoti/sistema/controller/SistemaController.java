@@ -160,16 +160,21 @@ public class SistemaController {
 			if(u == null || u.size() == 0) {
 				Usuario usu = new Usuario();
 				usu.setAtivo(true);
-				usu.setMatricula("1234");
+				usu.setMatricula("adm");
 				usu.setSenha("adm");
 				usu.setNome("Admnistrador");
 				usu.setPerfil(perfilDao.buscarAdm().get(0));
 				usuarioDao.save(usu);
-				usuarioSessao = usu;
 
 				
 				// -- Excluir ---------------------------
-				
+				Usuario prof = new Usuario();
+				prof.setAtivo(true);
+				prof.setMatricula("prof");
+				prof.setSenha("prof");
+				prof.setNome("Professor");
+				prof.setPerfil(perfilDao.buscarProfessor().get(0));
+				usuarioDao.save(prof);
 				
 				// -- Excluir
 				
