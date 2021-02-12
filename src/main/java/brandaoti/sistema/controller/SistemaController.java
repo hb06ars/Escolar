@@ -14,6 +14,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
+import javax.persistence.Column;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -176,6 +178,17 @@ public class SistemaController {
 				prof.setPerfil(perfilDao.buscarProfessor().get(0));
 				usuarioDao.save(prof);
 				
+				Treino t = new Treino();
+				t.setAtivo(true);
+				t.setTipoOrdem(0);
+				t.setOrdemDoDia(0);
+				t.setDescricao("Supino Reto");
+				t.setSeries(4);
+				t.setRepeticoes(10);
+				t.setDescanso("30s");
+				t.setultimoTreinoExecutado(0);
+				t.setMatricula(usuarioDao.buscarProfessores().get(0).getMatricula());
+				treinoDao.save(t);
 				// -- Excluir
 				
 				
