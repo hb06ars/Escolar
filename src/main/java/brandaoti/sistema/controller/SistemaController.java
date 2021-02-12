@@ -305,6 +305,7 @@ public class SistemaController {
 					modelAndView.addObject("atualizarPagina", atualizarPagina);
 				}
 				if(tabela.equals("treino")) {
+					link = verificaLink("pages/cadastrarTreinos");
 					modelAndView = new ModelAndView(link);
 					paginaAtual = "Cadastrar Treinos";
 					Treino objeto = treinoDao.findById(id).get();
