@@ -305,13 +305,15 @@ public class SistemaController {
 					modelAndView = new ModelAndView(link);
 					paginaAtual = "Cadastrar Treinos";
 					Treino objeto = treinoDao.findById(id).get();
-					Usuario us = objeto.getAluno();
+					Usuario us = usuarioDao.buscarMatricula(objeto.getAluno().getMatricula());
 					objeto.setAtivo(false);
 					treinoDao.save(objeto);
 					try {
 						List<Treino> treinos = treinoDao.buscarMatricula(us.getMatricula());
 						modelAndView.addObject("treinos", treinos);
-					} catch(Exception e) {}
+					} catch(Exception e) {
+						System.out.println("Erro: "+e);
+					}
 					modelAndView.addObject("usuario", us);
 					atualizarPagina = "/cadastrarTreinos";
 				}
