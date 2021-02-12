@@ -201,7 +201,6 @@ function adicionar(){
 						<div class="col-md-2 form-group">
 							<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:block" >Finalizar</a>
 						</div>
-						
 						<div class="col-md-12 form-group">
 						</div>
 					</c:if>
