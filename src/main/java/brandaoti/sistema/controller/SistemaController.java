@@ -172,8 +172,8 @@ public class SistemaController {
 				// -- Excluir ---------------------------
 				Usuario prof = new Usuario();
 				prof.setAtivo(true);
-				prof.setMatricula("prof");
-				prof.setSenha("prof");
+				prof.setMatricula("1");
+				prof.setSenha("adm");
 				prof.setNome("Professor");
 				prof.setPerfil(perfilDao.buscarProfessor().get(0));
 				usuarioDao.save(prof);

@@ -16,7 +16,9 @@
 
 
 <script>
-var treinoA = 'Treino A:',
+var desfazer = '',
+	treinoDesfazer = '',
+	treinoA = 'Treino A:',
 	treinoB = 'Treino B:',
 	treinoC = 'Treino C:',
 	treinoD = 'Treino D:',
@@ -28,11 +30,25 @@ function habilitar(){
 	document.getElementById("pesqForm").submit();
 }
 
+function desfaz(){
+	document.getElementById("btDesfazer").style.display="none";
+	if(treinoDesfazer == 'treinoA'){ treinoA = desfazer; document.getElementById("treino0").innerHTML = treinoA; document.getElementById("vlrTreinoA").value = treinoA; }
+	if(treinoDesfazer == 'treinoB'){ treinoB = desfazer; document.getElementById("treino1").innerHTML = treinoB; document.getElementById("vlrTreinoB").value = treinoB; }
+	if(treinoDesfazer == 'treinoC'){ treinoC = desfazer; document.getElementById("treino2").innerHTML = treinoC; document.getElementById("vlrTreinoC").value = treinoC; }
+	if(treinoDesfazer == 'treinoD'){ treinoD = desfazer; document.getElementById("treino3").innerHTML = treinoD; document.getElementById("vlrTreinoD").value = treinoD; }
+	if(treinoDesfazer == 'treinoE'){ treinoE = desfazer; document.getElementById("treino4").innerHTML = treinoE; document.getElementById("vlrTreinoE").value = treinoE; }
+	if(treinoDesfazer == 'treinoF'){ treinoF = desfazer; document.getElementById("treino5").innerHTML = treinoF; document.getElementById("vlrTreinoF").value = treinoF; }
+	if(treinoDesfazer == 'treinoG'){ treinoG = desfazer; document.getElementById("treino6").innerHTML = treinoG; document.getElementById("vlrTreinoG").value = treinoG; }
+}
+
 function adicionar(){
+	document.getElementById("btDesfazer").style.display="block";
 	var letra = document.getElementById("tipoOrdem").value;
 	document.getElementById("treino"+letra).style.display = "block";
 	var conteudo = "";
 	if(letra == 0){
+		treinoDesfazer = 'treinoA';
+		desfazer = treinoA;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -42,6 +58,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoA").value = treinoA;
 	}
 	if(letra == 1){
+		treinoDesfazer = 'treinoB';
+		desfazer = treinoB;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -51,6 +69,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoB").value = treinoB;
 	}
 	if(letra == 2){
+		treinoDesfazer = 'treinoC';
+		desfazer = treinoC;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -60,6 +80,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoC").value = treinoC;
 	}
 	if(letra == 3){
+		treinoDesfazer = 'treinoD';
+		desfazer = treinoD;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -69,6 +91,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoD").value = treinoD;
 	}
 	if(letra == 4){
+		treinoDesfazer = 'treinoE';
+		desfazer = treinoE;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -78,6 +102,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoE").value = treinoE;
 	}
 	if(letra == 5){
+		treinoDesfazer = 'treinoF';
+		desfazer = treinoF;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -87,6 +113,8 @@ function adicionar(){
 		document.getElementById("vlrTreinoF").value = treinoF;
 	}
 	if(letra == 6){
+		treinoDesfazer = 'treinoG';
+		desfazer = treinoG;
 		conteudo = document.getElementById("descricao").value;
 		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
 		conteudo = conteudo + document.getElementById("series").value + "]";
@@ -94,15 +122,6 @@ function adicionar(){
 		treinoG = treinoG+"<br>"+conteudo;
 		document.getElementById("treino"+letra).innerHTML = treinoG;
 		document.getElementById("vlrTreinoG").value = treinoG;
-	}
-	if(letra == 7){
-		conteudo = document.getElementById("descricao").value;
-		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
-		conteudo = conteudo + document.getElementById("series").value + "]";
-		conteudo = conteudo + " - "+document.getElementById("descanso").value;
-		treinoH = treinoH+"<br>"+conteudo;
-		document.getElementById("treino"+letra).innerHTML = treinoH;
-		document.getElementById("vlrTreinoH").value = treinoH;
 	}
 	
 }
@@ -133,11 +152,11 @@ function adicionar(){
 							<span class="input-group-addon" onclick="habilitar()">
 								<i class="fa fa-search"></i>
 							</span>
-							<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" required>
+							<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${usuario.matricula }" required>
 						</div>
 					</div>
 					<div class="col-md-8 form-group">
-						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
+						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" value="${usuario.nome }" disabled>
 					</div>
 					
 					
@@ -174,11 +193,15 @@ function adicionar(){
 
 					<c:if test="${usuario != null }">
 						<div class="col-md-2 form-group">
-							<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:none" >Adicionar</a>
+							<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:block" >Adicionar</a>
 						</div>
 						<div class="col-md-2 form-group">
-							<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:none" >Finalizar</a>
+							<a class="btn btn-info" onclick="desfaz()" id="btDesfazer" style="display:none" >Desfazer</a>
 						</div>
+						<div class="col-md-2 form-group">
+							<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:block" >Finalizar</a>
+						</div>
+						
 						<div class="col-md-12 form-group">
 						</div>
 					</c:if>
@@ -241,7 +264,7 @@ function adicionar(){
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
-											<th>Editar</th>
+											<th>Excluir</th>
 											<th>Matrícula</th>
 											<th>Nome</th>
 											<th>Treino</th>
