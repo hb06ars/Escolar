@@ -543,6 +543,10 @@ public class SistemaController {
 					modelAndView.addObject("mesesTarde", mesesTarde);
 					modelAndView.addObject("mesesNoite", mesesNoite);
 				}
+				if(usuarioSessao.getPerfil().getAdmin()) {
+					List<Treino> treinos = treinoDao.buscarTudo();
+					modelAndView.addObject("treinos", treinos);
+				}
 				
 			}
 			return modelAndView; //retorna a variavel
@@ -1141,6 +1145,8 @@ public class SistemaController {
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
 			if(logado) {
 				//... Logado
+				List<Treino> treinos = treinoDao.buscarTudo();
+				modelAndView.addObject("treinos", treinos);
 			}
 			return modelAndView; //retorna a variavel
 		}
