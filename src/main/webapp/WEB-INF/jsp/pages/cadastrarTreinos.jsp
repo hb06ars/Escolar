@@ -15,12 +15,107 @@
 <!-- DOWNLOAD EXCEL -->
 
 
+<script>
+var treinoA = 'Treino A:',
+	treinoB = 'Treino B:',
+	treinoC = 'Treino C:',
+	treinoD = 'Treino D:',
+	treinoE = 'Treino E:',
+	treinoF = 'Treino F:',
+	treinoG = 'Treino G:';
+
+function habilitar(){
+	document.getElementById("btAdd").style.display = "block";
+	document.getElementById("btFim").style.display = "block";
+}
+
+function adicionar(){
+	var letra = document.getElementById("tipoOrdem").value;
+	document.getElementById("treino"+letra).style.display = "block";
+	var conteudo = "";
+	if(letra == 0){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoA = treinoA+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoA;
+		document.getElementById("vlrTreinoA").value = treinoA;
+	}
+	if(letra == 1){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoB = treinoB+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoB;
+		document.getElementById("vlrTreinoB").value = treinoB;
+	}
+	if(letra == 2){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoC = treinoC+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoC;
+		document.getElementById("vlrTreinoC").value = treinoC;
+	}
+	if(letra == 3){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoD = treinoD+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoD;
+		document.getElementById("vlrTreinoD").value = treinoD;
+	}
+	if(letra == 4){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoE = treinoE+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoE;
+		document.getElementById("vlrTreinoE").value = treinoE;
+	}
+	if(letra == 5){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoF = treinoF+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoF;
+		document.getElementById("vlrTreinoF").value = treinoF;
+	}
+	if(letra == 6){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoG = treinoG+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoG;
+		document.getElementById("vlrTreinoG").value = treinoG;
+	}
+	if(letra == 7){
+		conteudo = document.getElementById("descricao").value;
+		conteudo = conteudo + " [" + document.getElementById("repeticoes").value + "X";
+		conteudo = conteudo + document.getElementById("series").value + "]";
+		conteudo = conteudo + " - "+document.getElementById("descanso").value;
+		treinoH = treinoH+"<br>"+conteudo;
+		document.getElementById("treino"+letra).innerHTML = treinoH;
+		document.getElementById("vlrTreinoH").value = treinoH;
+	}
+	
+}
+
+
+</script>
 
 
 
 <!-- start: page -->
 <div class="row">
-<form action="/alunos" method="post" accept-charset="utf-8">
+<form action="/cadastrarTreinos" method="post" accept-charset="utf-8">
 	<div class="col-md-12">
 		<div data-collapsed="0" class="panel">
 			<div class="panel-heading">
@@ -34,162 +129,93 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-md-3 form-group">
-						<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${matriculaPadrao }"required>
-					</div>
-					<div class="col-md-4 form-group">
-						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
-					</div>
-					<div class="col-md-2 form-group">
-						<input name="cpf" id="cpf" maxlength="14" minlength="14" data-plugin-masked-input data-input-mask="999.999.999-99" placeholder="CPF" class="form-control" required>
-					</div>
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-birthday-cake"></i>
-							</span>
-							<input type="date" name="dataNascimento" id="dataNascimento" class="form-control" required/>
-						</div>
-					</div>
 					<div class="col-md-4 form-group">
 						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-phone"></i>
+							<span class="input-group-addon" onclick="habilitar()">
+								<i class="fa fa-search"></i>
 							</span>
-							<input id="telefone" name="telefone" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Telefone" class="form-control">
+							<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" required>
 						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-phone"></i>
-							</span>
-							<input id="celular" name="celular" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Celular" class="form-control">
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-envelope"></i>
-							</span>
-							<input type="email" name="email" id="email" class="form-control" placeholder="eg.: email@email.com" />
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<input type="text" placeholder="Endereço" id="endereco" name="endereco" class="form-control">
-					</div>
-					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Bairro" id="bairro" name="bairro" class="form-control">
-					</div>
-					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Cidade" id="cidade" name="cidade" class="form-control">
-					</div>
-					<div class="col-md-2 form-group">
-						<input type="text" placeholder="Estado" id="estado" data-plugin-masked-input data-input-mask="aa" maxlength="2" minlength="2" name="estado" class="form-control">
-					</div>
-					<div class="col-md-2 form-group">
-						<input name="cep" id="cep" maxlength="9" minlength="9" data-plugin-masked-input data-input-mask="99999-999" placeholder="CEP" class="form-control">
-					</div>
-					<div class="col-md-10 form-group">
-						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">
-					</div>
-					
-					
-					
-					<div class="col-md-4 form-group">
-						<select id="plano" name="plano.id" class="form-control">
-							<c:forEach items="${planos }" var="p">
-								<option value="${p.id }">Plano ${p.nome } (${p.descricao})</option>
-							</c:forEach>
-						</select>
 					</div>
 					<div class="col-md-8 form-group">
-						<input type="text" placeholder="Observações no Contrato"  id="contrato_obs" name="contrato_obs" class="form-control">
+						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
 					</div>
 					
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Início Contrato
-							</span>
-							<input type="date" name="contrato_inicio"   id="contrato_inicio" class="form-control" required/>
-						</div>
+					
+					<div class="col-md-2 form-group">
+						Treino:
+						<select id="tipoOrdem" name="tipoOrdem" class="form-control">
+							<option value="0">A</option>
+							<option value="1">B</option>
+							<option value="2">C</option>
+							<option value="3">D</option>
+							<option value="4">E</option>
+							<option value="5">F</option>
+							<option value="6">G</option>
+						</select>
 					</div>
 					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Fim Contrato
-							</span>
-							<input type="date" name="contrato_fim" id="contrato_fim" class="form-control" required/>
-						</div>
+						Exercício:
+						<input type="text" placeholder="Exercício" name="descricao" id="descricao" class="form-control" required>
 					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Total do Contrato
-							</span>
-							<input type="text" name="contrato_totalContrato" id="contrato_totalContrato" onkeyup="calcular()" value="0" class="form-control" required/>
-						</div>
+					<div class="col-md-2 form-group">
+						Séries:
+						<input type="number" placeholder="1" min="1" name="series" id="series" value="10" class="form-control" required>
+					</div>
+					<div class="col-md-2 form-group">
+						Repetições:
+						<input type="number" placeholder="1" min="1" name="repeticoes" id="repeticoes" value="4" class="form-control" required>
 					</div>
 					
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Sinal
-							</span>
-							<input type="text" name="contrato_sinal" id="contrato_sinal" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Desconto
-							</span>
-							<input type="text" name="contrato_desconto" id="contrato_desconto" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Total a pagar
-							</span>
-							<input type="text" name="contrato_total" id="contrato_total" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
+					<div class="col-md-2 form-group">
+						Descanso:
+						<input type="text" placeholder="00s" maxlength="3" name="descanso" id="descanso" value="30s" class="form-control" required>
 					</div>
 					
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Parcelas
-							</span>
-							<input type="number" name="contrato_parcelas" id="contrato_parcelas" onkeyup="calcular()" placeholder="1" min="1" value="1" class="form-control" required/>
-						</div>
+
+
+					<div class="col-md-2 form-group">
+						<a class="btn btn-primary" onclick="adicionar()" id="btAdd" style="display:none" >Adicionar</a>
 					</div>
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Vencimento
-							</span>
-							<input type="number" name="contrato_vencimento" id="contrato_vencimento" placeholder="1" min="1" max="31" value="1" class="form-control" required/>
-						</div>
+					<div class="col-md-2 form-group">
+						<a class="btn btn-danger" onclick="finalizar()" id="btFim" style="display:none" >Finalizar</a>
 					</div>
-					<div class="col-md-6 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Valor da Parcela
-							</span>
-							<input type="text" name="contrato_valorDaParcela" id="contrato_valorDaParcela" onkeyup="calcular()" value="0" class="form-control" required/>
-						</div>
+					
+					<div class="col-md-12 form-group">
 					</div>
-					<div class="col-md-2 form-group" id="salvar">
-						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Criar">
+					
+					<div class="col-md-4 form-group" id="treino0" style="display:none">
+						Treino A
 					</div>
-					<div class="col-md-2 form-group" id="atualizar" style="display:none">
-						<input type="submit" class="btn btn-primary" onclick="acao('atualizar')" value="Atualizar">
+					<div class="col-md-4 form-group" id="treino1" style="display:none">
+						Treino B
 					</div>
-					<div class="col-md-2 form-group" id="cancelar" style="display:none">
-						<input type="button" class="btn btn-danger" onclick="cancelar()" value="Voltar">
+					<div class="col-md-4 form-group" id="treino2" style="display:none">
+						Treino C
 					</div>
+					<div class="col-md-4 form-group" id="treino3" style="display:none">
+						Treino D
+					</div>
+					<div class="col-md-4 form-group" id="treino4" style="display:none">
+						Treino E
+					</div>
+					<div class="col-md-4 form-group" id="treino5" style="display:none">
+						Treino F
+					</div>
+					<div class="col-md-4 form-group" id="treino6" style="display:none">
+						Treino G
+					</div>
+					
+					
+					<input type="hidden" id="vlrTreinoA" name="vlrTreinoA">
+					<input type="hidden" id="vlrTreinoB" name="vlrTreinoB">
+					<input type="hidden" id="vlrTreinoC" name="vlrTreinoC">
+					<input type="hidden" id="vlrTreinoD" name="vlrTreinoD">
+					<input type="hidden" id="vlrTreinoE" name="vlrTreinoE">
+					<input type="hidden" id="vlrTreinoF" name="vlrTreinoF">
+					<input type="hidden" id="vlrTreinoG" name="vlrTreinoG">
+					
+					
 					<input type="hidden" id="acao" name="acao" value="salvar">
 				</div>
 			</div>
@@ -210,7 +236,7 @@
 									<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
 								</div>
 						
-								<h2 class="panel-title">Registro dos Alunos</h2>
+								<h2 class="panel-title">Registro dos Treinos</h2>
 							</header>
 							<div class="panel-body">
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
@@ -218,17 +244,12 @@
 										<tr>
 											<th>Editar</th>
 											<th>Matrícula</th>
-											<th>Situação</th>
-											<th>Contrato</th>
 											<th>Nome</th>
-											<th>Telefone</th>
-											<th>Celular</th>
-											<th>Email</th>
-											<th>Endereço</th>
-											<th>Bairro</th>
-											<th>Cidade</th>
-											<th>Estado</th>
-											<th>CPF</th>
+											<th>Treino</th>
+											<th>Ordem</th>
+											<th>Séries</th>
+											<th>Repetições</th>
+											<th>Descanso</th>
 										</tr>
 									</thead>
 									<tbody>
