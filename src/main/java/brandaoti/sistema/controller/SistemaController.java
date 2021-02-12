@@ -174,7 +174,7 @@ public class SistemaController {
 				t.setTipoOrdem(1);
 				t.setRepeticoes(10);
 				t.setSeries(3);
-				t.setOrdemDoDia(0);
+				t.setOrdemDoDia(1);
 				t.setDescanso("1min");
 				t.setDescricao("Remada Baixa");
 				t.setMatricula(usuarioSessao.getMatricula());
@@ -461,6 +461,7 @@ public class SistemaController {
 				if(usuarioSessao.getPerfil().getAdmin()) {
 					Integer presentesOntem = presencaDao.presentesOntem().size();
 					Integer todosAlunos = usuarioDao.buscarAlunos().size();
+					
 					
 					List<Parcela> alunosPendentesLista = parcelaDao.buscarPendencias();
 					Integer alunosPendentes = 0;

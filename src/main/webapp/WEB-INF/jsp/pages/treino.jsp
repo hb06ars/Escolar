@@ -24,7 +24,7 @@ function confirmar(id){
 
 <!-- start: page -->
 
-<div class="row">
+<div class="row" id="treinoA" style="display:block">
 	<div class="col-xl-1 col-lg-12">
 		<section class="panel panel-transparent">
 			<div class="panel-body">
@@ -52,9 +52,11 @@ function confirmar(id){
 								<div class="panel-body">
 									<ul class="list-group">
 										<c:forEach items="${treinos}" var="t" varStatus="loop">
-											<li class="list-group-item" id="todoListItem${loop.index+1 }" onclick="confirmar('todoListItem${loop.index+1 }')" style="background-color:#F78181; color:#610B0B;">
-												<label class="todo-label" for="todoListItem${loop.index+1 }"><span>${t.descricao } ( ${t.series }X${t.repeticoes } &nbsp&nbsp<i class="fa fa-refresh"></i>&nbsp&nbsp ${t.descanso } )</span></label>
-											</li>
+											<c:if test="${t.ordemDoDia == 0 }">
+												<li class="list-group-item" id="todoListItem${loop.index+1 }" onclick="confirmar('todoListItem${loop.index+1 }')" style="background-color:#F78181; color:#610B0B;">
+													<label class="todo-label" for="todoListItem${loop.index+1 }"><span>${t.descricao } ( ${t.series }X${t.repeticoes } &nbsp&nbsp<i class="fa fa-refresh"></i>&nbsp&nbsp ${t.descanso } )</span></label>
+												</li>
+											</c:if>
 										</c:forEach>
 									</ul>
 									<hr class="solid mt-sm mb-lg">
