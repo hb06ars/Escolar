@@ -259,6 +259,7 @@ public class SistemaController {
 					List<Plano> planos = planoDao.buscarTudo();
 					modelAndView.addObject("planos", planos);
 					atualizarPagina = "/alunos";
+					modelAndView.addObject("atualizarPagina", atualizarPagina);
 				}
 				if(tabela.equals("funcionario")) {
 					modelAndView = new ModelAndView(link);
@@ -283,6 +284,7 @@ public class SistemaController {
 					List<Usuario> usuarios = usuarioDao.buscarFuncionarios();
 					modelAndView.addObject("usuarios", usuarios);
 					atualizarPagina = "/funcionarios";
+					modelAndView.addObject("atualizarPagina", atualizarPagina);
 				}
 				if(tabela.equals("parcela")) {
 					modelAndView = new ModelAndView(link);
@@ -300,6 +302,7 @@ public class SistemaController {
 					List<Parcela> pendencias = parcelaDao.buscarPendencias();
 					modelAndView.addObject("pendencias", pendencias);
 					atualizarPagina = "/pendencias";
+					modelAndView.addObject("atualizarPagina", atualizarPagina);
 				}
 				if(tabela.equals("treino")) {
 					modelAndView = new ModelAndView(link);
@@ -315,10 +318,8 @@ public class SistemaController {
 						System.out.println("Erro: "+e);
 					}
 					modelAndView.addObject("usuario", us);
-					atualizarPagina = "/cadastrarTreinos";
 				}
 			}
-			modelAndView.addObject("atualizarPagina", atualizarPagina);
 			modelAndView.addObject("usuario", usuarioSessao);
 			modelAndView.addObject("paginaAtual", paginaAtual); 
 			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
