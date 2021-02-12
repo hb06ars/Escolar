@@ -11,6 +11,9 @@
 <!-- TAGS -->
 <!-- INICIO BODY -->
 
+<!-- DOWNLOAD EXCEL -->
+<jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
+<!-- DOWNLOAD EXCEL -->
 
 
 <!-- start: page -->
@@ -103,6 +106,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
+							</div>
+							<div class="panel-footer">
+								<button type="button" class="btn btn-primary" onclick="tableToExcel('datatable-default', 'Documento')">Download</button>
 							</div>
 						</section>
 

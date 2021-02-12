@@ -89,7 +89,7 @@ function redirecionar(link){
 								<meter min="0" max="100" value="${(presentesOntem  * 100) / todosAlunos }" id="meterSales"></meter>
 							</div>
 							<div class="liquid-meter-selector" id="meterSalesSel">
-								<a href="#" data-val="35" class="active">Total ${presentesOntem } ALUNO(S) de ${todosAlunos }.</a>
+								<a class="active">${presentesOntem } ALUNO(S) PRESENTES de ${todosAlunos }.</a>
 							</div>
 						</div>
 					</div>

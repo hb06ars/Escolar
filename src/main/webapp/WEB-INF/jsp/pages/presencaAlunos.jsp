@@ -10,6 +10,11 @@
 <!-- TAGS -->
 <!-- INICIO BODY -->
 
+<!-- DOWNLOAD EXCEL -->
+<jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
+<!-- DOWNLOAD EXCEL -->
+
+
 <style>
 .dot {
   height: 25px;
@@ -33,7 +38,7 @@
 							</header>
 							
 							<div class="panel-body" style="overflow:auto">
-								<table class="table table-bordered table-striped mb-none" id="datatable-default">
+								<table class="table table-bordered table-striped mb-none" id="datatable-default" >
 									<thead>
 										<tr>
 											<th>Matrícula</th>
@@ -60,12 +65,12 @@
 														<c:set var="dia" value="${fn:substring(p.presenca, 8, 10)}" />
 														<c:if test="${dia == d  }">
 															<c:set var="cont" value="1"/>
-															<td><span class="dot" onclick="modalHorario('${p.presenca}')" style="background-color: green;"></span></td>
+															<td style="background-color: #E3F6CE; border-color: #BDBDBD" ><span class="dot" onclick="modalHorario('${p.presenca}')" style="background-color: green;"></span></td>
 														</c:if>
 													</c:if>
 												</c:forEach>
 												<c:if test="${cont == 0 }">
-													<td><span class="dot" style="background-color: red;"></span></td>
+													<td style="background-color: #F6CECE; border-color: #BDBDBD " ><span class="dot" style="background-color: red;"></span></td>
 												</c:if>
 												
 											</c:forEach>
@@ -75,6 +80,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
+							</div>
+							<div class="panel-footer">
+								<button type="button" class="btn btn-primary" onclick="tableToExcel('datatable-default', 'Documento')">Download</button>
 							</div>
 						</section>
 

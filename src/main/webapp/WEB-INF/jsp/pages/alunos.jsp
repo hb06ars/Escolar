@@ -10,6 +10,11 @@
 <!-- TAGS -->
 <!-- INICIO BODY -->
 
+<!-- DOWNLOAD EXCEL -->
+<jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
+<!-- DOWNLOAD EXCEL -->
+
+
 <script>
 function calcular(){
 	var totalContrato = document.getElementById("contrato_totalContrato").value.replace(',','.');
@@ -400,6 +405,9 @@ function editar(id){
 										</c:forEach>
 									</tbody>
 								</table>
+							</div>
+							<div class="panel-footer">
+								<button type="button" class="btn btn-primary" onclick="tableToExcel('datatable-default', 'Documento')">Download</button>
 							</div>
 						</section>
 
