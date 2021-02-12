@@ -57,7 +57,7 @@ function redirecionar(link){
 									    	["${m.nome1 }", ${m.valor1 }],
 									    	</c:forEach>
 									    ],
-									    color: "#0088cc"
+									    color: "#2baab1"
 									}];
 								</script>
 								
@@ -70,7 +70,7 @@ function redirecionar(link){
 									    	["${m.nome1 }", ${m.valor1 }],
 									    	</c:forEach>
 									    ],
-									    color: "#0088cc"
+									    color: "#734ba9"
 									}];
 								</script>
 								

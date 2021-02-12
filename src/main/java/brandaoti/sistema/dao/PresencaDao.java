@@ -27,7 +27,7 @@ public interface PresencaDao extends JpaRepository<Plano, Integer> {
 	@Query(" select p from Presenca p where extract(month from presenca) = extract(month from sysdate) and YEAR(presenca)=(YEAR(NOW())) and usuario.perfil.funcionario = TRUE order by presenca asc")
 	List<Presenca> buscarMesFuncionarios();
 	
-	@Query(" select p from Presenca p where DAY(presenca)=(DAY(NOW())-1) and YEAR(presenca)=(YEAR(NOW())) and usuario.perfil.funcionario = TRUE order by presenca asc")
+	@Query(" select p from Presenca p where DAY(presenca)=(DAY(NOW())-1) and YEAR(presenca)=(YEAR(NOW())) and usuario.perfil.aluno = TRUE order by presenca asc")
 	List<Presenca> presentesOntem();
 	
 	@Query(" select p from Presenca p where extract(month from presenca) = :mes and YEAR(presenca)=(YEAR(NOW()))")
