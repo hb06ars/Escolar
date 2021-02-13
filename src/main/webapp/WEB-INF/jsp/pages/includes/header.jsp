@@ -148,6 +148,9 @@
 													<a href="/aulas">Aulas</a>
 												</li>
 												<li>
+													<a href="/planos">Planos</a>
+												</li>
+												<li>
 													<a href="/pendencias">Pendências</a>
 												</li>
 												<li>

@@ -16,6 +16,20 @@
 
 
 <script>
+
+function mudaPlano(){
+	var x = document.getElementById("plano").value;
+	document.getElementById("contrato_totalContrato").value = 0;
+	var valor = 0;
+	<c:forEach items="${planos}" var="pl">
+		if(x == '${pl.id}'){
+			valor = '${pl.valor}';
+			document.getElementById("contrato_totalContrato").value = valor;
+			calcular();
+		}
+	</c:forEach>
+}
+
 function calcular(){
 	var totalContrato = document.getElementById("contrato_totalContrato").value.replace(',','.');
 	document.getElementById("contrato_totalContrato").value = totalContrato; 
@@ -34,7 +48,7 @@ function acao(valor){
 function cancelar(){
 	document.getElementById("contrato_inicio").disabled = false;
 	document.getElementById("contrato_fim").disabled = false;
-	document.getElementById("contrato_totalContrato").disabled = false;
+	document.getElementById("contrato_totalContrato").disabled = true;
 	document.getElementById("contrato_sinal").disabled = false;
 	document.getElementById("contrato_desconto").disabled = false;
 	document.getElementById("contrato_total").disabled = false;
@@ -117,7 +131,7 @@ function editar(id){
 			<c:if test="${u.contrato.size() < 1 }">
 				document.getElementById("contrato_inicio").disabled = false;
 				document.getElementById("contrato_fim").disabled = false;
-				document.getElementById("contrato_totalContrato").disabled = false;
+				document.getElementById("contrato_totalContrato").disabled = true;
 				document.getElementById("contrato_sinal").disabled = false;
 				document.getElementById("contrato_desconto").disabled = false;
 				document.getElementById("contrato_total").disabled = false;
@@ -229,7 +243,8 @@ function editar(id){
 					
 					
 					<div class="col-md-4 form-group">
-						<select id="plano" name="plano.id" class="form-control">
+						<select id="plano" onchange="mudaPlano()" name="plano.id" class="form-control">
+							<option value="" selected>Escolha um plano</option>
 							<c:forEach items="${planos }" var="p">
 								<option value="${p.id }">Plano ${p.nome } (${p.descricao})</option>
 							</c:forEach>
@@ -260,7 +275,7 @@ function editar(id){
 							<span class="input-group-addon">
 								Total do Contrato
 							</span>
-							<input type="text" name="contrato_totalContrato" id="contrato_totalContrato" onkeyup="calcular()" value="0" class="form-control" required/>
+							<input type="text" name="contrato_totalContrato" id="contrato_totalContrato" onkeyup="calcular()" value="0" class="form-control" disabled required/>
 						</div>
 					</div>
 					

@@ -24,6 +24,9 @@ public class Plano {
 	
 	@Column
 	private String descricao;
+	
+	@Column
+	private Double valor;
 
 	public Integer getId() {
 		return id;
@@ -65,6 +68,15 @@ public class Plano {
 		this.descricao = descricao;
 	}
 
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
+
+	
 	
 	
 }
