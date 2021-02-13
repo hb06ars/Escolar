@@ -116,7 +116,7 @@ public class SistemaController {
 				perfil = new Perfil();
 				perfil.setAtivo(true);
 				perfil.setCodigo("2");
-				perfil.setNome("aluno");
+				perfil.setNome("Aluno");
 				perfil.setAdmin(false);
 				perfil.setFuncionario(false);
 				perfil.setAluno(true);
@@ -125,7 +125,7 @@ public class SistemaController {
 				perfil = new Perfil();
 				perfil.setAtivo(true);
 				perfil.setCodigo("3");
-				perfil.setNome("funcionario");
+				perfil.setNome("Funcionário");
 				perfil.setAdmin(false);
 				perfil.setFuncionario(true);
 				perfil.setAluno(true);
@@ -134,7 +134,7 @@ public class SistemaController {
 				perfil = new Perfil();
 				perfil.setAtivo(true);
 				perfil.setCodigo("4");
-				perfil.setNome("professor");
+				perfil.setNome("Professor");
 				perfil.setAdmin(false);
 				perfil.setFuncionario(true);
 				perfil.setProfessor(true);
@@ -888,7 +888,7 @@ public class SistemaController {
 		
 		
 		@RequestMapping(value = "/funcionarios", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
-		public ModelAndView funcionarios(Usuario funcionario, String acao) throws SQLException {
+		public ModelAndView funcionarios(Usuario funcionario, String acao, String perfil_codigo) throws SQLException {
 			paginaAtual = "Funcionários";
 			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
 			String link = verificaLink("pages/funcionarios");
@@ -912,7 +912,7 @@ public class SistemaController {
 						Usuario a = new Usuario();
 						a = funcionario;
 						a.setSenha(funcionario.getCpf());
-						a.setPerfil(perfilDao.buscarFuncionario().get(0));
+						a.setPerfil(perfilDao.buscarCodigo(perfil_codigo));
 						usuarioDao.save(a);
 						modelAndView.addObject("atualizarPagina", atualizarPagina);
 					} catch(Exception e) {
@@ -933,7 +933,7 @@ public class SistemaController {
 					a.setCidade(funcionario.getCidade());
 					a.setEstado(funcionario.getEstado());
 					a.setPlano(funcionario.getPlano());
-					a.setPerfil(perfilDao.buscarFuncionario().get(0));
+					a.setPerfil(perfilDao.buscarCodigo(perfil_codigo));
 					usuarioDao.save(a);
 				} else if(funcionario.getMatricula() != null && (acao.equals("salvar")) && repetido) {
 					modelAndView.addObject("erro", "Já existe este CPF / Matrícula.");

@@ -36,6 +36,7 @@ function cancelar(){
 	document.getElementById("estado").value = '';
 	document.getElementById("cep").value = '';
 	document.getElementById("pathImagem").value = '';
+	document.getElementById("perfil").value = '';
 
 	document.getElementById("acao").value = '';
 	document.getElementById("atualizar").style.display = "none";
@@ -67,9 +68,7 @@ function editar(id){
 			document.getElementById("estado").value = '${u.estado}';
 			document.getElementById("cep").value = '${u.cep}';
 			document.getElementById("pathImagem").value = '${u.pathImagem}';
-			document.getElementById("plano").value = '${u.plano.id}';
-			
-			
+			document.getElementById("perfil").value = '${u.perfil.codigo}';
 		}
 	</c:forEach>
 
@@ -152,9 +151,18 @@ function editar(id){
 					<div class="col-md-2 form-group">
 						<input name="cep" id="cep" maxlength="9" minlength="9" data-plugin-masked-input data-input-mask="99999-999" placeholder="CEP" class="form-control">
 					</div>
-					<div class="col-md-10 form-group">
+					<div class="col-md-7 form-group">
 						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">
 					</div>
+					<div class="col-md-3 form-group">
+						<select id="perfil" name="perfil_codigo" class="form-control">
+							<option value="" selected>Escolha um Perfil</option>
+							<option value="1" >Admnistrador</option>
+							<option value="3" >Funcionário</option>
+							<option value="4" >Professor</option>
+						</select>
+					</div>
+					
 					
 					<div class="col-md-2 form-group" id="salvar">
 						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Criar">
