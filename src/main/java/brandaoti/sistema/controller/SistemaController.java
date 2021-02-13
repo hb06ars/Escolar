@@ -176,36 +176,6 @@ public class SistemaController {
 				usu.setPerfil(perfilDao.buscarAdm().get(0));
 				usuarioDao.save(usu);
 
-				
-				// -- Excluir ---------------------------
-				Usuario prof = new Usuario();
-				prof.setAtivo(true);
-				prof.setMatricula("1");
-				prof.setSenha("adm");
-				prof.setNome("Professor");
-				prof.setPerfil(perfilDao.buscarProfessor().get(0));
-				usuarioDao.save(prof);
-				
-				Treino t = new Treino();
-				t.setAtivo(true);
-				t.setTipoOrdem(0);
-				t.setOrdemDoDia(0);
-				t.setDescricao("Supino Reto");
-				t.setSeries(4);
-				t.setRepeticoes(10);
-				t.setDescanso("30s");
-				t.setultimoTreinoExecutado(0);
-				t.setAluno(usuarioDao.buscarProfessores().get(0));
-				treinoDao.save(t);
-				// -- Excluir
-				
-				
-				
-				
-				
-				
-				
-				
 			}
 			logado = false;
 			String link = "index";
