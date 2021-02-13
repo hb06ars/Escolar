@@ -171,6 +171,10 @@
 										</li>
 									</c:if>
 									<li>
+										<a href="/alterarSenha" >
+											<i class="fa fa-key" aria-hidden="true"></i>
+											<span>Alterar senha</span>
+										</a>
 										<a href="/deslogar" >
 											<i class="fa fa-power-off" aria-hidden="true"></i>
 											<span>Sair</span>

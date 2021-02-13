@@ -1255,6 +1255,37 @@ public class SistemaController {
 			return modelAndView; //retorna a variavel
 		}
 		
+		@RequestMapping(value = "/alterarSenha", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
+		public ModelAndView alterarSenha(Integer acao, String matricula,String senha,String novaSenha,String confirmaSenha) throws SQLException {
+			paginaAtual = "Alterar Senha";
+			iconePaginaAtual = "fa fa-key"; //Titulo do menuzinho.
+			String link = verificaLink("pages/alterarSenha");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				String msg = "";
+				//... Salvando dados.
+				if(acao != null) {
+					if(acao > 0) {
+						Usuario u = usuarioDao.fazerLogin(matricula, senha);
+						if(u != null && (novaSenha.equals(confirmaSenha)) ) {
+							u.setSenha(novaSenha);
+							usuarioDao.save(u);
+							msg = "Alterado com sucesso.";
+							modelAndView.addObject("msgOk", msg);
+						} else {
+							msg = "Usuário ou senha inválidos.";
+							modelAndView.addObject("msg", msg);
+						}
+					}
+				}
+			}
+			return modelAndView; //retorna a variavel
+		}
+		
 }
 	
 	
