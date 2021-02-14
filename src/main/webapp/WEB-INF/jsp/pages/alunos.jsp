@@ -215,7 +215,7 @@ function editar(id){
 
 
 <!-- start: page -->
-<c:if test="${usuario.perfil.adm == true }">
+<c:if test="${usuario.perfil.admin == true}">
 <div class="row">
 <form action="/alunos" method="post" accept-charset="utf-8">
 	<div class="col-md-12">
