@@ -215,6 +215,7 @@ function editar(id){
 
 
 <!-- start: page -->
+<c:if test="${usuarioSessao.perfil.adm }">
 <div class="row">
 <form action="/alunos" method="post" accept-charset="utf-8">
 	<div class="col-md-12">
@@ -394,7 +395,7 @@ function editar(id){
 	</div>
 </form>
 </div>
-
+</c:if>
 
 
 
@@ -413,7 +414,9 @@ function editar(id){
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
-											<th>Editar</th>
+											<c:if test="${usuarioSessao.perfil.adm }">
+												<th>Editar</th>
+											</c:if>
 											<th>Matrícula</th>
 											<th>Situação</th>
 											<th>Contrato</th>
@@ -431,10 +434,12 @@ function editar(id){
 									<tbody>
 										<c:forEach items="${usuarios }" var="u">
 											<tr class="gradeX">
-												<td>
-													<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
-													<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
-												</td>
+												<c:if test="${usuarioSessao.perfil.adm }">
+													<td>
+														<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
+														<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
+													</td>
+												</c:if>
 												<td>${u.matricula }</td>
 												<c:set var = "index" value = "0"/>
 												<c:forEach items="${u.contrato }" var="c">

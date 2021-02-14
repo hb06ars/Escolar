@@ -123,6 +123,12 @@
 												<span>Cadastrar Treinos</span>
 											</a>
 										</li>
+										<li>
+											<a href="/alunos">
+												<i class="fa fa-edit" aria-hidden="true"></i>
+												<span>Ver Alunos</span>
+											</a>
+										</li>
 									</c:if>
 									<c:if test="${usuario.perfil.admin == true }">
 										<li>
