@@ -729,7 +729,7 @@ public class SistemaController {
 				    	
 						Usuario a = new Usuario();
 						a = aluno;
-						a.setSenha(aluno.getCpf());
+						a.setSenha(aluno.getCpf().replace(".", "").replace("-", ""));
 						a.setPerfil(perfilDao.buscarSomenteAluno().get(0));
 						usuarioDao.save(a);
 						
@@ -911,7 +911,7 @@ public class SistemaController {
 						atualizarPagina = "/funcionarios";
 						Usuario a = new Usuario();
 						a = funcionario;
-						a.setSenha(funcionario.getCpf());
+						a.setSenha(funcionario.getCpf().replace(".", "").replace("-", ""));
 						a.setPerfil(perfilDao.buscarCodigo(perfil_codigo));
 						usuarioDao.save(a);
 						modelAndView.addObject("atualizarPagina", atualizarPagina);
