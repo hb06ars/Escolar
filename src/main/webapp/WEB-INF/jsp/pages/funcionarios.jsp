@@ -17,6 +17,56 @@
 
 <script>
 
+function fMasc(objeto,mascara) {
+	obj=objeto
+	masc=mascara
+	setTimeout("fMascEx()",1)
+}
+function fMascEx() {
+	obj.value=masc(obj.value)
+}
+function mTel(tel) {
+	tel=tel.replace(/\D/g,"")
+	tel=tel.replace(/^(\d)/,"($1")
+	tel=tel.replace(/(.{3})(\d)/,"$1)$2")
+	if(tel.length == 9) {
+		tel=tel.replace(/(.{1})$/,"-$1")
+	} else if (tel.length == 10) {
+		tel=tel.replace(/(.{2})$/,"-$1")
+	} else if (tel.length == 11) {
+		tel=tel.replace(/(.{3})$/,"-$1")
+	} else if (tel.length == 12) {
+		tel=tel.replace(/(.{4})$/,"-$1")
+	} else if (tel.length > 12) {
+		tel=tel.replace(/(.{4})$/,"-$1")
+	}
+	return tel;
+}
+function mCNPJ(cnpj){
+	cnpj=cnpj.replace(/\D/g,"")
+	cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
+	cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
+	cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
+	cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
+	return cnpj
+}
+function mCPF(cpf){
+	cpf=cpf.replace(/\D/g,"")
+	cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+	cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+	cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+	return cpf
+}
+function mCEP(cep){
+	cep=cep.replace(/\D/g,"")
+	cep=cep.replace(/^(\d{5})(\d)/,"$1-$2")
+	return cep
+}
+function mNum(num){
+	num=num.replace(/\D/g,"")
+	return num
+}
+
 function acao(valor){
 	document.getElementById("acao").value = valor;
 }
@@ -102,7 +152,7 @@ function editar(id){
 						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
 					</div>
 					<div class="col-md-2 form-group">
-						<input name="cpf" id="cpf" maxlength="14" minlength="14" data-plugin-masked-input data-input-mask="999.999.999-99" placeholder="CPF" class="form-control" required>
+						<input type="text" id="cpf" name="cpf" maxlength="14" placeholder="CPF" minlength="14" onkeydown="javascript: fMasc( this, mCPF );" class="form-control" required>
 					</div>
 					<div class="col-md-3 form-group">
 						<div class="input-group">
@@ -117,7 +167,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input id="telefone" name="telefone" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Telefone" class="form-control">
+							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -125,7 +175,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input id="celular" name="celular" data-plugin-masked-input data-input-mask="(99) 99999-9999" placeholder="Celular" class="form-control">
+							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -146,10 +196,10 @@ function editar(id){
 						<input type="text" placeholder="Cidade" id="cidade" name="cidade" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input type="text" placeholder="Estado" id="estado" data-plugin-masked-input data-input-mask="aa" maxlength="2" minlength="2" name="estado" class="form-control">
+						<input type="text" placeholder="Estado" id="estado" maxlength="2" minlength="2" name="estado" class="form-control">
 					</div>
 					<div class="col-md-2 form-group">
-						<input name="cep" id="cep" maxlength="9" minlength="9" data-plugin-masked-input data-input-mask="99999-999" placeholder="CEP" class="form-control">
+						<input type="text" id="cep" name="cep" placeholder="99999-999" maxlength="9" minlength="9" onkeydown="javascript: fMasc( this, mCEP );" class="form-control" >
 					</div>
 					<div class="col-md-7 form-group">
 						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">
