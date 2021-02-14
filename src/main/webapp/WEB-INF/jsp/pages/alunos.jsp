@@ -414,9 +414,8 @@ function editar(id){
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
-											<c:if test="${usuarioSessao.perfil.adm }">
-												<th>Editar</th>
-											</c:if>
+											<c:if test="${usuario.perfil.admin == true}">
+											<th>Editar</th>
 											<th>Matrícula</th>
 											<th>Situação</th>
 											<th>Contrato</th>
@@ -429,17 +428,22 @@ function editar(id){
 											<th>Cidade</th>
 											<th>Estado</th>
 											<th>CPF</th>
+											</c:if>
+											<c:if test="${usuario.perfil.funcionario == true || usuario.perfil.professor == true}">
+												<th>Matrícula</th>
+												<th>Nome</th>
+												<th>Data de Nascimento</th>
+											</c:if>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach items="${usuarios }" var="u">
 											<tr class="gradeX">
-												<c:if test="${usuarioSessao.perfil.adm }">
+												<c:if test="${usuario.perfil.admin == true}">
 													<td>
 														<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
 														<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
 													</td>
-												</c:if>
 												<td>${u.matricula }</td>
 												<c:set var = "index" value = "0"/>
 												<c:forEach items="${u.contrato }" var="c">
@@ -471,6 +475,16 @@ function editar(id){
 												<td>${u.cidade }</td>
 												<td>${u.estado }</td>
 												<td>${u.cpf }</td>
+												</c:if>
+												<c:if test="${usuario.perfil.funcionario == true || usuario.perfil.professor == true}">
+													<td>${u.matricula }</td>
+													<td>${u.nome }</td>
+													<td>
+													<c:set var="nascimento" value="${fn:substring(u.dataNascimento, 8, 10)}/${fn:substring(u.dataNascimento, 5, 7)}/${fn:substring(u.dataNascimento, 0, 4)}" />
+													${nascimento }
+													</td>
+												</c:if>
+											
 											</tr>
 										</c:forEach>
 									</tbody>
