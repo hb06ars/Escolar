@@ -173,6 +173,7 @@ public class SistemaController {
 			
 			
 			if(u == null || u.size() == 0) {
+				/* Descomentar.
 				Usuario usu = new Usuario();
 				usu.setAtivo(true);
 				usu.setMatricula("adm");
@@ -180,25 +181,68 @@ public class SistemaController {
 				usu.setNome("Admnistrador");
 				usu.setPerfil(perfilDao.buscarAdm().get(0));
 				usuarioDao.save(usu);
+				*/
 				
-				// Excluir
-				Usuario nv = new Usuario();
-				nv.setAtivo(true);
-				nv.setMatricula("1");
-				nv.setCpf("12332143223");
-				nv.setSenha("adm");
-				nv.setNome("Professor");
-				nv.setPerfil(perfilDao.buscarProfessor().get(0));
-				usuarioDao.save(nv);
-				Usuario al = new Usuario();
-				al.setAtivo(true);
-				al.setMatricula("123");
-				al.setCpf("12332143222");
-				al.setSenha("adm");
-				al.setNome("Aluno");
-				al.setPerfil(perfilDao.buscarSomenteAluno().get(0));
-				usuarioDao.save(al);
-				// Excluir
+				// Excluir ----------------------------------------------------------------------------------------------------
+				// Henrique
+				Usuario h = new Usuario();
+				h.setAtivo(true);
+				h.setMatricula("587");
+				h.setCpf("22233344455");
+				h.setEmail("teste@teste.com");
+				h.setSenha("587");
+				h.setNome("Henrique");
+				h.setTelefone("(11)9893-6271");
+				h.setCelular("(11)9893-6271");
+				h.setEndereco("Teste...");
+				h.setCep("00000-000");
+				h.setBairro("Jd da Alegria");
+				h.setBairro("São Paulo");
+				h.setEstado("SP");
+				h.setPerfil(perfilDao.buscarAdm().get(0));
+				usuarioDao.save(h);
+				
+				Usuario d = new Usuario();
+				d.setAtivo(true);
+				d.setMatricula("123");
+				d.setCpf("11122233344");
+				d.setEmail("teste@teste.com");
+				d.setSenha("123");
+				d.setNome("Douglas Clei");
+				d.setTelefone("(11)94344-8225");
+				d.setCelular("(11)94344-8225");
+				d.setEndereco("Teste...");
+				d.setCep("00000-000");
+				d.setBairro("Jd da Alegria");
+				d.setBairro("São Paulo");
+				d.setEstado("SP");
+				d.setPerfil(perfilDao.buscarProfessor().get(0));
+				d.setPathImagem("https://instagram.fcgh11-1.fna.fbcdn.net/v/t51.2885-19/s150x150/121259006_145932033910851_5986443377023843247_n.jpg?_nc_ht=instagram.fcgh11-1.fna.fbcdn.net&_nc_ohc=K7QuPMx_HTsAX9F8mer&tp=1&oh=4f66c284e537eb8c6a37a16ecfa2d339&oe=605329B4");
+				usuarioDao.save(d);
+				
+				// Rafael
+				Usuario r = new Usuario();
+				r.setAtivo(true);
+				r.setMatricula("456");
+				r.setCpf("11122233355");
+				r.setEmail("teste@teste.com");
+				r.setSenha("456");
+				r.setNome("Rafael");
+				r.setTelefone("(11)98359-8420");
+				r.setCelular("(11)98359-8420");
+				r.setEndereco("Teste...");
+				r.setCep("00000-000");
+				r.setBairro("Jd da Alegria");
+				r.setBairro("São Paulo");
+				r.setEstado("SP");
+				r.setPathImagem("https://instagram.fcgh11-1.fna.fbcdn.net/v/t51.2885-19/s150x150/147640101_432656427934162_7502532548051698688_n.jpg?_nc_ht=instagram.fcgh11-1.fna.fbcdn.net&_nc_ohc=1AwA0-HsIfEAX_ePNx8&tp=1&oh=c494c72522c18470b00e66fa92c9e1b7&oe=6052EE90");
+				r.setPerfil(perfilDao.buscarProfessor().get(0));
+				usuarioDao.save(r);
+				
+				//al.setPerfil(perfilDao.buscarSomenteAluno().get(0));
+				//usuarioDao.save(al);
+				
+				// Excluir ----------------------------------------------------------------------------------------------------
 
 			}
 			
