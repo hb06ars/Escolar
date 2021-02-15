@@ -112,13 +112,13 @@
 									</li>
 									<li>
 										<a href="/treino">
-											<i class="fa fa-edit" aria-hidden="true"></i>
+											<i class="fa fa-list-ul" aria-hidden="true"></i>
 											<span>Meu Treino</span>
 										</a>
 									</li>
 									<li>
 										<a href="/avaliacao">
-											<i class="fa fa-edit" aria-hidden="true"></i>
+											<i class="fa fa-heartbeat" aria-hidden="true"></i>
 											<span>Minha Avaliação</span>
 										</a>
 									</li>
@@ -137,7 +137,7 @@
 										</li>
 										<li>
 											<a href="/alunos">
-												<i class="fa fa-edit" aria-hidden="true"></i>
+												<i class="fa fa-user" aria-hidden="true"></i>
 												<span>Ver Alunos</span>
 											</a>
 										</li>
@@ -188,6 +188,31 @@
 											</ul>
 										</li>
 									</c:if>
+									
+									<li class="nav-parent">
+											<a>
+												<i class="fa fa-info-circle" aria-hidden="true"></i>
+												<span>Contatos</span>
+											</a>
+											<ul class="nav nav-children">
+												<li>
+													<a href="https://www.facebook.com">Facebook</a>
+												</li>
+												<li>
+													<a href="https://www.instagram.com">Instagram</a>
+												</li>
+												<li>
+													<a href="https://wa.me/5511989376271">WhatsApp</a>
+												</li>
+												<li>
+													<a style="cursor:pointer" onclick="modalContato()" >Funcionamento</a>
+												</li>
+												<li>
+													<a style="cursor:pointer" onclick="modalAutor()" >Autor</a>
+												</li>
+											</ul>
+										</li>
+										
 									<li>
 										<a href="/alterarSenha" >
 											<i class="fa fa-key" aria-hidden="true"></i>

@@ -22,15 +22,15 @@ function modalContato(){
         </button>
       </div>
       <div class="modal-body">
-        Rua Márcia, 324 - Jd. Emílio Carlos <br>
-        CEP: 06820-240 <br>
-        Embu das Artes - SP <br>
-        Contato: (11)94038-2521 <br>
-        Email: harleymonteiro@live.com <br><br>
+        Rua da Academia, 123 <br>
+        CEP: 44444-240 <br>
+        São Paulo - SP <br>
+        Contato: (11)33333-3332 <br>
+        Email: academia@teste.com <br><br>
         Funcionamento: <br>
-        seg à sex - 08hs às 20hs <br>
-        sáb - 09hs às 17hs <br>
-        dom e feriados - 10hs às 14hs
+        seg à sex - 06hs às 23hs <br>
+        sáb - 09hs às 14hs <br>
+        dom e feriados - fechado
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
