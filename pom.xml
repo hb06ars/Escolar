@@ -8,11 +8,11 @@
 		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>brandaoti.sistema</groupId>
-	<artifactId>Sistema</artifactId>
+	<groupId>brandaoti.sistema.escolar</groupId>
+	<artifactId>Escolar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>s</name>
-	<description>Sistema</description>
+	<name>Escolar</name>
+	<description>Sistema Escolar</description>
 
 	<properties>
 		<java.version>1.8</java.version>

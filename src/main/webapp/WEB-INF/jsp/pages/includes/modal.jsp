@@ -5,9 +5,9 @@
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 
 <jsp:include page="modais/modalDeletar.jsp" />
-<jsp:include page="modais/modalImagem.jsp" />
-<jsp:include page="modais/modalHorario.jsp" />
 <jsp:include page="modais/modalAutor.jsp" />
 <jsp:include page="modais/modalContato.jsp" />
+<jsp:include page="modais/modalImagem.jsp" />
+
 
 

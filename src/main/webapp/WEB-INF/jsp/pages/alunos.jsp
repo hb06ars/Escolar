@@ -1,519 +1,147 @@
 <!-- HEADER -->
 <jsp:include page="includes/header.jsp" />
-<!-- HEADER -->
-<!-- TAGS -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
-<!-- TAGS -->
-<!-- INICIO BODY -->
-
+<!-- HEADER -->
+<!-- MODAL -->
+<jsp:include page="includes/modais/modalAluno.jsp" />
+<!-- TABELAS COM FILTRO -->
+<jsp:include page="includes/jquery/filtro.jsp" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="includes/jquery/script.js"></script>
+<!-- TABELAS COM FILTRO -->
 <!-- DOWNLOAD EXCEL -->
 <jsp:include page="includes/jquery/excel/downloadExcel.jsp" />
 <!-- DOWNLOAD EXCEL -->
+<!-- UPLOAD EXCEL -->
+<jsp:include page="includes/modais/modalUploadExcel.jsp" />
+<jsp:include page="includes/modais/modalDeletarTudo.jsp" />
+<!-- UPLOAD EXCEL -->
 
+<div class="card mb-4">
 
-<script>
-
-function fMasc(objeto,mascara) {
-	obj=objeto
-	masc=mascara
-	setTimeout("fMascEx()",1)
-}
-function fMascEx() {
-	obj.value=masc(obj.value)
-}
-function mTel(tel) {
-	tel=tel.replace(/\D/g,"")
-	tel=tel.replace(/^(\d)/,"($1")
-	tel=tel.replace(/(.{3})(\d)/,"$1)$2")
-	if(tel.length == 9) {
-		tel=tel.replace(/(.{1})$/,"-$1")
-	} else if (tel.length == 10) {
-		tel=tel.replace(/(.{2})$/,"-$1")
-	} else if (tel.length == 11) {
-		tel=tel.replace(/(.{3})$/,"-$1")
-	} else if (tel.length == 12) {
-		tel=tel.replace(/(.{4})$/,"-$1")
-	} else if (tel.length > 12) {
-		tel=tel.replace(/(.{4})$/,"-$1")
-	}
-	return tel;
-}
-function mCNPJ(cnpj){
-	cnpj=cnpj.replace(/\D/g,"")
-	cnpj=cnpj.replace(/^(\d{2})(\d)/,"$1.$2")
-	cnpj=cnpj.replace(/^(\d{2})\.(\d{3})(\d)/,"$1.$2.$3")
-	cnpj=cnpj.replace(/\.(\d{3})(\d)/,".$1/$2")
-	cnpj=cnpj.replace(/(\d{4})(\d)/,"$1-$2")
-	return cnpj
-}
-function mCPF(cpf){
-	cpf=cpf.replace(/\D/g,"")
-	cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-	cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-	cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
-	return cpf
-}
-function mCEP(cep){
-	cep=cep.replace(/\D/g,"")
-	cep=cep.replace(/^(\d{5})(\d)/,"$1-$2")
-	return cep
-}
-function mNum(num){
-	num=num.replace(/\D/g,"")
-	return num
-}
-
-function mudaPlano(){
-	var x = document.getElementById("plano").value;
-	document.getElementById("contrato_totalContrato").value = 0;
-	var valor = 0;
-	<c:forEach items="${planos}" var="pl">
-		if(x == '${pl.id}'){
-			valor = '${pl.valor}';
-			document.getElementById("contrato_totalContrato").value = valor;
-			calcular();
-		}
-	</c:forEach>
-}
-
-function calcular(){
-	var totalContrato = document.getElementById("contrato_totalContrato").value.replace(',','.');
-	document.getElementById("contrato_totalContrato").value = totalContrato; 
-	var sinal = document.getElementById("contrato_sinal").value.replace(',','.');
-	var desconto = document.getElementById("contrato_desconto").value.replace(',','.');
-	var parcelas = document.getElementById("contrato_parcelas").value.replace(',','.');
-	var valorFinal = totalContrato - sinal - desconto;
-	document.getElementById("contrato_valorDaParcela").value = (valorFinal / parcelas).toFixed([2]);
-	document.getElementById("contrato_total").value = valorFinal.toFixed([2]);
-}
-
-function acao(valor){
-	document.getElementById("acao").value = valor;
-}
-
-function cancelar(){
-	document.getElementById("contrato_inicio").disabled = false;
-	document.getElementById("contrato_fim").disabled = false;
-	document.getElementById("contrato_totalContrato").disabled = true;
-	document.getElementById("contrato_sinal").disabled = false;
-	document.getElementById("contrato_desconto").disabled = false;
-	document.getElementById("contrato_total").disabled = false;
-	document.getElementById("contrato_parcelas").disabled = false;
-	document.getElementById("contrato_vencimento").disabled = false;
-	document.getElementById("contrato_valorDaParcela").disabled = false;
-	document.getElementById("contrato_obs").disabled = false;
-
-	document.getElementById("matricula").value = ${matriculaPadrao };
-	document.getElementById("nome").value = '';
-	document.getElementById("cpf").value = '';
-	document.getElementById("dataNascimento").value = '';
-	document.getElementById("telefone").value = '';
-	document.getElementById("celular").value = '';
-	document.getElementById("email").value = '';
-	document.getElementById("endereco").value = '';
-	document.getElementById("bairro").value = '';
-	document.getElementById("cidade").value = '';
-	document.getElementById("estado").value = '';
-	document.getElementById("cep").value = '';
-	document.getElementById("pathImagem").value = '';
-
-	document.getElementById("acao").value = '';
-	document.getElementById("atualizar").style.display = "none";
-	document.getElementById("salvar").style.display = "block";
-	document.getElementById("cancelar").style.display = "none";
-}
-
-function editar(id){
-	document.getElementById("acao").value = 'atualizar';
-	document.getElementById("atualizar").style.display = "block";
-	document.getElementById("salvar").style.display = "none";
-	document.getElementById("cancelar").style.display = "block";
-	
-	var inicio = 'x';
-	var fim = 'x';
-	<c:forEach items="${usuarios }" var="u" varStatus="s">
-		if(${u.id} == id){
-			document.getElementById("matricula").value = '${u.matricula}';
-			document.getElementById("nome").value = '${u.nome}';
-			document.getElementById("cpf").value = '${u.cpf}';
-			document.getElementById("dataNascimento").value = '${u.dataNascimento}';
-			document.getElementById("telefone").value = '${u.telefone}';
-			document.getElementById("celular").value = '${u.celular}';
-			document.getElementById("email").value = '${u.email}';
-			document.getElementById("endereco").value = '${u.endereco}';
-			document.getElementById("bairro").value = '${u.bairro}';
-			document.getElementById("cidade").value = '${u.cidade}';
-			document.getElementById("estado").value = '${u.estado}';
-			document.getElementById("cep").value = '${u.cep}';
-			document.getElementById("pathImagem").value = '${u.pathImagem}';
-			document.getElementById("plano").value = '${u.plano.id}';
-			<c:forEach items="${u.contrato }" var="c">
-				<c:if test="${c.ativo == true}">
-					document.getElementById("contrato_totalContrato").value = '${c.valorBruto}';
-					document.getElementById("contrato_obs").value = '${c.observacoes}';
-					document.getElementById("contrato_total").value = '${c.valor}';
-					document.getElementById("contrato_sinal").value = '${c.sinal}';
-					document.getElementById("contrato_desconto").value = '${c.desconto}';
-					document.getElementById("contrato_valorDaParcela").value = '${c.valorDaParcela}';
-					document.getElementById("contrato_vencimento").value = '${c.vencimento}';
-					document.getElementById("contrato_parcelas").value = '${c.parcelas}';
-					inicio = '${c.inicio}'.replace('00:00:00','').replace('.0','').replace(' ','')
-					fim = '${c.fim}'.replace('00:00:00','').replace('.0','').replace(' ','')
-					document.getElementById("contrato_inicio").value = inicio;
-					document.getElementById("contrato_fim").value = fim;
-
-					document.getElementById("contrato_inicio").disabled = true;
-					document.getElementById("contrato_fim").disabled = true;
-					document.getElementById("contrato_totalContrato").disabled = true;
-					document.getElementById("contrato_sinal").disabled = true;
-					document.getElementById("contrato_desconto").disabled = true;
-					document.getElementById("contrato_total").disabled = true;
-					document.getElementById("contrato_parcelas").disabled = true;
-					document.getElementById("contrato_vencimento").disabled = true;
-					document.getElementById("contrato_valorDaParcela").disabled = true;
-					document.getElementById("contrato_obs").disabled = true;
-				</c:if>
-			</c:forEach>
-			<c:if test="${u.contrato.size() < 1 }">
-				document.getElementById("contrato_inicio").disabled = false;
-				document.getElementById("contrato_fim").disabled = false;
-				document.getElementById("contrato_totalContrato").disabled = true;
-				document.getElementById("contrato_sinal").disabled = false;
-				document.getElementById("contrato_desconto").disabled = false;
-				document.getElementById("contrato_total").disabled = false;
-				document.getElementById("contrato_parcelas").disabled = false;
-				document.getElementById("contrato_vencimento").disabled = false;
-				document.getElementById("contrato_valorDaParcela").disabled = false;
-				document.getElementById("contrato_obs").disabled = false;
-	
-				document.getElementById("contrato_inicio").value = '';
-				document.getElementById("contrato_fim").value = '';
-				document.getElementById("contrato_obs").value = '';
-				document.getElementById("contrato_totalContrato").value = '0';
-				document.getElementById("contrato_sinal").value = '0';
-				document.getElementById("contrato_desconto").value = '0';
-				document.getElementById("contrato_total").value = '0';
-				document.getElementById("contrato_parcelas").value = '1';
-				document.getElementById("contrato_vencimento").value = '1';
-				document.getElementById("contrato_valorDaParcela").value = '0';
-			</c:if>
-			
-			
-		}
-	</c:forEach>
-
-		
-}
-
-
-</script>
-
-
-
-<!-- start: page -->
-<c:if test="${usuario.perfil.admin == true}">
-<div class="row">
-<form action="/alunos" method="post" accept-charset="utf-8">
-	<div class="col-md-12">
-		<div data-collapsed="0" class="panel">
-			<div class="panel-heading">
-				<div class="panel-title">
-					<div class="panel-actions">
-						<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-						<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-					</div>
-					<h2 class="panel-title" id="">Cadastrar novo aluno</h2>
-				</div>
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-3 form-group">
-						<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${matriculaPadrao }"required>
-					</div>
-					<div class="col-md-4 form-group">
-						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" required>
-					</div>
-					<div class="col-md-2 form-group">
-						<input type="text" id="cpf" name="cpf" maxlength="14" placeholder="CPF" minlength="14" onkeydown="javascript: fMasc( this, mCPF );" class="form-control" required>
-					</div>
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-birthday-cake"></i>
-							</span>
-							<input type="date" name="dataNascimento" id="dataNascimento" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-phone"></i>
-							</span>
-							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-phone"></i>
-							</span>
-							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								<i class="fa fa-envelope"></i>
-							</span>
-							<input type="email" name="email" id="email" class="form-control" placeholder="eg.: email@email.com" />
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<input type="text" placeholder="Endereço" id="endereco" name="endereco" class="form-control">
-					</div>
-					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Bairro" id="bairro" name="bairro" class="form-control">
-					</div>
-					<div class="col-md-3 form-group">
-						<input type="text" placeholder="Cidade" id="cidade" name="cidade" class="form-control">
-					</div>
-					<div class="col-md-2 form-group">
-						<input type="text" placeholder="Estado" id="estado" maxlength="2" minlength="2" name="estado" class="form-control">
-					</div>
-					<div class="col-md-2 form-group">
-						<input type="text" id="cep" name="cep" placeholder="99999-999" maxlength="9" minlength="9" onkeydown="javascript: fMasc( this, mCEP );" class="form-control" >
-					</div>
-					<div class="col-md-10 form-group">
-						<input type="text" placeholder="Link da Foto" id="pathImagem" name="pathImagem" class="form-control">
-					</div>
-					
-					
-					
-					<div class="col-md-4 form-group">
-						<select id="plano" onchange="mudaPlano()" name="plano.id" class="form-control">
-							<option value="" selected>Escolha um plano</option>
-							<c:forEach items="${planos }" var="p">
-								<option value="${p.id }">Plano ${p.nome } (${p.descricao})</option>
-							</c:forEach>
-						</select>
-					</div>
-					<div class="col-md-8 form-group">
-						<input type="text" placeholder="Observações no Contrato"  id="contrato_obs" name="contrato_obs" class="form-control">
-					</div>
-					
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Início Contrato
-							</span>
-							<input type="date" name="contrato_inicio"   id="contrato_inicio" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Fim Contrato
-							</span>
-							<input type="date" name="contrato_fim" id="contrato_fim" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Total do Contrato
-							</span>
-							<input type="text" name="contrato_totalContrato" id="contrato_totalContrato" onkeyup="calcular()" value="0" class="form-control" disabled required/>
-						</div>
-					</div>
-					
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Sinal
-							</span>
-							<input type="text" name="contrato_sinal" id="contrato_sinal" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Desconto
-							</span>
-							<input type="text" name="contrato_desconto" id="contrato_desconto" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-4 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Total a pagar
-							</span>
-							<input type="text" name="contrato_total" id="contrato_total" onkeyup="calcular()" min="0" value="0" class="form-control" required/>
-						</div>
-					</div>
-					
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Parcelas
-							</span>
-							<input type="number" name="contrato_parcelas" id="contrato_parcelas" onkeyup="calcular()" placeholder="1" min="1" value="1" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-3 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Vencimento
-							</span>
-							<input type="number" name="contrato_vencimento" id="contrato_vencimento" placeholder="1" min="1" max="31" value="1" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-6 form-group">
-						<div class="input-group">
-							<span class="input-group-addon">
-								Valor da Parcela
-							</span>
-							<input type="text" name="contrato_valorDaParcela" id="contrato_valorDaParcela" onkeyup="calcular()" value="0" class="form-control" required/>
-						</div>
-					</div>
-					<div class="col-md-2 form-group" id="salvar">
-						<input type="submit" class="btn btn-primary" onclick="acao('salvar')" value="Criar">
-					</div>
-					<div class="col-md-2 form-group" id="atualizar" style="display:none">
-						<input type="submit" class="btn btn-primary" onclick="acao('atualizar')" value="Atualizar">
-					</div>
-					<div class="col-md-2 form-group" id="cancelar" style="display:none">
-						<input type="button" class="btn btn-danger" onclick="cancelar()" value="Voltar">
-					</div>
-					<input type="hidden" id="acao" name="acao" value="salvar">
-				</div>
-			</div>
-		</div>
+<div
+	class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	<h1 class="h4">&nbsp&nbsp Alunos</h1>
+	<div>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalNovoAluno()"><span class="material-icons icon">person_add</span></button>
+		</c:if>
+		<button class="shadow btn btn-sm btn-outline-dark" onclick="tableToExcel('tabela', 'Documento')"><span class="material-icons icon">save</span></button>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="modalUploadExcel('alunos')"><span class="material-icons icon">publish</span></button>
+			<button class="shadow btn btn-sm btn-outline-dark" onclick="limparTudo('ALUNOS')"><span class="material-icons icon">delete</span></button>
+		</c:if>
+		&nbsp&nbsp
 	</div>
-</form>
-</div>
-</c:if>
-
-
-
-
-
-<section class="panel">
-							<header class="panel-heading">
-								<div class="panel-actions">
-									<a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
-									<a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
-								</div>
-						
-								<h2 class="panel-title">Registro dos Alunos</h2>
-							</header>
-							<div class="panel-body">
-								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
-									<thead>
-										<tr>
-											<c:if test="${usuario.perfil.admin == true}">
-											<th>Editar</th>
-											<th>Matrícula</th>
-											<th>Situação</th>
-											<th>Contrato</th>
-											<th>Nome</th>
-											<th>Telefone</th>
-											<th>Celular</th>
-											<th>Email</th>
-											<th>Endereço</th>
-											<th>Bairro</th>
-											<th>Cidade</th>
-											<th>Estado</th>
-											<th>CPF</th>
-											</c:if>
-											<c:if test="${usuario.perfil.funcionario == true || usuario.perfil.professor == true}">
-												<th>Matrícula</th>
-												<th>Nome</th>
-												<th>Data de Nascimento</th>
-											</c:if>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${usuarios }" var="u">
-											<tr class="gradeX">
-												<c:if test="${usuario.perfil.admin == true}">
-													<td>
-														<i class="fa fa-trash" onclick="modalDeletar('usuario', ${u.id}) "></i> &nbsp
-														<i class="fa fa-pencil" onclick="editar(${u.id }) "></i>
-													</td>
-												<td>${u.matricula }</td>
-												<c:set var = "index" value = "0"/>
-												<c:forEach items="${u.contrato }" var="c">
-													<c:if test="${c.ativo }">
-														<c:set var = "index" value = "1"/>
-														<c:if test="${c.situacao == 'Regular'}">
-															<td style="color:green">${c.situacao }</td>
-														</c:if>
-														<c:if test="${c.situacao == 'Pendente'}">
-															<td style="color:red">${c.situacao }</td>
-														</c:if>
-														<td>
-															<fmt:formatDate pattern="dd/MM/yyyy" value="${c.fim }" />
-														</td>
-													</c:if>
-												</c:forEach>
-												<c:if test="${index < 1}">
-													<td style="color:blue">Renovar</td>
-												</c:if>
-												<c:if test="${index < 1}">
-													<td style="color:blue">Renovar</td>
-												</c:if>
-												<td>${u.nome }</td>
-												<td>${u.telefone }</td>
-												<td>${u.celular }</td>
-												<td>${u.email }</td>
-												<td>${u.endereco }</td>
-												<td>${u.bairro }</td>
-												<td>${u.cidade }</td>
-												<td>${u.estado }</td>
-												<td>${u.cpf }</td>
-												</c:if>
-												<c:if test="${usuario.perfil.funcionario == true || usuario.perfil.professor == true}">
-													<td>${u.matricula }</td>
-													<td>${u.nome }</td>
-													<td>
-													<c:set var="nascimento" value="${fn:substring(u.dataNascimento, 8, 10)}/${fn:substring(u.dataNascimento, 5, 7)}/${fn:substring(u.dataNascimento, 0, 4)}" />
-													${nascimento }
-													</td>
-												</c:if>
-											
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-							<div class="panel-footer">
-								<button type="button" class="btn btn-primary" onclick="tableToExcel('datatable-default', 'Documento')">Download</button>
-							</div>
-						</section>
-
-
-
-
-
-<!-- end: page -->
-	</section>
 </div>
 
-
-
-
-
-
-
-<!-- FIM BODY -->
+<div class="card" >
+<div class="card-body p-0 border-0" style="overflow: auto; width: 100%">
+	<table id="tabela" class="table table-striped table-bordered table-sm">
+		<thead>
+		<tr>
+		<c:if test="${ usuarioSessao.perfil.admin}">
+			<th>Editar </th>
+		</c:if> 
+		<c:if test="${ !usuarioSessao.perfil.admin}">
+			<th></th>
+		</c:if> 
+		
+		<th>ID</th> <th>Nome</th> <th>Perfil</th> <th>Série</th> <th>Turma</th>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<th>Endereco</th> <th>Bairro</th> <th>Cep</th> <th>Cidade</th> <th>Estado</th> <th>Telefone</th> <th>Ativo</th> <th>Email</th> <th>RA</th> <th>RG</th> <th>Cpf</th> <th>Data de Nascimento</th> <th>Responsavel</th> <th>CPF Responsável</th> <th>Suspensao</th>
+		</c:if>
+		
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<th>Excluir</th> 
+		</c:if>
+		
+		<tr>
+		<th><span class="material-icons icon">edit</span></th>
+		<th><input style="min-width:40px;max-width:40px" type="text" id="filtro1"/></th>
+		<th><input type="text" id="filtro2"/></th>
+		<th><input type="text" id="filtro3"/></th>
+		<th><input type="text" id="filtro4"/></th>
+		<th><input type="text" id="filtro5"/></th>
+		<c:if test="${usuarioSessao.perfil.admin}">
+			<th><input type="text" id="filtro6"/></th>
+			<th><input type="text" id="filtro7"/></th>
+			<th><input type="text" id="filtro8"/></th>
+			<th><input type="text" id="filtro9"/></th>
+			<th><input type="text" id="filtro10"/></th>
+			<th><input type="text" id="filtro11"/></th>
+			<th><input type="text" id="filtro12"/></th>
+			<th><input type="text" id="filtro13"/></th>
+			<th><input type="text" id="filtro14"/></th>
+			<th><input type="text" id="filtro15"/></th>
+			<th><input type="text" id="filtro16"/></th>
+			<th><input type="text" id="filtro17"/></th>
+			<th><input type="text" id="filtro18"/></th>
+			<th><input type="text" id="filtro19"/></th>
+			<th><input type="text" id="filtro20"/></th>
+		</c:if>
+		
+		<th></th>
+		</tr>
+		
+		
+		</thead>
+		<tbody>
+		<tr>
+		
+		
+		
+		<c:forEach items="${alunos}" var="a">
+			<c:if test="${usuarioSessao.perfil.admin}">
+				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}',  ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})">edit</span></td>
+			</c:if>
+			<c:if test="${!usuarioSessao.perfil.admin}">
+				<td></td>
+			</c:if>
+			<td>${a.id}  
+			<td>${a.nome}
+			<td>${a.perfil.nome}
+			<td>${a.serie}
+			<td>${a.turma}
+			
+			<c:if test="${usuarioSessao.perfil.admin}">
+				<td>${a.endereco}
+				<td>${a.bairro}
+				<td>${a.cep}
+				<td>${a.cidade}
+				<td>${a.estado}
+				<td>${a.telefone}
+				<td><c:if test="${a.ativo}">Sim</c:if> <c:if test="${!a.ativo}">Não</c:if>
+				<td>${a.email}
+				<td>${a.ra}
+				<td>${a.rg}
+				<td>${a.cpf}
+				<td>${a.dataNascimento}
+				<td>${a.responsavel}
+				<td>${a.cpfResponsavel}
+				<td><c:if test="${a.suspensao}">Sim</c:if> <c:if test="${!a.suspensao}">Não</c:if>
+			</c:if>
+						  
+			<c:if test="${usuarioSessao.perfil.admin}">
+				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalDeletar('alunos', ${a.id})" >delete</span></td>
+			</c:if>
+			<tr>	
+		</c:forEach>
+		</tbody>
+	</table>
+	</div>
 </div>
-<!-- FIM BODY -->
-<!-- MAIN NO HEADER -->
-</main>
-<!-- HEADER -->
+<br>
+
+</div>
+<!-- FOOTER -->
+<jsp:include page="includes/barraFooter.jsp" />
+<!-- FOOTER -->
+<!-- FOOTER -->
 <jsp:include page="includes/footer.jsp" />
-<!-- HEADER -->
+<!-- FOOTER -->
+
