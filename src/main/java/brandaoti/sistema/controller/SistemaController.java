@@ -185,6 +185,7 @@ public class SistemaController {
 				Usuario nv = new Usuario();
 				nv.setAtivo(true);
 				nv.setMatricula("1");
+				nv.setCpf("12332143223");
 				nv.setSenha("adm");
 				nv.setNome("Professor");
 				nv.setPerfil(perfilDao.buscarProfessor().get(0));
@@ -192,6 +193,7 @@ public class SistemaController {
 				Usuario al = new Usuario();
 				al.setAtivo(true);
 				al.setMatricula("123");
+				al.setCpf("12332143222");
 				al.setSenha("adm");
 				al.setNome("Aluno");
 				al.setPerfil(perfilDao.buscarSomenteAluno().get(0));
@@ -1334,8 +1336,9 @@ public class SistemaController {
 				// Carregando a tela...
 				try {
 					List<Avaliacao> avaliacao = avaliacaoDao.buscarMatricula(usuarioSessao.getMatricula());
+					System.out.println("Size(): " + avaliacao.size());
 					modelAndView.addObject("avaliacao", avaliacao);
-				} catch(Exception e) {}
+				} catch(Exception e) {System.out.println("Erro: " + e);}
 			}
 			return modelAndView; //retorna a variavel
 		}
@@ -1360,7 +1363,7 @@ public class SistemaController {
 						Date fim_av = formato.parse(fim_avaliacao);
 						Avaliacao a = new Avaliacao();
 						if(acao == 2) {
-							a = avaliacaoDao.findById(av.getId()).get();
+							a = avaliacaoDao.buscarMatricula(matricula).get(0);
 						}
 						a.setAbdominal(av.getAbdominal());
 						a.setCodigo(matricula);

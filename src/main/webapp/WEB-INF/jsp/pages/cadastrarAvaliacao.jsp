@@ -22,24 +22,34 @@ function habilitar(){
 }
 
 function acao(valor){
-	if(valor == 'salvar'){
-		document.getElementById("acao").value="1";
-		document.getElementById("pesqForm").submit();
+	var iniVar = document.getElementById("inicio").value;
+	var fimVar = document.getElementById("fim").value;
+	if(iniVar != '' && fimVar != ''){
+		if(valor == 'salvar'){
+			document.getElementById("acao").value="1";
+			document.getElementById("pesqForm").submit();
+			document.getElementById("avaliacaoPreencher").innerHTML="";
+		}
+		if(valor == 'atualizar'){
+			document.getElementById("acao").value="2";
+			document.getElementById("pesqForm").submit();
+			document.getElementById("avaliacaoPreencher").innerHTML="";
+		}
+	} else{
+		document.getElementById("avaliacaoPreencher").innerHTML="* Preencha os campos de início e fim da avaliação.";
 	}
-	if(valor == 'atualizar'){
-		document.getElementById("acao").value="2";
-		document.getElementById("pesqForm").submit();
-	}
+	
 	
 }
 
 function desfazer(){
+	document.getElementById("btAdd").style.display="block";
 	document.getElementById("atualizar").style.display="none";
 	document.getElementById("gorduraCorporal").value="";
 	document.getElementById("gorduraTrans").value="";
 	document.getElementById("peso").value="";
 	document.getElementById("altura").value="";
-	document.getElementById("abdomen").value="";
+	document.getElementById("abdominal").value="";
 	document.getElementById("biceps").value="";
 	document.getElementById("triceps").value="";
 	document.getElementById("costas").value="";
@@ -50,16 +60,37 @@ function desfazer(){
 
 
 function editar(id){
+	document.getElementById("btAdd").style.display="none";
 	document.getElementById("atualizar").style.display="block";
-	<c:forEach items="${avaliacao }" var="a" varStatus="as">
-		if(${a.id} == id){
-			document.getElementById("matricula").value = '${a.codigo}';
-			document.getElementById("nome").value = '${a.aluno.nome}';
-			document.getElementById("celular").value = '${a.aluno.celular}';
-			document.getElementById("observacoes").value = '${a.observacoes}';
-			document.getElementById("avaliador").value = '${a.avaliador.nome}';
-			document.getElementById("inicio").value = '${a.inicio}';
-			document.getElementById("fim").value = '${a.fim}';
+	<c:forEach items="${avaliacao }" var="avl">
+		if(${avl.id} == id){
+			document.getElementById("gorduraCorporal").value = '${avl.gorduraCorporal}';
+			document.getElementById("gorduraTrans").value='${avl.gorduraTrans}';
+			document.getElementById("peso").value='${avl.peso}';
+			document.getElementById("altura").value='${avl.altura}';
+			document.getElementById("abdominal").value='${avl.abdominal}';
+			document.getElementById("biceps").value='${avl.biceps}';
+			document.getElementById("triceps").value='${avl.triceps}';
+			document.getElementById("costas").value='${avl.costas}';
+			document.getElementById("perna").value='${avl.perna}';
+			
+			document.getElementById("matricula").value = '${avl.aluno.matricula}';
+			document.getElementById("nome").value = '${avl.aluno.nome}';
+			document.getElementById("observacoes").value = '${avl.observacoes}';
+			var inicio = '${avl.inicio}';
+			var fim = '${avl.fim}';
+			inicio = inicio.replace(' 00:00:00.0','');
+			fim = fim.replace(' 00:00:00.0','');
+			var ano = ''+inicio.substr(0,4);
+			var mes = ''+inicio.substr(5,2);
+			var dia = ''+inicio.substr(8,9);
+			inicio = ano+'-'+mes+'-'+dia;
+			ano = ''+fim.substr(0,4);
+			mes = ''+fim.substr(5,2);
+			dia = ''+fim.substr(8,9);
+			fim = ano+'-'+mes+'-'+dia;
+			document.getElementById("inicio").value = inicio;
+			document.getElementById("fim").value = fim;
 		}
 	</c:forEach>
 
@@ -160,7 +191,7 @@ function editar(id){
 							<a class="btn btn-primary" onclick="acao('salvar')" id="btAdd" style="display:block" >Salvar</a>
 						</div>
 						<div class="col-md-2 form-group" id="atualizar" style="display:none">
-							<input type="submit" class="btn btn-warning" onclick="acao('atualizar')" value="Atualizar">
+							<a class="btn btn-warning" onclick="acao('atualizar')" >Atualizar</a>
 						</div>
 						<div class="col-md-2 form-group">
 							<a class="btn btn-danger" onclick="desfazer()" id="btDesfazer" style="display:block" >Cancelar</a>
@@ -169,7 +200,7 @@ function editar(id){
 						</div>
 					</c:if>
 					
-					
+					<i id="avaliacaoPreencher" style="color:red"></i>
 					<input type="hidden" id="acao" name="acao" value="0">
 				</div>
 			</div>

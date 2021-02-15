@@ -27,37 +27,25 @@
 								<table class="table table-bordered table-striped mb-none" id="datatable-default" style="overflow:auto">
 									<thead>
 										<tr>
-											<th>Excluir</th>
 											<th>Matrícula</th>
 											<th>Nome</th>
-											<th>Treino</th>
-											<th>Ordem</th>
-											<th>Séries</th>
-											<th>Repetições</th>
-											<th>Descanso</th>
+											<th>Celular</th>
+											<th>Observações</th>
+											<th>Avaliador</th>
+											<th>Início</th>
+											<th>Fim</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${treinos }" var="t">
+										<c:forEach items="${avaliacao }" var="a">
 											<tr class="gradeX">
-												<td>
-													<i class="fa fa-trash" onclick="modalDeletar('treino', ${t.id}) "></i> &nbsp
-												</td>
-												<td>${t.aluno.matricula }</td>
-												<td>${t.aluno.nome }</td>
-												<td>${t.descricao }</td>
-												<td>
-													<c:if test="${t.tipoOrdem == 0}">A</c:if>
-													<c:if test="${t.tipoOrdem == 1}">B</c:if>
-													<c:if test="${t.tipoOrdem == 2}">C</c:if>
-													<c:if test="${t.tipoOrdem == 3}">D</c:if>
-													<c:if test="${t.tipoOrdem == 4}">E</c:if>
-													<c:if test="${t.tipoOrdem == 5}">F</c:if>
-													<c:if test="${t.tipoOrdem == 6}">G</c:if>
-												</td>
-												<td>${t.series }</td>
-												<td>${t.repeticoes }</td>
-												<td>${t.descanso }</td>
+												<td>${a.codigo }</td>
+												<td>${a.aluno.nome }</td>
+												<td>${a.aluno.celular }</td>
+												<td>${a.observacoes }</td>
+												<td>${a.avaliador.nome }</td>
+												<td><fmt:formatDate pattern="dd/MM/yyyy" value="${a.inicio }" /></td>
+												<td><fmt:formatDate pattern="dd/MM/yyyy" value="${a.fim }" /></td>
 											</tr>
 										</c:forEach>
 									</tbody>
