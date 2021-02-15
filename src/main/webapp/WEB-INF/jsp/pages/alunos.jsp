@@ -94,7 +94,6 @@
 		<tr>
 		
 		
-		
 		<c:forEach items="${alunos}" var="a">
 			<c:if test="${usuarioSessao.perfil.admin}">
 				<td><span class="material-icons icon" style="cursor:pointer" onclick="modalEditarAluno(${a.id}, '${a.nome}', '${a.perfil.nome}', '${a.endereco}', '${a.bairro}', '${a.cep}', '${a.cidade}', '${a.estado}', '${a.telefone}',  ${a.ativo}, '${a.email}', '${a.ra}', '${a.rg}', '${a.cpf}', '${a.dataNascimento}', '${a.serie}', '${a.turma}', '${a.responsavel}', '${a.cpfResponsavel}', ${a.suspensao})">edit</span></td>

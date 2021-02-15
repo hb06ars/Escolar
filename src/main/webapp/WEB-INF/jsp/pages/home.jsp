@@ -27,7 +27,6 @@ function redirecionar(pagina){
 }
 </script>
 
-
 <div class="row aumentar" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('horarios')">
 	<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; min-width: 18rem ;filter: brightness(130%);  ">
 	  <div class="card-header"><h5>Horário</h5></div>
