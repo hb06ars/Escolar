@@ -157,11 +157,11 @@ function adicionar(){
 							<span class="input-group-addon" onclick="habilitar()">
 								<i class="fa fa-search"></i>
 							</span>
-							<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${usuario.matricula }" required>
+							<input type="number" placeholder="Matrícula" name="matricula" id="matricula" class="form-control" value="${usuarioAlterar.matricula }" required>
 						</div>
 					</div>
 					<div class="col-md-8 form-group">
-						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" value="${usuario.nome }" disabled>
+						<input type="text" placeholder="Nome" name="nome" id="nome" class="form-control" value="${usuarioAlterar.nome }" disabled>
 					</div>
 					
 					

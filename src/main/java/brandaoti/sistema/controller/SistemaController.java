@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import brandaoti.sistema.dao.AulaDao;
+import brandaoti.sistema.dao.AvaliacaoDao;
 import brandaoti.sistema.dao.ContratoDao;
 import brandaoti.sistema.dao.ParcelaDao;
 import brandaoti.sistema.dao.PerfilDao;
@@ -40,6 +41,7 @@ import brandaoti.sistema.dao.UsuarioDao;
 import brandaoti.sistema.excel.ProcessaExcel;
 import brandaoti.sistema.excel.Tabela;
 import brandaoti.sistema.model.Aula;
+import brandaoti.sistema.model.Avaliacao;
 import brandaoti.sistema.model.Contrato;
 import brandaoti.sistema.model.Horario;
 import brandaoti.sistema.model.Objeto;
@@ -72,6 +74,8 @@ public class SistemaController {
 		private AulaDao aulaDao;
 		@Autowired
 		private PresencaDao presencaDao;
+		@Autowired
+		private AvaliacaoDao avaliacaoDao;
 		
 		public static Usuario usuarioSessao;
 		public static String atualizarPagina = null;
@@ -176,8 +180,27 @@ public class SistemaController {
 				usu.setNome("Admnistrador");
 				usu.setPerfil(perfilDao.buscarAdm().get(0));
 				usuarioDao.save(usu);
+				
+				// Excluir
+				Usuario nv = new Usuario();
+				nv.setAtivo(true);
+				nv.setMatricula("1");
+				nv.setSenha("adm");
+				nv.setNome("Professor");
+				nv.setPerfil(perfilDao.buscarProfessor().get(0));
+				usuarioDao.save(nv);
+				Usuario al = new Usuario();
+				al.setAtivo(true);
+				al.setMatricula("123");
+				al.setSenha("adm");
+				al.setNome("Aluno");
+				al.setPerfil(perfilDao.buscarSomenteAluno().get(0));
+				usuarioDao.save(al);
+				// Excluir
 
 			}
+			
+			
 			logado = false;
 			String link = "index";
 			itemMenu = link;
@@ -308,6 +331,16 @@ public class SistemaController {
 					planoDao.save(objeto);
 					List<Plano> pl = planoDao.buscarTudo();
 					modelAndView.addObject("planos", pl);
+				}
+				if(tabela.equals("avaliacao")) {
+					link = verificaLink("pages/cadastrarAvaliacao");
+					modelAndView = new ModelAndView(link);
+					paginaAtual = "Avaliação";
+					Avaliacao objeto = avaliacaoDao.findById(id).get();
+					objeto.setAtivo(false);
+					avaliacaoDao.save(objeto);
+					List<Avaliacao> pl = avaliacaoDao.buscarTudo();
+					modelAndView.addObject("avaliacao", pl);
 				}
 			}
 			modelAndView.addObject("usuario", usuarioSessao);
@@ -1212,7 +1245,7 @@ public class SistemaController {
 					Usuario u = new Usuario();
 					try {
 						u = usuarioDao.buscarMatricula(matricula);
-						modelAndView.addObject("usuario", u);
+						modelAndView.addObject("usuarioAlterar", u);
 						modelAndView.addObject("matricula", matricula);
 					} catch(Exception e) {}
 					try {
@@ -1282,6 +1315,89 @@ public class SistemaController {
 							modelAndView.addObject("msg", msg);
 						}
 					}
+				}
+			}
+			return modelAndView; //retorna a variavel
+		}
+		
+		@RequestMapping(value = "/avaliacao", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
+		public ModelAndView avaliacao(Integer acao, String matricula) throws SQLException {
+			paginaAtual = "Avaliação";
+			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+			String link = verificaLink("pages/avaliacao");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				// Carregando a tela...
+				try {
+					List<Avaliacao> avaliacao = avaliacaoDao.buscarMatricula(usuarioSessao.getMatricula());
+					modelAndView.addObject("avaliacao", avaliacao);
+				} catch(Exception e) {}
+			}
+			return modelAndView; //retorna a variavel
+		}
+		
+		@RequestMapping(value = "/cadastrarAvaliacao", produces = "text/plain;charset=UTF-8", method = {RequestMethod.GET,RequestMethod.POST}) // Pagina de Vendas
+		public ModelAndView cadastrarAvaliacao(Integer acao, String matricula, Avaliacao av, String inicio_avaliacao, String fim_avaliacao) throws SQLException, ParseException {
+			paginaAtual = "Avaliação";
+			iconePaginaAtual = "fa fa-user"; //Titulo do menuzinho.
+			String link = verificaLink("pages/cadastrarAvaliacao");
+			itemMenu = link;
+			ModelAndView modelAndView = new ModelAndView(link); //JSP que irá acessar.
+			modelAndView.addObject("usuario", usuarioSessao);
+			modelAndView.addObject("paginaAtual", paginaAtual); 
+			modelAndView.addObject("iconePaginaAtual", iconePaginaAtual);
+			if(logado) {
+				//... Salvando dados.
+				if(acao != null) {
+					if(acao > 0) {
+						// Acao salvar.
+						SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd"); 
+						Date inicio_av = formato.parse(inicio_avaliacao);
+						Date fim_av = formato.parse(fim_avaliacao);
+						Avaliacao a = new Avaliacao();
+						if(acao == 2) {
+							a = avaliacaoDao.findById(av.getId()).get();
+						}
+						a.setAbdominal(av.getAbdominal());
+						a.setCodigo(matricula);
+						a.setInicio(inicio_av);
+						a.setFim(fim_av);
+						a.setAltura(av.getAltura());
+						a.setAluno(usuarioDao.buscarMatricula(matricula));
+						a.setAtivo(true);
+						a.setAvaliador(av.getAvaliador());
+						a.setPerna(av.getPerna());
+						a.setPeso(av.getPeso());
+						a.setTriceps(av.getTriceps());
+						a.setBiceps(av.getBiceps());
+						a.setCostas(av.getCostas());
+						a.setObservacoes(av.getObservacoes());
+						a.setGorduraCorporal(av.getGorduraCorporal());
+						a.setGorduraTrans(av.getGorduraTrans());
+						a.setAvaliador(usuarioSessao);
+						avaliacaoDao.save(a);
+						List<Avaliacao> avaliacao = avaliacaoDao.buscarMatricula(matricula);
+						modelAndView.addObject("avaliacao", avaliacao);
+					} else {
+						List<Avaliacao> avaliacao = avaliacaoDao.buscarMatricula(matricula);
+						modelAndView.addObject("avaliacao", avaliacao);
+					}
+				} else {
+					List<Avaliacao> avaliacao = avaliacaoDao.buscarMatricula(matricula);
+					modelAndView.addObject("avaliacao", avaliacao);
+				}
+				// Carregando a tela...
+				if(matricula != null && !matricula.equals("")) {
+					Usuario u = new Usuario();
+					try {
+						u = usuarioDao.buscarMatricula(matricula);
+						modelAndView.addObject("usuarioAlterar", u);
+						modelAndView.addObject("matricula", matricula);
+					} catch(Exception e) {}
 				}
 			}
 			return modelAndView; //retorna a variavel

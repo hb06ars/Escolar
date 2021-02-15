@@ -253,7 +253,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
+							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -261,7 +261,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
+							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
 						</div>
 					</div>
 					<div class="col-md-4 form-group">

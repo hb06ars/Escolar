@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class Avaliacao {
+public class CadastrarAvaliacao {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +43,7 @@ public class Avaliacao {
 	@Column
 	private Date ultimaVisita = new Date();
 	@Column
-	private Double gorduraCorporal;
+	private Double gorduraCoroporal;
 	@Column
 	private Double gorduraTrans;
 	@Column
@@ -112,11 +112,11 @@ public class Avaliacao {
 	public void setUltimaVisita(Date ultimaVisita) {
 		this.ultimaVisita = ultimaVisita;
 	}
-	public Double getGorduraCorporal() {
-		return gorduraCorporal;
+	public Double getGorduraCoroporal() {
+		return gorduraCoroporal;
 	}
-	public void setGorduraCorporal(Double gorduraCorporal) {
-		this.gorduraCorporal = gorduraCorporal;
+	public void setGorduraCoroporal(Double gorduraCoroporal) {
+		this.gorduraCoroporal = gorduraCoroporal;
 	}
 	public Double getGorduraTrans() {
 		return gorduraTrans;

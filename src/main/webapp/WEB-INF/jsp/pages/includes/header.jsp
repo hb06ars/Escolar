@@ -116,11 +116,23 @@
 											<span>Meu Treino</span>
 										</a>
 									</li>
+									<li>
+										<a href="/avaliacao">
+											<i class="fa fa-edit" aria-hidden="true"></i>
+											<span>Minha Avaliação</span>
+										</a>
+									</li>
 									<c:if test="${usuario.perfil.professor == true}">
 										<li>
 											<a href="/cadastrarTreinos">
 												<i class="fa fa-edit" aria-hidden="true"></i>
 												<span>Cadastrar Treinos</span>
+											</a>
+										</li>
+										<li>
+											<a href="/cadastrarAvaliacao">
+												<i class="fa fa-edit" aria-hidden="true"></i>
+												<span>Cadastrar Avaliação</span>
 											</a>
 										</li>
 										<li>

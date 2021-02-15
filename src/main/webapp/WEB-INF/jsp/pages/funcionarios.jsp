@@ -167,7 +167,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
+							<input type="text" id="telefone" name="telefone" placeholder="Telefone" maxlength="14" minlength="13" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -175,7 +175,7 @@ function editar(id){
 							<span class="input-group-addon">
 								<i class="fa fa-phone"></i>
 							</span>
-							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" required>
+							<input type="text" id="celular" name="celular" placeholder="Celular" maxlength="14" minlength="14" onkeydown="javascript: fMasc( this, mTel );" class="form-control" >
 						</div>
 					</div>
 					<div class="col-md-4 form-group">
@@ -206,10 +206,9 @@ function editar(id){
 					</div>
 					<div class="col-md-3 form-group">
 						<select id="perfil" name="perfil_codigo" class="form-control">
-							<option value="" selected>Escolha um Perfil</option>
 							<option value="1" >Admnistrador</option>
 							<option value="3" >Funcionário</option>
-							<option value="4" >Professor</option>
+							<option value="4" selected>Professor</option>
 						</select>
 					</div>
 					
