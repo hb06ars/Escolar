@@ -172,7 +172,7 @@ public class EscolarController {
 	@GetMapping({"/","/index"}) 
 		public ModelAndView index(Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
-		Usuario usu = usuarioDao.fazerLogin("adminhb06ars", "adminricklivre2016a");
+		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
 		hoje();
@@ -209,12 +209,12 @@ public class EscolarController {
 			Usuario u = new Usuario();
 			u.setAtivo(true);
 			u.setCargo("Admnistrador");
-			u.setTelefone("(11)98937-6271");
-			u.setEmail("hb06ars@hotmail.com");
+			u.setTelefone("(11)88888-8888");
+			u.setEmail("teste@hotmail.com");
 			u.setPerfil(perfilDao.buscarAdm().get(0));
-			u.setLogin("adminhb06ars");
+			u.setLogin("adm");
 			u.setNome("Admnistrador");
-			u.setSenha("adminricklivre2016a");
+			u.setSenha("adm");
 			usuarioDao.save(u);
 		}
 		if(periodos.size() == 0) {
