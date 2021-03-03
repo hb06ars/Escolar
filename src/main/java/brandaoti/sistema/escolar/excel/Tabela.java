@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.excel;
+package brandaoti.sistema.escolar.excel;
 
 public class Tabela {
 	private Integer coluna = 0;

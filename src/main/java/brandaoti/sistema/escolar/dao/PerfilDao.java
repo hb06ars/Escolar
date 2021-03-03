@@ -1,12 +1,11 @@
-package brandaoti.sistema.ligaweb.dao;
+package brandaoti.sistema.escolar.dao;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import brandaoti.sistema.ligaweb.model.Perfil;
+import brandaoti.sistema.escolar.model.Perfil;
 
 public interface PerfilDao extends JpaRepository<Perfil, Integer> {
 	

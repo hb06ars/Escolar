@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.model;
+package brandaoti.sistema.escolar.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import brandaoti.sistema.ligaweb.controller.LigawebController;
+import brandaoti.sistema.escolar.controller.EscolarController;
 
 @Entity
 public class Horarios {
@@ -44,7 +44,7 @@ public class Horarios {
 	private Usuario substituto;
 	
 	@Column
-	private String ultimaAtualizacao = LigawebController.hoje;
+	private String ultimaAtualizacao = EscolarController.hoje;
 
 	public Integer getId() {
 		return id;

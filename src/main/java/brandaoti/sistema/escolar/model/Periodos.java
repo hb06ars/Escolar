@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.model;
+package brandaoti.sistema.escolar.model;
 
 import java.time.LocalDateTime;
 

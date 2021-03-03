@@ -1,12 +1,12 @@
-package brandaoti.sistema.ligaweb;
+package brandaoti.sistema.escolar;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LigawebApplication {
+public class EscolarApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(LigawebApplication.class, args);
+		SpringApplication.run(EscolarApplication.class, args);
 	}
 
 }

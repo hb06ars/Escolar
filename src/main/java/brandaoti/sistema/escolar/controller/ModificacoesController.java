@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.controller;
+package brandaoti.sistema.escolar.controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,21 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import brandaoti.sistema.ligaweb.dao.AlunosDao;
-import brandaoti.sistema.ligaweb.dao.HorarioDao;
-import brandaoti.sistema.ligaweb.dao.PerfilDao;
-import brandaoti.sistema.ligaweb.dao.PeriodoDao;
-import brandaoti.sistema.ligaweb.dao.RecadoDao;
-import brandaoti.sistema.ligaweb.dao.UsuarioDao;
-import brandaoti.sistema.ligaweb.excel.ProcessaExcel;
-import brandaoti.sistema.ligaweb.excel.Tabela;
-import brandaoti.sistema.ligaweb.model.Alunos;
-import brandaoti.sistema.ligaweb.model.Horarios;
-import brandaoti.sistema.ligaweb.model.Perfil;
-import brandaoti.sistema.ligaweb.model.Periodos;
-import brandaoti.sistema.ligaweb.model.Recado;
-import brandaoti.sistema.ligaweb.model.Usuario;
+import brandaoti.sistema.escolar.dao.AlunosDao;
+import brandaoti.sistema.escolar.dao.HorarioDao;
+import brandaoti.sistema.escolar.dao.PerfilDao;
+import brandaoti.sistema.escolar.dao.PeriodoDao;
+import brandaoti.sistema.escolar.dao.RecadoDao;
+import brandaoti.sistema.escolar.dao.UsuarioDao;
+import brandaoti.sistema.escolar.excel.ProcessaExcel;
+import brandaoti.sistema.escolar.excel.Tabela;
+import brandaoti.sistema.escolar.model.Alunos;
+import brandaoti.sistema.escolar.model.Horarios;
+import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Periodos;
+import brandaoti.sistema.escolar.model.Recado;
+import brandaoti.sistema.escolar.model.Usuario;
 
 @Controller
 public class ModificacoesController {
@@ -49,7 +48,7 @@ public class ModificacoesController {
 	@Autowired
 	private PeriodoDao periodoDao;
 	
-	private LigawebController escolarController = new LigawebController();
+	private EscolarController escolarController = new EscolarController();
 	
 	public void buscarPeriodoAtual() {
 		LocalDateTime agora = LocalDateTime.now();

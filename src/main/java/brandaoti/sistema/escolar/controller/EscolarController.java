@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.controller;
+package brandaoti.sistema.escolar.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import brandaoti.sistema.ligaweb.dao.AlunosDao;
-import brandaoti.sistema.ligaweb.dao.HorarioDao;
-import brandaoti.sistema.ligaweb.dao.PerfilDao;
-import brandaoti.sistema.ligaweb.dao.PeriodoDao;
-import brandaoti.sistema.ligaweb.dao.UsuarioDao;
-import brandaoti.sistema.ligaweb.model.Alunos;
-import brandaoti.sistema.ligaweb.model.Horarios;
-import brandaoti.sistema.ligaweb.model.Perfil;
-import brandaoti.sistema.ligaweb.model.Periodos;
-import brandaoti.sistema.ligaweb.model.Usuario;
+import brandaoti.sistema.escolar.dao.AlunosDao;
+import brandaoti.sistema.escolar.dao.HorarioDao;
+import brandaoti.sistema.escolar.dao.PerfilDao;
+import brandaoti.sistema.escolar.dao.PeriodoDao;
+import brandaoti.sistema.escolar.dao.UsuarioDao;
+import brandaoti.sistema.escolar.model.Alunos;
+import brandaoti.sistema.escolar.model.Horarios;
+import brandaoti.sistema.escolar.model.Perfil;
+import brandaoti.sistema.escolar.model.Periodos;
+import brandaoti.sistema.escolar.model.Usuario;
 
 
 @Controller
-public class LigawebController {
+public class EscolarController {
 	
 	@Autowired
 	private UsuarioDao usuarioDao;

@@ -1,4 +1,4 @@
-package brandaoti.sistema.ligaweb.controller;
+package brandaoti.sistema.escolar.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
