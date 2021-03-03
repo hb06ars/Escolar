@@ -69,7 +69,7 @@
 	                <div class="col-12 align-self-center mb-4">
 	                    <div class="row justify-content-center">
 	                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-4">
-	                            <h2 class="font-weight-normal mb-5">LIGA WEB<br>Campeonatos</h2>
+	                            <h2 class="font-weight-normal mb-5">Liga Web<br>Campeonatos</h2>
 	                            <div class="form-group float-label">
 	                                <input type="text" name="usuarioVal" id="usuarioVal" class="form-control text-white">
 	                                <label class="form-control-label text-white">Nome de usuário</label>
