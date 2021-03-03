@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.model;
+package brandaoti.sistema.ligaweb.model;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import brandaoti.sistema.escolar.controller.EscolarController;
+import brandaoti.sistema.ligaweb.controller.LigawebController;
 
 @Entity
 public class Usuario {
@@ -49,7 +49,7 @@ public class Usuario {
 	private Boolean compareceu = false;
 	
 	@Column
-	private String ultimoComparecimento = EscolarController.hoje;
+	private String ultimoComparecimento = LigawebController.hoje;
 
 	public Integer getId() {
 		return id;

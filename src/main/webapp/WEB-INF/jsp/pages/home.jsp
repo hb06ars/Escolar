@@ -19,7 +19,19 @@
 <jsp:include page="includes/modais/modalUploadExcel.jsp" />
 <!-- UPLOAD EXCEL -->
 
+<style>
+.zoom {
+  transition: transform .2s;
+}
+.zoom:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
+}
+</style>
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
+
 
 <script>
 function redirecionar(pagina){
@@ -28,7 +40,7 @@ function redirecionar(pagina){
 </script>
 
 
-<div class="row aumentar" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('horarios')">
+<div class="row zoom" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('horarios')">
 	<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; min-width: 18rem ;filter: brightness(130%);  ">
 	  <div class="card-header"><h5>Horário</h5></div>
 	  <div class="card-body ">
@@ -38,7 +50,7 @@ function redirecionar(pagina){
 </div>
 
 <c:if test="${!usuarioSessao.perfil.professor}">
-	<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('presenca')">
+	<div class="row zoom" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('presenca')">
 		<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; filter: brightness(130%); min-width: 18rem; ">
 		  <div class="card-header"><h5>Presença</h5></div>
 		  <div class="card-body">
@@ -48,7 +60,7 @@ function redirecionar(pagina){
 	</div>
 </c:if>
 <c:if test="${usuarioSessao.perfil.professor}">
-	<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('meusHorarios')">
+	<div class="row zoom" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('meusHorarios')">
 		<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; filter: brightness(130%); min-width: 18rem; ">
 		  <div class="card-header"><h5>Minhas Aulas</h5></div>
 		  <div class="card-body">
@@ -58,7 +70,7 @@ function redirecionar(pagina){
 	</div>
 </c:if>
 
-<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('alunos')">
+<div class="row zoom" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('alunos')">
 	<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; filter: brightness(130%); min-width: 18rem; ">
 	  <div class="card-header"><h5>Alunos</h5></div>
 	  <div class="card-body">
@@ -67,7 +79,7 @@ function redirecionar(pagina){
 	</div>
 </div>
 
-<div class="row" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('recados')">
+<div class="row zoom" align="center" style="margin: auto;cursor:pointer" onclick="redirecionar('recados')">
 	<div class="card bg-default ml-3 mt-3" style="min-height: 18rem; filter: brightness(130%); min-width: 18rem; ">
 	  <div class="card-header"><h5>Recados</h5></div>
 	  <div class="card-body">

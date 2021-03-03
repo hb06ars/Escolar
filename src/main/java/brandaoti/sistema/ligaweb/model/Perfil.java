@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.model;
+package brandaoti.sistema.ligaweb.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

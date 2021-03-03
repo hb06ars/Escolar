@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.dao;
+package brandaoti.sistema.ligaweb.dao;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import brandaoti.sistema.escolar.model.Usuario;
+
+import brandaoti.sistema.ligaweb.model.Usuario;
 
 public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
 	@Query(" select u from Usuario u where upper( u.login ) like upper( :login ) and upper( u.senha ) like upper( :senha ) ")

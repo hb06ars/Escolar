@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.excel;
+package brandaoti.sistema.ligaweb.excel;
 
 import java.io.InputStream;
 import java.time.LocalDate;
@@ -14,15 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import brandaoti.sistema.escolar.controller.EscolarController;
-import brandaoti.sistema.escolar.dao.AlunosDao;
-import brandaoti.sistema.escolar.dao.PerfilDao;
-import brandaoti.sistema.escolar.model.Alunos;
+import brandaoti.sistema.ligaweb.controller.LigawebController;
+import brandaoti.sistema.ligaweb.dao.AlunosDao;
+import brandaoti.sistema.ligaweb.dao.PerfilDao;
+import brandaoti.sistema.ligaweb.model.Alunos;
 
 
 public class ProcessaExcel {
 	
-	private EscolarController sis = new EscolarController();
+	private LigawebController sis = new LigawebController();
 	
 	public List<Tabela> uploadAlunos(@ModelAttribute MultipartFile file) throws Exception {
 		List<Tabela> tabelas = new ArrayList<Tabela>();

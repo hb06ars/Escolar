@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.dao;
+package brandaoti.sistema.ligaweb.dao;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import brandaoti.sistema.escolar.model.Horarios;
-import brandaoti.sistema.escolar.model.Perfil;
-import brandaoti.sistema.escolar.model.Usuario;
+import brandaoti.sistema.ligaweb.model.Horarios;
+import brandaoti.sistema.ligaweb.model.Perfil;
+import brandaoti.sistema.ligaweb.model.Usuario;
 
 public interface HorarioDao extends JpaRepository<Horarios, Integer> {
 	

@@ -1,4 +1,4 @@
-package brandaoti.sistema.escolar.controller;
+package brandaoti.sistema.ligaweb.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,20 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import brandaoti.sistema.escolar.dao.AlunosDao;
-import brandaoti.sistema.escolar.dao.HorarioDao;
-import brandaoti.sistema.escolar.dao.PerfilDao;
-import brandaoti.sistema.escolar.dao.PeriodoDao;
-import brandaoti.sistema.escolar.dao.UsuarioDao;
-import brandaoti.sistema.escolar.model.Alunos;
-import brandaoti.sistema.escolar.model.Horarios;
-import brandaoti.sistema.escolar.model.Perfil;
-import brandaoti.sistema.escolar.model.Periodos;
-import brandaoti.sistema.escolar.model.Usuario;
+import brandaoti.sistema.ligaweb.dao.AlunosDao;
+import brandaoti.sistema.ligaweb.dao.HorarioDao;
+import brandaoti.sistema.ligaweb.dao.PerfilDao;
+import brandaoti.sistema.ligaweb.dao.PeriodoDao;
+import brandaoti.sistema.ligaweb.dao.UsuarioDao;
+import brandaoti.sistema.ligaweb.model.Alunos;
+import brandaoti.sistema.ligaweb.model.Horarios;
+import brandaoti.sistema.ligaweb.model.Perfil;
+import brandaoti.sistema.ligaweb.model.Periodos;
+import brandaoti.sistema.ligaweb.model.Usuario;
 
 
 @Controller
-public class EscolarController {
+public class LigawebController {
 	
 	@Autowired
 	private UsuarioDao usuarioDao;
@@ -172,7 +172,7 @@ public class EscolarController {
 	@GetMapping({"/","/index"}) 
 		public ModelAndView index(Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
-		Usuario usu = usuarioDao.fazerLogin("adminhb06ars", "adminricklivre2016a");
+		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
 		hoje();
@@ -209,12 +209,12 @@ public class EscolarController {
 			Usuario u = new Usuario();
 			u.setAtivo(true);
 			u.setCargo("Admnistrador");
-			u.setTelefone("(11)98937-6271");
-			u.setEmail("hb06ars@hotmail.com");
+			u.setTelefone("(11)88888-8888");
+			u.setEmail("teste@hotmail.com");
 			u.setPerfil(perfilDao.buscarAdm().get(0));
-			u.setLogin("adminhb06ars");
+			u.setLogin("adm");
 			u.setNome("Admnistrador");
-			u.setSenha("adminricklivre2016a");
+			u.setSenha("adm");
 			usuarioDao.save(u);
 		}
 		if(periodos.size() == 0) {
