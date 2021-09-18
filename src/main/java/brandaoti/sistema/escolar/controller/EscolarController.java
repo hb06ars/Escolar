@@ -1,5 +1,6 @@
 package brandaoti.sistema.escolar.controller;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -7,6 +8,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import brandaoti.sistema.escolar.dao.AlunosDao;
 import brandaoti.sistema.escolar.dao.HorarioDao;
 import brandaoti.sistema.escolar.dao.PerfilDao;
 import brandaoti.sistema.escolar.dao.PeriodoDao;
 import brandaoti.sistema.escolar.dao.UsuarioDao;
-import brandaoti.sistema.escolar.model.Alunos;
 import brandaoti.sistema.escolar.model.Horarios;
 import brandaoti.sistema.escolar.model.Perfil;
 import brandaoti.sistema.escolar.model.Periodos;
@@ -30,12 +34,11 @@ import brandaoti.sistema.escolar.model.Usuario;
 
 
 @Controller
-public class EscolarController {
+public class EscolarController extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private UsuarioDao usuarioDao;
-	@Autowired
-	private AlunosDao alunosDao;
 	@Autowired
 	private PerfilDao perfilDao;
 	@Autowired
@@ -43,27 +46,14 @@ public class EscolarController {
 	@Autowired
 	private HorarioDao horarioDao;
 	
-	public static Usuario usuarioSessao;
-	public static String atualizarPagina = null;
+	//public static Usuario usuarioSessao;
+	//public static String atualizarPagina = null;
 	public static String mensagem = "";
 	public static String tituloMensagem = "";
 	public static String tipoMensagem = "";
 	public static String periodoAtual = "";
 	public static String hoje = "";
-	public static String itemMenuSelecionado = "home";
-	
-	public String verificaLink(String link) {
-		String direcao = "deslogar";
-		if(usuarioSessao != null) {
-			direcao = link;
-			itemMenuSelecionado = link;
-		} else {
-			direcao = "deslogar";
-			atualizarPagina = null;
-			itemMenuSelecionado = "home";
-		}
-		return direcao;
-	}
+	//public static String itemMenuSelecionado = "home";
 	
 	public void registraMsg(String titulo, String msg, String tipo) {
 		tituloMensagem = titulo;
@@ -170,9 +160,9 @@ public class EscolarController {
 	}
 	
 	@GetMapping({"/","/index"}) 
-		public ModelAndView index(Model model) { 
+		public ModelAndView index(HttpServletRequest request, HttpServletResponse response, Model model) { 
 		ModelAndView modelAndView = new ModelAndView("index"); 
-		Usuario usu = usuarioDao.fazerLogin("adm", "adm");
+		List<Usuario> usu = usuarioDao.findAll();
 		List<Perfil> perfis = perfilDao.findAll();
 		List<Periodos> periodos = periodoDao.findAll();
 		hoje();
@@ -205,7 +195,7 @@ public class EscolarController {
 			p.setAluno(true);
 			perfilDao.save(p);
 		}
-		if(usu == null) {
+		if(usu == null || usu.size() == 0) {
 			Usuario u = new Usuario();
 			u.setAtivo(true);
 			u.setCargo("Admnistrador");
@@ -255,28 +245,38 @@ public class EscolarController {
 			horarioDao.saveAndFlush(h);
 		}
 		
-		model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
+		model.addAttribute("itemMenuSelecionado", "home");
 		return modelAndView; 
 	}
 	
 	@GetMapping(value = "/deslogar")
-	public ModelAndView deslogar(Model model) {  
+	public void deslogar(HttpServletRequest request, HttpServletResponse response) throws IOException {  
 		String link = "/deslogar";
-		usuarioSessao = null;
-		ModelAndView modelAndView = new ModelAndView(link); 
-		return modelAndView; 
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.sendRedirect("/");
 	}
 	
 	
 	@RequestMapping(value = "/home", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
-	public ModelAndView logar(Model model, @RequestParam(value = "usuarioVal", defaultValue = "", required=false ) String variavelUsuario, @RequestParam(value = "senhaVal", defaultValue = "", required=false ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+	public ModelAndView logar(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam(value = "usuarioVal", defaultValue = "", required=false ) String variavelUsuario, @RequestParam(value = "senhaVal", defaultValue = "", required=false ) String variavelSenha) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
+		HttpSession session = request.getSession();
+		String itemMenuSelecionado = "";
 		Usuario usu = usuarioDao.fazerLogin(variavelUsuario, variavelSenha);
-		if(usu != null)
+		Usuario usuarioSessao = new Usuario();
+		String link = "deslogar";
+		if(usu != null && usu.getId() != null) {
 			usuarioSessao = usu;
-		if(usu != null || usuarioSessao != null) {
+			session.setAttribute("usuarioSessao",usuarioSessao);
+			link = "pages/home";
+		}
+		if(session.getAttribute("usuarioSessao") != null) {
+			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
+		}
+		if((usu != null && usu.getId() != null) || (usuarioSessao != null && usuarioSessao.getId() != null)) {
 			model.addAttribute("usuarioSessao", usuarioSessao);
 		}
-		String link = verificaLink("pages/home");
+		
 		model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
 		ModelAndView modelAndView = new ModelAndView(link);
 		return modelAndView; 

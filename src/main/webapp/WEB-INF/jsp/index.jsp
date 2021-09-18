@@ -59,7 +59,7 @@
 
 <form action="/home" method="post">
     <!-- Begin page content -->
-    <main class="flex-shrink-0 main has-footer">
+    <main style="background-position: center;background-repeat: no-repeat; background-image: url('/img/fundo.png');" class="flex-shrink-0 main has-footer">
         <!-- Fixed navbar -->       
         	<header class="header">
             <div class="row">
