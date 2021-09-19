@@ -427,8 +427,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/alunos", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView alunos(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/alunos";
-		List<Alunos> alunos = alunosDao.findAll();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -436,6 +435,9 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			link = "pages/alunos";
+			itemMenuSelecionado = "pages/alunos";
+			List<Alunos> alunos = alunosDao.findAll();
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("alunos", alunos); 
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
@@ -447,8 +449,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/funcionarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView funcionarios(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/funcionarios";
-		List<Usuario> funcionarios = usuarioDao.findAll();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -456,6 +457,8 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			link = "pages/funcionarios";
+			List<Usuario> funcionarios = usuarioDao.findAll();
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("funcionarios", funcionarios); 
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
@@ -467,8 +470,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/recados", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView recados(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/recados";
-		List<Recado> recados = recadoDao.ordenado();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -476,6 +478,9 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			itemMenuSelecionado = "pages/recados";
+			link = "pages/recados";
+			List<Recado> recados = recadoDao.ordenado();
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("recados", recados); 
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
@@ -487,8 +492,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/periodos", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView periodos(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/periodos";
-		List<Periodos> periodos = periodoDao.findAll();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -496,6 +500,8 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			link = "pages/periodos";
+			List<Periodos> periodos = periodoDao.findAll();
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("periodos", periodos); 
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
@@ -507,8 +513,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/cadHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView cadHorarios(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/cadastroHorarios";
-		List<Horarios> horarios = horarioDao.findAll();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -516,6 +521,8 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			link = "pages/cadastroHorarios";
+			List<Horarios> horarios = horarioDao.findAll();
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("horarios", horarios); 
 			model.addAttribute("itemMenuSelecionado", itemMenuSelecionado);
@@ -527,19 +534,22 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/presenca", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView presenca(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/presenca";
-		String diaDaSemanaAtual = escolarController.diaDaSemana();
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
 		if(session.getAttribute("usuarioSessao") != null) {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
-		List<Usuario> usuarios = horarioDao.presenca(EscolarController.periodoAtual, diaDaSemanaAtual);
-		for(int i = 0 ; i < usuarios.size(); i++) {
-			System.out.println("usuarios: " + usuarios.get(i).getNome());
-		}
+		
 		if(usuarioSessao.getId() != null && usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			itemMenuSelecionado = "pages/presenca";
+			String diaDaSemanaAtual = escolarController.diaDaSemana();
+			List<Usuario> usuarios = horarioDao.presenca(EscolarController.periodoAtual, diaDaSemanaAtual);
+			for(int i = 0 ; i < usuarios.size(); i++) {
+				System.out.println("usuarios: " + usuarios.get(i).getNome());
+			}
+			link = "pages/presenca";
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("usuarios", usuarios); 
 			model.addAttribute("periodoAtual", EscolarController.periodoAtual);
@@ -553,22 +563,22 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/horarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView horarios(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/horarios";
+		String link = "pages/delsogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
 		if(session.getAttribute("usuarioSessao") != null) {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
-		
-		String diaDaSemanaAtual = escolarController.diaDaSemana();
-		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(EscolarController.periodoAtual, diaDaSemanaAtual);
-		List<String> quantidadeDeSeries = horarioDao.qtdSeries(EscolarController.periodoAtual, diaDaSemanaAtual);
-		List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(EscolarController.periodoAtual, diaDaSemanaAtual);
-		List<Periodos> periodos = periodoDao.periodos();
-		
-		List<Horarios> horarios = horarioDao.buscarPeriodo(EscolarController.periodoAtual, diaDaSemanaAtual);
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			itemMenuSelecionado = "pages/horarios";
+			link = "pages/horarios";
+			String diaDaSemanaAtual = escolarController.diaDaSemana();
+			List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(EscolarController.periodoAtual, diaDaSemanaAtual);
+			List<String> quantidadeDeSeries = horarioDao.qtdSeries(EscolarController.periodoAtual, diaDaSemanaAtual);
+			List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(EscolarController.periodoAtual, diaDaSemanaAtual);
+			List<Periodos> periodos = periodoDao.periodos();
+			List<Horarios> horarios = horarioDao.buscarPeriodo(EscolarController.periodoAtual, diaDaSemanaAtual);
 			model.addAttribute("professores", usuarioDao.professores());
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("horarios", horarios); 
@@ -588,18 +598,18 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/meusHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView meusHorarios(HttpServletRequest request, HttpServletResponse response, Model model) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "";
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
 		if(session.getAttribute("usuarioSessao") != null) {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
-		String diaDaSemanaAtual = escolarController.diaDaSemana();
-		List<Periodos> periodos = periodoDao.periodos();
-		List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(usuarioSessao.getId(), EscolarController.periodoAtual, diaDaSemanaAtual);
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
 			if(usuarioSessao.getPerfil().getProfessor()) {
+				String diaDaSemanaAtual = escolarController.diaDaSemana();
+				List<Periodos> periodos = periodoDao.periodos();
+				List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(usuarioSessao.getId(), EscolarController.periodoAtual, diaDaSemanaAtual);
 				link = "pages/meusHorarios";
 				model.addAttribute("usuarioSessao", usuarioSessao);
 				model.addAttribute("horarios", horarios); 
@@ -617,7 +627,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/filtrarMeusHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView filtrarMeusHorarios(HttpServletRequest request, HttpServletResponse response, Model model, String semana, Integer periodo) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "";
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -650,14 +660,14 @@ public class ModificacoesController extends HttpServlet {
 		default:
 			break;
 	}
-	String semanaEscolhida = semana;
-	String periodoEscolhido = periodoDao.findById(periodo).get().getNome();
-	
-		String diaDaSemanaAtual = semanaEscolhida;
-		List<Periodos> periodos = periodoDao.periodos();
-		List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(usuarioSessao.getId(), periodoEscolhido, semanaEscolhida);
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
 			if(usuarioSessao.getPerfil().getProfessor()) {
+				String semanaEscolhida = semana;
+				String periodoEscolhido = periodoDao.findById(periodo).get().getNome();
+				String diaDaSemanaAtual = semanaEscolhida;
+				List<Periodos> periodos = periodoDao.periodos();
+				List<Horarios> horarios = horarioDao.filtroTodasAulasProfessor(usuarioSessao.getId(), periodoEscolhido, semanaEscolhida);
+			
 				link = "pages/meusHorarios";
 				model.addAttribute("usuarioSessao", usuarioSessao);
 				model.addAttribute("horarios", horarios); 
@@ -675,7 +685,7 @@ public class ModificacoesController extends HttpServlet {
 	
 	@RequestMapping(value = "/filtrarHorarios", method = {RequestMethod.POST,RequestMethod.GET}) // Link do submit do form e o method POST que botou la
 	public ModelAndView filtrarHorarios(HttpServletRequest request, HttpServletResponse response, Model model, String semana, Integer periodo) { // model é usado para mandar , e variavelNome está recebendo o name="nome" do submit feito na pagina principal 
-		String link = "pages/horarios";
+		String link = "deslogar";
 		HttpSession session = request.getSession();
 		String itemMenuSelecionado = "";
 		Usuario usuarioSessao = new Usuario();
@@ -708,16 +718,18 @@ public class ModificacoesController extends HttpServlet {
 			default:
 				break;
 		}
-		String semanaEscolhida = semana;
-		String periodoEscolhido = periodoDao.findById(periodo).get().getNome();
-		System.out.println("Filtro: "+semana + periodo);
-		List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(periodoEscolhido, semanaEscolhida);
-		List<String> quantidadeDeSeries = horarioDao.qtdSeries(periodoEscolhido, semanaEscolhida);
-		List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(periodoEscolhido, semanaEscolhida);
-		List<Horarios> horarios = horarioDao.buscarPeriodo(periodoEscolhido, semanaEscolhida);
-		List<Periodos> periodos = periodoDao.periodos();
 		
 		if(usuarioSessao != null && usuarioSessao.getPerfil() != null) {
+			link = "pages/horarios";
+			String semanaEscolhida = semana;
+			String periodoEscolhido = periodoDao.findById(periodo).get().getNome();
+			System.out.println("Filtro: "+semana + periodo);
+			List<Integer> quantidadeDeSalas = horarioDao.qtdSalas(periodoEscolhido, semanaEscolhida);
+			List<String> quantidadeDeSeries = horarioDao.qtdSeries(periodoEscolhido, semanaEscolhida);
+			List<String> quantidadeDeHorarios = horarioDao.qtdHorarios(periodoEscolhido, semanaEscolhida);
+			List<Horarios> horarios = horarioDao.buscarPeriodo(periodoEscolhido, semanaEscolhida);
+			List<Periodos> periodos = periodoDao.periodos();
+			
 			model.addAttribute("professores", usuarioDao.professores());
 			model.addAttribute("usuarioSessao", usuarioSessao);
 			model.addAttribute("horarios", horarios); 
@@ -746,7 +758,8 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao != null && (usuarioSessao.getPerfil().getAdmin() != null || usuarioSessao.getPerfil().getFuncionario() != null)) {
-		LocalDate data = LocalDate.parse(nasc);
+		link = "pages/alunos";
+			LocalDate data = LocalDate.parse(nasc);
 		Perfil p = new Perfil();
 		if (permissaoFunc.toLowerCase().contains("aluno")) {
 			p = perfilDao.buscarAluno().get(0);
@@ -861,7 +874,7 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao!= null && usuarioSessao.getPerfil() != null) {
-			link = "pages/funcionarios"; 
+			link = "pages/recados"; 
 			LocalDate data = LocalDate.parse(dataEnvio);
 			
 			Recado r = new Recado();
@@ -902,7 +915,7 @@ public class ModificacoesController extends HttpServlet {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
 		}
 		if(usuarioSessao!= null && usuarioSessao.getPerfil() != null) {
-			link = "pages/funcionarios"; 
+			link = "pages/periodos"; 
 			Periodos p = new Periodos();
 			p.setCodigo(periodo.getCodigo());
 			p.setFim(periodo.getFim());

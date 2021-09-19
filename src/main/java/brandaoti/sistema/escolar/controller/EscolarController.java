@@ -269,6 +269,7 @@ public class EscolarController extends HttpServlet {
 			usuarioSessao = usu;
 			session.setAttribute("usuarioSessao",usuarioSessao);
 			link = "pages/home";
+			itemMenuSelecionado = "pages/home";
 		}
 		if(session.getAttribute("usuarioSessao") != null) {
 			usuarioSessao = (Usuario) session.getAttribute("usuarioSessao");
