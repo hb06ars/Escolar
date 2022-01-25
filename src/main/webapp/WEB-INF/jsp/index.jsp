@@ -59,31 +59,31 @@
 
 <form action="/home" method="post">
     <!-- Begin page content -->
-    <main style="background-position: center;background-repeat: no-repeat; background-image: url('/img/fundo.png');" class="flex-shrink-0 main has-footer">
+    <main style="background-color:white; background-position: center;background-repeat: no-repeat; background-image: url('/img/fundo.png');" class="flex-shrink-0 main has-footer">
         <!-- Fixed navbar -->       
-        	<header class="header">
+        	<header class="header" style="background-color:white">
             <div class="row">
                 <div class="ml-auto col-auto align-self-center">
-                    <a href="/pdf/manual.pdf" class="text-white">
+                    <a href="/pdf/manual.pdf" class="text-dark">
                         Documentação
                     </a>
                 </div>
             </div>
         </header> 
 
-	        <div class="container h-100 text-white">
+	        <div class="container h-100 text-dark">
 	            <div class="row h-100">
 	                <div class="col-12 align-self-center mb-4">
 	                    <div class="row justify-content-center">
 	                        <div class="col-11 col-sm-7 col-md-6 col-lg-5 col-xl-4">
 	                            <h2 class="font-weight-normal mb-5">Login<br>Sistema Escolar</h2>
 	                            <div class="form-group float-label">
-	                                <input type="text" name="usuarioVal" id="usuarioVal" class="form-control text-white">
-	                                <label class="form-control-label text-white">Nome de usuário</label>
+	                                <input type="text" name="usuarioVal" id="usuarioVal" class="form-control text-dark">
+	                                <label class="form-control-label text-dark">Nome de usuário</label>
 	                            </div>
 	                            <div class="form-group float-label position-relative">
-	                                <input type="password" name="senhaVal" class="form-control text-white ">
-	                                <label class="form-control-label text-white">Senha</label>
+	                                <input type="password" name="senhaVal" class="form-control text-dark ">
+	                                <label class="form-control-label text-dark">Senha</label>
 	                            </div>  
 	                        </div>
 	                    </div>
